@@ -1,0 +1,25 @@
+<div class="form">
+    <div *ngIf="!isEditing">
+      <p>Email cím: {{ userProfile.email }}</p>
+      <p>Név: {{ userProfile.nev }}</p>
+      <p>Telefonszám: {{ userProfile.telefon }}</p>
+      <p>Lakhely: {{ userProfile.lakhely }}</p>
+      <img *ngIf="userProfile.profileImage" [src]="userProfile.profileImage" alt="Profilkép">
+      <button (click)="toggleEditing()">Szerkesztés</button>
+    </div>
+    
+    <div *ngIf="isEditing">
+      <label>Email cím: <input  /></label><br>
+      <label>Név: <input /></label><br>
+      <label>Telefonszám: <input /></label><br>
+      <label>Lakhely: <input  /></label><br>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+      <img *ngIf="userProfile.profileImage" [src]="userProfile.profileImage" alt="Profilkép">
+      <button (click)="saveChanges()">Mentés</button>
+      <button (click)="toggleEditing()">Mégse</button>
+    </div>
+    </div>
+    <!-- <input [(ngModel)]="userProfile.email" />
+    [(ngModel)]="userProfile.nev"
+    [(ngModel)]="userProfile.telefon"
+    [(ngModel)]="userProfile.lakhely" -->

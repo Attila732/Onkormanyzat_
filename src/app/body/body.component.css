@@ -1,0 +1,14 @@
+.baloldal {
+    float: left;
+    width: 48%;
+    background-color: #ffffff;
+    text-align: justify;
+}
+
+.jobboldal {
+    
+    float: right;
+    width: 48%;
+    background-color: #ffffff;
+   text-align: center;
+}
