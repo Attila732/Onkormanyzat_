@@ -16,6 +16,7 @@ import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
 import { UthibajelentoComponent } from './uthibajelento/uthibajelento.component';
 import { VizGazComponent } from './viz-gaz/viz-gaz.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { EladoTermekComponent } from './elado-termek/elado-termek.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     TuzszabalyokComponent,
     UthibajelentoComponent,
     VizGazComponent,
-    SignUpComponent
+    SignUpComponent,
+    EladoTermekComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import { LomtalanitasComponent } from './lomtalanitas/lomtalanitas.component';
 import { SzemetszallitasComponent } from './szemetszallitas/szemetszallitas.component';
 import { VizGazComponent } from './viz-gaz/viz-gaz.component';
 import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
+import { EladoTermekComponent } from './elado-termek/elado-termek.component';
 
 
 
@@ -29,6 +30,8 @@ const routes: Routes = [
   {path:"app-szemetszallitas",component:SzemetszallitasComponent},
   {path:"app-viz-gaz",component:VizGazComponent},
   {path:"app-tuzszbalyok",component:TuzszabalyokComponent},
+  {path:"app-elado-termek",component:EladoTermekComponent},
+
 
  
 //   {path:"karbantartas", component:KarbantartasComponent},
