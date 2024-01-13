@@ -1,0 +1,15 @@
+<form (ngSubmit)="submitForm()" #idopontForm="ngForm">
+  <label for="nev">Név:</label>
+  <input type="text" id="nev" name="nev" [(ngModel)]="idopont.nev" required>
+
+  <label for="email">E-mail cím:</label>
+  <input type="email" id="email" name="email" [(ngModel)]="idopont.email" required>
+
+  <label for="telefonszam">Telefonszám:</label>
+  <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="idopont.telefonszam" required>
+
+  <label for="datum">Időpont:</label>
+  <input type="datetime-local" id="datum" name="datum" [(ngModel)]="idopont.datum" required>
+
+  <button type="submit" [disabled]="!idopontForm.valid">Időpont foglalása</button>
+</form>

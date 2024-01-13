@@ -17,6 +17,8 @@ import { UthibajelentoComponent } from './uthibajelento/uthibajelento.component'
 import { VizGazComponent } from './viz-gaz/viz-gaz.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { EladoTermekComponent } from './elado-termek/elado-termek.component';
+import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-idopont-foglalas.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,12 +35,14 @@ import { EladoTermekComponent } from './elado-termek/elado-termek.component';
     UthibajelentoComponent,
     VizGazComponent,
     SignUpComponent,
-    EladoTermekComponent
+    EladoTermekComponent,
+    OrvosIdopontfoglalasComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
