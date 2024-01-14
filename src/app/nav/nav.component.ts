@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
+csukva1=false;
+  nezzuk() {
+    console.log()
+  }
+
+  csukva = false;
+
 
 }

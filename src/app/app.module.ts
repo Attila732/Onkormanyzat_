@@ -18,7 +18,9 @@ import { VizGazComponent } from './viz-gaz/viz-gaz.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { EladoTermekComponent } from './elado-termek/elado-termek.component';
 import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-idopont-foglalas.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,9 +42,12 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    RouterModule.forRoot([]),
     NgbModule,
     FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
