@@ -1,11 +1,13 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+<!-- <nav ngbNav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Atigónia Önkormányzat</a>
     <button
       (click)="csukva = !csukva"
       class="navbar-toggler"
       type="button"
-      data-bs-toggle="collapse"
+      data-bs-toggle="dropdown"
       data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
@@ -37,11 +39,11 @@
             routerLink="/app-elado-termek"
             >Eladó termékek</a
           >
-        </li>
+        </li> -->
 
-        <li [ngbCollapse]="csukva1" class="nav-item dropdown">
+        <!-- <li ngbDropdownMenu [ngbCollapse]="csukva1" class="nav-item dropdown">
           <a
-            ngbDropdownToggle
+            ngbDropdownAnchor
             class="nav-link dropdown-toggle"
             href="#"
             id="navbarDropdown"
@@ -53,22 +55,22 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown" ngbDropdownMenu>
             <li>
-              <a class="dropdown-item" routerLink="/app-orvos"
+              <a ngbDropdownItem class="dropdown-item" routerLink="/app-orvos"
                 >Időpontfoglalás</a
               >
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/app-orvos-egyeb-ugyek"
+              <a ngbDropdownItem class="dropdown-item" routerLink="/app-orvos-egyeb-ugyek"
                 >Egyéb ügyek</a
               >
             </li>
             <li>
               <hr class="dropdown-divider" />
             </li>
-            <li><a class="dropdown-item" href="#">Kapcsolat</a></li>
+            <li><a ngbDropdownItem class="dropdown-item" href="#">Kapcsolat</a></li>
           </ul>
-        </li>
-
+        </li> -->
+<!-- 
         <li [ngbCollapse]="csukva" class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -190,15 +192,50 @@
       </div>
     </div>
   </div>
-</nav> -->
+</nav>
+ -->
 
-<div ngbDropdown class="dropdown">
-  <button (click)="csukva = !csukva" ngbDropdownToggle class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+
+
+
+
+
+
+
+
+<!-- <div ngbDropdown >
+  <button  ngbDropdownToggle class="btn btn-secondary" >
     Dropdown button
   </button>
-  <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a ngbDropdownItem class="dropdown-item" href="#">Action</a>
-    <a ngbDropdownItem class="dropdown-item" href="#">Another action</a>
-    <a ngbDropdownItem class="dropdown-item" href="#">Something else here</a>
+  <div ngbDropdownMenu  >
+    <a ngbDropdownItem  href="#">Action</a>
+    <a ngbDropdownItem  href="#">Another action</a>
+    <a ngbDropdownItem  href="#">Something else here</a>
   </div>
-</div>
+</div> -->
+
+
+<ul ngbNav  [activeId]="2" class="nav-tabs justify-content-center">
+	<li [ngbNavItem]="1">
+		<button ngbNavLink routerLink="/sign-up">SignUp</button>
+	</li>
+	<li [ngbNavItem]="2">
+		<button ngbNavLink routerLink="/app-profil" >Profil</button>
+	</li>
+	<li ngbDropdown class="nav-item" role="presentation">
+		<button type="button" class="nav-link" ngbDropdownToggle>Orvos</button>
+		<div ngbDropdownMenu>
+      <!-- <button ngbDropdownItem  routerLink="/app-orvos">Orvos something...</button> -->
+			<button ngbDropdownItem routerLink="/app-orvos-egyeb-ugyek">Orvos egyéb</button>
+			<button ngbDropdownItem>Something else here</button>
+			<div class="dropdown-divider"></div>
+			<button ngbDropdownItem>Separated link</button>
+		</div>
+	</li>
+	<li ngbNavItem [disabled]="true" class="ms-auto">
+		<button ngbNavLink>Disabled</button>
+	</li>
+</ul>
+
