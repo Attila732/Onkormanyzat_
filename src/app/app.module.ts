@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { LomtalanitasComponent } from './lomtalanitas/lomtalanitas.component';
 import { NavComponent } from './nav/nav.component';
 import { OrvosEgyebUgyekComponent } from './orvos-egyeb-ugyek/orvos-egyeb-ugyek.component';
+import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-idopont-foglalas.component';
+import { OrvosNyitvatartasComponent } from './orvos-nyitvatartas/orvos-nyitvatartas.component';
 import { ProfilComponent } from './profil/profil.component';
 import { SzemetszallitasComponent } from './szemetszallitas/szemetszallitas.component';
 import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
@@ -17,7 +19,6 @@ import { UthibajelentoComponent } from './uthibajelento/uthibajelento.component'
 import { VizGazComponent } from './viz-gaz/viz-gaz.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { EladoTermekComponent } from './elado-termek/elado-termek.component';
-import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-idopont-foglalas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LomtalanitasComponent,
     NavComponent,
     OrvosEgyebUgyekComponent,
+    OrvosIdopontfoglalasComponent,
+    OrvosNyitvatartasComponent,
     ProfilComponent,
     SzemetszallitasComponent,
     TuzszabalyokComponent,
@@ -38,7 +41,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     VizGazComponent,
     SignUpComponent,
     EladoTermekComponent,
-    OrvosIdopontfoglalasComponent,
   ],
   imports: [
     BrowserModule,

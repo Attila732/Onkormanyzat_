@@ -217,25 +217,30 @@
 </div> -->
 
 
-<ul ngbNav  [activeId]="2" class="nav-tabs justify-content-center">
+<ul ngbNav class="nav-tabs justify-content-center">
 	<li [ngbNavItem]="1">
-		<button ngbNavLink routerLink="/sign-up">SignUp</button>
+		<button ngbNavLink routerLink="/sign-up">Bejelentkezés</button>
 	</li>
 	<li [ngbNavItem]="2">
-		<button ngbNavLink routerLink="/app-profil" >Profil</button>
+		<button ngbNavLink routerLink="/app-body">Kezdőlap</button>
 	</li>
-	<li ngbDropdown class="nav-item" role="presentation">
-		<button type="button" class="nav-link" ngbDropdownToggle>Orvos</button>
+	<li [ngbNavItem]="3">
+		<button ngbNavLink routerLink="/app-elado-termek">Eladó Termékek</button>
+	</li>
+	<li [ngbNavItem]="4" ngbDropdown class="nav-item" role="presentation">
+		<button type="button" class="nav-link" ngbDropdownToggle>Orvosi Információk</button>
 		<div ngbDropdownMenu>
-      <!-- <button ngbDropdownItem  routerLink="/app-orvos">Orvos something...</button> -->
-			<button ngbDropdownItem routerLink="/app-orvos-egyeb-ugyek">Orvos egyéb</button>
-			<button ngbDropdownItem>Something else here</button>
+			<button ngbDropdownItem routerLink="/app-orvos-egyeb-ugyek">Tudnivalók</button>
+			<button ngbDropdownItem routerLink="/app-orvos-nyitvatartas">Nyitvatartás</button>
 			<div class="dropdown-divider"></div>
-			<button ngbDropdownItem>Separated link</button>
+			<button ngbDropdownItem routerLink="/app-orvos-idopont-foglalas">Időpontfoglalás</button>
 		</div>
 	</li>
+	<li [ngbNavItem]="5">
+		<button ngbNavLink routerLink="/app-profil" >Profil</button>
+	</li>
 	<li ngbNavItem [disabled]="true" class="ms-auto">
-		<button ngbNavLink>Disabled</button>
+		<button ngbNavLink>Kikapcsolva</button>
 	</li>
 </ul>
 

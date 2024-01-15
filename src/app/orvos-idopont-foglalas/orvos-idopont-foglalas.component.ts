@@ -13,6 +13,7 @@ throw new Error('Method not implemented.');
     nev: '',
     email: '',
     telefonszam: '',
-    datum: ''
+    datum: '',
+    ido: '',
   }
 };

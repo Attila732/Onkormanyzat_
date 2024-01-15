@@ -4,6 +4,8 @@ import { BodyComponent } from './body/body.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
 import { OrvosEgyebUgyekComponent } from './orvos-egyeb-ugyek/orvos-egyeb-ugyek.component';
+import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-idopont-foglalas.component';
+import { OrvosNyitvatartasComponent } from './orvos-nyitvatartas/orvos-nyitvatartas.component';
 import { ProfilComponent } from './profil/profil.component';
 import { KozteruletjelentoComponent} from './kozteruletjelento/kozteruletjelento.component';
 import { UthibajelentoComponent } from './uthibajelento/uthibajelento.component';
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path:"sign-up", component:LoginComponent},  
   {path:"app-nav",component:NavComponent},
   {path:"app-orvos-egyeb-ugyek",component:OrvosEgyebUgyekComponent},
+  {path:"app-orvos-idopont-foglalas",component:OrvosIdopontfoglalasComponent},
+  {path:"app-orvos-nyitvatartas",component:OrvosNyitvatartasComponent},
   {path:"app-profil",component:ProfilComponent},
   {path:"app-kozteruletjelento",component:KozteruletjelentoComponent},
   {path:"app-uthibajelento",component:UthibajelentoComponent},
