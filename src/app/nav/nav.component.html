@@ -195,28 +195,6 @@
 </nav>
  -->
 
-
-
-
-
-
-
-
-
-
-
-<!-- <div ngbDropdown >
-  <button  ngbDropdownToggle class="btn btn-secondary" >
-    Dropdown button
-  </button>
-  <div ngbDropdownMenu  >
-    <a ngbDropdownItem  href="#">Action</a>
-    <a ngbDropdownItem  href="#">Another action</a>
-    <a ngbDropdownItem  href="#">Something else here</a>
-  </div>
-</div> -->
-
-
 <ul ngbNav class="nav-tabs justify-content-center">
 	<li [ngbNavItem]="1">
 		<button ngbNavLink routerLink="/sign-up">Bejelentkezés</button>
@@ -225,18 +203,32 @@
 		<button ngbNavLink routerLink="/app-body">Kezdőlap</button>
 	</li>
 	<li [ngbNavItem]="3">
-		<button ngbNavLink routerLink="/app-elado-termek">Eladó Termékek</button>
+		<button ngbNavLink routerLink="/app-elado-termekek">Eladó Termékek</button>
 	</li>
 	<li [ngbNavItem]="4" ngbDropdown class="nav-item" role="presentation">
 		<button type="button" class="nav-link" ngbDropdownToggle>Orvosi Információk</button>
 		<div ngbDropdownMenu>
 			<button ngbDropdownItem routerLink="/app-orvos-egyeb-ugyek">Tudnivalók</button>
-			<button ngbDropdownItem routerLink="/app-orvos-nyitvatartas">Nyitvatartás</button>
+      <!-- Az alábbi felületben nem vagyok annyira biztos, lehet az is elég lenne, ha router-outlettel belenne hivatkozva a fenti felületbe -->
+			<button ngbDropdownItem routerLink="/app-orvos-nyitvatartas">Nyitvatartás</button> 
 			<div class="dropdown-divider"></div>
 			<button ngbDropdownItem routerLink="/app-orvos-idopont-foglalas">Időpontfoglalás</button>
 		</div>
 	</li>
-	<li [ngbNavItem]="5">
+	<li [ngbNavItem]="5" ngbDropdown class="nav-item" role="presentation">
+		<button type="button" class="nav-link" ngbDropdownToggle>Bejelentések</button>
+		<div ngbDropdownMenu>
+			<button ngbDropdownItem routerLink="/app-kozteruletjelento">Közterületi Bejelentések</button>
+			<button ngbDropdownItem routerLink="/app-uthibajelento">Úthibák</button> 
+			<button ngbDropdownItem routerLink="/app-viz-gaz">Víz-gáz Kimaradás</button> 
+			<button ngbDropdownItem routerLink="/app-tuzszabalyok">Tűzszabályok</button> 
+			<button ngbDropdownItem routerLink="/app-lomtalanitas">Lomtalanítás</button> 
+			<button ngbDropdownItem routerLink="/app-szemetszallitas">Szemétszállítás</button> 
+			<div class="dropdown-divider"></div>
+			<button ngbDropdownItem routerLink="/app-jelenteskezelo">Bejelentés küldése</button>
+		</div>
+	</li>
+	<li [ngbNavItem]="6">
 		<button ngbNavLink routerLink="/app-profil" >Profil</button>
 	</li>
 	<li ngbNavItem [disabled]="true" class="ms-auto">
