@@ -4,6 +4,7 @@ import { NgbModule, NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-boo
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -21,7 +22,7 @@ import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
 import { LomtalanitasComponent } from './lomtalanitas/lomtalanitas.component';
 import { SzemetszallitasComponent } from './szemetszallitas/szemetszallitas.component';
 import { JelenteskezeloComponent } from './jelenteskezelo/jelenteskezelo.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JelenteskezelogombComponent } from './jelenteskezelogomb/jelenteskezelogomb.component';
 import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ProfilComponent } from './profil/profil.component';
     SignUpComponent,
     EladoTermekComponent,
     JelenteskezeloComponent,
+    JelenteskezelogombComponent,
   ],
   imports: [
     BrowserModule,

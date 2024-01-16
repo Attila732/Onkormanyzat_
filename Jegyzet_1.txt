@@ -1,0 +1,17 @@
+Attila: 
+
+* Utánajárni hogy a profil logót hogy lehet működőképessé tenni 
+* Normális kinézet egységesítése 
+* Service kreálás 
+
+Szebi: 
+
+* Eladó Termékek 
+  - Service, Textbox (File Chooser, Szövegdoboz egy gombon működjön)
+* Új menüpontok generálása, routing-moduleban funkcionalizálás 
+  - ProgramTervezesService 
+* Adatok; Barnával 
+
+Barni: 
+
+* Backend adat visszaadás (sikeres) 
