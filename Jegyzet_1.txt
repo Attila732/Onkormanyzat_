@@ -1,6 +1,6 @@
 Attila: 
 
-* Utánajárni hogy a profil logót hogy lehet működőképessé tenni 
+* Utánajárni hogy a profil logót hogy lehet működőképessé tenni /kész van
 * Normális kinézet egységesítése 
 * Service kreálás 
 
