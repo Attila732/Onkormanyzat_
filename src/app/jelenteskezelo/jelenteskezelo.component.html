@@ -2,7 +2,7 @@
     <h2>Jelentéskezelő</h2>
   <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
     <div class="form-group">
-        <label for="types" type="" id="type" name="type" [(ngModel)]="bejelentes.tipus" required>Válasszon típust:</label>
+        <label for="types" type="" id="type" name="type" [(ngModel)]="bejelentesModel.tipus" required>Válasszon típust:</label>
         <select [value]="selectModel" id="types">
             <option value="kozteruleti">Közterületi</option>
             <option value="uthiba">Úthiba</option>
@@ -13,7 +13,7 @@
         </select>
         </div>
     <div class="form-group">
-        <label for="types" type="" id="type" name="type" [(ngModel)]="bejelentes.sulyossag" required>Súlyosság:</label>
+        <label for="types" type="" id="type" name="type" [(ngModel)]="bejelentesModel.sulyossag" required>Súlyosság:</label>
         <select [value]="selectModel" id="types">
           <!-- Rang-zárolt jelentések -->
             <option value="kozteruleti">1</option>
@@ -26,22 +26,22 @@
 
     <div class="form-group">
       <label for="nev">Név:</label>
-      <input type="text" id="nev" name="nev" [(ngModel)]="bejelentes.nev" required>
+      <input type="text" id="nev" name="nev" [(ngModel)]="bejelentesModel.nev" required>
     </div>
   
     <div class="form-group">
       <label for="telefonszam">Telefonszám:</label>
-      <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="bejelentes.telefonszam" required>
+      <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="bejelentesModel.telefonszam" required>
     </div>
 
     <div class="form-group">
       <label for="telefonszam">Helyszín:</label>
-      <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="bejelentes.telefonszam" required>
+      <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="bejelentesModel.telefonszam" required>
     </div>
   
     <div class="form-group">
       <label for="datum">Ekkor:</label>
-      <input type="datetime-local" id="datum" name="datum" [(ngModel)]="bejelentes.datum" required>
+      <input type="datetime-local" id="datum" name="datum" [(ngModel)]="bejelentesModel.idopont" required>
     </div>
   
     <button type="submit" [disabled]="!idopontForm.valid">Bejelentés Küldése</button>
