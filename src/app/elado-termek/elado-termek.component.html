@@ -1,48 +1,78 @@
-<form >
+<!-- Your form -->
+<form>
     <p>Kérem töltse fel a meghirdetni kívánt tárgyat</p>
     <div class="image-container">
-    <!-- File input for image selection -->
-    <input type="file" (change)="onFileSelected($event)" accept="image/*">
-  
-    
-        <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép">
+      <!-- File input for image selection -->
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+      <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid">
     </div>
     <!-- Text input -->
-    <label for="textbox">Text Box:</label>
+    <label for="textbox">Leírás:</label>
     <input type="text" id="textbox" formControlName="textboxValue">
-  
-    <button type="submit">Küldés</button>
+    <button type="submit" class="btn btn-primary">Küldés</button>
   </form>
   
-
+  <!-- Your posts -->
   <div class="fokep">
-<div class="poszt">Eladó termék
-    <img src="../../assets/canga.jpg" alt="canga" width="100px" height="100px">
-    <div class="szavazas"><button>Like</button> <button>Dislike</button>  <button>Érdekel</button></div>
-</div>
-<div class="poszt">Eladó termék
-    <img src="../../assets/canga.jpg" alt="canga" width="100px" height="100px">
-    <div class="szavazas"><button>Like</button> <button>Dislike</button>  <button>Érdekel</button></div>
-</div>
-<div class="poszt">Eladó termék
-    <img src="../../assets/canga.jpg" alt="canga" width="100px" height="100px">
-    <div class="szavazas"><button>Like</button> <button>Dislike</button>  <button>Érdekel</button></div>
-</div>
-<div class="poszt">Eladó termék
-    <img src="../../assets/canga.jpg" alt="canga" width="100px" height="100px">
-    <div class="szavazas"><button>Like</button> <button>Dislike</button>  <button>Érdekel</button></div>
-</div>
-<div class="poszt">Eladó termék
-    <img src="../../assets/canga.jpg" alt="canga" width="100px" height="100px">
-    <div class="szavazas"><button>Like</button> <button>Dislike</button>  <button>Érdekel</button></div>
-</div>
-<div class="poszt">Eladó termék
-    <img src="../../assets/canga.jpg" alt="canga" width="100px" height="100px">
-    <div class="szavazas"><button>Like</button> <button>Dislike</button>  <button>Érdekel</button></div>
-</div>
-<div class="poszt">Eladó termék
-    <img src="../../assets/canga.jpg" alt="canga" width="100px" height="100px">
-    <div class="szavazas"><button>Like</button> <button>Dislike</button> <button>Érdekel</button></div>
-</div>
+    <div class="poszt" *ngFor="let post of posts">
+      {{ post.title }}
+      <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
+      <div class="szavazas">
+        <button class="btn btn-success" (click)="likePost(post)">Like</button>
+        <button class="btn btn-danger" (click)="likePost(post)">Dislike</button>
+        <button class="btn btn-info" (click)="interestPost(post)">Érdekel</button>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Eladó Termékek - Baloldal -->
+      <div class="col-md-6 baloldal">
+        <ul class="list-group">
+          <li class="list-group-item bg-success text-white">Eladó Termékek</li>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h5 class="mb-2">Termék neve</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </div>
+              <div class="text-end">
+                <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+              </div>
+            </div>
+            <div class="szavazas">
+              <button class="btn btn-primary me-2">Like</button>
+              <button class="btn btn-danger me-2">Dislike</button>
+              <button class="btn btn-warning">Érdekel</button>
+            </div>
+          </li>
+     
+        </ul>
+      </div>
+  
 
-</div>
+      <div class="col-md-6 jobboldal">
+        <ul class="list-group">
+          <li class="list-group-item bg-primary text-white">Meghirdetett termékek</li>
+          <li class="list-group-item">
+            <h5 class="mb-2">Lorem Ipsum Dolor</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut mauris vel velit laoreet euismod.</p>
+          </li>
+          <li class="list-group-item">
+            <h5 class="mb-2">Pellentesque Habitasse</h5>
+            <p>Pellentesque habitasse morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+          </li>
+          <li class="list-group-item">
+            <h5 class="mb-2">Curabitur Cursus</h5>
+            <p>Curabitur cursus libero sit amet turpis malesuada, eu fermentum quam accumsan.</p>
+          </li>
+          <li class="list-group-item">
+            <h5 class="mb-2">Sed Tempus</h5>
+            <p>Sed tempus justo vel sapien dictum, non facilisis elit sagittis. Fusce eu odio in risus feugiat gravida.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  

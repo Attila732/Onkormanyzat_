@@ -34,6 +34,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./elado-termek.component.css']
 })
 export class EladoTermekComponent  implements OnInit {
+posts: any;
+interestPost(_t20: any) {
+throw new Error('Method not implemented.');
+}
+likePost(_t20: any) {
+throw new Error('Method not implemented.');
+}
   myForm: FormGroup | undefined;
   userProfile1 = { profileImage: null, textboxValue: '' };
 

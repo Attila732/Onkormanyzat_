@@ -1,25 +1,66 @@
-<div class="form">
-    <div *ngIf="!isEditing">
-      <p>Email cím: {{ userProfile.email }}</p>
-      <p>Név: {{ userProfile.nev }}</p>
-      <p>Telefonszám: {{ userProfile.telefon }}</p>
-      <p>Lakhely: {{ userProfile.lakhely }}</p>
-      <img *ngIf="userProfile.profileImage" [src]="userProfile.profileImage" alt="Profilkép">
-      <button (click)="toggleEditing()">Szerkesztés</button>
+<section class="text-center">
+  <div class="p-5 bg-image" style="
+    background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+    height: 300px;
+  "></div>
+  <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+    margin-top: -100px;
+    background: hsla(0, 0%, 100%, 0.8);
+    backdrop-filter: blur(30px);
+  ">
+    <div class="card-body py-5 px-md-5">
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-5">Profil</h2>
+          <form>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="form3Example1" class="form-control" />
+                  <label class="form-label" for="form3Example1">Keresztnév</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="form3Example2" class="form-control" />
+                  <label class="form-label" for="form3Example2">Vezetéknév</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <input type="email" id="form3Example1" class="form-control" />
+              <label class="form-label" for="form3Example1">Email address</label>
+            </div>
+            <button (click)="toggleEditing()">Szerkesztés</button>
+            <div *ngIf="isEditing">
+              <div class="form-group">
+                <label for="email">Email cím:</label>
+                <input type="email" id="email" name="email" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="nev">Név:</label>
+                <input type="text" id="nev" name="nev" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="telefonszam">Telefonszám:</label>
+                <input type="tel" id="telefonszam" name="telefonszam" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="lakhely">Lakhely:</label>
+                <input type="text" id="lakhely" name="lakhely" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="profileImage">Profilkép:</label>
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control" />
+                <img *ngIf="userProfile.profileImage" [src]="userProfile.profileImage" alt="Profilkép" class="mt-2 img-fluid">
+              </div>
+              <button (click)="saveChanges()" class="btn btn-primary">Mentés</button>
+              <button (click)="toggleEditing()" class="btn btn-secondary">Mégse</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    
-    <div *ngIf="isEditing">
-      <label>Email cím: <input  /></label><br>
-      <label>Név: <input /></label><br>
-      <label>Telefonszám: <input /></label><br>
-      <label>Lakhely: <input  /></label><br>
-      <input type="file" (change)="onFileSelected($event)" accept="image/*">
-      <img *ngIf="userProfile.profileImage" [src]="userProfile.profileImage" alt="Profilkép">
-      <button (click)="saveChanges()">Mentés</button>
-      <button (click)="toggleEditing()">Mégse</button>
-    </div>
-    </div>
-    <!-- <input [(ngModel)]="userProfile.email" />
-    [(ngModel)]="userProfile.nev"
-    [(ngModel)]="userProfile.telefon"
-    [(ngModel)]="userProfile.lakhely" -->
+  </div>
+</section>

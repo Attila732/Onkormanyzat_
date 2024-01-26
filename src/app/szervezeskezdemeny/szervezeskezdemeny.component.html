@@ -1,26 +1,28 @@
-<div class="appointment-container">
+<div class="container mt-5">
+  <div class="appointment-container">
     <h2>Szervezés Kezdeményezése</h2>
-  <form (ngSubmit)="inputModel()" #idopontForm="ngForm">
-    <div class="form-group">
-      <label for="nev">Rendezés neve:</label>
-      <input type="text" id="nev" name="nev" [(ngModel)]="szervezesModel.nev" required>
-    </div>
+    <form (ngSubmit)="inputModel()" #szervezesForm="ngForm">
+      <div class="form-group">
+        <label for="rendezesNev">Rendezés neve:</label>
+        <input type="text" id="rendezesNev" name="rendezesNev" [(ngModel)]="szervezesModel.nev" class="form-control" required>
+      </div>
 
-    <div class="form-group">
-      <label for="nev">Rendezés leírása:</label>
-      <input type="text" id="nev" name="nev" [(ngModel)]="szervezesModel.leiras" required>
-    </div>
-  
-    <div class="form-group">
-      <label for="datum">Ekkor:</label>
-      <input type="datetime-local" id="datum" name="datum" [(ngModel)]="szervezesModel.idopont" required>
-    </div>
-  
-    <div class="form-group">
-      <label for="telefonszam">Telefonszám:</label>
-      <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="szervezesModel.telefonszam" required>
-    </div>
-  
-    <button type="submit" [disabled]="!idopontForm.valid">Szervezés indítványozása</button>
-  </form>
+      <div class="form-group">
+        <label for="rendezesLeiras">Rendezés leírása:</label>
+        <input type="text" id="rendezesLeiras" name="rendezesLeiras" [(ngModel)]="szervezesModel.leiras" class="form-control" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="idopont">Ekkor:</label>
+        <input type="datetime-local" id="idopont" name="idopont" [(ngModel)]="szervezesModel.idopont" class="form-control" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="telefonszam">Telefonszám:</label>
+        <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="szervezesModel.telefonszam" class="form-control" required>
+      </div>
+    
+      <button type="submit" class="btn btn-primary" [disabled]="!szervezesForm.valid">Szervezés indítványozása</button>
+    </form>
   </div>
+</div>

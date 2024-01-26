@@ -1,49 +1,55 @@
-<div class="appointment-container">
-    <h2>Jelentéskezelő</h2>
-  <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
-    <div class="form-group">
-        <label for="types" type="" id="type" name="type" [(ngModel)]="bejelentesModel.tipus" required>Válasszon típust:</label>
-        <select [value]="selectModel" id="types">
+
+  <div class="container mt-5">
+    <div class="appointment-container">
+      <h2>Jelentéskezelő</h2>
+      <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
+  
+        <div class="form-group">
+          <label for="type">Válasszon típust:</label>
+          <select class="form-control" id="type" name="type" [(ngModel)]="bejelentesModel.tipus" required>
             <option value="kozteruleti">Közterületi</option>
             <option value="uthiba">Úthiba</option>
             <!-- Rang-zárolt jelentések -->
             <option value="viz-gaz">Víz-gáz</option>
             <option value="lomtalanitas">Lomtalanítás</option>
             <option value="szemetszallitas">Szemétszállítás</option>
-        </select>
+          </select>
         </div>
-    <div class="form-group">
-        <label for="types" type="" id="type" name="type" [(ngModel)]="bejelentesModel.sulyossag" required>Súlyosság:</label>
-        <select [value]="selectModel" id="types">
-          <!-- Rang-zárolt jelentések -->
-            <option value="kozteruleti">1</option>
-            <option value="uthiba">2</option>
-            <option value="viz-gaz">3</option>
-            <option value="lomtalanitas">4</option>
-            <option value="szemetszallitas">5</option>
-        </select>
+  
+        <div class="form-group">
+          <label for="sulyossag">Súlyosság:</label>
+          <select class="form-control" id="sulyossag" name="sulyossag" [(ngModel)]="bejelentesModel.sulyossag" required>
+            <!-- Rang-zárolt jelentések -->
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
         </div>
-
-    <div class="form-group">
-      <label for="nev">Név:</label>
-      <input type="text" id="nev" name="nev" [(ngModel)]="bejelentesModel.nev" required>
-    </div>
   
-    <div class="form-group">
-      <label for="telefonszam">Telefonszám:</label>
-      <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="bejelentesModel.telefonszam" required>
-    </div>
-
-    <div class="form-group">
-      <label for="telefonszam">Helyszín:</label>
-      <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="bejelentesModel.telefonszam" required>
-    </div>
+        <div class="form-group">
+          <label for="nev">Név:</label>
+          <input type="text" class="form-control" id="nev" name="nev" [(ngModel)]="bejelentesModel.nev" required>
+        </div>
   
-    <div class="form-group">
-      <label for="datum">Ekkor:</label>
-      <input type="datetime-local" id="datum" name="datum" [(ngModel)]="bejelentesModel.idopont" required>
-    </div>
+        <div class="form-group">
+          <label for="telefonszam">Telefonszám:</label>
+          <input type="tel" class="form-control" id="telefonszam" name="telefonszam" [(ngModel)]="bejelentesModel.telefonszam" required>
+        </div>
   
-    <button type="submit" [disabled]="!idopontForm.valid">Bejelentés Küldése</button>
-  </form>
+        <div class="form-group">
+          <label for="helyszin">Helyszín:</label>
+          <input type="text" class="form-control" id="helyszin" name="helyszin" [(ngModel)]="bejelentesModel.helyszin" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="idopont">Ekkor:</label>
+          <input type="datetime-local" class="form-control" id="idopont" name="idopont" [(ngModel)]="bejelentesModel.idopont" required>
+        </div>
+  
+        <button type="submit" class="btn btn-primary" [disabled]="!idopontForm.valid">Bejelentés Küldése</button>
+      </form>
+    </div>
   </div>
+  

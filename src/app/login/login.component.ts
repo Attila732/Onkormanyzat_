@@ -8,6 +8,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 })
 export class LoginComponent {
+userProfile: any;
+onFileSelected($event: Event) {
+throw new Error('Method not implemented.');
+}
   title = 'Onkormanyzat';
   login=new FormGroup({
     userName01:new FormControl(''),

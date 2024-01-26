@@ -13,5 +13,27 @@
 
   }
   
-  /* Adjust other styling as needed */
+/* Your additional styles can be added here */
+.fokep {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .poszt {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .szavazas {
+    margin-top: 10px;
+  }
+  
+  .image-container {
+    margin-bottom: 20px;
+  }
+  
   

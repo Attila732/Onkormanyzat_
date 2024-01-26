@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SzervezesserviceService } from '../szervezes.service';
+import { SzervezesService } from '../szervezes.service';
 
 @Component({
   selector: 'app-szervezes',
@@ -8,7 +8,7 @@ import { SzervezesserviceService } from '../szervezes.service';
   styleUrls: ['./szervezes.component.css']
 })
 export class SzervezesComponent {
-  constructor(private router:Router, private szervezesservice:SzervezesserviceService){
+  constructor(private router:Router, private szervezesservice:SzervezesService){
     
 
   }
