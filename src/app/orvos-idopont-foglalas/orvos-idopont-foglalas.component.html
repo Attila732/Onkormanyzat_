@@ -1,6 +1,6 @@
 <div class="appointment-container">
   <h2>Foglaljon időpontot!</h2>
-<form (ngSubmit)="submitForm()" #idopontForm="ngForm">
+<form (ngSubmit)="inputForm()" #idopontForm="ngForm">
   <div class="form-group">
     <label for="nev">Név:</label>
     <input type="text" id="nev" name="nev" [(ngModel)]="idopont.nev" required>

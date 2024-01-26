@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { JelenteskezeloService } from '../jelenteskezelo.service';
+import { BejelentesAdatok } from '../BejelentesAdatok';
 
 @Component({
   selector: 'app-jelenteskezelo',
@@ -6,13 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./jelenteskezelo.component.css']
 })
 export class JelenteskezeloComponent {
-  submitForm() {
-    throw new Error('Method not implemented.');
+  bejelentesModel = new BejelentesAdatok
+  inputForm() {
+    this.jelenteskezeloservice.postService(this.bejelentesModel);
     }
-      bejelentes = {
-        tipus: '',
-        nev: '',
-        telefonszam: '',
-        datum: '',
-      }
+  selectModel(){
+
+    }
+
+    constructor(private jelenteskezeloservice:JelenteskezeloService){
+
+    }
+
     };

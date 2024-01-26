@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { IdopontAdatok } from '../IdopontAdatok';
+import { IdopontService } from '../idopont.service';
 
 @Component({
   selector: 'app-orvosidopontfoglalas',
@@ -6,14 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./orvos-idopont-foglalas.component.css']
 })
 export class OrvosIdopontfoglalasComponent {
-submitForm() {
-throw new Error('Method not implemented.');
-}
-  idopont = {
-    nev: '',
-    email: '',
-    telefonszam: '',
-    datum: '',
-    ido: '',
+  idopontModel = new IdopontAdatok()
+  inputForm() {
+    this.idopontservice.postService(this.idopontModel);
+  }
+
+  constructor(private idopontservice:IdopontService){
+
   }
 };

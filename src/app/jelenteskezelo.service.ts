@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
+import { BejelentesAdatok } from './BejelentesAdatok';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JelenteskezeloService {
-  private _adat: any;
-  public get adat(): any {
-    return this._adat;
-  }
-  public set adat(value: any) {
-    this._adat = value;
+  jelenetesadatok:BejelentesAdatok= new BejelentesAdatok();
+
+  url = "http://localhost:4200";
+
+  constructor(private http:HttpClient){
+
   }
 
-  constructor() { }
+  postService(body:BejelentesAdatok){
+    this.http.post(this.url, body).subscribe();
+}
 }

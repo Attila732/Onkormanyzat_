@@ -2,26 +2,26 @@ export class SzervezesAdatok{
 
 [x: string]: any
 
-"name": string
-"description": string
-"location": string
+"nev": string
+"leiras": string
+"helyszin": string
 "userid": number
 "orgid": number
-"orgname": string
-"time": {"startDate": string, "endDate": string}
-"phone": Array<string>
+"orgnev": string
+"idopont": {"startDate": string, "endDate": string}
+"telefonszam": Array<string>
 "email": Array<string>;
 
 
 constructor() {
-  this.name= ""
-  this.description= ""
-  this.location= ""
+  this.nev= ""
+  this.leiras= ""
+  this.helyszin= ""
   this.userid= 0
   this.orgid= 0
-  this.orgname= ""
-  this.time= {startDate:"", endDate:""}
-  this.phone= []
+  this.orgnev= ""
+  this.idopont= {startDate:"", endDate:""}
+  this.telefonszam= []
   this.email= [];
 
  }

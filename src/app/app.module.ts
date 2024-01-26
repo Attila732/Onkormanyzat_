@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -23,28 +24,32 @@ import { LomtalanitasComponent } from './lomtalanitas/lomtalanitas.component';
 import { SzemetszallitasComponent } from './szemetszallitas/szemetszallitas.component';
 import { JelenteskezeloComponent } from './jelenteskezelo/jelenteskezelo.component';
 import { JelenteskezelogombComponent } from './jelenteskezelogomb/jelenteskezelogomb.component';
+import { SzervezesComponent } from './szervezes/szervezes.component';
+import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezdemeny.component';
 import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BodyComponent,
-    KozteruletjelentoComponent,
-    LoginComponent,
-    LomtalanitasComponent,
     NavComponent,
+    EladoTermekComponent,
     OrvosEgyebUgyekComponent,
     OrvosIdopontfoglalasComponent,
     OrvosNyitvatartasComponent,
-    ProfilComponent,
+    KozteruletjelentoComponent,
+    LomtalanitasComponent,
     SzemetszallitasComponent,
     TuzszabalyokComponent,
     UthibajelentoComponent,
     VizGazComponent,
-    SignUpComponent,
-    EladoTermekComponent,
+    SzervezesComponent,
+    SzervezeskezdemenyComponent,
     JelenteskezeloComponent,
     JelenteskezelogombComponent,
+    LoginComponent,
+    SignUpComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { ProfilComponent } from './profil/profil.component';
     FormsModule,
     BrowserAnimationsModule,
     NgbDropdownModule, 
-    NgbNavModule
+    NgbNavModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

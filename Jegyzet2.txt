@@ -1,0 +1,8 @@
+Szebi: 
+  * Bejelentési adatok
+  * Programszervezés oldal
+
+Barni: 
+ * authorization server
+ * authorization 
+ * post, user organisations crud operations

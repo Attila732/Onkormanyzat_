@@ -220,17 +220,27 @@
 			<button ngbDropdownItem routerLink="/kozteruletjelento">Közterületi Bejelentések</button>
 			<button ngbDropdownItem routerLink="/uthibajelento">Úthibák</button> 
 			<button ngbDropdownItem routerLink="/viz-gaz">Víz-gáz Kimaradás</button> 
-			<button ngbDropdownItem routerLink="/tuzszabalyok">Tűzszabályok</button> 
 			<button ngbDropdownItem routerLink="/lomtalanitas">Lomtalanítás</button> 
 			<button ngbDropdownItem routerLink="/szemetszallitas">Szemétszállítás</button> 
 			<div class="dropdown-divider"></div>
 			<button ngbDropdownItem routerLink="/jelenteskezelo">Bejelentés küldése</button>
 		</div>
 	</li>
-  <li [ngbNavItem]="1">
+	<li [ngbNavItem]="6" ngbDropdown class="nav-item" role="presentation">
+		<button type="button" class="nav-link" ngbDropdownToggle>Szervezések</button>
+		<div ngbDropdownMenu>
+			<button ngbDropdownItem routerLink="/szervezes">Tudnivalók</button>
+			<div class="dropdown-divider"></div>
+			<button ngbDropdownItem routerLink="/szervezeskezd">Szervezés indítványozása</button>
+		</div>
+	</li>
+  <li [ngbNavItem]="7">
+		<button ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
+	</li>
+  <li [ngbNavItem]="8">
 		<button ngbNavLink routerLink="/sign-up">Bejelentkezés</button>
 	</li>
-	<li [ngbNavItem]="6">
+	<li [ngbNavItem]="9">
 		<button ngbNavLink routerLink="/profil" > <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"

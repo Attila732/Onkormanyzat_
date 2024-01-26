@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { IdopontAdatok } from './IdopontAdatok';
+import { SzervezesAdatok } from './SzervezesAdatok';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IdopontService {
-  idopontadatok:IdopontAdatok= new IdopontAdatok();
+export class SzervezesService {
+  szervezesadatok:SzervezesAdatok= new SzervezesAdatok();
 
   url = "http://localhost:4200";
 
@@ -14,7 +14,7 @@ export class IdopontService {
 
   }
 
-  postService(body:IdopontAdatok){
+  postService(body:SzervezesAdatok){
     this.http.post(this.url, body).subscribe();
-}
+  };
 }
