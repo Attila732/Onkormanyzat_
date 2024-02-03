@@ -11,7 +11,7 @@ futtatáshoz:
 - "benti"(Onkormanyzat_/Onkormanyzat_/) Onkormanyzat_ mappában (npm i) ng build --watch<br>
 - authorization-server VSCode run / terminal: ./mvnw spring-boot:run
 - gateway-frontend ("külső"(Onkormanyzat_/)) VSCode run / mappában terminal: ./mvnw spring-boot:run
-
+- (ha tényleg kommunikálni akartok a backenddel(resource-serverrel) akkor azt is el kell indítani) SEE: [MrBrown/groupproject](https://github.com/MrBrown16/Groupproject-backend)
 
 Csak angular futtatása lehetséges, de nem fog tudni a backenddel kommunikálni ("belső" mappában ng serve ahogy eddig is.)
 
