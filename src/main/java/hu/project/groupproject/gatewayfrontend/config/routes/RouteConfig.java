@@ -20,6 +20,16 @@ public class RouteConfig {
 							.tokenRelay()
 					)
 					.uri("http://localhost:8082")
+			)
+			.route(
+				r -> r
+					.path("/user/**")
+					.filters(
+						f -> f
+							// .rewritePath("/resource/", "/")
+							.tokenRelay()
+					)
+					.uri("http://localhost:8083")
 		)
 		.route(
 			r -> r
@@ -41,16 +51,6 @@ public class RouteConfig {
 				)
 				.uri("http://localhost:8083")
 		)
-		.route(
-			r -> r
-			.path("/login")
-			.uri("http://localhost:8083")
-		)
-		// .route(
-		// 	p ->p
-		// 		.path("/**")
-        //         .uri("http://localhost:8081")
-        // )
 		.build();
     }
 }
