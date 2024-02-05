@@ -22,9 +22,13 @@ első két lépés felcserélhető, a második a harmadik előtt kell legyen!!!<
 alapértelmezetten jelenleg minden username/password védett, ezt meg lehet változtatni az AuthorizationConfig-ban a ".pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico").permitAll()" kikommentelésével.
 
 
-alapértelmezett és jelenleg egyetlen felhasználó:
+alapértelmezett felhasználók:
 - username: user
 - password: pass
+- ROLES: ROLE_USER
+- username: admin
+- password: pass
+- ROLES: ROLE_USER, ROLE_ADMIN
 
 
 FRONTEND PORT: 8081<br>
