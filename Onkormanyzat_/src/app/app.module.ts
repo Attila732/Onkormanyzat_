@@ -27,6 +27,7 @@ import { JelenteskezelogombComponent } from './jelenteskezelogomb/jelenteskezelo
 import { SzervezesComponent } from './szervezes/szervezes.component';
 import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezdemeny.component';
 import { ProfilComponent } from './profil/profil.component';
+import { BTCCompComponent } from './btccomp/btccomp.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ProfilComponent } from './profil/profil.component';
     LoginComponent,
     SignUpComponent,
     ProfilComponent,
+    BTCCompComponent,
   ],
   imports: [
     BrowserModule,

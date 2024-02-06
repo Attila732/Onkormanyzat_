@@ -18,6 +18,7 @@ import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
 import { SzervezesComponent } from './szervezes/szervezes.component';
 import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezdemeny.component';
 import { ProfilComponent } from './profil/profil.component';
+import { BTCCompComponent } from './btccomp/btccomp.component';
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
 
   {path:"*", component:BodyComponent, pathMatch:'full'},
   {path:"app-nav",component:NavComponent},
+  {path:"barna-test",component:BTCCompComponent},
   {path:"sign-up", component:LoginComponent},
   {path:"body", component:BodyComponent,},
   {path:"elado-termekek",component:EladoTermekComponent},
