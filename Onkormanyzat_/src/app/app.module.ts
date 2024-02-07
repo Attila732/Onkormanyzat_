@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -65,7 +66,9 @@ import { BTCCompComponent } from './btccomp/btccomp.component';
     NgbNavModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide:APP_BASE_HREF, useValue:'/client'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
