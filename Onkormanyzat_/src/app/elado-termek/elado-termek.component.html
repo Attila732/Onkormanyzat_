@@ -22,8 +22,12 @@
   <div *ngIf="buttonClicked" class="image-container">
     <label for="productName">Eladó termék neve</label>
     <input type="text" id="productName" formControlName="productNameValue">
-    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+
+
+    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*">
     <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid">
+    
+    
     <label for="description">Leírás:</label>
     <input type="text" id="description" formControlName="descriptionValue">
     <label for="price">Ár:</label>

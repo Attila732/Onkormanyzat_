@@ -12,12 +12,14 @@ export class EladoTermekComponent  implements OnInit {
 buttonClicked=false;
 posts: any;
 form: any;
+files:File[]=[];
 interestPost(_t20: any) {
 throw new Error('Method not implemented.');
 }
 likePost(_t20: any) {
 throw new Error('Method not implemented.');
 }
+  //TODO:actually use it...
   myForm: FormGroup | undefined;
   userProfile1 = { profileImage: null, textboxValue: '' };
 
@@ -31,15 +33,9 @@ throw new Error('Method not implemented.');
   }
 
   onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-     
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        this.userProfile1.profileImage = reader.result as any;
-      };
-      reader.readAsDataURL(file);
-    }
+    this.files.push(event.target.files[0]);
+    console.log(this.files)
+    console.log(event)
   }
 
   onSubmit() {

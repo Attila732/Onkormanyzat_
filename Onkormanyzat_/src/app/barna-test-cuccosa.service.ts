@@ -14,7 +14,10 @@ export class BarnaTestCuccosaService {
         console.log(res)
         return res
       },
-      error:(err)=>console.log("Error in post make-admin "+err)
+      error:(err)=>{
+        console.log("Error in post make-admin ")
+        console.log(err)
+      }
     })
   }
 }
