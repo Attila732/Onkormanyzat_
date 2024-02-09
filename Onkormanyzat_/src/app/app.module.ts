@@ -28,6 +28,7 @@ import { JelenteskezelogombComponent } from './jelenteskezelogomb/jelenteskezelo
 import { SzervezesComponent } from './szervezes/szervezes.component';
 import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezdemeny.component';
 import { ProfilComponent } from './profil/profil.component';
+import { HibaComponent } from './hiba/hiba.component';
 import { BTCCompComponent } from './btccomp/btccomp.component';
 
 @NgModule({
@@ -52,6 +53,7 @@ import { BTCCompComponent } from './btccomp/btccomp.component';
     LoginComponent,
     SignUpComponent,
     ProfilComponent,
+    HibaComponent,
     BTCCompComponent,
   ],
   imports: [

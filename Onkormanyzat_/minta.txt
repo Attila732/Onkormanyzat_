@@ -1,0 +1,45 @@
+  private autokSub = new Subject()
+
+  constructor(private http:HttpClient) { 
+    this.loadData()
+  }
+
+
+  getAll(){
+    return this.autokSub;
+  }
+
+  private loadData(){
+    this.http.get(this.url+"cars").subscribe({
+      next: (res:any)=>this.autokSub.next(res),
+      error:(err:any)=>console.log(err)
+    });
+  }
+
+  postData(body:any){
+    this.http.post(this.url+"cars",body).subscribe({
+      next:(res:any)=>{
+        
+        console.log("successful put",res)
+      },
+      error:(err)=>console.log(err)
+    });
+  }
+  putData(body:any){
+    this.http.put(this.url+"cars/"+body.id,body).subscribe({
+      next:(res:any)=>{
+        
+        console.log("successful put",res)
+      },
+      error:(err)=>console.log(err)
+    });
+  }
+  deleteData(body:any){
+    this.http.delete(this.url+"cars/"+body.id,body).subscribe({
+      next:(res:any)=>{
+        
+        console.log("successful put",res)
+      },
+      error:(err)=>console.log(err)
+    });
+  }
