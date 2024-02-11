@@ -5,6 +5,10 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import hu.project.groupproject.gatewayfrontend.filters.LoggingFilter;
+import hu.project.groupproject.gatewayfrontend.filters.RemoveCookieGatewayFilterFactory;
+
+
 @Configuration
 public class RouteConfig {
 
@@ -32,14 +36,19 @@ public class RouteConfig {
 								.path("/login/**")
 								.filters(
 										f -> f
-												.tokenRelay())
+												.filter(removeXSRFToken())
+												.filter(loggingFilter())
+												.removeRequestHeader("x-xsrf-token")
+												.tokenRelay()
+												)
 								.uri("http://localhost:8083"))
 				.route(
 						r -> r
 								.path("/user/**")
 								.filters(
-										f -> f
-												.tokenRelay())
+										f -> f 
+												.tokenRelay()
+												)
 								.uri("http://localhost:8083"))
 				.route(r -> r
 						.path("/{path:^(?!.*\\.js$)(?!.*\\.css$)(?!.*\\.ico$)(?!.*\\.html$)(?!.*\\.woff2$)(?!.*\\.[^.]+\\.[0-9]+\\.[^.]+$).*}")
@@ -52,4 +61,16 @@ public class RouteConfig {
 
 				.build();
 	}
+
+	@Bean
+	public RemoveCookieGatewayFilterFactory removeXSRFToken(){
+		return new RemoveCookieGatewayFilterFactory("xsrf-token");
+		// return new RemoveCookieGatewayFilterFactory("XSRF-TOKEN");
+	}
+
+	@Bean LoggingFilter loggingFilter(){
+		return new LoggingFilter();
+	}
+
+
 }
