@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -6,12 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-csukva1=false;
-  nezzuk() {
-    console.log()
+  isNavbarOpen = false;
+  isMobile = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isMobile = window.innerWidth <= 700;
   }
 
-  csukva = false;
+  toggleNavbar() {
+    this.isNavbarOpen = !this.isNavbarOpen;
+  }
 
 
 }
