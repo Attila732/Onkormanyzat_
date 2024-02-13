@@ -1,64 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
 
-<nav  class="navbar navbar-expand-lg navbar-light bg-light">
-<div class="design">
-<ul ngbNav>
-
+	<div class="collapse navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
+		
+		<div class="design">
+			<ul ngbNav class="navbar-nav ">
+				<li [ngbNavItem]="2">
+					<button ngbNavLink routerLink="/body">Kezdőlap</button>
+				</li>
+				<li [ngbNavItem]="3">
+					<button ngbNavLink routerLink="/elado-termekek">Eladó Termékek</button>
+				</li>
+				<li [ngbNavItem]="4" ngbDropdown class="nav-item" role="presentation">
+					<button type="button" class="nav-link" ngbDropdownToggle>Orvosi Információk</button>
+					<div ngbDropdownMenu>
+						<button ngbDropdownItem routerLink="/orvos-egyeb-ugyek">Tudnivalók</button>
+				 
+						<button ngbDropdownItem routerLink="/orvos-nyitvatartas">Nyitvatartás</button> 
+						<div class="dropdown-divider"></div>
+						<button ngbDropdownItem routerLink="/orvos-idopont-foglalas">Időpontfoglalás</button>
+					</div>
+				</li>
+				<li [ngbNavItem]="5" ngbDropdown class="nav-item" role="presentation">
+					<button type="button" class="nav-link" ngbDropdownToggle>Bejelentések</button>
+					<div ngbDropdownMenu>
+						
+						
+						<button ngbDropdownItem routerLink="/jelenteskezelo">Bejelentés küldése</button>
+					</div>
+				</li>
+				<li [ngbNavItem]="6" ngbDropdown class="nav-item" role="presentation">
+					<button type="button" class="nav-link" ngbDropdownToggle>Szervezések</button>
+					<div ngbDropdownMenu>
+						<button ngbDropdownItem routerLink="/szervezes">Tudnivalók</button>
+						<div class="dropdown-divider"></div>
+						<button ngbDropdownItem routerLink="/szervezeskezd">Szervezés indítványozása</button>
+					</div>
+				</li>
+			  <li [ngbNavItem]="7">
+					<button ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
+				</li>
+			  <li [ngbNavItem]="8">
+					<button ngbNavLink routerLink="/login">Bejelentkezés</button>
+				</li>
+				<li [ngbNavItem]="9">
+					<button ngbNavLink routerLink="/profil" > <svg
+				  xmlns="http://www.w3.org/2000/svg"
+				  width="16"
+				  height="16"
+				  fill="currentColor"
+				  class="bi bi-person-circle"
+				  viewBox="0 0 16 16"
+				>
+				  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+				  <path
+					fill-rule="evenodd"
+					d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+				  />
+				</svg></button>
+				</li>
+			</ul>
+	
+	  </div>
+	</div>
+	
+  </nav>
+  
+  <!-- <ul ngbNav *ngIf="isMobile" class="navbar-nav">
 	<li [ngbNavItem]="2">
-		<button ngbNavLink routerLink="/body">Kezdőlap</button>
+	  <button ngbNavLink routerLink="/body">Kezdőlap</button>
 	</li>
 	<li [ngbNavItem]="3">
-		<button ngbNavLink routerLink="/elado-termekek">Eladó Termékek</button>
-	</li>
-	<li [ngbNavItem]="4" ngbDropdown class="nav-item" role="presentation">
-		<button type="button" class="nav-link" ngbDropdownToggle>Orvosi Információk</button>
-		<div ngbDropdownMenu>
-			<button ngbDropdownItem routerLink="/orvos-egyeb-ugyek">Tudnivalók</button>
-     
-			<button ngbDropdownItem routerLink="/orvos-nyitvatartas">Nyitvatartás</button> 
-			<div class="dropdown-divider"></div>
-			<button ngbDropdownItem routerLink="/orvos-idopont-foglalas">Időpontfoglalás</button>
-		</div>
-	</li>
-	<li [ngbNavItem]="5" ngbDropdown class="nav-item" role="presentation">
-		<button type="button" class="nav-link" ngbDropdownToggle>Bejelentések</button>
-		<div ngbDropdownMenu>
-			
-			
-			<button ngbDropdownItem routerLink="/jelenteskezelo">Bejelentés küldése</button>
-		</div>
-	</li>
-	<li [ngbNavItem]="6" ngbDropdown class="nav-item" role="presentation">
-		<button type="button" class="nav-link" ngbDropdownToggle>Szervezések</button>
-		<div ngbDropdownMenu>
-			<button ngbDropdownItem routerLink="/szervezes">Tudnivalók</button>
-			<div class="dropdown-divider"></div>
-			<button ngbDropdownItem routerLink="/szervezeskezd">Szervezés indítványozása</button>
-		</div>
-	</li>
-  <li [ngbNavItem]="7">
-		<button ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
-	</li>
-  <li [ngbNavItem]="8">
-		<button ngbNavLink routerLink="/login">Bejelentkezés</button>
-	</li>
-	<li [ngbNavItem]="9">
-		<button ngbNavLink routerLink="/profil" > <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-person-circle"
-      viewBox="0 0 16 16"
-    >
-      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-      <path
-        fill-rule="evenodd"
-        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-      />
-    </svg></button>
+	  <button ngbNavLink routerLink="/elado-termekek">Eladó Termékek</button>
 	</li>
 	
+	<li [ngbNavItem]="8">
+	  <button ngbNavLink routerLink="/login">Bejelentkezés</button>
+	</li>
+  </ul> -->
 
-</ul>
-</div>
-</nav>
+  
