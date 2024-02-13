@@ -9,41 +9,34 @@ import { OrvosEgyebUgyekComponent } from './orvos-egyeb-ugyek/orvos-egyeb-ugyek.
 import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-idopont-foglalas.component';
 import { OrvosNyitvatartasComponent } from './orvos-nyitvatartas/orvos-nyitvatartas.component';
 import { JelenteskezeloComponent } from './jelenteskezelo/jelenteskezelo.component';
-import { KozteruletjelentoComponent} from './kozteruletjelento/kozteruletjelento.component';
-import { UthibajelentoComponent } from './uthibajelento/uthibajelento.component';
-import { LomtalanitasComponent } from './lomtalanitas/lomtalanitas.component';
-import { SzemetszallitasComponent } from './szemetszallitas/szemetszallitas.component';
-import { VizGazComponent } from './viz-gaz/viz-gaz.component';
 import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
 import { SzervezesComponent } from './szervezes/szervezes.component';
 import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezdemeny.component';
 import { ProfilComponent } from './profil/profil.component';
 import { HibaComponent } from './hiba/hiba.component';
 import { BTCCompComponent } from './btccomp/btccomp.component';
-
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
 
 
 const routes: Routes = [
 
-  {path:"*", component:BodyComponent, pathMatch:'full'},
+  {path:"", component:BodyComponent, pathMatch:'full'},
   {path:"app-nav",component:NavComponent},
   {path:"barna-test",component:BTCCompComponent},
-  {path:"sign-up", component:LoginComponent},
+  {path:"login", component:LoginComponent},
+  {path:"sign-up", component:SignUpComponent},
   {path:"body", component:BodyComponent,},
   {path:"elado-termekek",component:EladoTermekComponent},
   {path:"orvos-egyeb-ugyek",component:OrvosEgyebUgyekComponent},
   {path:"orvos-idopont-foglalas",component:OrvosIdopontfoglalasComponent},
   {path:"orvos-nyitvatartas",component:OrvosNyitvatartasComponent},
   {path:"jelenteskezelo",component:JelenteskezeloComponent},
-  {path:"kozteruletjelento",component:KozteruletjelentoComponent},
-  {path:"uthibajelento",component:UthibajelentoComponent},
-  {path:"viz-gaz",component:VizGazComponent},
   {path:"tuzszabalyok",component:TuzszabalyokComponent},
-  {path:"lomtalanitas",component:LomtalanitasComponent},
-  {path:"szemetszallitas",component:SzemetszallitasComponent},
   {path:"szervezes",component:SzervezesComponent},
   {path:"szervezeskezd",component:SzervezeskezdemenyComponent},
   {path:"profil",component:ProfilComponent},
+  {path:"profilszerkesztes",component:ProfilSzerkesztesComponent},
   {path:"**",component:HibaComponent},
 
 

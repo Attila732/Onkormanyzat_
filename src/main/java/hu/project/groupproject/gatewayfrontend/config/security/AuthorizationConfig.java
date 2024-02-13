@@ -13,6 +13,9 @@ import org.springframework.security.web.server.authentication.logout.ServerLogou
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.server.csrf.CsrfToken;
 import org.springframework.security.web.server.csrf.XorServerCsrfTokenRequestAttributeHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.server.WebFilter;
 
 import reactor.core.publisher.Mono;
@@ -24,37 +27,23 @@ public class AuthorizationConfig {
     @Autowired
     private ReactiveClientRegistrationRepository clientRegistrationRepository;
 
-
-    private ServerLogoutSuccessHandler oidcLogoutSuccessHandler() {
-        OidcClientInitiatedServerLogoutSuccessHandler oidcLogoutSuccessHandler =
-            new OidcClientInitiatedServerLogoutSuccessHandler(this.clientRegistrationRepository);
-
-        // Sets the location that the End-User's User Agent will be redirected to
-        // after the logout has been performed at the Provider
-        oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}");
-
-        return oidcLogoutSuccessHandler;
-    }
-
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) throws Exception {
-        http.oauth2Login(Customizer.withDefaults());
         http.csrf(
-                csrf -> csrf
-                        .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
-                        .csrfTokenRequestHandler(new XorServerCsrfTokenRequestAttributeHandler()::handle)
-        );
-        http.authorizeExchange(
+            csrf -> csrf
+            .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
+            .csrfTokenRequestHandler(new XorServerCsrfTokenRequestAttributeHandler()::handle)
+            );
+            http.authorizeExchange(
                 exchange -> exchange
-                        // .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico").permitAll()
-                        .anyExchange().authenticated()
-                        // .anyExchange().permitAll()
-        );
-        http.logout(logoutSpec -> {
-            logoutSpec.logoutSuccessHandler(oidcLogoutSuccessHandler());
-        });
-        // http.cors(Customizer.withDefaults());
-        // http.cors(c->c.disable());
+                // .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico").permitAll()
+                .anyExchange().authenticated()
+                // .anyExchange().permitAll()
+            );
+            http.logout(logoutSpec -> {
+                logoutSpec.logoutSuccessHandler(oidcLogoutSuccessHandler());
+            });
+            http.oauth2Login(Customizer.withDefaults());
 
         return http.build();
     }
@@ -67,5 +56,30 @@ public class AuthorizationConfig {
                 System.out.println(csrfToken.getToken());
             }).then(chain.filter(exchange));
         };
+    }
+    
+    
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("*"); // Allow requests from any origin
+        config.addAllowedMethod("*"); // Allow all HTTP methods
+        config.addAllowedHeader("*"); // Allow all headers
+        config.setAllowCredentials(true); // Allow credentials (cookies, authorization headers)
+        
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config); // Apply CORS to all paths
+        return source;
+    }
+    
+    private ServerLogoutSuccessHandler oidcLogoutSuccessHandler() {
+        OidcClientInitiatedServerLogoutSuccessHandler oidcLogoutSuccessHandler =
+            new OidcClientInitiatedServerLogoutSuccessHandler(this.clientRegistrationRepository);
+    
+        // Sets the location that the End-User's User Agent will be redirected to
+        // after the logout has been performed at the Provider
+        oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}");
+    
+        return oidcLogoutSuccessHandler;
     }
 }

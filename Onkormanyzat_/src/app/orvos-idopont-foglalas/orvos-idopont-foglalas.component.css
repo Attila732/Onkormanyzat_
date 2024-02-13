@@ -5,6 +5,8 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: aliceblue;
+  opacity: 0.9;
 }
 
 h2 {
@@ -31,7 +33,7 @@ input {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #0317b1;
   color: white;
   padding: 10px;
   border: none;

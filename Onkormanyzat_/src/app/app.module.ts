@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
@@ -17,12 +17,7 @@ import { EladoTermekComponent } from './elado-termek/elado-termek.component';
 import { OrvosEgyebUgyekComponent } from './orvos-egyeb-ugyek/orvos-egyeb-ugyek.component';
 import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-idopont-foglalas.component';
 import { OrvosNyitvatartasComponent } from './orvos-nyitvatartas/orvos-nyitvatartas.component';
-import { KozteruletjelentoComponent } from './kozteruletjelento/kozteruletjelento.component';
-import { UthibajelentoComponent } from './uthibajelento/uthibajelento.component';
-import { VizGazComponent } from './viz-gaz/viz-gaz.component';
 import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
-import { LomtalanitasComponent } from './lomtalanitas/lomtalanitas.component';
-import { SzemetszallitasComponent } from './szemetszallitas/szemetszallitas.component';
 import { JelenteskezeloComponent } from './jelenteskezelo/jelenteskezelo.component';
 import { JelenteskezelogombComponent } from './jelenteskezelogomb/jelenteskezelogomb.component';
 import { SzervezesComponent } from './szervezes/szervezes.component';
@@ -30,7 +25,8 @@ import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezde
 import { ProfilComponent } from './profil/profil.component';
 import { HibaComponent } from './hiba/hiba.component';
 import { BTCCompComponent } from './btccomp/btccomp.component';
-import { XsrfInterceptor } from './xsrf.interceptor';
+import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
+//import { XsrfInterceptor } from './xsrf.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,12 +37,7 @@ import { XsrfInterceptor } from './xsrf.interceptor';
     OrvosEgyebUgyekComponent,
     OrvosIdopontfoglalasComponent,
     OrvosNyitvatartasComponent,
-    KozteruletjelentoComponent,
-    LomtalanitasComponent,
-    SzemetszallitasComponent,
     TuzszabalyokComponent,
-    UthibajelentoComponent,
-    VizGazComponent,
     SzervezesComponent,
     SzervezeskezdemenyComponent,
     JelenteskezeloComponent,
@@ -56,6 +47,7 @@ import { XsrfInterceptor } from './xsrf.interceptor';
     ProfilComponent,
     HibaComponent,
     BTCCompComponent,
+    ProfilSzerkesztesComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +63,7 @@ import { XsrfInterceptor } from './xsrf.interceptor';
   ],
   providers: [
     {provide:APP_BASE_HREF, useValue:'/client'},//Adds /client/ to all frontend urls
-    { provide: HTTP_INTERCEPTORS, useClass: XsrfInterceptor, multi: true } //sets csrf protection header on all mutating requests
+    //{ provide: HTTP_INTERCEPTORS, useClass: XsrfInterceptor, multi: true } //sets csrf protection header on all mutating requests
 
   ],
   bootstrap: [AppComponent]

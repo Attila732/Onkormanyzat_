@@ -1,7 +1,7 @@
 
-
- <!-- Nav bár fehér blokk frissítéskor a bejelentkezésre ugrik, oldaltól függetlenül, Egyes opciók nem működnek bizonyos oldalról-->
-<ul ngbNav class="nav-tabs justify-content-center">
+<nav  class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="design">
+<ul ngbNav>
 
 	<li [ngbNavItem]="2">
 		<button ngbNavLink routerLink="/body">Kezdőlap</button>
@@ -13,7 +13,7 @@
 		<button type="button" class="nav-link" ngbDropdownToggle>Orvosi Információk</button>
 		<div ngbDropdownMenu>
 			<button ngbDropdownItem routerLink="/orvos-egyeb-ugyek">Tudnivalók</button>
-      <!-- Az alábbi felületben nem vagyok annyira biztos, lehet az is elég lenne, ha router-outlettel belenne hivatkozva a fenti felületbe -->
+     
 			<button ngbDropdownItem routerLink="/orvos-nyitvatartas">Nyitvatartás</button> 
 			<div class="dropdown-divider"></div>
 			<button ngbDropdownItem routerLink="/orvos-idopont-foglalas">Időpontfoglalás</button>
@@ -22,12 +22,8 @@
 	<li [ngbNavItem]="5" ngbDropdown class="nav-item" role="presentation">
 		<button type="button" class="nav-link" ngbDropdownToggle>Bejelentések</button>
 		<div ngbDropdownMenu>
-			<button ngbDropdownItem routerLink="/kozteruletjelento">Közterületi Bejelentések</button>
-			<button ngbDropdownItem routerLink="/uthibajelento">Úthibák</button> 
-			<button ngbDropdownItem routerLink="/viz-gaz">Víz-gáz Kimaradás</button> 
-			<button ngbDropdownItem routerLink="/lomtalanitas">Lomtalanítás</button> 
-			<button ngbDropdownItem routerLink="/szemetszallitas">Szemétszállítás</button> 
-			<div class="dropdown-divider"></div>
+			
+			
 			<button ngbDropdownItem routerLink="/jelenteskezelo">Bejelentés küldése</button>
 		</div>
 	</li>
@@ -43,7 +39,7 @@
 		<button ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
 	</li>
   <li [ngbNavItem]="8">
-		<button ngbNavLink routerLink="/sign-up">Bejelentkezés</button>
+		<button ngbNavLink routerLink="/login">Bejelentkezés</button>
 	</li>
 	<li [ngbNavItem]="9">
 		<button ngbNavLink routerLink="/profil" > <svg
@@ -61,6 +57,8 @@
       />
     </svg></button>
 	</li>
+	
 
 </ul>
-
+</div>
+</nav>

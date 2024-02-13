@@ -1,21 +1,4 @@
-<!-- Your form -->
-<!-- <form class="fajlfeltoltes">
- 
-    <p>Kérem töltse fel a meghirdetni kívánt tárgyat</p>
-    <div *ngIf="buttonClicked" class="image-container">
-      <label for="textbox">Eladó termék neve</label>
-      <input type="text" id="textbox" formControlName="textboxValue">
-      <input type="file" (change)="onFileSelected($event)" accept="image/*">
-      <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid">
-      <label for="textbox">Leírás:</label>
-    <input type="text" id="textbox" formControlName="textboxValue">
-    <button type="submit" class="btn btn-primary">Küldés</button>
-    </div>
-    <button  *ngIf="!buttonClicked" type="submit" class="btn btn-primary">Eladás</button>
 
-    
-    
-</form> -->
 <form class="fajlfeltoltes">
   <p>Kérem töltse fel a meghirdetni kívánt tárgyat</p>
   
@@ -37,7 +20,7 @@
     <button type="button" class="btn btn-primary" (click)="elrejt()">Elrejt</button>
   </div>
   
-  <button *ngIf="!buttonClicked" type="button" class="btn btn-primary" (click)="toggleForm()">Eladás</button>
+  <button class="jobboldaligomb" *ngIf="!buttonClicked" type="button" class="btn btn-primary" (click)="toggleForm()">Eladás</button>
 </form>
 
   <div class="fokep">
@@ -45,15 +28,14 @@
       {{ post.title }}
       <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
       <div class="szavazas">
-        <button class="btn btn-success" (click)="likePost(post)">Like</button>
-        <button class="btn btn-danger" (click)="likePost(post)">Dislike</button>
+
         <button class="btn btn-info" (click)="interestPost(post)">Érdekel</button>
       </div>
     </div>
   </div>
   <div class="container mt-5">
     <div class="row">
-      <!-- Eladó Termékek - Baloldal -->
+     
       <div class="col-md-6 baloldal">
         <ul class="list-group">
           <li class="list-group-item bg-success text-white">Eladó Termékek</li>
@@ -68,8 +50,7 @@
               </div>
             </div>
             <div class="szavazas">
-              <button class="btn btn-primary me-2">Like</button>
-              <button class="btn btn-danger me-2">Dislike</button>
+
               <button class="btn btn-warning">Érdekel</button>
             </div>
           </li>
@@ -102,4 +83,4 @@
     </div>
   </div>
   
-  
+
