@@ -62,7 +62,9 @@ public class AuthorizationConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*"); // Allow requests from any origin
+        config.addAllowedOrigin("http://localhost:8081"); 
+        config.addAllowedOrigin("http://localhost:8082"); 
+        config.addAllowedOrigin("http://localhost:8083"); 
         config.addAllowedMethod("*"); // Allow all HTTP methods
         config.addAllowedHeader("*"); // Allow all headers
         config.setAllowCredentials(true); // Allow credentials (cookies, authorization headers)
