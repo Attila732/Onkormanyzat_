@@ -1,0 +1,10 @@
+h1,h2,p{
+    color: black;
+}
+.hatter{
+    background-color: aliceblue;
+    border-radius: 8px;
+    opacity: 0.9;
+    padding: 10px;
+    margin: auto;
+}

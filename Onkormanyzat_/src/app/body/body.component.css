@@ -1,21 +1,16 @@
 .baloldal {
     float: left;
-    width: 48%;
-    background-color: #ffffff;
-    text-align: justify;
+    width: 40%;
+  
+   
 }
 
 .jobboldal {
     
     float: right;
-    width: 48%;
-    background-color: #ffffff;
-   text-align: center;
+    width: 40%;
 }
-.baloldal,.közép,.jobboldal {
-        padding: 15px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
+.kozep{
+    width: 20%;
+}
+

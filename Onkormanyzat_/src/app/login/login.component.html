@@ -1,9 +1,7 @@
 <!-- Section: Design Block -->
 <section class="text-center">
     <!-- Background image -->
-    <div class="p-5 bg-image" style="
-          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
-          height: 300px;
+    <div style=" height: 300px;
           "></div>
     <!-- Background image -->
 
@@ -16,53 +14,30 @@
 
         <div class="row d-flex justify-content-center">
           <div class="col-lg-8">
-            <h2 class="fw-bold mb-5">Regisztrálj</h2>
+            <h2 class="fw-bold mb-5">Bejelentkezés</h2>
             <form>
+             
 
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="form3Example1" class="form-control" />
-                    <label class="form-label" for="form3Example1">Vezetéknév</label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="form3Example2" class="form-control" />
-                    <label class="form-label" for="form3Example2">Keresztnév</label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Email input -->
+              
               <div class="form-outline mb-4">
                 <input type="email" id="form3Example3" class="form-control" />
                 <label class="form-label" for="form3Example3">Email cím</label>
               </div>
 
-              <!-- Password input -->
+             
               <div class="form-outline mb-4">
                 <input type="password" id="form3Example4" class="form-control" />
                 <label class="form-label" for="form3Example4">Jelszó</label>
               </div>
-              <div class="form-outline mb-4">
-                <input type="password" id="form3Example5" class="form-control" />
-                <label class="form-label" for="form3Example5">Jelszó mégegyszer</label>
-              </div>
+            
 
               <!-- Checkbox -->
-              <div class="form-check d-flex justify-content-center mb-4">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                <label class="form-check-label" for="form2Example33">
-                  Feliratkozás a hírlevélre
-                </label>
-              </div>
-
+            
               <!-- Submit button -->
               <button type="submit" class="btn btn-primary btn-block mb-4">
-               Regisztráció
+               Bejelentkezés
               </button>
+              <p class="mb-3">Nincs még fiókod? <a routerLink="/sign-up">Regisztrálj</a></p>
 
 
             </form>

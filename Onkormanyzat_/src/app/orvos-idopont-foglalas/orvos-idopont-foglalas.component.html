@@ -4,27 +4,27 @@
     <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
       <div class="form-group">
         <label for="nev">Név:</label>
-        <input type="text" id="nev" name="nev" [(ngModel)]="idopontModel.nev" class="form-control" required>
+        <input type="text" id="nev" name="nev"  class="form-control" required>
       </div>
 
       <div class="form-group">
         <label for="email">E-mail cím:</label>
-        <input type="email" id="email" name="email" [(ngModel)]="idopontModel.email" class="form-control" required>
+        <input type="email" id="email" name="email"  class="form-control" required>
       </div>
 
       <div class="form-group">
         <label for="telefonszam">Telefonszám:</label>
-        <input type="tel" id="telefonszam" name="telefonszam" [(ngModel)]="idopontModel.telefonszam" class="form-control" required>
+        <input type="tel" id="telefonszam" name="telefonszam"  class="form-control" required>
       </div>
 
       <div class="form-group">
         <label for="datum">Dátum:</label>
-        <input type="date" id="datum" name="datum" [(ngModel)]="idopontModel.datum" class="form-control" required>
+        <input type="date" id="datum" name="datum"  class="form-control" required>
       </div>
 
       <div class="form-group">
         <label for="ido">Időpont:</label>
-        <input type="time" id="ido" name="ido" [(ngModel)]="idopontModel.idopont" class="form-control" required>
+        <input type="time" id="ido" name="ido"  class="form-control" required>
       </div>
 
       <button type="submit" class="btn btn-primary" [disabled]="!idopontForm.valid">Időpont foglalása</button>

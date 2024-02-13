@@ -5,6 +5,8 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    opacity: 0.9;
   }
   
   h2 {
@@ -31,7 +33,7 @@
   }
   
   button {
-    background-color: #4caf50;
+    background-color: #121cde;
     color: white;
     padding: 10px;
     border: none;
