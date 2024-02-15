@@ -49,6 +49,7 @@ public class AuthorizationConfig {
     }
 
     @Bean
+    @SuppressWarnings("null")
     WebFilter csrfCookieWebFilter() {
         return (exchange, chain) -> {
             Mono<CsrfToken> csrfTokenMono = exchange.getAttributeOrDefault(CsrfToken.class.getName(), Mono.empty());
