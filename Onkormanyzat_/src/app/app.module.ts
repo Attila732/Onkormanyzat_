@@ -27,6 +27,7 @@ import { HibaComponent } from './hiba/hiba.component';
 import { BTCCompComponent } from './btccomp/btccomp.component';
 import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
 import { XsrfInterceptor } from './xsrf.interceptor';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { XsrfInterceptor } from './xsrf.interceptor';
     HibaComponent,
     BTCCompComponent,
     ProfilSzerkesztesComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

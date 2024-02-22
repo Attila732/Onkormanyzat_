@@ -9,4 +9,35 @@
       display: block;
     }
   }
+
+  /* navigation.component.scss */
+
+.navbar {
+  background-color: #3498db; /* Change the background color */
+}
+
+.navbar-brand {
+  color: #fff; /* Change the brand text color */
+}
+
+.navbar-toggler-icon {
+  background-color: #ffffff; /* Change the hamburger icon color */
+}
+
+.navbar-nav {
+  margin-right: 20px; /* Add some right margin to the menu items */
+}
+
+.navbar-nav .nav-item {
+  margin-right: 10px; /* Add some right margin to individual menu items */
+}
+
+.navbar-nav .nav-link {
+  color: #000000; /* Change the menu item text color */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #218aa4; /* Change the menu item text color on hover */
+}
+
   
