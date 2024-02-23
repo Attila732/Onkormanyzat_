@@ -12,7 +12,7 @@ export class IdopontAdatok{
     constructor() {
       this.nev= ""
       this.email= ""
-      this.telefonszam= 0
+      this.telefonszam= null
       this.datum= {startDate:"", endDate:""}
       this.idopont= {startDate:"", endDate:""}
      }

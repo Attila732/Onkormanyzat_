@@ -15,7 +15,7 @@ export class EladoTermekAdatok{
       this.allapot= ""
       this.kepek= []
       this.helyszin= ""
-      this.telefonszam= 0
+      this.telefonszam= null
     
      }
     }

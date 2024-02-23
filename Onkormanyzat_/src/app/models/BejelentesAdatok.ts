@@ -17,7 +17,7 @@ export class BejelentesAdatok{
       this.nev= ""
       this.leiras= ""
       this.helyszin= ""
-      this.telefonszam= 0
+      this.telefonszam= null
       this.idopont= {startDate:"", endDate:""};
     
      }

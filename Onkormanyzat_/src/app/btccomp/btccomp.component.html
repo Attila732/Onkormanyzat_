@@ -1,4 +1,9 @@
 <form method="post">
-    <input type="text" name="username" id="username" >
+    <input type="text" name="username" id="username" ngModel="{{username}}" >
     <button (click)="postMakeAdmin()">MakeAdmin</button>
 </form>
+<form method="post">
+    <input type="text" name="ize" id="ize" ngModel="{{ize.ize}}" >
+    <button (click)="postHello()">posthello</button>
+</form>
+<button (click)="getHello()">gethello</button>

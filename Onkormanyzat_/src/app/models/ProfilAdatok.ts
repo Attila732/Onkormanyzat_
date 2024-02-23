@@ -12,7 +12,7 @@ export class ProfilAdatok{
     constructor() {
       this.email= ""
       this.nev= ""
-      this.telefonszam= 0
+      this.telefonszam= null
       this.rang= ""
       this.helyszin= "";
     

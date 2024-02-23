@@ -9,6 +9,7 @@ import { BarnaTestCuccosaService } from '../barna-test-cuccosa.service';
 export class BTCCompComponent {
 
   username:any
+  ize:{"ize":"ize"}={"ize":"ize"}
 
   constructor(private testS:BarnaTestCuccosaService){
 
@@ -16,6 +17,12 @@ export class BTCCompComponent {
 
   postMakeAdmin(){
     this.testS.postMakeAdmin(this.username)
+  }
+  postHello(){
+    this.testS.postHello(this.ize)
+  }
+  getHello(){
+    this.testS.getHello()
   }
 
 

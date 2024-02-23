@@ -9,8 +9,8 @@ export class SzervezesAdatok{
 "orgid": number
 "orgnev": string
 "idopont": {"startDate": string, "endDate": string}
-"telefonszam":number|null
-"email": string;
+"telefonszam":Array<number> //csak itt kell array legyen mert lehet több elérhetőséget megadni
+"email": Array<string> //csak itt kell array legyen mert lehet több elérhetőséget megadni
 
 
 constructor() {
@@ -21,8 +21,8 @@ constructor() {
   this.orgid= 0
   this.orgnev= ""
   this.idopont= {startDate:"", endDate:""}
-  this.telefonszam= 0
-  this.email= "";
+  this.telefonszam= []
+  this.email= [];
 
  }
 }
