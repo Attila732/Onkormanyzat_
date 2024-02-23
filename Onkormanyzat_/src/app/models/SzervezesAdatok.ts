@@ -9,8 +9,8 @@ export class SzervezesAdatok{
 "orgid": number
 "orgnev": string
 "idopont": {"startDate": string, "endDate": string}
-"telefonszam":number[]
-"email": string[];
+"telefonszam":number|null
+"email": string;
 
 
 constructor() {
@@ -21,8 +21,8 @@ constructor() {
   this.orgid= 0
   this.orgnev= ""
   this.idopont= {startDate:"", endDate:""}
-  this.telefonszam= []
-  this.email= [];
+  this.telefonszam= 0
+  this.email= "";
 
  }
 }
