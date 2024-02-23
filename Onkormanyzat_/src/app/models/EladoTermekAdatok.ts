@@ -7,7 +7,7 @@ export class EladoTermekAdatok{
     "allapot": string
     "kepek": File[]
     "helyszin": string
-    "telefonszam": number
+    "telefonszam": number[]
     
     constructor() {
       this.nev= ""
@@ -15,7 +15,7 @@ export class EladoTermekAdatok{
       this.allapot= ""
       this.kepek= []
       this.helyszin= ""
-      this.telefonszam= 0
+      this.telefonszam= []
     
      }
     }

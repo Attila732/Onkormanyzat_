@@ -9,8 +9,8 @@ export class SzervezesAdatok{
 "orgid": number
 "orgnev": string
 "idopont": {"startDate": string, "endDate": string}
-"telefonszam": Array<string>
-"email": Array<string>;
+"telefonszam":number[]
+"email": string[];
 
 
 constructor() {

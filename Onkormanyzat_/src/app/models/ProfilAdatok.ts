@@ -4,7 +4,7 @@ export class ProfilAdatok{
     
     "email":string
     "nev": string
-    "telefonszam": number
+    "telefonszam": number[]
     "rang": string
     "helyszin": string;
     
@@ -12,7 +12,7 @@ export class ProfilAdatok{
     constructor() {
       this.email= ""
       this.nev= ""
-      this.telefonszam= 0
+      this.telefonszam= []
       this.rang= ""
       this.helyszin= "";
     

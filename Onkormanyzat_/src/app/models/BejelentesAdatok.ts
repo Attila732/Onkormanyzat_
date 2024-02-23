@@ -7,7 +7,7 @@ export class BejelentesAdatok{
     "nev": string
     "leiras": string
     "helyszin": string
-    "telefonszam":number
+    "telefonszam":number[]
     "idopont": {"startDate": string, "endDate": string};
     
     
@@ -17,7 +17,7 @@ export class BejelentesAdatok{
       this.nev= ""
       this.leiras= ""
       this.helyszin= ""
-      this.telefonszam= 0
+      this.telefonszam= []
       this.idopont= {startDate:"", endDate:""};
     
      }
