@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BejelentesAdatok } from './BejelentesAdatok';
+import { BejelentesAdatok } from './models/BejelentesAdatok';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

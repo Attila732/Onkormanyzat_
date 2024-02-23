@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SzervezesAdatok } from './SzervezesAdatok';
+import { SzervezesAdatok } from './models/SzervezesAdatok';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

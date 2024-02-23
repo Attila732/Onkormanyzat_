@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { JelenteskezeloService } from '../jelenteskezelo.service';
-import { BejelentesAdatok } from '../BejelentesAdatok';
+import { BejelentesAdatok } from '../models/BejelentesAdatok';
 
 @Component({
   selector: 'app-jelenteskezelo',

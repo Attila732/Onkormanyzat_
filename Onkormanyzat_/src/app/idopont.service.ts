@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IdopontAdatok } from './IdopontAdatok';
+import { IdopontAdatok } from './models/IdopontAdatok';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

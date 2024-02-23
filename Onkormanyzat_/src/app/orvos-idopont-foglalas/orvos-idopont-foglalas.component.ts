@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IdopontAdatok } from '../IdopontAdatok';
+import { IdopontAdatok } from '../models/IdopontAdatok';
 import { IdopontService } from '../idopont.service';
 
 @Component({
