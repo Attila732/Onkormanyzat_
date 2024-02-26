@@ -1,10 +1,38 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-your-component',
   templateUrl: './elado-termek.component.html',
-  styleUrls: ['./elado-termek.component.css']
+  styleUrls: ['./elado-termek.component.css'],
+  animations:[
+    // trigger('itemAnim',[
+    //   transition('void=> *', [
+    //     style({
+    //       height:0,
+    //       opacity:0,
+    //       transform:'scale(0,85)',
+    //       'margin-bottom':0,
+
+    //       paddingTop:0,
+    //       paddingBottom:0,
+    //       paddingRight:0,
+    //       paddingLeft:0
+    //     }),
+    //     animate('50ms',style({
+    //       height:'*',
+    //       'margin-bottom': '*',
+    //       paddingTop: '*',
+    //       paddingBottom: '*',
+    //       paddingRight: '*',
+    //       paddingLeft: '*'
+    //     })),
+    //     animate(68)
+    //   ])
+
+    // ])
+  ]
 })
 export class EladoTermekComponent  implements OnInit {
 
