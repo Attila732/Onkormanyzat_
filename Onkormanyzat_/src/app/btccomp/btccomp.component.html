@@ -1,9 +1,17 @@
 <form method="post">
-    <input type="text" name="username" id="username" ngModel="{{username}}" >
+    <input type="text" name="username" id="username" [(ngModel)]="username" >
     <button (click)="postMakeAdmin()">MakeAdmin</button>
 </form>
 <form method="post">
-    <input type="text" name="ize" id="ize" ngModel="{{ize.ize}}" >
+    <input type="text" name="ize" id="ize" [(ngModel)]="ize.ize" >
     <button (click)="postHello()">posthello</button>
 </form>
+<form method="post">
+    <input type="file" name="images" id="images" multiple [(ngModel)]="file" >
+    <button (click)="postfile()">postfile</button>
+</form>
 <button (click)="getHello()">gethello</button>
+
+<span>Make-Admin: {{makeAdmin|json}}</span><br>
+<span>PostHello: {{postHelloRes|json}}</span><br>
+<span>GetHello: {{getHelloRes|json}}</span><br>
