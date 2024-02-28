@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatTableModule } from "@angular/material/table";
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -28,6 +30,7 @@ import { BTCCompComponent } from './btccomp/btccomp.component';
 import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
 import { XsrfInterceptor } from './xsrf.interceptor';
 import { HeaderComponent } from './header/header.component';
+import { FilePickerDirective } from './file-picker.directive';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { HeaderComponent } from './header/header.component';
     BTCCompComponent,
     ProfilSzerkesztesComponent,
     HeaderComponent,
+    FilePickerDirective,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,9 @@ import { HeaderComponent } from './header/header.component';
     BrowserAnimationsModule,
     NgbDropdownModule, 
     NgbNavModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTabsModule,
+    MatTableModule
   ],
   providers: [
     {provide:APP_BASE_HREF, useValue:'/client'},//Adds /client/ to all frontend urls

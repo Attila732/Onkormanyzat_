@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { BarnaTestCuccosaService } from '../barna-test-cuccosa.service';
+import { FilePickerDirective } from '../file-picker.directive';
 
 @Component({
   selector: 'app-btccomp',
@@ -12,10 +13,16 @@ export class BTCCompComponent {
   getHelloRes:any
   username:any
   ize:{"ize":"ize"}={"ize":"ize"}
-  file:File[]=[]
+  files:any=[]
+
+  _displayedColumns = ['name', 'type', 'size', 'lastModified'];
+
 
   constructor(private testS:BarnaTestCuccosaService){
 
+  }
+  choseFile(event:Event){
+    console.log(event)
   }
 
   postMakeAdmin(){
@@ -46,26 +53,6 @@ export class BTCCompComponent {
       }
     })
   }
-  postfile() {
-    console.log(this.file[1].name)
-    const formData = new FormData();
-    for (let i = 0; i < this.file.length; i++) {
-      formData.append('images', this.file[i]);
-    }
-    
-    this.testS.postFile(formData).subscribe({
-      next: (res) => {
-        this.postHelloRes = res;
-        console.log(res);
-        return res;
-      },
-      error: (err) => {
-        this.postHelloRes = err;
-        console.log("Error in post hello ");
-        console.log(err);
-      }
-    });
-  }
   getHello(){
     this.testS.getHello()
     .subscribe({
@@ -81,7 +68,52 @@ export class BTCCompComponent {
       }
     })
   }
+  
+  postfile() {
+    console.log(this._selectedFiles)
+    // console.log(this.files[0].name)
+    // console.log(this.files[0])
+    const formData = new FormData();
+    for (let i = 0; i < this._selectedFiles.length; i++) {
+      // console.log(this.files[i])
+      formData.append('images', this._selectedFiles[i]);
+    }
+    console.log(formData)
+    this.testS.postFile(formData).subscribe({
+      next: (res) => {
+        this.postHelloRes = res;
+        console.log(res);
+        return res;
+      },
+      error: (err) => {
+        this.postHelloRes = err;
+        console.log("Error in post hello ");
+        console.log(err);
+      }
+    });
+  }
+  _selectedFiles:File[] = [];
+  _multiple = true;
+
+  @ViewChild('buttonPicker', { static: true })
+  _buttonPicker!: FilePickerDirective;
 
 
+
+
+  _onFilesChanged(files: FileList) {
+    this._selectedFiles = [];
+    for (let i = 0; i < files.length; i++) {
+      this._selectedFiles.push(files[i]);
+    }
+  }
+
+  _onReset() {
+    this._selectedFiles = [];
+  }
+
+  _reset() {
+    this._buttonPicker.reset();
+  }
 
 }
