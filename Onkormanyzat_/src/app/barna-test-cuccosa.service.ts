@@ -25,4 +25,7 @@ export class BarnaTestCuccosaService {
   getHello(){
     return this.http.get(this.urlRes+"hello")
   }
+  getImages(){
+    return this.http.get(this.urlRes+"img")
+  }
 }

@@ -11,6 +11,7 @@ export class BTCCompComponent {
   makeAdmin:any
   postHelloRes:any
   getHelloRes:any
+  getImagesRes:any
   username:any
   ize:{"ize":"ize"}={"ize":"ize"}
   files:any=[]
@@ -64,6 +65,21 @@ export class BTCCompComponent {
       error:(err)=>{
         this.getHelloRes=err
         console.log("Error in get ")
+        console.log(err)
+      }
+    })
+  }
+  getImages(){
+    this.testS.getImages()
+    .subscribe({
+      next:(res)=>{
+        this.getImagesRes=res
+        console.log(res)
+        return res
+      },
+      error:(err)=>{
+        this.getImagesRes=err
+        console.log("Error in get images")
         console.log(err)
       }
     })

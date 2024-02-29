@@ -9,6 +9,9 @@
 <!-- <form method="post">
     <input type="file" name="images" id="images" (change)="choseFile($event)" multiple [(ngModel)]="files" > -->
     <button (click)="postfile()">postfile</button>
+    <button (click)="getImages()">GetImages</button>
+    <img *ngFor="let image of getImagesRes" src="{{image}}" alt="{{image}}">
+    {{getImagesRes|json}}
 <!-- </form> -->
 <!-- <button (click)="getHello()">gethello</button> -->
 <!-- <mat-tab label="Button"> -->
