@@ -2,13 +2,13 @@ export class SzervezesAdatok{
 
 [x: string]: any
 
-"nev": string
+"nev": string //rendezvény neve
 "leiras": string
 "helyszin": string
 "userid": number
 "orgid": number
-"orgnev": string
-"idopont": {"startDate": string, "endDate": string}
+"startDate": string //yyyy-MM-dd hh:mm
+"endDate": string //yyyy-MM-dd hh:mm
 "telefonszam":Array<number> //csak itt kell array legyen mert lehet több elérhetőséget megadni
 "email": Array<string> //csak itt kell array legyen mert lehet több elérhetőséget megadni
 
@@ -19,8 +19,8 @@ constructor() {
   this.helyszin= ""
   this.userid= 0
   this.orgid= 0
-  this.orgnev= ""
-  this.idopont= {startDate:"", endDate:""}
+  this.startDate=""
+  this.endDate=""
   this.telefonszam= []
   this.email= [];
 

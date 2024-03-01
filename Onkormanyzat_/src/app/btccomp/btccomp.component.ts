@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { BarnaTestCuccosaService } from '../barna-test-cuccosa.service';
 import { FilePickerDirective } from '../file-picker.directive';
+import { ImagesService } from '../images.service';
 
 @Component({
   selector: 'app-btccomp',
@@ -19,7 +20,7 @@ export class BTCCompComponent {
   _displayedColumns = ['name', 'type', 'size', 'lastModified'];
 
 
-  constructor(private testS:BarnaTestCuccosaService){
+  constructor(private testS:BarnaTestCuccosaService, private image:ImagesService){
 
   }
   choseFile(event:Event){
@@ -84,20 +85,17 @@ export class BTCCompComponent {
       }
     })
   }
-  
-  postfile() {
-    console.log(this._selectedFiles)
-    // console.log(this.files[0].name)
-    // console.log(this.files[0])
-    const formData = new FormData();
-    for (let i = 0; i < this._selectedFiles.length; i++) {
-      // console.log(this.files[i])
-      formData.append('images', this._selectedFiles[i]);
-    }
-    console.log(formData)
-    this.testS.postFile(formData).subscribe({
-      next: (res) => {
-        this.postHelloRes = res;
+  preprePostFile(){
+    let adatok={id:"2",type:"users"}
+    this.prePostFile(adatok,this._selectedFiles)
+  }
+  // profileAdatok, eladoTermekek vagy más képet is tartalmazó post request
+  // szöveges adatait elküldő metódus, ami sikeres válasz esetén küldi a kép(ek)et
+  // sikeres válasz tartalma: uploadDetails:{id:string,type:string,multiple:boolean}
+  prePostFile(adatok:any, selectedFiles:File[]){
+    this.testS.postData(adatok).subscribe({
+      next: (res:any) => {
+        this.image.postfile(selectedFiles,res)
         console.log(res);
         return res;
       },
@@ -106,11 +104,34 @@ export class BTCCompComponent {
         console.log("Error in post hello ");
         console.log(err);
       }
-    });
+    })
   }
+  // postfile(selectedFiles:File[],uploadDetails:{url:string,multiple:boolean}) {
+  //   console.log(this._selectedFiles)
+  //   if (selectedFiles!=null && ((!uploadDetails.multiple && selectedFiles.length==1) || (uploadDetails.multiple))) {
+      
+  //     const formData = new FormData();
+  //     for (let i = 0; i < selectedFiles.length; i++) {
+  //       formData.append('images', selectedFiles[i]);
+  //     }
+  //     console.log(formData)
+  //     this.testS.postFile(formData).subscribe({
+  //       next: (res) => {
+  //         this.postHelloRes = res;
+  //         console.log(res);
+  //         return res;
+  //       },
+  //       error: (err) => {
+  //         this.postHelloRes = err;
+  //         console.log("Error in post hello ");
+  //         console.log(err);
+  //       }
+  //     });
+  //   }
+  // }
   _selectedFiles:File[] = [];
   _multiple = true;
-
+  
   @ViewChild('buttonPicker', { static: true })
   _buttonPicker!: FilePickerDirective;
 

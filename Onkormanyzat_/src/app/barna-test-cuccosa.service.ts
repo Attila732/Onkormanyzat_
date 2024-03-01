@@ -18,9 +18,10 @@ export class BarnaTestCuccosaService {
     
   }
   postFile(file:any){
-    // var httpOptions={headers: new HttpHeaders({"Content-Type":"image/png"})}
     return this.http.post(this.urlRes+"img",file)
-    
+  }
+  postData(data:any){
+    return this.http.post(this.urlRes+"data",data)
   }
   getHello(){
     return this.http.get(this.urlRes+"hello")
