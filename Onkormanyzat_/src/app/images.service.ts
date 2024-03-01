@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ImagesService {
-  url="resource/"
+export class ImagesService {  //for use in other services after succesfull data transfer to send the images belonging to  them
+  private url="resource/"
   constructor(private http:HttpClient) { }
 
 
@@ -18,8 +18,8 @@ export class ImagesService {
         formData.append('images', selectedFiles[i]);
       }
       console.log(formData)
+
       this.http.post(this.url+uploadDetails.url,formData)
-      
       
       .subscribe({
         next: (res) => {
@@ -31,6 +31,8 @@ export class ImagesService {
           console.log(err);
         }
       });
+    }else{
+      console.log("hibás paraméterek a kép feltöltéshez")
     }
   }
 }

@@ -17,16 +17,16 @@ export class BarnaTestCuccosaService {
     return this.http.post(this.urlRes+"hello",ize)
     
   }
-  postFile(file:any){
-    return this.http.post(this.urlRes+"img",file)
-  }
-  postData(data:any){
-    return this.http.post(this.urlRes+"data",data)
-  }
+  // postFile(file:any){
+  //   return this.http.post(this.urlRes+"img",file)
+  // }
   getHello(){
     return this.http.get(this.urlRes+"hello")
   }
   getImages(){
     return this.http.get(this.urlRes+"img")
+  }
+  postData(data:any){
+    return this.http.post(this.urlRes+"data",data)
   }
 }

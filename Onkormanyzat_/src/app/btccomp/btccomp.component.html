@@ -6,21 +6,27 @@
     <input type="text" name="ize" id="ize" [(ngModel)]="ize.ize" >
     <button (click)="postHello()">posthello</button>
 </form> -->
-<!-- <form method="post">
-    <input type="file" name="images" id="images" (change)="choseFile($event)" multiple [(ngModel)]="files" > -->
-    <button (click)="preprePostFile()">postfile</button>
-    <button (click)="getImages()">GetImages</button>
-    <img *ngFor="let image of getImagesRes" src="{{image}}" alt="{{image}}">
-    {{getImagesRes|json}}
-<!-- </form> -->
-<!-- <button (click)="getHello()">gethello</button> -->
-<!-- <mat-tab label="Button"> -->
-    <div class="tab-container" fxLayoutAlign="center center">
-      <button #buttonPicker="appFilePicker" mat-raised-button color="primary" appFilePicker [multiple]="_multiple" (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()">
-                Upload
-      </button>
-    </div>
-  <!-- </mat-tab> -->
+
+    <!-- <button (click)="getHello()">gethello</button> -->
+    <!-- <span>Make-Admin: {{makeAdmin|json}}</span><br>
+      <span>PostHello: {{postHelloRes|json}}</span><br>
+      <span>GetHello: {{getHelloRes|json}}</span><br> -->
+      
+      
+      
+<!-- file küldő gomb -->
+<button (click)="preprePostFile()">postfile</button>
+<!-- példa appFilePicker gomb -->
+<!-- angular material-t használ -->
+<div class="tab-container" fxLayoutAlign="center center">
+  <button #buttonPicker="appFilePicker" mat-raised-button color="primary" appFilePicker [multiple]="_multiple" (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()">
+    Upload
+  </button>
+</div>
+
+
+<!-- angular material-t használ -->
+<!-- példa File részletek kiírás gomb  a [datasource úgy viselkedik mint az *ngFor]-->
 <table mat-table [dataSource]="_selectedFiles" class="selected-files-table">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
@@ -49,6 +55,3 @@
     <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
   </table>
-<!-- <span>Make-Admin: {{makeAdmin|json}}</span><br>
-<span>PostHello: {{postHelloRes|json}}</span><br>
-<span>GetHello: {{getHelloRes|json}}</span><br> -->
