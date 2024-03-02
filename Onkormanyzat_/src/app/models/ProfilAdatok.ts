@@ -1,20 +1,20 @@
 export class ProfilAdatok{
 
     [x: string]: any
-    "id":string
+    "userId":string
     "email":string
     "nev": string
     "telefonszam": number|null
-    "role": string
+    "role": string[]
     "helyszin": string;
     "orgs":string[] // ha nincs admin role-ja akkor üres marad amúgy orgId(k) lesznek benne 
     
     constructor() {
-      this.id=""
+      this.userId=""
       this.email= ""
       this.nev= ""
       this.telefonszam= null
-      this.role= ""
+      this.role= []
       this.helyszin= "";
       this.orgs = []
      }

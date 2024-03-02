@@ -11,6 +11,8 @@ export class IdopontAdatok{
     
     
     constructor() {
+      this.userId=""//bejelentkezett felhasználó (Profiladatok.userId) ből
+      this.orgId="" 
       this.nev= ""
       this.email= ""
       this.telefonszam= null
