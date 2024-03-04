@@ -1,11 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" [@fadeInOut]="isNavbarOpen ? 'open' : 'closed'" class="navbar navbar-expand-lg navbar-light bg-light">
+	<h2 class="navbar-toggler">Government</h2>
 	<button class="navbar-toggler" type="button" (click)="toggleNavbar()">
 	  <span class="navbar-toggler-icon"></span>
 	</button>
-
+	
 	<div class="collapse navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
 		
-		<div class="design">
+		<div class="design" class="container-fluid" >
 			<ul ngbNav class="navbar-nav ">
 				<li [ngbNavItem]="2">
 					<button ngbNavLink routerLink="/body">Kezdőlap</button>

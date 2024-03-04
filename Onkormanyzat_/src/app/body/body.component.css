@@ -1,16 +1,28 @@
-.baloldal {
-    float: left;
-    width: 40%;
+
+/* A különböző méretű kijelzőkre szabott stílusok */
+
+/* Alap stílusok, amik minden méretre érvényesek */
+
+.kozep {
+  padding: 15px;
+}
+
+/* Telefonos nézet */
+@media (max-width: 767px) {
   
-   
+  .kozep {
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 
-.jobboldal {
-    
-    float: right;
+/* Tablet nézet és nagyobb */
+@media (min-width: 768px) {
+
+  .kozep {
     width: 40%;
-}
-.kozep{
-    width: 20%;
-}
+  }
 
+
+}
