@@ -64,6 +64,7 @@ throw new Error('Method not implemented.');
     this.files.push(event.target.files[0]);
     console.log(this.files)
     console.log(event)
+   
   }
 
   onSubmit() {
@@ -82,4 +83,12 @@ throw new Error('Method not implemented.');
     this.buttonClicked = false;
    
     }
+    showUserInfo: boolean = false;
+    selectedPostUser: any = {}; // Initialize selectedPostUser with an empty object
+  
+    
+   
+     
+    
+    
 }
