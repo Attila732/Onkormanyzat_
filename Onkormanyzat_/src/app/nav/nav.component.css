@@ -14,7 +14,7 @@
 
 .navbar {
   background-image: url("../../hatter.jpg");
-  background-color: #3498db; /* Change the background color */
+  background-color: #000000; /* Change the background color */
 
 }
 
@@ -39,7 +39,7 @@
 }
 
 .navbar-nav .nav-link:hover {
-  color: #218aa4; /* Change the menu item text color on hover */
+  color: #000000; /* Change the menu item text color on hover */
 }
 
 h2{
