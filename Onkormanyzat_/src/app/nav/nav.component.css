@@ -13,14 +13,16 @@
   /* navigation.component.scss */
 
 .navbar {
+  background-image: url("../../hatter.jpg");
   background-color: #3498db; /* Change the background color */
+
 }
 
 .navbar-brand {
   color: #fff; /* Change the brand text color */
 }
 
-.navbar-toggler-icon {
+.navbar-toggler {
   background-color: #ffffff; /* Change the hamburger icon color */
 }
 
