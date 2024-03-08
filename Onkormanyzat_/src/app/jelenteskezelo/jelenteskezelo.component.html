@@ -5,7 +5,7 @@
       <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
   
         <div class="form-group">
-          <label for="type">Válasszon típust:</label>
+          <label [(ngModel)]="bejelentesModel.type" for="type">Válasszon típust:</label>
           <select class="form-control" id="type" name="type" required>
             <option value="kozteruleti">Közterületi</option>
             <option value="uthiba">Úthiba</option>
@@ -17,7 +17,7 @@
         </div>
   
         <div class="form-group">
-          <label for="sulyossag">Súlyosság:</label>
+          <label [(ngModel)]="bejelentesModel.urgency" for="sulyossag">Súlyosság:</label>
           <select class="form-control" id="sulyossag" name="sulyossag" required>
             <!-- Rang-zárolt jelentések -->
             <option value="1">1</option>
@@ -29,23 +29,18 @@
         </div>
   
         <div class="form-group">
-          <label for="nev">Név:</label>
-          <input type="text" class="form-control" id="nev" name="nev" required>
-        </div>
-  
-        <div class="form-group">
           <label for="telefonszam">Telefonszám:</label>
-          <input type="tel" class="form-control" id="telefonszam" name="telefonszam" required>
+          <input [(ngModel)]="bejelentesModel.phone"  type="tel" class="form-control" id="telefonszam" name="telefonszam" required>
         </div>
   
         <div class="form-group">
           <label for="helyszin">Helyszín:</label>
-          <input type="text" class="form-control" id="helyszin" name="helyszin"  required>
+          <input [(ngModel)]="bejelentesModel.location" type="text" class="form-control" id="helyszin" name="helyszin"  required>
         </div>
   
         <div class="form-group">
           <label for="idopont">Ekkor:</label>
-          <input type="datetime-local" class="form-control" id="idopont" name="idopont"  required>
+          <input [(ngModel)]="bejelentesModel.date" type="datetime-local" class="form-control" id="idopont" name="idopont"  required>
         </div>
   
         <button type="submit" class="btn btn-primary" [disabled]="!idopontForm.valid">Bejelentés Küldése</button>
