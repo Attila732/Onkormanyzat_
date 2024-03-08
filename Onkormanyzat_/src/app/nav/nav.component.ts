@@ -1,5 +1,5 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-nav',
@@ -8,9 +8,9 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [
     trigger('fadeInOut', [
       state('void', style({
-        transform: 'translateY(-20px)'
+        transform: 'translateY(-100px)'
       })),
-      transition('void <=> *', animate('500ms ease-in-out')),
+      transition('void <=> *', animate('1000ms ease-in-out')),
     ]),
   ],
  
