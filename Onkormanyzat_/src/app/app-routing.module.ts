@@ -38,6 +38,7 @@ const routes: Routes = [
   {path:"profil",component:ProfilComponent},
   {path:"profilszerkesztes",component:ProfilSzerkesztesComponent},
   {path:"**",component:HibaComponent},
+  {path:"btccomp",component:BTCCompComponent}
 
 
  

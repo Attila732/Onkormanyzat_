@@ -1,7 +1,6 @@
-
 <form class="fajlfeltoltes">
   <p>Kérem töltse fel a meghirdetni kívánt tárgyat</p>
-  
+
   <div *ngIf="buttonClicked" class="image-container">
     <label for="productName">Eladó termék neve</label>
     <input type="text" id="productName" formControlName="productNameValue">
@@ -9,8 +8,8 @@
 
     <input type="file" (change)="onFileSelected($event)" multiple accept="image/*">
     <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid">
-    
-    
+
+
     <label for="description">Leírás:</label>
     <input type="text" id="description" formControlName="descriptionValue">
     <label for="price">Ár:</label>
@@ -19,69 +18,104 @@
     <button type="submit" class="btn btn-primary">Küldés</button>
     <button type="button" class="btn btn-primary" (click)="elrejt()">Elrejt</button>
   </div>
-  
-  <button class="jobboldaligomb" *ngIf="!buttonClicked" type="button" class="btn btn-primary" (click)="toggleForm()">Eladás</button>
+
+  <button class="jobboldaligomb" *ngIf="!buttonClicked" type="button" class="btn btn-primary"
+    (click)="toggleForm()">Eladás</button>
 </form>
 
-  <div class="fokep">
-    <div class="poszt" *ngFor="let post of posts">
-      {{ post.title }}
-      <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
-      <div class="szavazas">
+<div class="fokep">
+  <div class="poszt" *ngFor="let post of posts">
+    {{ post.title }}
+    <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
+    <div *ngIf="buttonClicked" class="szavazas">
 
-        <button class="btn btn-info" (click)="interestPost(post)">Érdekel</button>
-      </div>
+      <button class="btn btn-info">Érdekel</button>
+
+
     </div>
   </div>
-  <div class="container mt-5">
-    <div class="row">
-     
-      <div class="col-md-6 ">
-        <ul class="list-group">
-          <li class="list-group-item bg-success text-white">Eladó Termékek</li>
-          <li class="list-group-item">
-            <div class="d-flex justify-content-between">
-              <div>
-                <h5 class="mb-2">Termék neve</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-              <div class="text-end">
-                <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
-              </div>
-            </div>
-            <div class="szavazas">
+</div>
+<div class="container mt-5">
+  <div class="row">
 
+    <div class="col-md-6 ">
+      <ul class="list-group">
+        <li class="list-group-item bg-success text-white">Eladó Termékek</li>
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h5 class="mb-2">Termék neve</h5>
+              <p>Bicikli</p>
+            </div>
+            <div class="text-end">
+              <p>Ár:15000Ft</p>
+              <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+            </div>
+          </div>
+          <div class="szavazas">
+            <div *ngIf="buttonClicked" class="user-information">
               <button class="btn btn-warning">Érdekel</button>
-            </div>
-          </li>
-     
-        </ul>
-      </div>
-  
-  
+       
 
-      <div class="col-md-6 ">
-        <ul class="list-group">
-          <li class="list-group-item bg-primary text-white">Meghirdetett termékek</li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Lorem Ipsum Dolor</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut mauris vel velit laoreet euismod.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Pellentesque Habitasse</h5>
-            <p>Pellentesque habitasse morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Curabitur Cursus</h5>
-            <p>Curabitur cursus libero sit amet turpis malesuada, eu fermentum quam accumsan.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Sed Tempus</h5>
-            <p>Sed tempus justo vel sapien dictum, non facilisis elit sagittis. Fusce eu odio in risus feugiat gravida.</p>
-          </li>
-        </ul>
-      </div>
+              <h3>User Information</h3>
+              <p>Name: {{ selectedPostUser.name }}</p>
+              <p>Email: {{ selectedPostUser.email }}</p>
+           
+            </div>
+            
+          </div>
+          
+        </li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="col-md-6 ">
+      <ul class="list-group">
+        <li class="list-group-item bg-primary text-white">Meghirdetett termékek</li>
+        <li class="list-group-item">
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
+        </li>
+        <li class="list-group-item">
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
+        </li>
+        <li class="list-group-item">
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
+        </li>
+        <li class="list-group-item">
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
+        </li>
+        <li class="list-group-item">
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-  
-
+</div>

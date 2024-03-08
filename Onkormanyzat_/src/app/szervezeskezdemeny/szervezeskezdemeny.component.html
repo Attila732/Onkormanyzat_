@@ -4,22 +4,22 @@
     <form (ngSubmit)="inputModel()" #szervezesForm="ngForm">
       <div class="form-group">
         <label for="rendezesNev">Rendezés neve:</label>
-        <input type="text" id="rendezesNev" name="rendezesNev"  class="form-control" required>
+        <input [(ngModel)]="szervezesModel.name" type="text" id="rendezesNev" name="rendezesNev"  class="form-control" required>
       </div>
 
       <div class="form-group">
         <label for="rendezesLeiras">Rendezés leírása:</label>
-        <input type="text" id="rendezesLeiras" name="rendezesLeiras" class="form-control" required>
+        <input [(ngModel)]="szervezesModel.description" type="text" id="rendezesLeiras" name="rendezesLeiras" class="form-control" required>
       </div>
     
       <div class="form-group">
         <label for="idopont">Ekkor:</label>
-        <input type="datetime-local" id="idopont" name="idopont"  class="form-control" required>
+        <input [(ngModel)]="szervezesModel.startDate" type="datetime-local" id="idopont" name="idopont"  class="form-control" required>
       </div>
     
       <div class="form-group">
         <label for="telefonszam">Telefonszám:</label>
-        <input type="tel" id="telefonszam" name="telefonszam" class="form-control" required>
+        <input [(ngModel)]="szervezesModel.phone" type="tel" id="telefonszam" name="telefonszam" class="form-control" required>
       </div>
     
       <button type="submit" class="btn btn-primary" [disabled]="!szervezesForm.valid">Szervezés indítványozása</button>
