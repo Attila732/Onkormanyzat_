@@ -3,21 +3,21 @@ export class BejelentesAdatok{
     [x: string]: any
     
     "userid":string
-    "tipus": string
-    "sulyossag": string
-    "leiras": string
-    "helyszin": string
-    "telefonszam":number|null
+    "type": string
+    "urgency": string
+    "description": string
+    "location": string
+    "phone":number|null
     "date": string
     
     
     constructor() {
       this.userid=""//bejelentkezett felhasználó (Profiladatok.userId) ből
-      this.tipus= ""
-      this.sulyossag= ""
-      this.leiras= ""
-      this.helyszin= ""
-      this.telefonszam= null
+      this.type= ""
+      this.urgency= ""
+      this.description= ""
+      this.location= ""
+      this.phone= null
       this.date=""
     
      }

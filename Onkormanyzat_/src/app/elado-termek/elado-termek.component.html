@@ -29,7 +29,7 @@
     <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
     <div *ngIf="buttonClicked" class="szavazas">
 
-      <button class="btn btn-info" (click)="interestPost(post)">Érdekel</button>
+      <button class="btn btn-info">Érdekel</button>
 
 
     </div>
@@ -45,23 +45,26 @@
           <div class="d-flex justify-content-between">
             <div>
               <h5 class="mb-2">Termék neve</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Bicikli</p>
             </div>
             <div class="text-end">
+              <p>Ár:15000Ft</p>
               <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
             </div>
           </div>
           <div class="szavazas">
             <div *ngIf="buttonClicked" class="user-information">
               <button class="btn btn-warning">Érdekel</button>
-              <!-- Add user information section -->
+       
 
               <h3>User Information</h3>
               <p>Name: {{ selectedPostUser.name }}</p>
               <p>Email: {{ selectedPostUser.email }}</p>
-              <!-- Add more user information fields as needed -->
+           
             </div>
+            
           </div>
+          
         </li>
 
       </ul>
@@ -73,21 +76,44 @@
       <ul class="list-group">
         <li class="list-group-item bg-primary text-white">Meghirdetett termékek</li>
         <li class="list-group-item">
-          <h5 class="mb-2">Lorem Ipsum Dolor</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut mauris vel velit laoreet euismod.</p>
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
         </li>
         <li class="list-group-item">
-          <h5 class="mb-2">Pellentesque Habitasse</h5>
-          <p>Pellentesque habitasse morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
         </li>
         <li class="list-group-item">
-          <h5 class="mb-2">Curabitur Cursus</h5>
-          <p>Curabitur cursus libero sit amet turpis malesuada, eu fermentum quam accumsan.</p>
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
         </li>
         <li class="list-group-item">
-          <h5 class="mb-2">Sed Tempus</h5>
-          <p>Sed tempus justo vel sapien dictum, non facilisis elit sagittis. Fusce eu odio in risus feugiat gravida.
-          </p>
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
+        </li>
+        <li class="list-group-item">
+          <h5 class="mb-2">Ingyen kanapé</h5>
+          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
+          <div class="text-end">
+            <button class="btn btn-info">Érdekel</button>
+            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          </div>
         </li>
       </ul>
     </div>

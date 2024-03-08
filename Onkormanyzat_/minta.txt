@@ -1,6 +1,6 @@
   private autokSub = new Subject()
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) {
     this.loadData()
   }
 
