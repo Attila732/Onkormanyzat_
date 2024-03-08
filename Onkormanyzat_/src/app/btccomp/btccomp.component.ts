@@ -13,6 +13,7 @@ export class BTCCompComponent {
   postHelloRes:any
   getHelloRes:any
   getMyUserInfoRes:any
+  getOrgsForUserInfoRes:any
   getImagesRes:any
   username:any
   ize:{"ize":"ize"}={"ize":"ize"}
@@ -131,6 +132,21 @@ export class BTCCompComponent {
       },
       error:(err:any)=>{
         this.getMyUserInfoRes=err
+        console.log("Error in get ")
+        console.log(err)
+      }
+    })
+  }
+  getOrgsForUserInfo(){
+    this.testS.getOrgsForUserInfo()
+    .subscribe({
+      next:(res:any)=>{
+        this.getOrgsForUserInfoRes=res
+        console.log(res)
+        return res
+      },
+      error:(err:any)=>{
+        this.getOrgsForUserInfoRes=err
         console.log("Error in get ")
         console.log(err)
       }

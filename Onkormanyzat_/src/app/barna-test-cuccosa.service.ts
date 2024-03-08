@@ -26,6 +26,9 @@ export class BarnaTestCuccosaService {
   getMyUserInfo(){
     return this.http.get(this.urlRes+"user/myUserInfo")
   }
+  getOrgsForUserInfo(){
+    return this.http.get(this.urlRes+"orgIds/4")
+  }
   getImages(){
     return this.http.get(this.urlRes+"img")
   }
