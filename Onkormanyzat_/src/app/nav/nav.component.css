@@ -13,7 +13,7 @@
   /* navigation.component.scss */
 
 .navbar {
-  background-image: url("../../hatter.jpg");
+  background-image: url("./assets/hatter.jpg");
   background-color: #000000; /* Change the background color */
 
 }

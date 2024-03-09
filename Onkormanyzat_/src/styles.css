@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 body{
-  background-image: url("hatter.jpg");
+  background-image: url("./assets/hatter.jpg");
 }
 body, .jobboldal , .baloldal {
   font-family: 'Roboto', sans-serif;
@@ -14,7 +14,7 @@ body, .jobboldal , .baloldal {
   color: #333; 
 }
 /* nav{
-  background-image: url("fejlec.jpeg");
+  background-image: url("./assets/fejlec.jpeg");
 } */
 
 
