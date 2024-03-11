@@ -11,11 +11,10 @@
   }
 
   /* navigation.component.scss */
-
-/* .navbar {
-  background-image: url("../../hatter.jpg");
-  background-color: #000000; /* Change the background color */
 /* 
+.navbar {
+  background-image: url("./assets/hatter.jpg");
+  background-color: #000000; 
 }
 
 .navbar-brand {
@@ -43,4 +42,4 @@
 h2{
  font-size: 20px;
  color: black;
-} */
+}  */
