@@ -77,6 +77,12 @@ module.exports = {
         'cstm-skin': '#FFF1DC',
         'cstm-brown': '#E8D5C4',
         'cstm-gray': '#EEEEEE',
+        'cstm-dark_gray': '#3D3B40',
+        'cstm-purple': '#9900F0',
+        'cstm-dark-purple': '#610094',
+        'cstm-lokalhir': '#CD5C08',
+        'cstm-orszagos': '#863A6F',
+        'cstm-programok(teal)': '#016A70',
       },
       fontFamily: {
         'outfit': ['outfit', 'sans-serif']

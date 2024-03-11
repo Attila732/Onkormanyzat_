@@ -1,119 +1,139 @@
+<!-- <div class="container mx-auto mt-8 p-4 bg-gray-100 max-w-md rounded-md shadow-md">
+  <label for="textInput" class="block text-lg font-semibold mb-2">Írjon híreket</label>
+  <div class="flex mb-4">
+    <input id="textInput" [(ngModel)]="AdminText" placeholder="....."
+      class="flex-1 border border-gray-300 px-4 py-2 rounded-md mr-2 focus:outline-none focus:border-blue-500" />
 
-<div class="container mt-5">
-    <div class="row">
-    
-      <div class="col kozep">
-        <ul class="list-group">
-          <li class="list-group-item bg-danger text-white">Helyi/Lokális Hírek</li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</h5>
-            <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó Imre filozófus vezetésével. A március 5-ei eseményen Oliver Sacks: A férfi, aki kalapnak nézte a feleségét című művét elemezték.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Szakmai kirándulások a Nemzeti Együttműködési Alap támogatásával</h5>
-            <p>Alapítványi támogatással vitte szakmai kirándulásokra 11-12. évfolyamos diákjait a Közgé.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Zenei élmények a Betűbölcsiben</h5>
-            <p>Kis-Fekete Vilmos, a Kiskunfélegyházi Balázs Árpád Alapfokú Művészeti Iskola intézményvezetője tartott előadást március 5-én, kedden a városi könyvtár baba-mama klubjában. A Betűbölcsiben ezúttal a korai hangélményekről és a zenei nevelés fontosságáról hallhattak az érdeklődők.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Éremeső a XI. Csikós József emléktornán</h5>
-            <p>Március első hétvégéjén rendezték meg Kiskunfélegyházán a XI. Csikós József emléktornát. A sok versenyző csapatnak köszönhetően 2 helyszínen zajlottak a teremlabdarúgó-mérkőzések. A Félegyházi Térségi Sportiskola U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
-          </li>
-        </ul>
+    <div class="relative inline-block text-left">
+      <button type="button"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+        Küld
+      </button>
+      <div
+        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Helyi/Lokális</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            role="menuitem">Országos/Nemzetközi</a>
+        </div>
       </div>
-    
-      <div class="col kozep">
-        <ul class="list-group">
-          <li class="list-group-item bg-primary text-white">Országos/Nemzetközi Hírek</li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Hivatalba lépett Sulyok Tamás köztársasági elnök</h5>
-            <p>A február 26-án megválasztott új államfő megbízatása öt évre szól, és első munkanapját máris egy komoly döntéssel kezdheti.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Zajjal járó munkát végeznek a félegyházi vasútállomáson</h5>
-            <p>Előre tervezett, zajjal járó karbantartási munkálatokat végez a MÁV Kiskunfélegyházán március 6-án, szerdán, 7-én, csütörtökön, 12-én, kedden 20 órától 6 óráig, valamint március 28-ától április 6-áig folyamatosan. Az állomáson és az átjáróknál a jelzett időpontok között kell számítani zajra a munkagépek miatt. Az esetleges kellemetlenségekért a lakosság megértését és türelmét kéri a vasúttársaság.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Jön a tavasz – virágoznak a magnóliák</h5>
-            <p>Idén a tavalyinál is korábban borulnak virágba a Nepomuki Szent János-téren álló kobusi liliomfák. A 15-20 éves előnevelt magnóliák a Zöld város projekt keretében, 2019 novemberében érkeztek meg Félegyházára egy hollandiai faiskolából, és nyerték el végleges helyüket a városházával átellenben. A növény csodálatosan szép, rózsaszínnel tarkított fehér virágai – kedvező időjárás esetén – akár hetekig pompáznak, az eljövendő tavasz ígéretét csempészve a félegyháziaknak szívébe.</p>
-          </li>
-          <li class="list-group-item">
-            <h5 class="mb-2">Egy szerencsés nyertes vitte el az ötöslottó rekordnyereményét</h5>
-            <p>Magyarország legismertebb lottójátéka a szombati sorsolást követően egy játékost milliárdossá tett. Huszonkilenc hét halmozódást követően a telitalálatos szelvény tulajdonosa 6,5 milliárd forintnak örülhet – írta közleményében a Szerencsejáték Zrt.</p>
-          </li>
-        </ul>
-      </div>
-    
-  
-     
-
-
-  <div class="col kozep">
-    <ul class="list-group">
-      <li class="list-group-item bg-success text-white">Programok</li>
-      <li class="list-group-item">
-        <h5 class="mb-2">Világjáró előadássorozat: India</h5>
-        <h6>Időpont:2024. március 6., szerda 17:30</h6>
-        <p>India varázslatos világába nyerhetünk betekintést a Világjáró előadássorozat első alkalmán, március 6-án, a Márai Sándor Művelődési Házban. A szinte kontinens méretű országot, a maga ezerszínű kultúrájával Elter Károly előadásában ismerhetjük meg alaposabban.</p>
-      </li>
-      <li class="list-group-item">
-        <h5 class="mb-2">Társadalmi vállalkozások – helyi identitás és tudás</h5>
-        <h6>Időpont:2024. február 6., kedd - 2024. március 6., szerda</h6>
-
-        <p>A nők természetükből kifolyólag irányítják a közösségek megszervezését és átalakulását. A társadalmi vállalkozások, mint a közösségi kézművesség fejlesztésének eszközei, elősegítik a helyi kultúrák és gazdaságok fellendítését, különösen Brazíliában. A kézművességbe való befektetés a tudás és javak újraelosztását is elősegíti, emlékeztetve minket arra, hogy minden alkotás a természeti erőforrásokból származik.
-
-          A kézművesség tisztelete és annak öröksége áll a Társadalmi vállalkozások, helyi identitás és tudás című kiállítás középpontjában, mely a Budapesti Brazil Nagykövetséggel együttműködve a Hagyományok Háza Halmos-Karsai termében látható. A kiállítás arra hívja fel a figyelmet, hogy érdemes tudatosan és figyelmesen újra megnézni mindent, ami tiszteletet érdemel. Különösen így van ez a kézművességgel.</p>
-      </li>
-      <li class="list-group-item">
-        <h5 class="mb-2">Filmszerész filmklub extra: Kálmán-nap</h5>
-        <h6>Időpont:2024. március 7., csütörtök 20:00</h6>
-
-
-        <p>Kálmánhoz és Olgához (Hajdu Szabolcs és Tóth Orsi) vendégségbe érkezik Levente és Zita (Szabó Domokos és Földeáki Nóra). A két negyvenes páros Kálmán névnapját készül ünnepelni, de az egyre sűrűsödő koccintások mentén gyorsan felsejlenek a már nehezen titkolható párkapcsolati nehézségek. Hajdu Szabolcs kapcsolati trilógiájának második darabja is a színpadról kerül a filmvászonra. Míg az Ernelláék Farkaséknál című filmben a konfliktusok a gyermeknevelés körül forogtak, a Kálmán-napban az intimitás és a szexualitás hiányából fakadó feszültségek és morális dilemmák kerülnek a középpontba. A történet megtévesztően egyszerű és hétköznapi, amit az apró részletek tesznek lenyűgözővé.</p>
-      </li>
-      <li class="list-group-item">
-        <h5 class="mb-2">NőkNapja a Turbinában: Napfonat + Noémo nagyzenekar</h5>
-        <h6>Időpont:2024. március 7., csütörtök 19:30</h6>
-        <p>Március 7-én két karakteresen női sorsokat megjelenítő- női dalszerzőkből álló formáció ad két teljes értékű koncertet a Turbinában. A Napfonat energikus, női a cappella együttes, ami ütős hangszerekkel teljesedik ki. Öt szabad hang összefonódása, ami együtt valami többet alkot. Polifonikus egységük néha kórusra emlékeztető erővel szól, máskor egy-egy lágy egyéni hang lép előtérbe. Ötük harmóniáját elemi ritmus kíséri.</p>
-      </li>
-    </ul>
-  </div>
-
-
-<!-- <div class="col jobboldal">
-  <ul class="list-group">
-    <li class="list-group-item bg-success text-white">Programok</li>
-    <li class="list-group-item">
-      <h5 class="mb-2">Program neve</h5>
-      <h6>Időpont:</h6>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut mauris vel velit laoreet euismod.</p>
-    </li>
-    <li class="list-group-item">
-      <h5 class="mb-2">Program neve</h5>
-      <h6>Időpont:</h6>
-      <p>Pellentesque habitasse morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-    </li>
-    <li class="list-group-item">
-      <h5 class="mb-2">Program neve</h5>
-      <h6>Időpont:</h6>
-      <p>Curabitur cursus libero sit amet turpis malesuada, eu fermentum quam accumsan.</p>
-    </li>
-    <li class="list-group-item">
-      <h5 class="mb-2">Program neve</h5>
-      <h6>Időpont: </h6>
-      <p>Sed tempus justo vel sapien dictum, non facilisis elit sagittis. Fusce eu odio in risus feugiat gravida.</p>
-    </li>
-    <li class="list-group-item">
-      <h5 class="mb-2">Program neve</h5>
-      <h6>Időpont:</h6>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut mauris vel velit laoreet euismod.</p>
-    </li>
-  </ul>
-   
-</div> -->
-  
     </div>
   </div>
-  
+
+  <div *ngIf="displayedText" class="mt-4">
+    <h3 class="text-lg font-semibold">Display Text:</h3>
+    <p class="mt-2">{{ displayedText }}</p>
+  </div>
+</div> -->
+
+
+
+
+<!-- lokalis hirek -->
+<div class="w-full flex justify-center items-center">
+  <div class="w-[90%] flex flex-row gap-8 mt-20">
+
+    <div class="w-[40%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
+      <ul class="">
+        <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-lokalhir">Helyi/Lokális Hírek</li>
+        <div class="px-4">
+          <li class="">
+            <h5 class="">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</h5>
+            <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó
+              Imre filozófus vezetésével. A március 5-ei eseményen Oliver Sacks: A férfi, aki kalapnak nézte a feleségét
+              című művét elemezték.</p>
+          </li>
+          <li class="">
+            <h5 class="">Szakmai kirándulások a Nemzeti Együttműködési Alap támogatásával</h5>
+            <p>Alapítványi támogatással vitte szakmai kirándulásokra 11-12. évfolyamos diákjait a Közgé.</p>
+          </li>
+          <li class="">
+            <h5 class="">Zenei élmények a Betűbölcsiben</h5>
+            <p>Kis-Fekete Vilmos, a Kiskunfélegyházi Balázs Árpád Alapfokú Művészeti Iskola intézményvezetője tartott
+              előadást március 5-én, kedden a városi könyvtár baba-mama klubjában. A Betűbölcsiben ezúttal a korai
+              hangélményekről és a zenei nevelés fontosságáról hallhattak az érdeklődők.</p>
+          </li>
+          <li class="">
+            <h5 class="">Éremeső a XI. Csikós József emléktornán</h5>
+            <p>Március első hétvégéjén rendezték meg Kiskunfélegyházán a XI. Csikós József emléktornát. A sok versenyző
+              csapatnak köszönhetően 2 helyszínen zajlottak a teremlabdarúgó-mérkőzések. A Félegyházi Térségi Sportiskola
+              U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi
+              Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+
+
+    <!-- orszagos hirek -->
+
+    <div class="w-[40%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
+      <ul class="">
+        <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-orszagos">Országos hírek</li>
+        <div class="px-4">
+          <li class="">
+            <h5 class="">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</h5>
+            <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó
+              Imre filozófus vezetésével. A március 5-ei eseményen Oliver Sacks: A férfi, aki kalapnak nézte a feleségét
+              című művét elemezték.</p>
+          </li>
+          <li class="">
+            <h5 class="">Szakmai kirándulások a Nemzeti Együttműködési Alap támogatásával</h5>
+            <p>Alapítványi támogatással vitte szakmai kirándulásokra 11-12. évfolyamos diákjait a Közgé.</p>
+          </li>
+          <li class="">
+            <h5 class="">Zenei élmények a Betűbölcsiben</h5>
+            <p>Kis-Fekete Vilmos, a Kiskunfélegyházi Balázs Árpád Alapfokú Művészeti Iskola intézményvezetője tartott
+              előadást március 5-én, kedden a városi könyvtár baba-mama klubjában. A Betűbölcsiben ezúttal a korai
+              hangélményekről és a zenei nevelés fontosságáról hallhattak az érdeklődők.</p>
+          </li>
+          <li class="">
+            <h5 class="">Éremeső a XI. Csikós József emléktornán</h5>
+            <p>Március első hétvégéjén rendezték meg Kiskunfélegyházán a XI. Csikós József emléktornát. A sok versenyző
+              csapatnak köszönhetően 2 helyszínen zajlottak a teremlabdarúgó-mérkőzések. A Félegyházi Térségi Sportiskola
+              U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi
+              Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+
+    <!-- 
+programok -->
+
+
+<div class="w-[20%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
+  <ul class="">
+    <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-programok(teal)">Programok</li>
+    <div class="px-4">
+      <li class="">
+        <h5 class="">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</h5>
+        <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó
+          Imre filozófus vezetésével. A március 5-ei eseményen Oliver Sacks: A férfi, aki kalapnak nézte a feleségét
+          című művét elemezték.</p>
+      </li>
+      <li class="">
+        <h5 class="">Szakmai kirándulások a Nemzeti Együttműködési Alap támogatásával</h5>
+        <p>Alapítványi támogatással vitte szakmai kirándulásokra 11-12. évfolyamos diákjait a Közgé.</p>
+      </li>
+      <li class="">
+        <h5 class="">Zenei élmények a Betűbölcsiben</h5>
+        <p>Kis-Fekete Vilmos, a Kiskunfélegyházi Balázs Árpád Alapfokú Művészeti Iskola intézményvezetője tartott
+          előadást március 5-én, kedden a városi könyvtár baba-mama klubjában. A Betűbölcsiben ezúttal a korai
+          hangélményekről és a zenei nevelés fontosságáról hallhattak az érdeklődők.</p>
+      </li>
+      <li class="">
+        <h5 class="">Éremeső a XI. Csikós József emléktornán</h5>
+        <p>Március első hétvégéjén rendezték meg Kiskunfélegyházán a XI. Csikós József emléktornát. A sok versenyző
+          csapatnak köszönhetően 2 helyszínen zajlottak a teremlabdarúgó-mérkőzések. A Félegyházi Térségi Sportiskola
+          U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi
+          Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
+      </li>
+    </div>
+  </ul>
+</div>
+
+  </div>
+</div>

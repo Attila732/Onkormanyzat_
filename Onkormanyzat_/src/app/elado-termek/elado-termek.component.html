@@ -27,14 +27,13 @@
   <div class="poszt" *ngFor="let post of posts">
     {{ post.title }}
     <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
-    <div *ngIf="buttonClicked1" class="szavazas">
+    
+    
 
-      <button class="btn btn-info">Érdekel</button>
-
-
-    </div>
   </div>
+ 
 </div>
+
 <div class="container mt-5">
   <div class="row">
 
@@ -50,19 +49,19 @@
             <div class="text-end">
               <p>Ár:15000Ft</p>
               <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+              
             </div>
-          </div>
-          <div class="szavazas">
-        
-              <button *ngIf="buttonClicked1" class="btn btn-warning">Érdekel</button>
-             
-              <h3>User Information</h3>
-              <p>Name: {{ selectedPostUser.name }}</p>
-              <p>Email: {{ selectedPostUser.email }}</p>
-           
-     
             
           </div>
+          <!-- Your button -->
+<button (click)="toggleUserInfo()">Érdekel</button>
+
+<!-- User information section -->
+<div class="szavazas" *ngIf="showUserInfo">
+  <h3>User Information</h3>
+  <p>Name: {{ selectedPostUser?.name }}</p>
+  <p>Email: {{ selectedPostUser?.email }}</p>
+</div>
           
         </li>
 

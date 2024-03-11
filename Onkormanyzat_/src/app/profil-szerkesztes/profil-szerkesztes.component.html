@@ -1,42 +1,45 @@
-<section class="text-center">
-  <div class="p-5 bg-image" style="
-    height: 300px;
-  "></div>
-  <div class="card mx-4 mx-md-5 shadow-5-strong" style="
-    margin-top: -100px;
-    background: hsla(0, 0%, 100%, 0.8);
-    backdrop-filter: blur(30px);
-  ">
-    <div class="card-body py-5 px-md-5">
-
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-8">
-          <h2 class="fw-bold mb-5">Profil szerkesztése</h2>
-          <form>
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" />
-                  <label class="form-label" for="form3Example1">Keresztnév</label>
+<div >
+  <div class="">
+  <section class="text-center flex justify-center items-center h-screen">
+    <div class="p-5 bg-image" style="
+      height: 300px;
+    "></div>
+    <div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-5">Profil szerkesztés</h2>
+            <form>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example1" class="form-control" />
+                    <label class="form-label" for="form3Example1">Keresztnév</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example2" class="form-control" />
+                    <label class="form-label" for="form3Example2">Vezetéknév</label>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <input type="text" id="form3Example2" class="form-control" />
-                  <label class="form-label" for="form3Example2">Vezetéknév</label>
-                </div>
+              <div class="form-outline mb-4">
+                <input type="email" id="form3Example1" class="form-control" />
+                <label class="form-label" for="form3Example1">Email address</label>
               </div>
-            </div>
-            <div class="form-outline mb-4">
-              <input type="email" id="form3Example1" class="form-control" />
-              <label class="form-label" for="form3Example1">Email address</label>
-            </div>
-            <button routerLink="/profil">Mentés</button>
-            <button routerLink="/profil">Mégse</button>
-           
-          </form>
+            
+              <button class="bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6" routerLink="/profil">Mentés</button>
+              <button class="bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6" routerLink="/profil">Mégse</button>
+             
+            </form>
+            
+          </div>
         </div>
       </div>
     </div>
+  </section>
   </div>
-</section>
+  
+  </div>

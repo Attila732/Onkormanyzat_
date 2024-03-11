@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -41,7 +40,6 @@ buttonClicked=false;
 posts: any;
 form: any;
 files:File[]=[];
-buttonClicked1: any;
 interestPost(_t20: any) {
 throw new Error('Method not implemented.');
 }
@@ -82,13 +80,16 @@ throw new Error('Method not implemented.');
   }
   elrejt() {
     this.buttonClicked = false;
+   }
    
-    }
-    showUserInfo: boolean = false;
-    selectedPostUser: any = {}; // Initialize selectedPostUser with an empty object
   
     
-   
+    showUserInfo: boolean = false;
+  selectedPostUser: any; 
+
+  toggleUserInfo() {
+    this.showUserInfo = !this.showUserInfo;
+  }
      
     
     

@@ -1,75 +1,83 @@
-<div class="design">
-<section class="text-center">
-    <!-- Background image -->
-    <div class="p-5 bg-image" style="
-         
-          height: 300px;
-          "></div>
-    <!-- Background image -->
+<div>
+  <div class="">
+    <section class="text-center flex justify-center items-center h-screen">
+      <div class="p-5 bg-image" style="
+      height: 300px;
+    "></div>
+      <div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm">
+        <div class="card-body py-5 px-md-5">
 
-    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
-          margin-top: -100px;
-          background: hsla(0, 0%, 100%, 0.8);
-          backdrop-filter: blur(30px);
-          ">
-      <div class="card-body py-5 px-md-5">
-
-        <div class="row d-flex justify-content-center">
-          <div class="col-lg-8">
-            <h2 class="fw-bold mb-5">Regisztrálj</h2>
-            <form>
-
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="form3Example1" class="form-control" />
-                    <label class="form-label" for="form3Example1">Vezetéknév</label>
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+              <p class="text-3xl font-bold mb-5">Regisztráció</p>
+              <form>
+                <div class="flex flex-row justify-between gap-10 mb-4">
+                  <div class="w-full flex flex-col">
+                    <label class="text-lg font-bold text-cstm-dark_gray self-start px-2">Vezetéknév</label>
+                    <input [(ngModel)]="regisztracio.lastName" type="text" id=""
+                      class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+                  </div>
+                  <div class="w-full flex flex-col">
+                    <label class="text-lg font-bold text-cstm-dark_gray self-start px-2"
+                      for="form3Example2">Keresztnév</label>
+                    <input [(ngModel)]="regisztracio.firstName" type="text" id=""
+                      class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
                   </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="form3Example2" class="form-control" />
-                    <label class="form-label" for="form3Example2">Keresztnév</label>
+                <div class="flex flex-row justify-between gap-10">
+                  <div class="w-full flex flex-col mb-4">
+                    <label class="text-lg font-bold text-cstm-dark_gray self-start px-2"
+                      for="form3Example1">Felhasználónév</label>
+                    <input [(ngModel)]="regisztracio.userName" type="text" id=""
+                      class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+                  </div>
+                  <div class="w-[70%] flex flex-col mb-4">
+                    <label class="text-lg font-bold text-cstm-dark_gray self-start px-2"
+                      for="form3Example1">Telefonszám</label>
+                    <input [(ngModel)]="regisztracio.phone" type="text" id=""
+                      class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
                   </div>
                 </div>
-              </div>
+                <div class="flex flex-col mb-4">
+                  <label class="text-lg font-bold text-cstm-dark_gray self-start px-2" for="form3Example1">Email
+                    cím</label>
+                  <input [(ngModel)]="regisztracio.email" type="text" id=""
+                    class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+                </div>
+                <div class="flex flex-row justify-between gap-10">
+                  <div class="w-full flex flex-col mb-4">
+                    <label class="text-lg font-bold text-cstm-dark_gray self-start px-2"
+                      for="form3Example4">Jelszó</label>
+                    <input [(ngModel)]="regisztracio.password1" type="password" id=""
+                      class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+                  </div>
+                  <div class="w-full flex flex-col mb-4">
+                    <label class="text-lg font-bold text-cstm-dark_gray self-start px-2" for="form3Example4">Jelszó
+                      mégegyszer</label>
+                    <input [(ngModel)]="regisztracio.password2" type="password" id=""
+                      class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+                  </div>
+                </div>
 
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" />
-                <label class="form-label" for="form3Example3">Email cím</label>
-              </div>
 
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" class="form-control" />
-                <label class="form-label" for="form3Example4">Jelszó</label>
-              </div>
-              <div class="form-outline mb-4">
-                <input type="password" id="form3Example5" class="form-control" />
-                <label class="form-label" for="form3Example5">Jelszó mégegyszer</label>
-              </div>
 
-              <!-- Checkbox -->
+              </form>
               <div class="form-check d-flex justify-content-center mb-4">
                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                <label class="form-check-label" for="form2Example33">
-                  Feliratkozás a hírlevélre
-                </label>
+                <label class="form-check-label" for="form2Example33">Feliratkozás a hírlevélre</label>
               </div>
-
-              <!-- Submit button -->
-              <button type="submit" class="btn btn-primary btn-block mb-4">
-               Regisztráció
+              <button
+                class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500">
+                Regisztráció
               </button>
-              <p class="mb-3">Már van fiókod? <a routerLink="/login">Jelentkezz be itt!</a></p>
+              <p class="mb-3 text-lg">Már van fiókod? <a class="text-cstm-purple hover:border-b-2 border-cstm-purple"
+                  routerLink="/login">Jelentkezz be itt!</a></p>
 
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- Section: Design Block -->
+    </section>
+  </div>
+
 </div>
