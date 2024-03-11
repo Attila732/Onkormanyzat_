@@ -8,21 +8,29 @@ import { ProfilAdatok } from './models/ProfilAdatok';
 })
 export class BaseService {
 
-  url = "/resource/";
+  private resUrl = "/resource/";
   private user = new BehaviorSubject<ProfilAdatok|null>(null);
+  
+  constructor(private http:HttpClient) {
+    this.getMyUserInfo()
+   }
 
-  getMyUserInfo(){
+  private getMyUserInfo(){
+    return this.http.get(this.resUrl+"user/myUserInfo").subscribe({
+      next:(res:any)=>{
+        this.user.next(res)
+        console.log("fetched userDetails")
+      },
+      error:(err)=>{
+        console.log("error fetching userDetails"+ err)
+        this.user.next(null)
 
-    return this.http.get(this.url+"user/myUserInfo")
+      }
+    })
   }
 
   getUser(){
     return this.user;
   }
 
-  constructor(private http:HttpClient) {
-    this.getMyUserInfo().subscribe(
-      (res:any)=>this.user.next(res)
-    );
-   }
 }

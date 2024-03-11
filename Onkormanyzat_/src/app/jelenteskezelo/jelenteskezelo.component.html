@@ -15,7 +15,7 @@
             <option value="szemetszallitas">Szemétszállítás</option>
           </select>
         </div>
-  
+
         <div class="form-group">
           <label [(ngModel)]="bejelentesModel.urgency" for="sulyossag">Súlyosság:</label>
           <select class="form-control" id="sulyossag" name="sulyossag" required>
@@ -33,6 +33,11 @@
           <input [(ngModel)]="bejelentesModel.phone"  type="tel" class="form-control" id="telefonszam" name="telefonszam" required>
         </div>
   
+        <div class="form-group">
+          <label for="description">Leírás:</label>
+          <input [(ngModel)]="bejelentesModel.description" type="text" class="form-control" id="description" name="description"  required>
+        </div>
+
         <div class="form-group">
           <label for="helyszin">Helyszín:</label>
           <input [(ngModel)]="bejelentesModel.location" type="text" class="form-control" id="helyszin" name="helyszin"  required>
