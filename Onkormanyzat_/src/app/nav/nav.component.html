@@ -1,55 +1,57 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" [@fadeInOut]="isNavbarOpen ? 'open' : 'closed'" class="navbar navbar-expand-lg navbar-light bg-light">
-	<h2 class="navbar-toggler" >Város Önkormányzata</h2>
-	<button class="navbar-toggler" type="button" (click)="toggleNavbar()">
-	  <span class="navbar-toggler-icon"></span>
-	</button>
+<nav class="w-screen h-fit flex flex-row justify-between bg-cstm-skin relative z-30" [@fadeInOut]="isNavbarOpen ? 'open' : 'closed'" class="">
 	
-	<div class="collapse navbar-collapse" [ngClass]="{'show': isNavbarOpen}">
+	<!-- <button class="" type="button" (click)="toggleNavbar()">
+	  <span class=""></span>
+	</button> -->
+	
+	<div class="" [ngClass]="{'show': isNavbarOpen}">
 		
-		<div class="design" class="container-fluid" >
-			<ul ngbNav class="navbar-nav " >
+		<div class="h-full flex flex-row justify-between items-center bg-cstm-skin">
+			<p class="text-cstm-blue self-center mb-2 text-3xl mx-3 mt-2 font-bold">Város Önkormányzata</p>
+			<ul ngbNav class="w-auto" >
+				
 				
 				<li [ngbNavItem]="2">
-					<button  ngbNavLink routerLink="/body">Kezdőlap</button>
+					<button class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"  ngbNavLink routerLink="/body">Kezdőlap</button>
 				</li>
 				<li [ngbNavItem]="3">
-					<button ngbNavLink routerLink="/elado-termekek">Eladó Termékek</button>
+					<button class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-lg font-medium hover:scale-125" ngbNavLink routerLink="/elado-termekek">Eladó Termékek</button>
 				</li>
-				<li [ngbNavItem]="4" ngbDropdown class="nav-item" role="presentation">
-					<button type="button" class="nav-link" ngbDropdownToggle>Orvosi Információk</button>
+				<li [ngbNavItem]="4" ngbDropdown class="flex items-center justify-center" role="presentation">
+					<button type="button" class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-lg font-medium hover:scale-125" ngbDropdownToggle>Orvosi Információk</button>
 					<div ngbDropdownMenu>
 						<button ngbDropdownItem routerLink="/orvos-egyeb-ugyek">Tudnivalók</button>
 				 
 
-						<div class="dropdown-divider"></div>
+						<div class=""></div>
 						<button ngbDropdownItem routerLink="/orvos-idopont-foglalas">Időpontfoglalás</button>
 					</div>
 				</li>
-				<li [ngbNavItem]="5" ngbDropdown class="nav-item" role="presentation">
-					<button type="button" class="nav-link" ngbDropdownToggle>Bejelentések</button>
+				<li [ngbNavItem]="5" ngbDropdown class="flex items-center justify-center" role="presentation">
+					<button type="button" class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-lg font-medium hover:scale-125" ngbDropdownToggle>Bejelentések</button>
 					<div ngbDropdownMenu>
 						
 						
-						<button ngbDropdownItem routerLink="/jelenteskezelo">Bejelentés küldése</button>
+						<button class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-lg font-medium hover:scale-125" ngbDropdownItem routerLink="/jelenteskezelo">Bejelentés küldése</button>
 					</div>
 				</li>
-				<li [ngbNavItem]="6" ngbDropdown class="nav-item" role="presentation">
-					<button type="button" class="nav-link" ngbDropdownToggle>Szervezések</button>
+				<li [ngbNavItem]="6" ngbDropdown class="flex items-center justify-center" role="presentation">
+					<button type="button" class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-base font-medium hover:scale-125" ngbDropdownToggle>Szervezések</button>
 					<div ngbDropdownMenu>
 						<button ngbDropdownItem routerLink="/szervezes">Tudnivalók</button>
-						<div class="dropdown-divider"></div>
+						<div class=""></div>
 						<button ngbDropdownItem routerLink="/szervezeskezd">Szervezés indítványozása</button>
 					</div>
 				</li>
 			  <li [ngbNavItem]="7">
-					<button ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
+					<button class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-lg font-medium hover:scale-125" ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
 				</li>
 			  <li [ngbNavItem]="8">
-					<button ngbNavLink routerLink="/login">Bejelentkezés</button>
+					<button class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-lg font-medium hover:scale-125" ngbNavLink routerLink="/login">Bejelentkezés</button>
 				</li>
 				<li [ngbNavItem]="9">
-					<button ngbNavLink routerLink="/profil" > <svg
+					<button class="w-fit h-fit text-slate-900 hover:text-cstm-blue hover:border-b-4 border-transparent text-lg font-medium hover:scale-125" ngbNavLink routerLink="/profil" > <svg
 				  xmlns="http://www.w3.org/2000/svg"
 				  width="16"
 				  height="16"
@@ -63,13 +65,13 @@
 					d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
 				  />
 				</svg></button>
-				</li>
+				<!-- </li>
 				<li  [ngbNavItem]="10">
 					<button ngbNavLink routerLink="/login">Logout</button>
 				</li>
 				<li  [ngbNavItem]="10">
 					<button ngbNavLink routerLink="/barna-test">Test</button>
-				</li>
+				</li> -->
 			</ul>
 	
 	  </div>

@@ -41,6 +41,7 @@ buttonClicked=false;
 posts: any;
 form: any;
 files:File[]=[];
+buttonClicked1: any;
 interestPost(_t20: any) {
 throw new Error('Method not implemented.');
 }

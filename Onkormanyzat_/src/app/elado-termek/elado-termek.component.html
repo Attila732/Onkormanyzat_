@@ -27,7 +27,7 @@
   <div class="poszt" *ngFor="let post of posts">
     {{ post.title }}
     <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
-    <div *ngIf="buttonClicked" class="szavazas">
+    <div *ngIf="buttonClicked1" class="szavazas">
 
       <button class="btn btn-info">Érdekel</button>
 
@@ -53,15 +53,14 @@
             </div>
           </div>
           <div class="szavazas">
-            <div *ngIf="buttonClicked" class="user-information">
-              <button class="btn btn-warning">Érdekel</button>
-       
-
+        
+              <button *ngIf="buttonClicked1" class="btn btn-warning">Érdekel</button>
+             
               <h3>User Information</h3>
               <p>Name: {{ selectedPostUser.name }}</p>
               <p>Email: {{ selectedPostUser.email }}</p>
            
-            </div>
+     
             
           </div>
           
