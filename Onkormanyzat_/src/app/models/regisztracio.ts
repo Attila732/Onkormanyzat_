@@ -7,7 +7,7 @@ export class Regisztracio{
     "email":string
     "password1":string
     "password2":string 
-    "phone": number|null
+    "phone": number|string|null
    
     
     constructor() {
@@ -17,6 +17,6 @@ export class Regisztracio{
       this.email= ""
       this.password1=""
       this.password2 =""
-      this.phone= null
+      this.phone= ""
      }
     }

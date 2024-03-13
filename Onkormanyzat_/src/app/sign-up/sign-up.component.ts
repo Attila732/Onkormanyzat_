@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Regisztracio } from '../models/regisztracio';
 
 @Component({
@@ -7,8 +8,26 @@ import { Regisztracio } from '../models/regisztracio';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
-  constructor(){
+
+  result:any
+  regisztracio = new Regisztracio();
+  
+  constructor(private http:HttpClient){
     
   }
-  regisztracio = new Regisztracio();
+
+  register(){
+    console.log(this.regisztracio)
+    this.http.post("/resource/user",this.regisztracio).subscribe({
+      next:(res:any)=>{
+        console.log(res)
+        this.result=res
+      },
+      error:(err:any)=>console.log("Error: "+err)
+    })
+  }
+
+
+
+
 }
