@@ -122,6 +122,10 @@ export class BTCCompComponent {
       }
     })
   }
+  delPost(){
+    this.testS.delPost()
+    .subscribe((res:any)=>console.log(res))
+  }
   getMyUserInfo(){
     this.testS.getMyUserInfo()
     .subscribe({

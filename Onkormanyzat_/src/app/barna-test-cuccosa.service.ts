@@ -23,6 +23,9 @@ export class BarnaTestCuccosaService {
   getHello(){
     return this.http.get(this.urlRes+"hello")
   }
+  delPost(){
+    return this.http.delete(this.urlRes+"post/del/"+1)
+  }
   getMyUserInfo(){
     return this.http.get(this.urlRes+"user/myUserInfo")
   }
