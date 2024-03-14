@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
 
 @Component({
   selector: 'app-your-component',
@@ -35,11 +36,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EladoTermekComponent  implements OnInit {
 
-
+  eladotermek = new EladoTermekAdatok();
 buttonClicked=false;
 posts: any;
 form: any;
 files:File[]=[];
+user: any;
 interestPost(_t20: any) {
 throw new Error('Method not implemented.');
 }

@@ -24,6 +24,7 @@ export class NavComponent {
   isNavbarOpen = false;
   isMobile = false;
 isHovered: any;
+user: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {

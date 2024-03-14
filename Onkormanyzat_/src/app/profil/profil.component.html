@@ -1,4 +1,4 @@
-<div *ngIf="userProfile">
+<div *ngIf="user">
 <div class="">
 <section class="text-center flex justify-center items-center h-screen">
   <div class="p-5 bg-image" style="
@@ -14,7 +14,7 @@
             <div class="row">
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" />
+                  <input [(ngModel)]="profil.firstName" type="text" id="form3Example1" class="form-control" />
                   <label class="form-label" for="form3Example1">Keresztnév</label>
                 </div>
               </div>
@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="form-outline mb-4">
-              <input type="email" id="form3Example1" class="form-control" />
+              <input [(ngModel)]="profil.email" type="email" id="form3Example1" class="form-control" />
               <label class="form-label" for="form3Example1">Email address</label>
             </div>
           

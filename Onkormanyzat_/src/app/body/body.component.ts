@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class BodyComponent {
   userProfile1: any;
   AdminText: any;
+admin: any;
   
   onFileSelected(event: any) {
     const file: File = event.target.files[0];

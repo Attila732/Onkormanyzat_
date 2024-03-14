@@ -4,7 +4,8 @@
 
 	<div class="" [ngClass]="{'show': isNavbarOpen}">
 
-		<div class="h-full flex flex-row justify-between items-center bg-white/30 backdrop-blur-xl py-2 rounded-b-[22px] px-3 shadow-2xl shadow-slate-900">
+		<div
+			class="h-full flex flex-row justify-between items-center bg-white/30 backdrop-blur-xl py-2 rounded-b-[22px] px-3 shadow-2xl shadow-slate-900">
 			<p class="text-cstm-dark-purple self-center mb-2 text-3xl mt-2 font-bold">Város Önkormányzata</p>
 			<ul ngbNav class="w-auto h-full flex">
 
@@ -58,19 +59,19 @@
 						class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
 						ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
 				</li>
-				<li [ngbNavItem]="8">
+				<li *ngIf="!user" [ngbNavItem]="8">
 					<button
 						class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
 						ngbNavLink routerLink="/login">Bejelentkezés</button>
 				</li>
-				<li [ngbNavItem]="8">
+				<li *ngIf="!user" [ngbNavItem]="8">
 					<button
 						class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
 						ngbNavLink routerLink="/sign-up">Regisztráció</button>
 				</li>
-				<li [ngbNavItem]="9">
+				<li *ngIf="user" [ngbNavItem]="9">
 					<button
-						class="hidden w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
+						class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
 						ngbNavLink routerLink="/profil"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 							fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
 							<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />

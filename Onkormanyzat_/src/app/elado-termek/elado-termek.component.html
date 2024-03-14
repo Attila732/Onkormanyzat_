@@ -1,27 +1,29 @@
-<form class="fajlfeltoltes">
-  <p>Kérem töltse fel a meghirdetni kívánt tárgyat</p>
+<form *ngIf="eladotermek.role==user" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
+  <p class="mb-4 text-lg">Kérem töltse fel a meghirdetni kívánt tárgyat</p>
 
   <div *ngIf="buttonClicked" class="image-container">
-    <label for="productName">Eladó termék neve</label>
-    <input type="text" id="productName" formControlName="productNameValue">
+    <label for="productName" class="mb-2 block">Eladó termék neve</label>
+    <input [(ngModel)]="eladotermek.termekneve" type="text" id="productName" formControlName="productNameValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
-
-    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*">
+    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4">
     <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid">
 
+    <label for="description" class="mb-2 block">Leírás:</label>
+    <input [(ngModel)]="eladotermek.description" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
-    <label for="description">Leírás:</label>
-    <input type="text" id="description" formControlName="descriptionValue">
-    <label for="price">Ár:</label>
-    <input type="number" id="price" formControlName="priceValue">
-    <p>Ft</p>
+    <label for="price" class="mb-2 block">Ár:</label>
+    <div class="flex items-center mb-4">
+      <input [(ngModel)]="eladotermek.price" type="number" id="price" formControlName="priceValue" class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
+      <p class="px-4 py-2 border rounded-r-xl">Ft</p>
+    </div>
+
     <button type="submit" class="btn btn-primary">Küldés</button>
-    <button type="button" class="btn btn-primary" (click)="elrejt()">Elrejt</button>
+    <button type="button" class="btn btn-primary mt-2" (click)="elrejt()">Elrejt</button>
   </div>
 
-  <button class="jobboldaligomb" *ngIf="!buttonClicked" type="button" class="btn btn-primary"
-    (click)="toggleForm()">Eladás</button>
+  <button class="jobboldaligomb bg-indigo-600 text-white px-4 py-2 rounded-lg" *ngIf="!buttonClicked" (click)="toggleForm()">Eladás</button>
 </form>
+
 
 <div class="fokep">
   <div class="poszt" *ngFor="let post of posts">
@@ -58,9 +60,10 @@
 
 <!-- User information section -->
 <div class="szavazas" *ngIf="showUserInfo">
-  <h3>User Information</h3>
-  <p>Name: {{ selectedPostUser?.name }}</p>
-  <p>Email: {{ selectedPostUser?.email }}</p>
+  <h3>Eladó adatai</h3>
+  <p>Név: {{ eladotermek.name }}</p>
+  <p>Email: {{ eladotermek.email }}</p>
+  <p>Telefonszám: {{ eladotermek.phone }}</p>
 </div>
           
         </li>
