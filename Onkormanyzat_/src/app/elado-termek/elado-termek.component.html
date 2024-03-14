@@ -1,4 +1,4 @@
-<form *ngIf="eladotermek.role==user" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
+<form *ngIf="userRoles.get('USER')" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
   <p class="mb-4 text-lg">Kérem töltse fel a meghirdetni kívánt tárgyat</p>
 
   <div *ngIf="buttonClicked" class="image-container">

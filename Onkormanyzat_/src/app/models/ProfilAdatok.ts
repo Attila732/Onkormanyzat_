@@ -8,8 +8,8 @@ export class ProfilAdatok{
     "email":string
     "name": string
     "phone": number|null
-    
-    //"orgs":string[]  ha nincs admin role-ja akkor üres marad amúgy orgId(k) lesznek benne 
+    "role":string[]
+    "orgs":string[]  //ha nincs admin role-ja akkor üres marad amúgy orgId(k) lesznek benne 
     
     constructor() {
       this.userName=""
@@ -19,7 +19,7 @@ export class ProfilAdatok{
       this.email= ""
       this.name= ""
       this.phone= null
-     
+      this.role=[]
      }
     }
-   0
+   

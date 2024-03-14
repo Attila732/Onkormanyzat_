@@ -13,7 +13,7 @@ export class EladoTermekAdatok{
     "price":Number|null
     "termekneve":string
 
-    "role":[]
+
     
     constructor() {
       this.userId=""//bejelentkezett felhasználó (Profiladatok.userId) ből
@@ -25,7 +25,7 @@ export class EladoTermekAdatok{
       this.phone= null
       this.price=null
       this.termekneve=""
-      this.role=[]
+
     
      }
     }

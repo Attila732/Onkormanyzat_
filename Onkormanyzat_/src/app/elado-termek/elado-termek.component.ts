@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
+import { BaseService } from '../base.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-your-component',
@@ -34,14 +36,16 @@ import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
     // ])
   ]
 })
-export class EladoTermekComponent  implements OnInit {
+export class EladoTermekComponent  implements OnInit, OnDestroy {
 
-  eladotermek = new EladoTermekAdatok();
+eladotermek = new EladoTermekAdatok();
 buttonClicked=false;
 posts: any;
 form: any;
 files:File[]=[];
 user: any;
+userRoles:Map<String,boolean> = this.base.initialRoles
+subscriptions:Subscription[]=[]
 interestPost(_t20: any) {
 throw new Error('Method not implemented.');
 }
@@ -52,47 +56,62 @@ throw new Error('Method not implemented.');
   myForm: FormGroup | undefined;
   userProfile1 = { profileImage: null, textboxValue: '' };
 
-  constructor(private fb: FormBuilder) { }
-
+  constructor(private fb: FormBuilder, private base:BaseService) { }
+  
   ngOnInit() {
-    this.myForm = this.fb.group({
+    this.subscriptions.push(
+      this.base.getUser().subscribe(
+        (user)=>this.user=user
+        ))
+        this.subscriptions.push(
+          this.base.getUserRoles().subscribe(
+            (roles:Map<String,boolean>)=>this.userRoles=roles
+            ))
+            this.myForm = this.fb.group({
       profileImage: [null], 
       textboxValue: ['', Validators.required]
     });
   }
-
+  
   onFileSelected(event: any) {
     this.files.push(event.target.files[0]);
     console.log(this.files)
     console.log(event)
-   
+    
   }
-
+  
   onSubmit() {
     this.buttonClicked=true;
-   
+    
   }
   toggleForm() {
     this.buttonClicked = !this.buttonClicked;
     if (!this.buttonClicked) {
-    
+      
       this.form.reset();
     }
     
   }
   elrejt() {
     this.buttonClicked = false;
-   }
-   
+  }
   
-    
-    showUserInfo: boolean = false;
+  
+  
+  showUserInfo: boolean = false;
   selectedPostUser: any; 
-
+  
   toggleUserInfo() {
     this.showUserInfo = !this.showUserInfo;
   }
-     
-    
-    
+  
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((val)=>{
+      val.unsubscribe()
+    })
+
+
+  }
+  
+  
 }
