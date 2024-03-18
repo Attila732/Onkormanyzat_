@@ -38,34 +38,30 @@ import { BaseService } from '../base.service';
   ]
 })
 export class EladoTermekComponent implements OnInit, OnDestroy {
-
-  eladotermek = new EladoTermekAdatok();
+  eladoTermek = new EladoTermekAdatok();
   buttonClicked = false;
   posts: any;
   form: any;
   files: File[] = [];
+  userRoles:any
   private user: ProfilAdatok | null = null;
-  private subscription:Subscription[]|null=null
+  private subscriptions:Subscription[]=[]
 
   constructor(private base: BaseService) {
     this.getUserInfo()
   }
-
-  ngOnDestroy(): void {
-    if (this.subscription != null) {
-      this.subscription.forEach(element => {
-        element.unsubscribe();        
-      });
-    }
-  }
   getUserInfo(){
-    this.subscription?.push(this.base.getUser().subscribe(
+    this.subscriptions.push(this.base.getUser().subscribe(
       (res: any) => this.user = res
     ));
+    this.subscriptions.push(
+      this.base.getUserRoles().subscribe(
+        (roles:Map<String,boolean>)=>this.userRoles=roles
+        ))
   }
   setupDataToSend() {
     if (this.user != null) {
-      this.eladotermek.userId=this.user.userId
+      this.eladoTermek.userId=this.user.userId
     }
     
   }
@@ -79,17 +75,17 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     this.files.push(event.target.files[0]);
     console.log(this.files)
     console.log(event)
-
+    
   }
-
+  
   onSubmit() {
-    this.buttonClicked = true;
-
+    this.buttonClicked=true;
+    
   }
   toggleForm() {
     this.buttonClicked = !this.buttonClicked;
     if (!this.buttonClicked) {
-
+      
       this.form.reset();
     }
 
@@ -97,15 +93,23 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   elrejt() {
     this.buttonClicked = false;
   }
-
-
+  
+  
+  
   showUserInfo: boolean = false;
-  selectedPostUser: any;
-
+  selectedPostUser: any; 
+  
   toggleUserInfo() {
     this.showUserInfo = !this.showUserInfo;
   }
+  
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((val)=>{
+      val.unsubscribe()
+    })
 
 
-
+  }
+  
+  
 }

@@ -1,19 +1,19 @@
-<form *ngIf="user.role==user" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
+<form *ngIf="userRoles.get('USER')" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
   <p class="mb-4 text-lg">Kérem töltse fel a meghirdetni kívánt tárgyat</p>
 
   <div *ngIf="buttonClicked" class="image-container">
     <label for="productName" class="mb-2 block">Eladó termék neve</label>
-    <input [(ngModel)]="eladotermek.termekneve" type="text" id="productName" formControlName="productNameValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.termekneve" type="text" id="productName" formControlName="productNameValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
     <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4">
     <!-- <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid"> -->
 
     <label for="description" class="mb-2 block">Leírás:</label>
-    <input [(ngModel)]="eladotermek.description" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.description" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
     <label for="price" class="mb-2 block">Ár:</label>
     <div class="flex items-center mb-4">
-      <input [(ngModel)]="eladotermek.price" type="number" id="price" formControlName="priceValue" class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
+      <input [(ngModel)]="eladoTermek.price" type="number" id="price" formControlName="priceValue" class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
       <p class="px-4 py-2 border rounded-r-xl">Ft</p>
     </div>
 
@@ -61,9 +61,9 @@
 <!-- User information section -->
 <div class="szavazas" *ngIf="showUserInfo">
   <h3>Eladó adatai</h3>
-  <p>Név: {{ eladotermek.name }}</p>
-  <p>Email: {{ eladotermek.email }}</p>
-  <p>Telefonszám: {{ eladotermek.phone }}</p>
+  <p>Név: {{ eladoTermek.name }}</p>
+  <p>Email: {{ eladoTermek.email }}</p>
+  <p>Telefonszám: {{ eladoTermek.phone }}</p>
 </div>
           
         </li>
