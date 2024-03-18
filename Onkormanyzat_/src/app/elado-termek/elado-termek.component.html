@@ -1,4 +1,4 @@
-<form *ngIf="eladotermek.role==user" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
+<form *ngIf="user.role==user" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
   <p class="mb-4 text-lg">Kérem töltse fel a meghirdetni kívánt tárgyat</p>
 
   <div *ngIf="buttonClicked" class="image-container">
@@ -6,7 +6,7 @@
     <input [(ngModel)]="eladotermek.termekneve" type="text" id="productName" formControlName="productNameValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
     <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4">
-    <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid">
+    <!-- <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid"> -->
 
     <label for="description" class="mb-2 block">Leírás:</label>
     <input [(ngModel)]="eladotermek.description" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">

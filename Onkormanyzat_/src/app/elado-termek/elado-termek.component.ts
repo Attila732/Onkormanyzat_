@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
+import { ProfilAdatok } from '../models/ProfilAdatok';
+import { Subscription } from 'rxjs';
+import { BaseService } from '../base.service';
 
 @Component({
   selector: 'app-your-component',
   templateUrl: './elado-termek.component.html',
   styleUrls: ['./elado-termek.component.css'],
-  animations:[
+  animations: [
     // trigger('itemAnim',[
     //   transition('void=> *', [
     //     style({
@@ -34,65 +37,75 @@ import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
     // ])
   ]
 })
-export class EladoTermekComponent  implements OnInit {
+export class EladoTermekComponent implements OnInit, OnDestroy {
 
   eladotermek = new EladoTermekAdatok();
-buttonClicked=false;
-posts: any;
-form: any;
-files:File[]=[];
-user: any;
-interestPost(_t20: any) {
-throw new Error('Method not implemented.');
-}
-likePost(_t20: any) {
-throw new Error('Method not implemented.');
-}
-  //TODO:actually use it...
-  myForm: FormGroup | undefined;
-  userProfile1 = { profileImage: null, textboxValue: '' };
+  buttonClicked = false;
+  posts: any;
+  form: any;
+  files: File[] = [];
+  private user: ProfilAdatok | null = null;
+  private subscription:Subscription[]|null=null
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit() {
-    this.myForm = this.fb.group({
-      profileImage: [null], 
-      textboxValue: ['', Validators.required]
-    });
+  constructor(private base: BaseService) {
+    this.getUserInfo()
   }
+
+  ngOnDestroy(): void {
+    if (this.subscription != null) {
+      this.subscription.forEach(element => {
+        element.unsubscribe();        
+      });
+    }
+  }
+  getUserInfo(){
+    this.subscription?.push(this.base.getUser().subscribe(
+      (res: any) => this.user = res
+    ));
+  }
+  setupDataToSend() {
+    if (this.user != null) {
+      this.eladotermek.userId=this.user.userId
+    }
+    
+  }
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
 
   onFileSelected(event: any) {
     this.files.push(event.target.files[0]);
     console.log(this.files)
     console.log(event)
-   
+
   }
 
   onSubmit() {
-    this.buttonClicked=true;
-   
+    this.buttonClicked = true;
+
   }
   toggleForm() {
     this.buttonClicked = !this.buttonClicked;
     if (!this.buttonClicked) {
-    
+
       this.form.reset();
     }
-    
+
   }
   elrejt() {
     this.buttonClicked = false;
-   }
-   
-  
-    
-    showUserInfo: boolean = false;
-  selectedPostUser: any; 
+  }
+
+
+  showUserInfo: boolean = false;
+  selectedPostUser: any;
 
   toggleUserInfo() {
     this.showUserInfo = !this.showUserInfo;
   }
-     
-    
-    
+
+
+
 }
