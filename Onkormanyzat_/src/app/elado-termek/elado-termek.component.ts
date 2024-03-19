@@ -43,43 +43,19 @@ import { ImagesService } from '../images.service';
 })
 export class EladoTermekComponent implements OnInit, OnDestroy {
   showSellerInfo: boolean = false;
-  selectedPostUser: any; 
+  // selectedPostUser: any; 
   eladoTermek:EladoTermekAdatok = new EladoTermekAdatok();
   buttonClicked = false;
-  posts: any;
-  form: any;
-  files: File[] = [];
+  // posts: any;
+  // form: any;
+  // files: File[] = [];
   userRoles:any
   private user: ProfilAdatok | null = null;
   private subscriptions:Subscription[]=[]
 
   termekek:TermekKepekkel[] = []
   termekekFree:TermekKepekkel[] = []
-
-    //ebben tárolódnak a képek
-    _selectedFiles:File[] = [];
-    //ez állítja be hogy egy vagy több képet lehet kiválasztani
-    _multiple = true;
-    
-    //references the appFilePicker button
-    @ViewChild('buttonPicker', { static: true })
-    _buttonPicker!: FilePickerDirective;
-    _displayedColumns = ['name', 'type', 'size', 'lastModified'];
-    _onFilesChanged(files: FileList) {
-      this._selectedFiles = [];
-      for (let i = 0; i < files.length; i++) {
-        this._selectedFiles.push(files[i]);
-      }
-    }
   
-    _onReset() {
-      this._selectedFiles = [];
-    }
-  
-    _reset() {
-      this._buttonPicker.reset();
-    }
-
   constructor(private base: BaseService, private termekService:TermekkezeloService, private ImageS:ImagesService) {
   }
   getUserInfo(){
@@ -132,12 +108,12 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     )
   }
 
-  onFileSelected(event: any) {
-    this.files.push(event.target.files[0]);
-    console.log(this.files)
-    console.log(event)
+  // onFileSelected(event: any) {
+  //   this.files.push(event.target.files[0]);
+  //   console.log(this.files)
+  //   console.log(event)
     
-  }
+  // }
   
   onSubmit() {
     this.buttonClicked=true;
@@ -147,7 +123,7 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     this.buttonClicked = !this.buttonClicked;
     if (!this.buttonClicked) {
       
-      this.form.reset();
+      // this.form.reset();
     }
 
   }
@@ -171,4 +147,28 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   }
   
   
+  
+      //ebben tárolódnak a képek
+      _selectedFiles:File[] = [];
+      //ez állítja be hogy egy vagy több képet lehet kiválasztani
+      _multiple = true;
+      
+      //references the appFilePicker button
+      @ViewChild('buttonPicker', { static: true })
+      _buttonPicker!: FilePickerDirective;
+      _displayedColumns = ['name', 'type', 'size', 'lastModified'];
+      _onFilesChanged(files: FileList) {
+        this._selectedFiles = [];
+        for (let i = 0; i < files.length; i++) {
+          this._selectedFiles.push(files[i]);
+        }
+      }
+    
+      _onReset() {
+        this._selectedFiles = [];
+      }
+    
+      _reset() {
+        this._buttonPicker.reset();
+      }
 }
