@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
+import { ProfilAdatok } from '../models/ProfilAdatok';
+import { Subscription } from 'rxjs';
+import { BaseService } from '../base.service';
 
 @Component({
   selector: 'app-your-component',
   templateUrl: './elado-termek.component.html',
   styleUrls: ['./elado-termek.component.css'],
-  animations:[
+  animations: [
     // trigger('itemAnim',[
     //   transition('void=> *', [
     //     style({
@@ -34,65 +37,79 @@ import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
     // ])
   ]
 })
-export class EladoTermekComponent  implements OnInit {
+export class EladoTermekComponent implements OnInit, OnDestroy {
+  showSellerInfo: boolean = false;
+  selectedPostUser: any; 
+  eladoTermek = new EladoTermekAdatok();
+  buttonClicked = false;
+  posts: any;
+  form: any;
+  files: File[] = [];
+  userRoles:any
+  private user: ProfilAdatok | null = null;
+  private subscriptions:Subscription[]=[]
 
-  eladotermek = new EladoTermekAdatok();
-buttonClicked=false;
-posts: any;
-form: any;
-files:File[]=[];
-user: any;
-interestPost(_t20: any) {
-throw new Error('Method not implemented.');
-}
-likePost(_t20: any) {
-throw new Error('Method not implemented.');
-}
-  //TODO:actually use it...
-  myForm: FormGroup | undefined;
-  userProfile1 = { profileImage: null, textboxValue: '' };
-
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit() {
-    this.myForm = this.fb.group({
-      profileImage: [null], 
-      textboxValue: ['', Validators.required]
-    });
+  constructor(private base: BaseService) {
   }
+  getUserInfo(){
+    this.subscriptions.push(
+      this.base.getUser().subscribe(
+        (res: any) => this.user = res
+    ));
+    this.subscriptions.push(
+      this.base.getUserRoles().subscribe(
+        (roles:Map<String,boolean>)=>this.userRoles=roles
+    ))
+  }
+  setupDataToSend() {
+    if (this.user != null) {
+      this.eladoTermek.userId=this.user.userId
+    }
+    
+  }
+
+  ngOnInit(): void {
+    this.getUserInfo()
+  }
+
 
   onFileSelected(event: any) {
     this.files.push(event.target.files[0]);
     console.log(this.files)
     console.log(event)
-   
+    
   }
-
+  
   onSubmit() {
     this.buttonClicked=true;
-   
+    
   }
   toggleForm() {
     this.buttonClicked = !this.buttonClicked;
     if (!this.buttonClicked) {
-    
+      
       this.form.reset();
     }
-    
+
   }
   elrejt() {
     this.buttonClicked = false;
-   }
-   
-  
-    
-    showUserInfo: boolean = false;
-  selectedPostUser: any; 
-
-  toggleUserInfo() {
-    this.showUserInfo = !this.showUserInfo;
   }
-     
-    
-    
+  
+  
+  
+  
+  toggleSellerInfo() {
+    this.showSellerInfo = !this.showSellerInfo;
+  }
+  
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub)=>{
+      sub.unsubscribe()
+    })
+
+
+  }
+  
+  
 }

@@ -13,15 +13,15 @@ import { Subscription } from 'rxjs';
 export class JelenteskezeloComponent implements OnDestroy{
   bejelentesModel = new BejelentesAdatok
   private user: ProfilAdatok | null = null;
-  private subscription:Subscription|null=null
+  private subscription:Subscription[]|null=null
 
   constructor(private jelenteskezeloservice: JelenteskezeloService, private base: BaseService) {
     this.getUserInfo()
   }
   getUserInfo(){
-    this.subscription = this.base.getUser().subscribe(
+    this.subscription?.push(this.base.getUser().subscribe(
       (res: any) => this.user = res
-    );
+    ));
   }
   inputForm() {
     if (this.user != null) {
@@ -39,9 +39,9 @@ export class JelenteskezeloComponent implements OnDestroy{
   
   ngOnDestroy(): void {
     if (this.subscription != null) {
-      this.subscription.unsubscribe()
+      this.subscription.forEach(element => {
+        element.unsubscribe();        
+      });
     }
-
-
   }
 };
