@@ -3,17 +3,20 @@
 
   <div *ngIf="buttonClicked" class="image-container">
     <label for="productName" class="mb-2 block">Eladó termék neve</label>
-    <input [(ngModel)]="eladotermek.termekneve" type="text" id="productName" formControlName="productNameValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladotermek.termekneve" type="text" id="productName" formControlName="productNameValue"
+      class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
     <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4">
     <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid">
 
     <label for="description" class="mb-2 block">Leírás:</label>
-    <input [(ngModel)]="eladotermek.description" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladotermek.description" type="text" id="description" formControlName="descriptionValue"
+      class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
     <label for="price" class="mb-2 block">Ár:</label>
     <div class="flex items-center mb-4">
-      <input [(ngModel)]="eladotermek.price" type="number" id="price" formControlName="priceValue" class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
+      <input [(ngModel)]="eladotermek.price" type="number" id="price" formControlName="priceValue"
+        class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
       <p class="px-4 py-2 border rounded-r-xl">Ft</p>
     </div>
 
@@ -21,7 +24,8 @@
     <button type="button" class="btn btn-primary mt-2" (click)="elrejt()">Elrejt</button>
   </div>
 
-  <button class="jobboldaligomb bg-cstm-blue text-white px-4 py-2 rounded-lg" *ngIf="!buttonClicked" (click)="toggleForm()">Eladás</button>
+  <button class="jobboldaligomb bg-cstm-blue text-white px-4 py-2 rounded-lg" *ngIf="!buttonClicked"
+    (click)="toggleForm()">Eladás</button>
 </form>
 
 
@@ -29,11 +33,11 @@
   <div class="poszt" *ngFor="let post of posts">
     {{ post.title }}
     <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
-    
-    
+
+
 
   </div>
- 
+
 </div>
 
 <div class="container mt-5">
@@ -41,7 +45,7 @@
 
     <div class="col-md-6 ">
       <ul class="list-group">
-        <li class="list-group-item bg-success text-white">Eladó Termékek</li>
+        <li class="list-group-item bg-cstm-orszagos text-white">Eladó Termékek</li>
         <li class="list-group-item">
           <div class="d-flex justify-content-between">
             <div>
@@ -51,21 +55,23 @@
             <div class="text-end">
               <p>Ár:15000Ft</p>
               <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
-              
+
             </div>
-            
+
           </div>
           <!-- Your button -->
-<button (click)="toggleUserInfo()">Érdekel</button>
+          <button
+            class="w-[30%] text-xl text-cstm-orszagos hover:text-cstm-gray mb-4 border-3 border-cstm-orszagos hover:bg-cstm-orszagos rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-orszagos transform transition duration-500"
+            (click)="toggleUserInfo()">Érdekel</button>
 
-<!-- User information section -->
-<div class="szavazas" *ngIf="showUserInfo">
-  <h3>Eladó adatai</h3>
-  <p>Név: {{ eladotermek.name }}</p>
-  <p>Email: {{ eladotermek.email }}</p>
-  <p>Telefonszám: {{ eladotermek.phone }}</p>
-</div>
-          
+
+          <div class="szavazas" *ngIf="showUserInfo">
+            <h3>Eladó adatai</h3>
+            <p>Név: {{ eladotermek.name }}</p>
+            <p>Email: {{ eladotermek.email }}</p>
+            <p>Telefonszám: {{ eladotermek.phone }}</p>
+          </div>
+
         </li>
 
       </ul>
