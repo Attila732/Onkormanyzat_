@@ -1,25 +1,48 @@
-<form *ngIf="userRoles.get('USER')" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
+<!-- <form *ngIf="userRoles.get('USER')" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg"> -->
+<form class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
   <p class="mb-4 text-lg">Kérem töltse fel a meghirdetni kívánt tárgyat</p>
 
   <div *ngIf="buttonClicked" class="image-container">
     <label for="productName" class="mb-2 block">Eladó termék neve</label>
-    <input [(ngModel)]="eladoTermek.termekneve" type="text" id="productName" formControlName="productNameValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
-
-    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4">
-    <!-- <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid"> -->
+    <input [(ngModel)]="eladoTermek.name" type="text" id="productName" formControlName="productNameValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
     <label for="description" class="mb-2 block">Leírás:</label>
     <input [(ngModel)]="eladoTermek.description" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
-
+    
+    <label for="description" class="mb-2 block">Állapot:</label>
+    <select [value]="eladoTermek.condition" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+      <option value="new">Új</option>
+      <option value="newish">ÚjSzerű</option>
+      <option value="used">Használt</option>
+    </select>
+    
+    <label for="location" class="mb-2 block">Helyszín:</label>
+    <input [(ngModel)]="eladoTermek.location" type="text" id="location" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <label for="email" class="mb-2 block">Publikus Email:</label>
+    <input [(ngModel)]="eladoTermek.email" type="text" id="email" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <label for="phone" class="mb-2 block">Publikus Telefon:</label>
+    <input [(ngModel)]="eladoTermek.phone" type="text" id="phone" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    
+    
     <label for="price" class="mb-2 block">Ár:</label>
     <div class="flex items-center mb-4">
       <input [(ngModel)]="eladoTermek.price" type="number" id="price" formControlName="priceValue" class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
       <p class="px-4 py-2 border rounded-r-xl">Ft</p>
     </div>
 
-    <button type="submit" class="btn btn-primary">Küldés</button>
+    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4">
+    <!-- <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid"> -->
+    
+    <button (click)="setupDataToSend()" class="btn btn-primary">Küldés</button>
     <button type="button" class="btn btn-primary mt-2" (click)="elrejt()">Elrejt</button>
   </div>
+  <!-- this.name= ""
+  this.email=""
+  this.description= ""
+  this.condition= ""
+  this.location= ""
+  this.phone= null
+  this.price=null -->
 
   <button class="jobboldaligomb bg-cstm-blue text-white px-4 py-2 rounded-lg" *ngIf="!buttonClicked" (click)="toggleForm()">Eladás</button>
 </form>
@@ -56,10 +79,10 @@
             
           </div>
           <!-- Your button -->
-<button (click)="toggleUserInfo()">Érdekel</button>
+<button (click)="toggleSellerInfo()">Érdekel</button>
 
 <!-- User information section -->
-<div class="szavazas" *ngIf="showUserInfo">
+<div class="szavazas" *ngIf="showSellerInfo">
   <h3>Eladó adatai</h3>
   <p>Név: {{ eladoTermek.name }}</p>
   <p>Email: {{ eladoTermek.email }}</p>

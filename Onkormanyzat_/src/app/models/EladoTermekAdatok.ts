@@ -4,14 +4,13 @@ export class EladoTermekAdatok{
 
     [x: string]: any
     "userId":string
-    "name": string
+    "name": string  //termek neve
     "email":string
     "description": string
-    "state": string
+    "condition": string
     "location": string
     "phone": number|null
     "price":Number|null
-    "termekneve":string
 
 
     
@@ -20,11 +19,10 @@ export class EladoTermekAdatok{
       this.name= ""
       this.email=""
       this.description= ""
-      this.state= ""
+      this.condition= ""
       this.location= ""
       this.phone= null
       this.price=null
-      this.termekneve=""
     
      }
     }

@@ -38,6 +38,8 @@ import { BaseService } from '../base.service';
   ]
 })
 export class EladoTermekComponent implements OnInit, OnDestroy {
+  showSellerInfo: boolean = false;
+  selectedPostUser: any; 
   eladoTermek = new EladoTermekAdatok();
   buttonClicked = false;
   posts: any;
@@ -48,16 +50,16 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   private subscriptions:Subscription[]=[]
 
   constructor(private base: BaseService) {
-    this.getUserInfo()
   }
   getUserInfo(){
-    this.subscriptions.push(this.base.getUser().subscribe(
-      (res: any) => this.user = res
+    this.subscriptions.push(
+      this.base.getUser().subscribe(
+        (res: any) => this.user = res
     ));
     this.subscriptions.push(
       this.base.getUserRoles().subscribe(
         (roles:Map<String,boolean>)=>this.userRoles=roles
-        ))
+    ))
   }
   setupDataToSend() {
     if (this.user != null) {
@@ -67,7 +69,7 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getUserInfo()
   }
 
 
@@ -96,16 +98,14 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   
   
   
-  showUserInfo: boolean = false;
-  selectedPostUser: any; 
   
-  toggleUserInfo() {
-    this.showUserInfo = !this.showUserInfo;
+  toggleSellerInfo() {
+    this.showSellerInfo = !this.showSellerInfo;
   }
   
   ngOnDestroy(): void {
-    this.subscriptions.forEach((val)=>{
-      val.unsubscribe()
+    this.subscriptions.forEach((sub)=>{
+      sub.unsubscribe()
     })
 
 
