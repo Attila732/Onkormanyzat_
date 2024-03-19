@@ -12,7 +12,11 @@ export class BaseService {
   private user = new BehaviorSubject<ProfilAdatok|null>(null);
   initialRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   private roles = new BehaviorSubject<Map<String,boolean>>(this.initialRoles)
+  arr : string[] = ["one","two"]
+
+  
   constructor(private http:HttpClient) {
+    this.arr.includes
     this.getMyUserInfo()
    }
 
@@ -20,9 +24,12 @@ export class BaseService {
     return this.http.get(this.resUrl+"user/myUserInfo").subscribe({
       next:(res:any)=>{
         this.user.next(res)
-        this.initialRoles.set("USER",res.role.includes("ROLE_USER"))
-        this.initialRoles.set("ADMIN",res.role.includes("ROLE_ADMIN"))
-        this.initialRoles.set("ORG_ADMIN",res.role.includes("ROLE_ORG_ADMIN"))
+        // console.log(res)
+        // console.log(res.roles)
+        let roles:string[] = res.roles
+        this.initialRoles.set("USER",roles.includes("ROLE_USER"))
+        this.initialRoles.set("ADMIN",roles.includes("ROLE_ADMIN"))
+        this.initialRoles.set("ORG_ADMIN",roles.includes("ROLE_ORG_ADMIN"))
         this.roles.next(this.initialRoles)
         console.log("fetched userDetails")
       },

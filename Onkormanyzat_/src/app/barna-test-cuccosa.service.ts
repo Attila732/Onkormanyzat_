@@ -17,6 +17,10 @@ export class BarnaTestCuccosaService {
     return this.http.post(this.urlRes+"hello",ize)
     
   }
+  postItemDemo(){
+    return this.http.get(this.urlRes+"items/demo")
+    
+  }
   // postFile(file:any){
   //   return this.http.post(this.urlRes+"img",file)
   // }

@@ -107,6 +107,21 @@ export class BTCCompComponent {
       }
     })
   }
+  postItemDemo(){
+    this.testS.postItemDemo()
+    .subscribe({
+      next:(res)=>{
+        this.postHelloRes=res
+        console.log(res)
+        return res
+      },
+      error:(err)=>{
+        this.postHelloRes=err
+        console.log("Error in post hello ")
+        console.log(err)
+      }
+    })
+  }
   getHello(){
     this.testS.getHello()
     .subscribe({

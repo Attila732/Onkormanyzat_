@@ -1,65 +1,75 @@
-<!-- <form *ngIf="userRoles.get('USER')" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg"> -->
-<form class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
+<form *ngIf="userRoles.get('USER')" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
+<!-- <form class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg"> -->
   <p class="mb-4 text-lg">Kérem töltse fel a meghirdetni kívánt tárgyat</p>
 
   <div *ngIf="buttonClicked" class="image-container">
     <label for="productName" class="mb-2 block">Eladó termék neve</label>
-<<<<<<< HEAD
-    <input [(ngModel)]="eladotermek.termekneve" type="text" id="productName" formControlName="productNameValue"
-      class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
-
-    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4">
-    <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid">
+    <input [(ngModel)]="eladoTermek.name" type="text" id="productName" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
 
     <label for="description" class="mb-2 block">Leírás:</label>
-    <input [(ngModel)]="eladotermek.description" type="text" id="description" formControlName="descriptionValue"
-      class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
-
-    <label for="price" class="mb-2 block">Ár:</label>
-    <div class="flex items-center mb-4">
-      <input [(ngModel)]="eladotermek.price" type="number" id="price" formControlName="priceValue"
-        class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
-=======
-    <input [(ngModel)]="eladoTermek.name" type="text" id="productName" formControlName="productNameValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
-
-    <label for="description" class="mb-2 block">Leírás:</label>
-    <input [(ngModel)]="eladoTermek.description" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.description" type="text" id="description"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
     
     <label for="description" class="mb-2 block">Állapot:</label>
-    <select [value]="eladoTermek.condition" type="text" id="description" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <select [(ngModel)]="eladoTermek.condition" type="text" id="description"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
       <option value="new">Új</option>
       <option value="newish">ÚjSzerű</option>
       <option value="used">Használt</option>
     </select>
     
     <label for="location" class="mb-2 block">Helyszín:</label>
-    <input [(ngModel)]="eladoTermek.location" type="text" id="location" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.location" type="text" id="location"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
     <label for="email" class="mb-2 block">Publikus Email:</label>
-    <input [(ngModel)]="eladoTermek.email" type="text" id="email" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.email" type="text" id="email"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
     <label for="phone" class="mb-2 block">Publikus Telefon:</label>
-    <input [(ngModel)]="eladoTermek.phone" type="text" id="phone" formControlName="descriptionValue" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.phone" type="text" id="phone"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
     
     
     <label for="price" class="mb-2 block">Ár:</label>
     <div class="flex items-center mb-4">
-      <input [(ngModel)]="eladoTermek.price" type="number" id="price" formControlName="priceValue" class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
->>>>>>> 0fa260d9ebe3611031ef6831267be0e974b2dd76
+      <input [(ngModel)]="eladoTermek.price" type="number" id="price"  class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
       <p class="px-4 py-2 border rounded-r-xl">Ft</p>
     </div>
+    <div class="tab-container" fxLayoutAlign="center center">
+      <button #buttonPicker="appFilePicker" mat-raised-button color="primary" appFilePicker [multiple]="_multiple" (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()">
+        Upload
+      </button>
+    </div>
+    <!-- angular material-t használ -->
+<!-- példa File részletek kiírás gomb  a [datasource úgy viselkedik mint az *ngFor]-->
+<table mat-table [dataSource]="_selectedFiles" class="selected-files-table">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let file"> {{file.name}} </td>
+  </ng-container>
 
-    <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4">
+  <!-- Type Column -->
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let file"> {{file.type}} </td>
+  </ng-container>
+
+  <!-- Size Column -->
+  <ng-container matColumnDef="size">
+    <th mat-header-cell *matHeaderCellDef> Size (bytes) </th>
+    <td mat-cell *matCellDef="let file"> {{file.size}} </td>
+  </ng-container>
+
+  <!-- Last Modified Column -->
+  <ng-container matColumnDef="lastModified">
+    <th mat-header-cell *matHeaderCellDef> Last Modified </th>
+    <td mat-cell *matCellDef="let file"> {{file.lastModified | date }} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
+</table>
+    <!-- <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4"> -->
     <!-- <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid"> -->
     
-    <button (click)="setupDataToSend()" class="btn btn-primary">Küldés</button>
+    <button (click)="setupDataAndSend()" class="btn btn-primary">Küldés</button>
     <button type="button" class="btn btn-primary mt-2" (click)="elrejt()">Elrejt</button>
   </div>
-  <!-- this.name= ""
-  this.email=""
-  this.description= ""
-  this.condition= ""
-  this.location= ""
-  this.phone= null
-  this.price=null -->
 
   <button class="jobboldaligomb bg-cstm-blue text-white px-4 py-2 rounded-lg" *ngIf="!buttonClicked"
     (click)="toggleForm()">Eladás</button>
@@ -76,53 +86,45 @@
   </div>
 
 </div>
-
+{{termekek|json}}
+{{termekekFree|json}}
 <div class="container mt-5">
   <div class="row">
 
     <div class="col-md-6 ">
       <ul class="list-group">
         <li class="list-group-item bg-cstm-orszagos text-white">Eladó Termékek</li>
-        <li class="list-group-item">
+
+
+
+        <li class="list-group-item" *ngFor="let item of termekek">
           <div class="d-flex justify-content-between">
             <div>
               <h5 class="mb-2">Termék neve</h5>
-              <p>Bicikli</p>
+              <p>{{item.name}}</p>
             </div>
             <div class="text-end">
-              <p>Ár:15000Ft</p>
-              <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+              <p>Ár:{{item.price}}Ft</p>
+              <div *ngFor="let image of item.images">
+                <img [src]="'http://localhost:8081/'+image" alt="Product Image" class="img-fluid">
+              </div>
 
             </div>
 
           </div>
-          <!-- Your button -->
-<<<<<<< HEAD
-          <button
-            class="w-[30%] text-xl text-cstm-orszagos hover:text-cstm-gray mb-4 border-3 border-cstm-orszagos hover:bg-cstm-orszagos rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-orszagos transform transition duration-500"
-            (click)="toggleUserInfo()">Érdekel</button>
+          <button class="btn btn-info" (click)="toggleSellerInfo()">Érdekel</button>
 
-
-          <div class="szavazas" *ngIf="showUserInfo">
+          <div class="szavazas" *ngIf="showSellerInfo">
             <h3>Eladó adatai</h3>
-            <p>Név: {{ eladotermek.name }}</p>
-            <p>Email: {{ eladotermek.email }}</p>
-            <p>Telefonszám: {{ eladotermek.phone }}</p>
+            <p>Email: {{ eladoTermek.email }}</p>
+            <p>Telefonszám: {{ eladoTermek.phone }}</p>
           </div>
-
-=======
-<button (click)="toggleSellerInfo()">Érdekel</button>
-
-<!-- User information section -->
-<div class="szavazas" *ngIf="showSellerInfo">
-  <h3>Eladó adatai</h3>
-  <p>Név: {{ eladoTermek.name }}</p>
-  <p>Email: {{ eladoTermek.email }}</p>
-  <p>Telefonszám: {{ eladoTermek.phone }}</p>
-</div>
           
->>>>>>> 0fa260d9ebe3611031ef6831267be0e974b2dd76
         </li>
+
+
+
+
 
       </ul>
     </div>
@@ -132,6 +134,33 @@
     <div class="col-md-6 ">
       <ul class="list-group">
         <li class="list-group-item bg-primary text-white">Meghirdetett termékek</li>
+        
+        <li class="list-group-item" *ngFor="let item of termekekFree">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h5 class="mb-2">Termék neve</h5>
+              <p>{{item.name}}</p>
+            </div>
+            <div class="text-end">
+              <p>Ár:{{item.price}}Ft</p>
+              <div *ngFor="let image of item.images">
+                <img [src]="'http://localhost:8081/'+image" alt="Product Image" class="img-fluid">
+              </div>
+
+            </div>
+
+          </div>
+          <button class="btn btn-info" (click)="toggleSellerInfo()">Érdekel</button>
+
+          <div class="szavazas" *ngIf="showSellerInfo">
+            <h3>Eladó adatai</h3>
+            <p>Email: {{ eladoTermek.email }}</p>
+            <p>Telefonszám: {{ eladoTermek.phone }}</p>
+          </div>
+          
+        </li>
+        
+        
         <li class="list-group-item">
           <h5 class="mb-2">Ingyen kanapé</h5>
           <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
@@ -140,6 +169,10 @@
             <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
           </div>
         </li>
+
+
+
+
         <li class="list-group-item">
           <h5 class="mb-2">Ingyen kanapé</h5>
           <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
