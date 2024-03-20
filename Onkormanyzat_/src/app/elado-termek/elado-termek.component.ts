@@ -52,7 +52,11 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   userRoles:any
   private user: ProfilAdatok | null = null;
   private subscriptions:Subscription[]=[]
-
+  conditions=[
+    {key:"new",text:"Új"},
+    {key:"newish",text:"Újszerű"},
+    {key:"used",text:"Használt"}
+  ]
   termekek:TermekKepekkel[] = []
   termekekFree:TermekKepekkel[] = []
   
@@ -94,6 +98,7 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
       this.termekService.getTermekek(pageNum,price).subscribe({
         next:(res:any)=>{
           this.termekek = res
+          this.addBoolErdekel()
         }
       })
       )
@@ -115,6 +120,18 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     
   // }
   
+  addBoolErdekel(){
+
+    this.termekek.forEach(element => {
+      element['erdekel']=false
+    });
+    this.termekekFree.forEach(element => {
+      element['erdekel']=false
+    });
+
+
+  }
+
   onSubmit() {
     this.buttonClicked=true;
     
@@ -131,11 +148,19 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     this.buttonClicked = false;
   }
   
+  translateCondition(cond:string){
+    let value=""
+    this.conditions.forEach(element => {
+      if (element.key==cond) {
+        value= element.text
+      }
+    });
+    return value
+  }
   
   
-  
-  toggleSellerInfo() {
-    this.showSellerInfo = !this.showSellerInfo;
+  toggleSellerInfo(item:any) {
+    item.erdekel = !item.erdekel;
   }
   
   ngOnDestroy(): void {

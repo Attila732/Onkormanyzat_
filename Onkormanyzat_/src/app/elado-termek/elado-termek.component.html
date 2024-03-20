@@ -98,26 +98,24 @@
 
 
         <li class="list-group-item" *ngFor="let item of termekek">
-          <div class="d-flex justify-content-between">
-            <div>
-              <h5 class="mb-2">Termék neve</h5>
-              <p>{{item.name}}</p>
+            <div class="titlesor">
+              <h4 class="mb-2 mt-2 mr-2">{{item.name}}</h4>
+              <p class="m-2" >{{translateCondition(item.condition)}}</p>
+              <p class="price" >Ár:{{item.price}}Ft</p>
+              
             </div>
-            <div class="text-end">
-              <p>Ár:{{item.price}}Ft</p>
-              <div *ngFor="let image of item.images">
-                <img [src]="'http://localhost:8081/'+image" alt="Product Image" class="img-fluid">
-              </div>
-              {{item.condition}}
-              {{item.description}}
-              {{item.location}}
-
+            <div class="bodyleftandImages">
+            <div class="lefties">
+              <p>{{item.location}}</p> 
+              <p>{{item.description}}</p>
             </div>
-
+            <div class="images">
+                <img *ngFor="let image of item.images" [src]="'http://localhost:8081/'+image" alt="Product Image">
+            </div>
           </div>
-          <button class="btn btn-info" (click)="toggleSellerInfo()">Érdekel</button>
+          <button class="btn btn-info" (click)="toggleSellerInfo(item)">Érdekel</button>
 
-          <div class="szavazas" *ngIf="showSellerInfo">
+          <div class="szavazas" *ngIf="item['erdekel']">
             <h3>Eladó adatai</h3>
             <p>Email: {{ eladoTermek.email }}</p>
             <p>Telefonszám: {{ eladoTermek.phone }}</p>
@@ -138,30 +136,30 @@
       <ul class="list-group">
         <li class="list-group-item bg-primary text-white">Meghirdetett termékek</li>
         
-        <li class="list-group-item" *ngFor="let item of termekekFree">
-          <div class="d-flex justify-content-between">
-            <div>
-              <h5 class="mb-2">Termék neve</h5>
-              <p>{{item.name}}</p>
-            </div>
-            <div class="text-end">
-              <p>Ár:{{item.price}}Ft</p>
-              <div *ngFor="let image of item.images">
-                <img [src]="'http://localhost:8081/'+image" alt="Product Image" class="img-fluid">
-              </div>
-
-            </div>
-
+        <li class="list-group-item" *ngFor="let item of termekek">
+          <div class="titlesor">
+            <h4 class="mb-2 mt-2 mr-2">{{item.name}}</h4>
+            <p class="m-2" >{{translateCondition(item.condition)}}</p>
+            
           </div>
-          <button class="btn btn-info" (click)="toggleSellerInfo()">Érdekel</button>
-
-          <div class="szavazas" *ngIf="showSellerInfo">
-            <h3>Eladó adatai</h3>
-            <p>Email: {{ eladoTermek.email }}</p>
-            <p>Telefonszám: {{ eladoTermek.phone }}</p>
+          <div class="bodyleftandImages">
+          <div class="lefties">
+            <p>{{item.location}}</p> 
+            <p>{{item.description}}</p>
           </div>
-          
-        </li>
+          <div class="images">
+              <img *ngFor="let image of item.images" [src]="'http://localhost:8081/'+image" alt="Product Image">
+          </div>
+        </div>
+        <button class="btn btn-info" (click)="toggleSellerInfo(item)">Érdekel</button>
+
+        <div class="szavazas" *ngIf="item['erdekel']">
+          <h3>Eladó adatai</h3>
+          <p>Email: {{ eladoTermek.email }}</p>
+          <p>Telefonszám: {{ eladoTermek.phone }}</p>
+        </div>
+        
+      </li>
         
         
         <li class="list-group-item">

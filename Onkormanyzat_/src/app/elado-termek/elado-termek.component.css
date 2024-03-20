@@ -1,0 +1,31 @@
+.titlesor{
+    display: flex;
+    /* align-items: stretch; */
+    /* text-wrap: nowrap; */
+    flex-wrap: nowrap;
+}
+img{
+    max-width: 20%;
+    display: flex;
+    /* max-height: 20%; */
+}
+
+.price{
+    width: 70%;
+    text-align: right;
+    -ms-flex-align: end;
+}
+
+.lefties{
+    width: 40%;
+}
+.images{
+    display: flex;
+    width: 60%;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+
+.bodyleftandImages{
+    display: flex;
+}
