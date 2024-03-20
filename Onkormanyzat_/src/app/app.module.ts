@@ -31,6 +31,7 @@ import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesz
 import { XsrfInterceptor } from './xsrf.interceptor';
 import { HeaderComponent } from './header/header.component';
 import { FilePickerDirective } from './file-picker.directive';
+import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { FilePickerDirective } from './file-picker.directive';
     ProfilSzerkesztesComponent,
     HeaderComponent,
     FilePickerDirective,
+    FelhaszkezelesComponent,
   ],
   imports: [
     BrowserModule,

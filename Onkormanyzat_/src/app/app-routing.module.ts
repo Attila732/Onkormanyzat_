@@ -17,6 +17,7 @@ import { HibaComponent } from './hiba/hiba.component';
 import { BTCCompComponent } from './btccomp/btccomp.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
+import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
 
 
 const routes: Routes = [
@@ -37,8 +38,9 @@ const routes: Routes = [
   {path:"szervezeskezd",component:SzervezeskezdemenyComponent},
   {path:"profil",component:ProfilComponent},
   {path:"profilszerkesztes",component:ProfilSzerkesztesComponent},
-  {path:"**",component:HibaComponent},
-  {path:"btccomp",component:BTCCompComponent}
+  {path:"btccomp",component:BTCCompComponent},
+  {path:"felhaszkezeles",component:FelhaszkezelesComponent},
+  {path:"**",component:HibaComponent}
 
 
  

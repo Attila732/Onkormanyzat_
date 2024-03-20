@@ -1,0 +1,3 @@
+<input [value]="adminAdatok.firstName" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control" placeholder="admin:"/>
+
+{{adminAdatok|json}}
