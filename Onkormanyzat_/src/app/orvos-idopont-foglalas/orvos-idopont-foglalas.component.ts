@@ -18,11 +18,25 @@ export class OrvosIdopontfoglalasComponent {
   constructor(private idopontservice:IdopontService, private base: BaseService){
 
   }
+
+  getUserInfo(){
+    this.subscription?.push(this.base.getUser().subscribe(
+      (res: any) => this.user = res
+    ));
+  }
   inputForm() {
     if (this.user != null) {
       this.idopontModel.userId = this.user.userId;
       this.idopontservice.postService(this.idopontModel);
     }
     
+  }  
+  
+  ngOnDestroy(): void {
+    if (this.subscription != null) {
+      this.subscription.forEach(element => {
+        element.unsubscribe();        
+      });
+    }
   }
 };
