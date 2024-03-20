@@ -25,7 +25,7 @@ export class JelenteskezeloComponent implements OnDestroy{
   }
   inputForm() {
     if (this.user != null) {
-      this.bejelentesModel.userid = this.user.userId;
+      this.bejelentesModel.userId = this.user.userId;
       this.jelenteskezeloservice.postService(this.bejelentesModel);
     }
     

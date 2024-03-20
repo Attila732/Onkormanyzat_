@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IdopontAdatok } from '../models/IdopontAdatok';
 import { IdopontService } from '../idopont.service';
+import { ProfilAdatok } from '../models/ProfilAdatok';
+import { Subscription } from 'rxjs';
+import { BaseService } from '../base.service';
 
 @Component({
   selector: 'app-orvosidopontfoglalas',
@@ -9,11 +12,17 @@ import { IdopontService } from '../idopont.service';
 })
 export class OrvosIdopontfoglalasComponent {
   idopontModel = new IdopontAdatok()
-  inputForm() {
-    this.idopontservice.postService(this.idopontModel);
+  private user: ProfilAdatok | null = null;
+  private subscription:Subscription[]|null=null
+
+  constructor(private idopontservice:IdopontService, private base: BaseService){
+
   }
-
-  constructor(private idopontservice:IdopontService){
-
+  inputForm() {
+    if (this.user != null) {
+      this.idopontModel.userId = this.user.userId;
+      this.idopontservice.postService(this.idopontModel);
+    }
+    
   }
 };

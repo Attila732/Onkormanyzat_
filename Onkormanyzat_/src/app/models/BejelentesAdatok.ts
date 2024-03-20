@@ -2,7 +2,7 @@ export class BejelentesAdatok{
 
     [x: string]: any
     
-    "userid":string
+    "userId":string
     "type": string
     "urgency": string
     "description": string
@@ -12,7 +12,7 @@ export class BejelentesAdatok{
     
     
     constructor() {
-      this.userid=""//bejelentkezett felhasználó (Profiladatok.userId) ből
+      this.userId=""//bejelentkezett felhasználó (Profiladatok.userId) ből
       this.type= ""
       this.urgency= ""
       this.description= ""
