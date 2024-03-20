@@ -19,9 +19,9 @@ export class FelhaszKeresService {
     }
 
     return this.http.get<AdminAdatok[]>("/resource/user/admin/search", opt).pipe(
-      map((res:AdminAdatok[]) => {
-        console.log('Successfully got person:', res);
-        return res;
+      map((res:any) => {
+        console.log('Successfully got person:', res.content);
+        return res.content;
       }),
       catchError((error) => {
         console.error('Error in getPersonByName:', error);

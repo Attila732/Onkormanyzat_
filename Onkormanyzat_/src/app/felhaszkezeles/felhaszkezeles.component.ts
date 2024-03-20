@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { Observable, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
-import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadModule, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { AdminAdatok } from '../models/AdminAdatok';
 import { FelhaszKeresService } from '../felhasz-keres.service';
 
@@ -37,17 +37,17 @@ export class FelhaszkezelesComponent {
   // resultFormatter = (result: AdminAdatok) => result.firstName;
   // inputFormatter = (result: AdminAdatok) => result.firstName;
 
-  resultFormatter = (result: AdminAdatok) => {
+  resultFormatter=(result: AdminAdatok):string=>{
     console.log("adminAdatok", result)
-    return `${result.firstName} ${result.lastName}`
+    return `something else ${result.firstName} ${result.lastName}`
   } ;
-  inputFormatter = (result: AdminAdatok) => `${result.firstName} ${result.lastName}`;
+  inputFormatter = (result: AdminAdatok) => `something ${result.firstName} ${result.lastName}`;
 
 
 
   onSelectItem(event: NgbTypeaheadSelectItemEvent<AdminAdatok>) {
     event.preventDefault()
-    console.log(event)
+    console.log(event.item.email)
 
     this.adminAdatok.email = event.item.email
     this.adminAdatok.id = event.item.id
