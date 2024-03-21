@@ -1,3 +1,8 @@
-<input [value]="adminAdatok.firstName" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control" placeholder="admin:"/>
+<div class="row">
+    <div class="col" *ngFor="let col of columns">
+        <input [value]="adminAdatok[col.key]" (focus)="setCol(col)" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control" placeholder="{{col.text}}"/>
+        
+    </div>
+</div>
 
 {{adminAdatok|json}}

@@ -13,7 +13,16 @@ import { FelhaszKeresService } from '../felhasz-keres.service';
 export class FelhaszkezelesComponent {
   id: number = 0
   selectedId: number | null = null
-  // columns: Array<Column>
+  col:{"key":string; "text": string; "type": string;  "min":number} =    {key: "id", text: "Id", type: "text", min:1}
+  columns : Array<{"key":string; "text": string; "type": string;  "min":number}>=[
+    {key: "id", text: "Id", type: "text", min:1},
+    {key: "email", text: "Email", type: "text", min:3},
+    {key: "userName", text: "Felhasználónév", type: "text", min:3},
+    {key: "firstName", text: "Keresztnév", type: "text", min:3},
+    {key: "lastName", text: "Vezetéknév", type: "text", min:3},
+    {key: "phone", text: "Telefon", type: "number", min:3},
+
+]
   category = "firstName"
   adminAdatok = new AdminAdatok()
 
@@ -30,31 +39,28 @@ export class FelhaszkezelesComponent {
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      filter((searchTerm) => searchTerm.length >= 3),
-      switchMap((searchTerm) => this.loadAdminAdatok(searchTerm, 0, this.category))
+      filter((searchTerm) => searchTerm.length >= this.col.min),
+      switchMap((searchTerm) => this.loadAdminAdatok(searchTerm, 0, this.col.key))
     );
 
   // resultFormatter = (result: AdminAdatok) => result.firstName;
   // inputFormatter = (result: AdminAdatok) => result.firstName;
 
-  resultFormatter=(result: AdminAdatok):string=>{
-    console.log("adminAdatok", result)
-    return `something else ${result.firstName} ${result.lastName}`
-  } ;
-  inputFormatter = (result: AdminAdatok) => `something ${result.firstName} ${result.lastName}`;
+  resultFormatter = (result: AdminAdatok) => `${result[this.category]}`;
+  inputFormatter = (result: AdminAdatok) => `${result[this.category]}`;
 
 
 
   onSelectItem(event: NgbTypeaheadSelectItemEvent<AdminAdatok>) {
     event.preventDefault()
     console.log(event.item.email)
-
-    this.adminAdatok.email = event.item.email
-    this.adminAdatok.id = event.item.id
-    this.adminAdatok.userName = event.item.userName
-    this.adminAdatok.firstName = event.item.firstName
-    this.adminAdatok.lastName = event.item.lastName
-    this.adminAdatok.phone = event.item.phone
+    this.adminAdatok=event.item;
+    // this.adminAdatok.email = event.item.email
+    // this.adminAdatok.id = event.item.id
+    // this.adminAdatok.userName = event.item.userName
+    // this.adminAdatok.firstName = event.item.firstName
+    // this.adminAdatok.lastName = event.item.lastName
+    // this.adminAdatok.phone = event.item.phone
   }
 
 // loadPeopleByName(col: Column) {
@@ -71,6 +77,10 @@ loadAdminAdatok(value: string, pageNum: number, category: string){
   return this.felhaszkeres.getAdminAdatok(value, pageNum, category)
 }
 
+
+setCol(col:any){
+  this.col=col
+}
 // loadProfilAdatokById(id: number) {
 //   this.base.getProfilAdatok(id).subscribe({
 //     next: (person: ProfilAdatok) => {

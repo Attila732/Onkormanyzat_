@@ -1,0 +1,5 @@
+router{
+    display: flex;
+    max-width: 90%;
+    align-self: center;
+}
