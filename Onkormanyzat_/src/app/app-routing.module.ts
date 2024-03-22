@@ -18,6 +18,7 @@ import { BTCCompComponent } from './btccomp/btccomp.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
 import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
+import { authGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
   {path:"barna-test",component:BTCCompComponent},
   {path:"login", component:LoginComponent},
   {path:"sign-up", component:SignUpComponent},
-  {path:"body", component:BodyComponent,},
+  {path:"body", component:BodyComponent, canActivate:[authGuard(["ADMIN"])]},
   {path:"elado-termekek",component:EladoTermekComponent},
   {path:"orvos-egyeb-ugyek",component:OrvosEgyebUgyekComponent},
   {path:"orvos-idopont-foglalas",component:OrvosIdopontfoglalasComponent},

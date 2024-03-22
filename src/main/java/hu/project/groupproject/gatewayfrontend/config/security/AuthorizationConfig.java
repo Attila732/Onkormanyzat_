@@ -9,6 +9,7 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.oidc.web.server.logout.OidcClientInitiatedServerLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.server.csrf.CsrfToken;
@@ -43,7 +44,8 @@ public class AuthorizationConfig {
             http.logout(logoutSpec -> {
                 logoutSpec.logoutSuccessHandler(oidcLogoutSuccessHandler());
             });
-            http.oauth2Login(Customizer.withDefaults());
+            http.oauth2Login(login->login.authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("/client/mycustomredirecturi")));
+            // http.oauth2Login(Customizer.withDefaults());
 
         return http.build();
     }

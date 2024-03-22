@@ -32,6 +32,7 @@ import { XsrfInterceptor } from './xsrf.interceptor';
 import { HeaderComponent } from './header/header.component';
 import { FilePickerDirective } from './file-picker.directive';
 import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
+import { authGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.compone
     NgbNavModule,
     HttpClientModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    
   ],
   providers: [
     {provide:APP_BASE_HREF, useValue:'/client'},//Adds /client/ to all frontend urls
