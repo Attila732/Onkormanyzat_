@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { Subscription } from 'rxjs';
-import { BaseService } from '../base.service';
+import { AuthService } from '../auth.service';
 import { TermekkezeloService } from '../termekkezelo.service';
 import { TermekKepekkel } from '../models/TermekKepekkel';
 import { FilePickerDirective } from '../file-picker.directive';
@@ -60,15 +60,15 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   termekek:TermekKepekkel[] = []
   termekekFree:TermekKepekkel[] = []
   
-  constructor(private base: BaseService, private termekService:TermekkezeloService, private ImageS:ImagesService) {
+  constructor(private auth: AuthService, private termekService:TermekkezeloService, private ImageS:ImagesService) {
   }
   getUserInfo(){
     this.subscriptions.push(
-      this.base.getUser().subscribe(
+      this.auth.getUser().subscribe(
         (res: any) => this.user = res
     ));
     this.subscriptions.push(
-      this.base.getUserRoles().subscribe(
+      this.auth.getUserRoles().subscribe(
         (roles:Map<String,boolean>)=>this.userRoles=roles
     ))
   }

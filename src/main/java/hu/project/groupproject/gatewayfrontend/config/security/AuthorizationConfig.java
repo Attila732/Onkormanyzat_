@@ -9,11 +9,14 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.oidc.web.server.logout.OidcClientInitiatedServerLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.ServerRedirectStrategy;
 import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
+import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.server.csrf.CsrfToken;
 import org.springframework.security.web.server.csrf.XorServerCsrfTokenRequestAttributeHandler;
+import org.springframework.security.web.server.savedrequest.WebSessionServerRequestCache;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
@@ -37,15 +40,16 @@ public class AuthorizationConfig {
             );
             http.authorizeExchange(
                 exchange -> exchange
-                // .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico").permitAll()
+                .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico","/assets/R.png").permitAll()
                 .anyExchange().authenticated()
                 // .anyExchange().permitAll()
             );
             http.logout(logoutSpec -> {
                 logoutSpec.logoutSuccessHandler(oidcLogoutSuccessHandler());
             });
-            http.oauth2Login(login->login.authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("/client/mycustomredirecturi")));
-            // http.oauth2Login(Customizer.withDefaults());
+            // http.oauth2Login(login->login);
+            // http.oauth2Login(login->login.authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("/login")));
+            http.oauth2Login(Customizer.withDefaults());
 
         return http.build();
     }

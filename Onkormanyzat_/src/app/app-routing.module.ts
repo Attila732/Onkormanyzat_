@@ -29,6 +29,7 @@ const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"sign-up", component:SignUpComponent},
   {path:"body", component:BodyComponent, canActivate:[authGuard(["ADMIN"])]},
+  // {path:"body", component:BodyComponent},
   {path:"elado-termekek",component:EladoTermekComponent},
   {path:"orvos-egyeb-ugyek",component:OrvosEgyebUgyekComponent},
   {path:"orvos-idopont-foglalas",component:OrvosIdopontfoglalasComponent},

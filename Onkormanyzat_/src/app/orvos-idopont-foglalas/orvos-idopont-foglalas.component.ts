@@ -3,7 +3,7 @@ import { IdopontAdatok } from '../models/IdopontAdatok';
 import { IdopontService } from '../idopont.service';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { Subscription } from 'rxjs';
-import { BaseService } from '../base.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-orvosidopontfoglalas',
@@ -15,12 +15,12 @@ export class OrvosIdopontfoglalasComponent {
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[]|null=null
 
-  constructor(private idopontservice:IdopontService, private base: BaseService){
+  constructor(private idopontservice:IdopontService, private auth: AuthService){
 
   }
 
   getUserInfo(){
-    this.subscription?.push(this.base.getUser().subscribe(
+    this.subscription?.push(this.auth.getUser().subscribe(
       (res: any) => this.user = res
     ));
   }

@@ -33,6 +33,7 @@ import { HeaderComponent } from './header/header.component';
 import { FilePickerDirective } from './file-picker.directive';
 import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
 import { authGuard } from './auth.guard';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { authGuard } from './auth.guard';
     HeaderComponent,
     FilePickerDirective,
     FelhaszkezelesComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule,

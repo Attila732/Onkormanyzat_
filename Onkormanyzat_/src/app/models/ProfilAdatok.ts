@@ -8,7 +8,7 @@ export class ProfilAdatok {
     "email":string
     "name": string
     "phone": number|null
-    "roles":string[]|Map<String,boolean>
+    "roles":Map<String,boolean>
     "orgs":string[]  //ha nincs admin role-ja akkor üres marad amúgy orgId(k) lesznek benne 
     
     constructor() {
@@ -19,7 +19,7 @@ export class ProfilAdatok {
       this.email= ""
       this.name= ""
       this.phone= null
-      this.roles=[]
+      // this.roles=[]
       this.orgs=[]
      }
     }
