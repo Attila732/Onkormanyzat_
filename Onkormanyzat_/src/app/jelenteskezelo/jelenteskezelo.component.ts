@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./jelenteskezelo.component.css']
 })
 export class JelenteskezeloComponent implements OnDestroy{
-  bejelentesModel = new BejelentesAdatok
+  bejelentesModel = new BejelentesAdatok()
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[]|null=null
 

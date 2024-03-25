@@ -4,7 +4,7 @@ export class BejelentesAdatok{
     
     "userId":string
     "type": string
-    "urgency": string
+    "urgency": number|null
     "description": string
     "location": string
     "phone":number|null
@@ -14,7 +14,7 @@ export class BejelentesAdatok{
     constructor() {
       this.userId=""//bejelentkezett felhasználó (Profiladatok.userId) ből
       this.type= ""
-      this.urgency= ""
+      this.urgency= null
       this.description= ""
       this.location= ""
       this.phone= null

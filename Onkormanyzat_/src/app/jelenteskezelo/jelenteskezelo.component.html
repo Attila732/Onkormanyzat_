@@ -2,23 +2,24 @@
   <div class="container mt-5">
     <div class="appointment-container">
       <h2>Jelentéskezelő</h2>
+      {{bejelentesModel|json}}
       <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
   
         <div class="form-group">
-          <label [(ngModel)]="bejelentesModel.type" for="type">Válasszon típust:</label>
-          <select class="form-control" id="type" name="type" required>
-            <option value="kozteruleti">Közterületi</option>
-            <option value="uthiba">Úthiba</option>
+          <label  for="type">Válasszon típust:</label>
+          <select [(ngModel)]="bejelentesModel.type" class="form-control" id="type" name="type" required>
+            <option value="KOZTERULET">Közterületi</option>
+            <option value="UTHIBA">Úthiba</option>
             <!-- Rang-zárolt jelentések -->
-            <option value="viz-gaz">Víz-gáz</option>
-            <option value="lomtalanitas">Lomtalanítás</option>
-            <option value="szemetszallitas">Szemétszállítás</option>
+            <option value="VIZGAZ">Víz-gáz</option>
+            <option value="LOMTALANITAS">Lomtalanítás</option>
+            <option value="SZEMETSZALLITAS">Szemétszállítás</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label [(ngModel)]="bejelentesModel.urgency" for="sulyossag">Súlyosság:</label>
-          <select class="form-control" id="sulyossag" name="sulyossag" required>
+          <label  for="sulyossag">Súlyosság:</label>
+          <select [(ngModel)]="bejelentesModel.urgency" class="form-control" id="sulyossag" name="sulyossag" required>
             <!-- Rang-zárolt jelentések -->
             <option value="1">1</option>
             <option value="2">2</option>
