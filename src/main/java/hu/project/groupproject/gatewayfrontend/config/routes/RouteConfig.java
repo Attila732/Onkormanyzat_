@@ -58,14 +58,14 @@ public class RouteConfig {
 												.tokenRelay()
 												)
 								.uri("http://localhost:8082"))
-				.route(
-						r -> r
-								.path("/oauth2/authorization/**")
-								.filters(
-										f -> f 
-												.tokenRelay()
-												)
-								.uri("http://localhost:8081"))
+				// .route(
+				// 		r -> r
+				// 				.path("/oauth2/authorization/**")
+				// 				.filters(
+				// 						f -> f 
+				// 								.tokenRelay()
+				// 								)
+				// 				.uri("http://localhost:8081"))
 				.route(r -> r
 						.path("/{path:^(?!.*\\.js$)(?!.*\\.css$)(?!.*\\.ico$)(?!.*\\.html$)(?!.*\\.woff2$)(?!.*\\.[^.]+\\.[0-9]+\\.[^.]+$).*}")
 						.uri("forward:/index.html"))

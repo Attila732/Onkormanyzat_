@@ -40,7 +40,8 @@ public class AuthorizationConfig {
             );
             http.authorizeExchange(
                 exchange -> exchange
-                .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico","/assets/R.png").permitAll()
+                // .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico","/assets/R.png").permitAll()
+                // .pathMatchers("/client*").permitAll()
                 .anyExchange().authenticated()
                 // .anyExchange().permitAll()
             );
