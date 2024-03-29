@@ -9,14 +9,11 @@
 			<!-- resposive view: mobil/tablet -->
 
 			<button class="block desktop:hidden text-black focus:outline-none relative z-50" (click)="toggleNavbar()">
-				<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path [ngClass]="{'block': !isNavbarOpen, 'hidden': isNavbarOpen}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-						d="M4 6h16M4 12h16m-7 6h7"></path>
-					<path [ngClass]="{'hidden': !isNavbarOpen, 'block': isNavbarOpen}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-						d="M6 18L18 6M6 6l12 12"></path>
-				</svg>
-			</button>
-
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path [ngClass]="{'block': !isNavbarOpen, 'hidden': isNavbarOpen}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    <path [ngClass]="{'hidden': !isNavbarOpen, 'block': isNavbarOpen}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
 			<div 
 				class="absolute z-40 bg-white/30 backdrop-blur-3xl right-0 top-0 flex desktop:w-fit w-[50%] h-screen fixed desktop:hidden block"ű
 				[@fadeInOut]="isNavbarOpen ? 'open' : 'closed'">

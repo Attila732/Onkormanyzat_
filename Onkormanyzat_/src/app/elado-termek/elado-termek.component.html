@@ -1,79 +1,94 @@
-<form *ngIf="userRoles.get('USER')" class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg">
-<!-- <form class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg"> -->
+<!-- *ngIf="userRoles.get('USER')" -->
+<div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm text-center">
+<form >
+  <!-- <form class="py-1  text-center flex flex-col items-center bg-cstm-skin p-8 rounded-lg"> -->
   <p class="mb-4 text-lg">Kérem töltse fel a meghirdetni kívánt tárgyat</p>
 
   <div *ngIf="buttonClicked" class="image-container">
     <label for="productName" class="mb-2 block">Eladó termék neve</label>
-    <input [(ngModel)]="eladoTermek.name" type="text" id="productName" class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.name" type="text" id="productName"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 
     <label for="description" class="mb-2 block">Leírás:</label>
-    <input [(ngModel)]="eladoTermek.description" type="text" id="description"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
-    
+    <input [(ngModel)]="eladoTermek.description" type="text" id="description"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+
     <label for="description" class="mb-2 block">Állapot:</label>
-    <select [(ngModel)]="eladoTermek.condition" type="text" id="description"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <select [(ngModel)]="eladoTermek.condition" type="text" id="description"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
       <option value="new">Új</option>
       <option value="newish">ÚjSzerű</option>
       <option value="used">Használt</option>
     </select>
-    
+
     <label for="location" class="mb-2 block">Helyszín:</label>
-    <input [(ngModel)]="eladoTermek.location" type="text" id="location"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.location" type="text" id="location"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     <label for="email" class="mb-2 block">Publikus Email:</label>
-    <input [(ngModel)]="eladoTermek.email" type="text" id="email"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
+    <input [(ngModel)]="eladoTermek.email" type="text" id="email"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     <label for="phone" class="mb-2 block">Publikus Telefon:</label>
-    <input [(ngModel)]="eladoTermek.phone" type="text" id="phone"  class="mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:border-indigo-500">
-    
-    
+    <input [(ngModel)]="eladoTermek.phone" type="text" id="phone"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+
+
     <label for="price" class="mb-2 block">Ár:</label>
-    <div class="flex items-center mb-4">
-      <input [(ngModel)]="eladoTermek.price" type="number" id="price"  class="px-4 py-2 border rounded-l-lg focus:outline-none focus:border-indigo-500">
-      <p class="px-4 py-2 border rounded-r-xl">Ft</p>
-    </div>
+
+    <input [(ngModel)]="eladoTermek.price" type="number" id="price"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+
+
     <div class="tab-container" fxLayoutAlign="center center">
-      <button #buttonPicker="appFilePicker" mat-raised-button color="primary" appFilePicker [multiple]="_multiple" (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()" class="btn btn-primary" >
+      <button #buttonPicker="appFilePicker" mat-raised-button color="primary" appFilePicker [multiple]="_multiple"
+        (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()" class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl  hover:shadow-cstm-dark-purple transform transition duration-500" >
         Kép kiválasztása
       </button>
     </div>
     <!-- angular material-t használ -->
-<!-- példa File részletek kiírás gomb  a [datasource úgy viselkedik mint az *ngFor]-->
-<table mat-table [dataSource]="_selectedFiles" class="selected-files-table">
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> File Név </th>
-    <td mat-cell *matCellDef="let file"> {{file.name}} </td>
-  </ng-container>
+    <!-- példa File részletek kiírás gomb  a [datasource úgy viselkedik mint az *ngFor]-->
+    <table mat-table [dataSource]="_selectedFiles" class="selected-files-table">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> File Név </th>
+        <td mat-cell *matCellDef="let file"> {{file.name}} </td>
+      </ng-container>
 
-  <!-- Type Column -->
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef> Típus </th>
-    <td mat-cell *matCellDef="let file"> {{file.type}} </td>
-  </ng-container>
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Típus </th>
+        <td mat-cell *matCellDef="let file"> {{file.type}} </td>
+      </ng-container>
 
-  <!-- Size Column -->
-  <ng-container matColumnDef="size">
-    <th mat-header-cell *matHeaderCellDef> Méret (bytes) </th>
-    <td mat-cell *matCellDef="let file"> {{file.size}} </td>
-  </ng-container>
+      <!-- Size Column -->
+      <ng-container matColumnDef="size">
+        <th mat-header-cell *matHeaderCellDef> Méret (bytes) </th>
+        <td mat-cell *matCellDef="let file"> {{file.size}} </td>
+      </ng-container>
 
-  <!-- Last Modified Column -->
-  <ng-container matColumnDef="lastModified">
-    <th mat-header-cell *matHeaderCellDef> Legutóbb módosítva </th>
-    <td mat-cell *matCellDef="let file"> {{file.lastModified | date }} </td>
-  </ng-container>
+      <!-- Last Modified Column -->
+      <ng-container matColumnDef="lastModified">
+        <th mat-header-cell *matHeaderCellDef> Legutóbb módosítva </th>
+        <td mat-cell *matCellDef="let file"> {{file.lastModified | date }} </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
-</table>
+      <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
+    </table>
     <!-- <input type="file" (change)="onFileSelected($event)" multiple accept="image/*" class="mb-4"> -->
     <!-- <img *ngIf="userProfile1.profileImage" [src]="userProfile1.profileImage" alt="Profilkép" class="img-fluid"> -->
-    
-    <button (click)="setupDataAndSend()" class="btn btn-primary">Küldés</button>
-    <button type="button" class="btn btn-primary mt-2" (click)="elrejt()">Elrejt</button>
+
+    <button (click)="setupDataAndSend()"
+      class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple  hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl  hover:shadow-cstm-dark-purple transform transition duration-500">Küldés</button>
+    <button type="button"
+      class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl  hover:shadow-cstm-dark-purple transform transition duration-500"
+      (click)="elrejt()">Elrejt</button>
   </div>
 
-  <button class="jobboldaligomb bg-cstm-blue text-white px-4 py-2 rounded-lg" *ngIf="!buttonClicked"
-    (click)="toggleForm()">Eladás</button>
+  <button
+    class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+    *ngIf="!buttonClicked" (click)="toggleForm()">Eladás</button>
 </form>
+</div>
 
 
 <!-- <div class="fokep">
@@ -98,19 +113,19 @@
 
 
         <li class="list-group-item" *ngFor="let item of termekek">
-            <div class="titlesor">
-              <h4 class="mb-2 mt-2 mr-2">{{item.name}}</h4>
-              <p class="m-2" >{{translateCondition(item.condition)}}</p>
-              <p class="price" >Ár:{{item.price}}Ft</p>
-              
-            </div>
-            <div class="bodyleftandImages">
+          <div class="titlesor">
+            <h4 class="mb-2 mt-2 mr-2">{{item.name}}</h4>
+            <p class="m-2">{{translateCondition(item.condition)}}</p>
+            <p class="price">Ár:{{item.price}}Ft</p>
+
+          </div>
+          <div class="bodyleftandImages">
             <div class="lefties">
-              <p>{{item.location}}</p> 
+              <p>{{item.location}}</p>
               <p>{{item.description}}</p>
             </div>
             <div class="images">
-                <img *ngFor="let image of item.images" [src]="'http://localhost:8081/'+image" alt="Product Image">
+              <img *ngFor="let image of item.images" [src]="'http://localhost:8081/'+image" alt="Product Image">
             </div>
           </div>
           <button class="btn btn-info" (click)="toggleSellerInfo(item)">Érdekel</button>
@@ -120,7 +135,7 @@
             <p>Email: {{ eladoTermek.email }}</p>
             <p>Telefonszám: {{ eladoTermek.phone }}</p>
           </div>
-          
+
         </li>
 
 
@@ -134,78 +149,34 @@
 
     <div class="col-md-6 ">
       <ul class="list-group">
-        <li class="list-group-item bg-primary text-white">Meghirdetett termékek</li>
-        
+        <li class="list-group-item  text-white bg-cstm-lokalhir">Meghirdetett termékek</li>
+
         <li class="list-group-item" *ngFor="let item of termekek">
           <div class="titlesor">
             <h4 class="mb-2 mt-2 mr-2">{{item.name}}</h4>
-            <p class="m-2" >{{translateCondition(item.condition)}}</p>
-            
+            <p class="m-2">{{translateCondition(item.condition)}}</p>
+
           </div>
           <div class="bodyleftandImages">
-          <div class="lefties">
-            <p>{{item.location}}</p> 
-            <p>{{item.description}}</p>
-          </div>
-          <div class="images">
+            <div class="lefties">
+              <p>{{item.location}}</p>
+              <p>{{item.description}}</p>
+            </div>
+            <div class="images">
               <img *ngFor="let image of item.images" [src]="'http://localhost:8081/'+image" alt="Product Image">
+            </div>
           </div>
-        </div>
-        <button class="btn btn-info" (click)="toggleSellerInfo(item)">Érdekel</button>
+          <button class="btn btn-info" (click)="toggleSellerInfo(item)">Érdekel</button>
 
-        <div class="szavazas" *ngIf="item['erdekel']">
-          <h3>Eladó adatai</h3>
-          <p>Email: {{ eladoTermek.email }}</p>
-          <p>Telefonszám: {{ eladoTermek.phone }}</p>
-        </div>
-        
-      </li>
-        
-        
-        <li class="list-group-item">
-          <h5 class="mb-2">Ingyen kanapé</h5>
-          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
-          <div class="text-end">
-            <button class="btn btn-info">Érdekel</button>
-            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
+          <div class="szavazas" *ngIf="item['erdekel']">
+            <h3>Eladó adatai</h3>
+            <p>Email: {{ eladoTermek.email }}</p>
+            <p>Telefonszám: {{ eladoTermek.phone }}</p>
           </div>
+
         </li>
 
 
-
-
-        <li class="list-group-item">
-          <h5 class="mb-2">Ingyen kanapé</h5>
-          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
-          <div class="text-end">
-            <button class="btn btn-info">Érdekel</button>
-            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
-          </div>
-        </li>
-        <li class="list-group-item">
-          <h5 class="mb-2">Ingyen kanapé</h5>
-          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
-          <div class="text-end">
-            <button class="btn btn-info">Érdekel</button>
-            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
-          </div>
-        </li>
-        <li class="list-group-item">
-          <h5 class="mb-2">Ingyen kanapé</h5>
-          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
-          <div class="text-end">
-            <button class="btn btn-info">Érdekel</button>
-            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
-          </div>
-        </li>
-        <li class="list-group-item">
-          <h5 class="mb-2">Ingyen kanapé</h5>
-          <p>Már nincs szükségünk a kanapéra, így elvihető ingyen. Ha érdeklődik előtte hívjon.</p>
-          <div class="text-end">
-            <button class="btn btn-info">Érdekel</button>
-            <img src="https://via.placeholder.com/100" alt="Product Image" class="img-fluid">
-          </div>
-        </li>
       </ul>
     </div>
   </div>
