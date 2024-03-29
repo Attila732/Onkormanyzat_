@@ -4,6 +4,9 @@ module.exports = {
     './src/**/*.{html,ts}',
   ],
   theme: {
+    screens: {
+      'desktop': '1570px'
+    },
     extend: {
       keyframes: {
         toRightTop: {
