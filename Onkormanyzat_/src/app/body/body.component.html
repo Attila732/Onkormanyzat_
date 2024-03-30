@@ -1,15 +1,26 @@
  <div   class="h-fit bg-white/30 w-[70%] rounded-[40px] flex flex border-3 p-3 m-3 justify-center items-center">
   <label for="textInput" class="block text-lg font-semibold mb-2">Írjon híreket</label>
   <div class="flex flex-col mb-1">
-    <input id="textInput" [(ngModel)]="AdminText" placeholder="....."
+    <input id="textInput" [(ngModel)]="newArticle.content" placeholder=""
+      class="flex-1 border border-gray-300 px-4 py-2 rounded-md mb-2 focus:outline-none focus:border-blue-500" />
+    <input id="textInput" [(ngModel)]="newArticle.title" placeholder=""
       class="flex-1 border border-gray-300 px-4 py-2 rounded-md mb-2 focus:outline-none focus:border-blue-500" />
   
     <div class="relative inline-block text-left">
-      <button type="button"
+      <button type="button" (click)="submitNewArticle()"
       class="w-[30%] text-xl text-cstm-orszagos hover:text-cstm-gray mb-4 border-3 border-cstm-orszagos hover:bg-cstm-orszagos rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-orszagos transform transition duration-500">
         Küld
       </button>
-      
+      <select [(ngModel)]="newArticle.orgId" type="text" id="description"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+    </select>
+      <select [(ngModel)]="newArticle.type" type="text" id="description"
+      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      <option value="LOCAL">Helyi</option>
+      <option value="NATIONAL">Országos</option>
+      <option value="INTERNATIONAL">Nemzetközi</option>
+    </select>
       <div class="flex flex-wrap items-center mt-2">
         <input type="checkbox" id="localCheckbox" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
         <label for="localCheckbox" class="block text-sm leading-5 text-gray-900 mr-4">Helyi/Lokális hír</label>
@@ -17,17 +28,17 @@
         <input type="checkbox" id="nationalCheckbox" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
         <label for="nationalCheckbox" class="block text-sm leading-5 text-gray-900 mr-4">Országos/nemzetközi hír</label>
   
-        <input type="checkbox" id="programsCheckbox" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
-        <label for="programsCheckbox" class="block text-sm leading-5 text-gray-900">Programok</label>
+        <!-- <input type="checkbox" id="programsCheckbox" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
+        <label for="programsCheckbox" class="block text-sm leading-5 text-gray-900">Programok</label> -->
       </div>
     </div>
   </div>
-  
+  {{newArticle|json}}
 
-  <div *ngIf="displayedText" class="mt-4">
+  <!-- <div *ngIf="displayedText" class="mt-4">
     <h3 class="text-lg font-semibold">Display Text:</h3>
     <p class="mt-2">{{ displayedText }}</p>
-  </div>
+  </div> -->
 </div>
 
 

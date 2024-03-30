@@ -21,7 +21,6 @@ import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-id
 import { OrvosNyitvatartasComponent } from './orvos-nyitvatartas/orvos-nyitvatartas.component';
 import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
 import { JelenteskezeloComponent } from './jelenteskezelo/jelenteskezelo.component';
-import { JelenteskezelogombComponent } from './jelenteskezelogomb/jelenteskezelogomb.component';
 import { SzervezesComponent } from './szervezes/szervezes.component';
 import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezdemeny.component';
 import { ProfilComponent } from './profil/profil.component';
@@ -48,7 +47,6 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     SzervezesComponent,
     SzervezeskezdemenyComponent,
     JelenteskezeloComponent,
-    JelenteskezelogombComponent,
     LoginComponent,
     SignUpComponent,
     ProfilComponent,

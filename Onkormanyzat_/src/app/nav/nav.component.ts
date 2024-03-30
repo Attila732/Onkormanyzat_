@@ -16,9 +16,6 @@ import { Component, HostListener } from '@angular/core';
  
 }
 )
-
-
-
 export class NavComponent {
 
   isNavbarOpen = false;

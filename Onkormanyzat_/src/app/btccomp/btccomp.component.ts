@@ -137,6 +137,21 @@ export class BTCCompComponent {
       }
     })
   }
+  setupData(){
+    this.testS.setup()
+    .subscribe({
+      next:(res)=>{
+        this.getHelloRes=res
+        console.log(res)
+        return res
+      },
+      error:(err)=>{
+        this.getHelloRes=err
+        console.log("Error in get ")
+        console.log(err)
+      }
+    })
+  }
   delPost(){
     this.testS.delPost()
     .subscribe((res:any)=>console.log(res))
