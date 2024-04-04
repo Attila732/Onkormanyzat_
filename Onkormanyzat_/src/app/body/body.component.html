@@ -1,9 +1,11 @@
  <div   class="h-fit bg-white/30 w-[70%] rounded-[40px] flex flex border-3 p-3 m-3 justify-center items-center">
   <label for="textInput" class="block text-lg font-semibold mb-2">Írjon híreket</label>
   <div class="flex flex-col mb-1">
-    <input id="textInput" [(ngModel)]="newArticle.content" placeholder=""
-      class="flex-1 border border-gray-300 px-4 py-2 rounded-md mb-2 focus:outline-none focus:border-blue-500" />
-    <input id="textInput" [(ngModel)]="newArticle.title" placeholder=""
+    <label for="title">Cím: </label>
+    <input id="title" [(ngModel)]="newArticle.title" 
+    class="flex-1 border border-gray-300 px-4 py-2 rounded-md mb-2 focus:outline-none focus:border-blue-500" />
+    <label for="content">Tartalom: </label>
+    <input id="content" [(ngModel)]="newArticle.content" 
       class="flex-1 border border-gray-300 px-4 py-2 rounded-md mb-2 focus:outline-none focus:border-blue-500" />
   
     <div class="relative inline-block text-left">
@@ -11,29 +13,33 @@
       class="w-[30%] text-xl text-cstm-orszagos hover:text-cstm-gray mb-4 border-3 border-cstm-orszagos hover:bg-cstm-orszagos rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-orszagos transform transition duration-500">
         Küld
       </button>
-      <select [(ngModel)]="newArticle.orgId" type="text" id="description"
-      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-      <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
-    </select>
+      <select [(ngModel)]="newArticle.orgId" type="text" id="orgId"
+        class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+        <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+      </select>
       <select [(ngModel)]="newArticle.type" type="text" id="description"
-      class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-      <option value="LOCAL">Helyi</option>
-      <option value="NATIONAL">Országos</option>
-      <option value="INTERNATIONAL">Nemzetközi</option>
-    </select>
-      <div class="flex flex-wrap items-center mt-2">
-        <input type="checkbox" id="localCheckbox" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
+        class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+        <option value="LOCAL">Helyi</option>
+        <option value="NATIONAL">Országos</option>
+        <option value="INTERNATIONAL">Nemzetközi</option>
+      </select>
+      <!-- <div class="flex flex-wrap form-check items-center mt-2">
+        <input type="radio" id="local" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
         <label for="localCheckbox" class="block text-sm leading-5 text-gray-900 mr-4">Helyi/Lokális hír</label>
   
         <input type="checkbox" id="nationalCheckbox" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
         <label for="nationalCheckbox" class="block text-sm leading-5 text-gray-900 mr-4">Országos/nemzetközi hír</label>
   
-        <!-- <input type="checkbox" id="programsCheckbox" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
-        <label for="programsCheckbox" class="block text-sm leading-5 text-gray-900">Programok</label> -->
-      </div>
+        <input type="checkbox" id="programsCheckbox" class="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out mr-2">
+        <label for="programsCheckbox" class="block text-sm leading-5 text-gray-900">Programok</label>
+      </div>  -->
     </div>
   </div>
   {{newArticle|json}}
+  {{orgs|json}}
+  {{local|json}}
+  {{international|json}}
+  {{national|json}}
 
   <!-- <div *ngIf="displayedText" class="mt-4">
     <h3 class="text-lg font-semibold">Display Text:</h3>
@@ -52,6 +58,10 @@
       <ul class="">
         <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-lokalhir">Helyi/Lokális Hírek</li>
         <div class="px-4">
+          <li class="border-bottom" *ngFor="let hir of local">
+            <p class="font-semibold">{{hir.title}}</p>
+            <p>{{hir.content}}</p>
+          </li>
           <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
             <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó
@@ -87,6 +97,10 @@
       <ul class="">
         <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-orszagos">Országos hírek</li>
         <div class="px-4">
+          <li class="border-bottom" *ngFor="let hir of national">
+            <p class="font-semibold">{{hir.title}}</p>
+            <p>{{hir.content}}</p>
+          </li>
           <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
             <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó

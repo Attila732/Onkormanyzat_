@@ -21,7 +21,7 @@ export class BodyComponent implements OnInit, OnDestroy {
   international: Hir[] = []
   national: Hir[] = []
   local: Hir[] = []
-  orgs:{id:string, name:string}[]=[]
+  orgs: { id: string, name: string }[] = []
   constructor(private newsService: NewsService, private auth: AuthService) {
 
   }
@@ -38,20 +38,20 @@ export class BodyComponent implements OnInit, OnDestroy {
   getNews() {
     this.subscriptions.push(
       this.newsService.getNews("INTERNATIONAL", 0, "type").subscribe({
-        next: (res: Hir[]) => {
-          this.international = res
+        next: (res: any) => {
+          this.international = res.content
         }
       }))
     this.subscriptions.push(
       this.newsService.getNews("NATIONAL", 0, "type").subscribe({
-        next: (res: Hir[]) => {
-          this.national = res
+        next: (res:any) => {
+          this.national = res.content
         }
       }))
     this.subscriptions.push(
       this.newsService.getNews("LOCAL", 0, "type").subscribe({
-        next: (res: Hir[]) => {
-          this.local = res
+        next: (res: any) => {
+          this.local = res.content
         }
       }))
   }
@@ -59,26 +59,28 @@ export class BodyComponent implements OnInit, OnDestroy {
   getUserInfo() {
     this.subscriptions.push(
       this.auth.getUser().subscribe(
-        (res: any) => this.user = res
-      ));
-    this.subscriptions.push(
-      this.auth.getUserRoles().subscribe(
-        (roles: Map<String, boolean>) => {
-          this.userRoles = roles
-          this.orgAdmin = this.userRoles.get("ORG_ADMIN")
+        (res: any) => {
+          this.user = res
+          this.subscriptions.push(
+            this.auth.getUserRoles().subscribe(
+              (roles: Map<String, boolean>) => {
+                this.userRoles = roles
+                this.orgAdmin = this.userRoles.get("ORG_ADMIN")
+
+                if (this.user != null && this.userRoles.get("ORG_ADMIN")) {
+                  this.subscriptions.push(
+                    this.newsService.getOrgsForUser(this.user.userId, 0).subscribe({
+                      next: (res: any) => {
+                        this.orgs = res
+                      }
+                    }))
+                }
+              }))
         }
-        ))
-        if (this.user != null && this.orgAdmin) {
-        this.subscriptions.push(
-        this.newsService.getOrgsForUser(this.user.userId,0).subscribe({
-          next: (res:{id:string, name:string}[]) => {
-            this.orgs = res
-          }
-        }))
-      }
+      ));
   }
 
-  changeOrg(event:Event){
+  changeOrg(event: Event) {
     console.log(event)
   }
 
@@ -87,8 +89,9 @@ export class BodyComponent implements OnInit, OnDestroy {
     if (this.orgAdmin && this.user != null) {
       this.newArticle.userId = this.user.userId
       this.newArticle.userName = this.user.name
-      this.newArticle.orgName = this.orgs.find((e)=>e.id==this.newArticle.orgId)!.name
+      this.newArticle.orgName = this.orgs.find((e) => e.id == this.newArticle.orgId)!.name
       console.log(this.newArticle)
+      this.newsService.postNewNews(this.newArticle).subscribe((res=>console.log("successful post new article (i hope)",res)))
     }
   }
 
