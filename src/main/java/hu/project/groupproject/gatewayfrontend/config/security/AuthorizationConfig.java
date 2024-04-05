@@ -3,6 +3,7 @@ package hu.project.groupproject.gatewayfrontend.config.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -40,8 +41,12 @@ public class AuthorizationConfig {
             );
             http.authorizeExchange(
                 exchange -> exchange
-                // .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico","/assets/R.png").permitAll()
+                .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico","/assets/R.png").permitAll()
                 // .pathMatchers("/client*").permitAll()
+                .pathMatchers("/client/**").permitAll()
+                .pathMatchers(HttpMethod.GET, "/resource/news/**").permitAll()
+                .pathMatchers(HttpMethod.GET, "/resource/items/**").permitAll()
+                .pathMatchers(HttpMethod.GET, "/resource/images/**").permitAll()
                 .anyExchange().authenticated()
                 // .anyExchange().permitAll()
             );

@@ -36,18 +36,28 @@ export class BodyComponent implements OnInit, OnDestroy {
   }
 
   getNews() {
+      this.getLocal()
+      this.getNational()
+      this.getInterNational()
+    
+  }
+  getInterNational(){
     this.subscriptions.push(
       this.newsService.getNews("INTERNATIONAL", 0, "type").subscribe({
         next: (res: any) => {
           this.international = res.content
         }
       }))
+  }
+  getNational(){
     this.subscriptions.push(
       this.newsService.getNews("NATIONAL", 0, "type").subscribe({
         next: (res:any) => {
           this.national = res.content
         }
       }))
+  }
+  getLocal(){
     this.subscriptions.push(
       this.newsService.getNews("LOCAL", 0, "type").subscribe({
         next: (res: any) => {
@@ -91,7 +101,27 @@ export class BodyComponent implements OnInit, OnDestroy {
       this.newArticle.userName = this.user.name
       this.newArticle.orgName = this.orgs.find((e) => e.id == this.newArticle.orgId)!.name
       console.log(this.newArticle)
-      this.newsService.postNewNews(this.newArticle).subscribe((res=>console.log("successful post new article (i hope)",res)))
+      this.newsService.postNewNews(this.newArticle).subscribe({
+        next:(res:any)=>{
+          console.log("successful post new article ",res)
+          switch (this.newArticle.type) {
+            case "LOCAL":
+              this.getLocal()
+              break;
+            case "NATIONAL":
+              this.getNational()
+              break;
+            case "INTERNATIONAL":
+              this.getInterNational()
+              break;
+          
+            default:
+              break;
+          }
+          this.newArticle=new Hir()
+        },
+        error:(err:any)=>console.log(err)
+      })
     }
   }
 
