@@ -13,23 +13,42 @@ import { Component, HostListener } from '@angular/core';
       transition('void <=> *', animate('1000ms ease-in-out')),
     ]),
   ],
- 
+
 }
 )
 export class NavComponent {
+  isMenuOpen: boolean = false;
+  user: any;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
   isNavbarOpen = false;
   isMobile = false;
-isHovered: any;
-user: any;
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.isMobile = window.innerWidth <= 700;
-  }
 
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;
+  }
+
+  isMobileView: boolean = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
+  }
+
+  ngOnInit() {
+    this.checkScreenSize();
+  }
+
+
+
+  private checkScreenSize() {
+    // Set isMobileView to true if window width is less than 1300px
+    this.isMobileView = window.innerWidth < 1300;
   }
 
 

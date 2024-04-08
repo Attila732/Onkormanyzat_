@@ -1,5 +1,5 @@
-<div >
-  <div class="">
+<div *ngIf="!user" >
+  <div>
   <section class="text-center flex justify-center items-center h-screen">
     <div class="p-5 bg-image" style="
       height: 300px;
@@ -14,24 +14,24 @@
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="form3Example1" class="form-control" />
+                    <input type="text" id="form3Example1" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
                     <label class="form-label" for="form3Example1">Keresztnév</label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="form3Example2" class="form-control" />
+                    <input type="text" id="form3Example2" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
                     <label class="form-label" for="form3Example2">Vezetéknév</label>
                   </div>
                 </div>
               </div>
               <div class="form-outline mb-4">
-                <input type="email" id="form3Example1" class="form-control" />
+                <input type="email" id="form3Example1" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
                 <label class="form-label" for="form3Example1">Email address</label>
               </div>
             
-              <button class="bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6" routerLink="/profil">Mentés</button>
-              <button class="bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6" routerLink="/profil">Mégse</button>
+              <button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" routerLink="/profil">Mentés</button>
+              <button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" routerLink="/profil">Mégse</button>
              
             </form>
             

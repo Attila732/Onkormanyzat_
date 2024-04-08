@@ -1,4 +1,4 @@
- <div   class="h-fit bg-white/30 w-[70%] rounded-[40px] flex flex border-3 p-3 m-3 justify-center items-center">
+ <div   class="m-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex border-3 p-3 m-3 justify-center items-center">
   <label for="textInput" class="block text-lg font-semibold mb-2">Írjon híreket</label>
   <div class="flex flex-col mb-1">
     <label for="title">Cím: </label>
@@ -35,11 +35,7 @@
       </div>  -->
     </div>
   </div>
-  {{newArticle|json}}
-  {{orgs|json}}
-  {{local|json}}
-  {{international|json}}
-  {{national|json}}
+
 
   <!-- <div *ngIf="displayedText" class="mt-4">
     <h3 class="text-lg font-semibold">Display Text:</h3>
@@ -48,13 +44,10 @@
 </div>
 
 
-
-
-<!-- lokalis hirek -->
-<div class="w-full flex justify-center items-center">
-  <div class="w-[90%] flex flex-row gap-8 mt-20">
-
-    <div class="w-[40%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
+<div class="w-full flex justify-center items-center flex-col md:flex-row">
+  <!-- lokális hirek -->
+  <div class="w-full md:w-[90%] flex flex-row gap-8 mt-20">
+    <div class="w-full md:w-[40%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
       <ul class="">
         <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-lokalhir">Helyi/Lokális Hírek</li>
         <div class="px-4">
@@ -88,12 +81,8 @@
         </div>
       </ul>
     </div>
-
-
-
     <!-- orszagos hirek -->
-
-    <div class="w-[40%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
+    <div class="w-full md:w-[40%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl mt-8 md:mt-0">
       <ul class="">
         <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-orszagos">Országos hírek</li>
         <div class="px-4">
@@ -127,13 +116,11 @@
         </div>
       </ul>
     </div>
+  </div>
 
-
-    <!-- 
-programok -->
-
-
-<div class="w-[20%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
+  <!-- programok -->
+  <div class="w-full md:w-[90%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl mt-8">
+ 
   <ul class="">
     <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-programok(teal)">Programok</li>
     <div class="px-4">
@@ -164,5 +151,7 @@ programok -->
   </ul>
 </div>
 
+
+
   </div>
-</div>
+
