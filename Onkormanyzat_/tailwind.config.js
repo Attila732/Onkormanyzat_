@@ -5,7 +5,10 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'desktop': '1370px'
+      'desktop': '1370px',
+      'tablet': '1024px',
+      'sm-tablet': '768px',
+      'phone': '640px'
     },
     extend: {
       keyframes: {

@@ -19,21 +19,22 @@ import { Component, HostListener } from '@angular/core';
 export class NavComponent {
   isMenuOpen: boolean = false;
   user: any;
+  isDesktopView:boolean=true;
+  isMobileView: boolean = false;
+  isNavbarOpen = false;
+  isMobile = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  isNavbarOpen = false;
-  isMobile = false;
+
 
   @HostListener('window:resize', ['$event'])
 
   toggleNavbar() {
     this.isNavbarOpen = !this.isNavbarOpen;
   }
-
-  isMobileView: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -44,11 +45,9 @@ export class NavComponent {
     this.checkScreenSize();
   }
 
-
-
   private checkScreenSize() {
-    // Set isMobileView to true if window width is less than 1300px
-    this.isMobileView = window.innerWidth < 1300;
+    this.isMobileView = window.innerWidth < 1370;
+    this.isDesktopView = !this.isMobileView;
   }
 
 
