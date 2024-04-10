@@ -30,6 +30,14 @@ export class FelhaszKeresService {
     )
   }
 
+  updateUser(body:any){
+    return this.http.put("resource/user/"+ body.id, body)
+  }
+
+  deleteUser(id:any){
+    return this.http.delete("resource/user/del/"+ id)
+  }
+
 
   // getPersonByName(name:string): Observable<Array<{id:number;name:string;sex:boolean}>> {
   //   console.log(name)
