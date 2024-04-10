@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class IdopontService {
   idopontadatok:IdopontAdatok= new IdopontAdatok();
 
-  url = "http://localhost:4200";
+  url = "resource/user/reservation/new/";
 
   constructor(private http:HttpClient){
 

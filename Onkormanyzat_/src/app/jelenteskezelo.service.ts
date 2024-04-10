@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class JelenteskezeloService {
   jelenetesadatok:BejelentesAdatok= new BejelentesAdatok();
 
-  url = "http://localhost:4200";
+  url = "resource/notice/new/";
 
   constructor(private http:HttpClient){
 

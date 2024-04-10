@@ -4,6 +4,7 @@ import { Observable, debounceTime, distinctUntilChanged, filter, switchMap } fro
 import { NgbTypeaheadModule, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { AdminAdatok } from '../models/AdminAdatok';
 import { FelhaszKeresService } from '../felhasz-keres.service';
+import { ImagesService } from '../images.service';
 
 @Component({
   selector: 'app-felhaszkezeles',
@@ -26,7 +27,7 @@ export class FelhaszkezelesComponent {
   category = "firstName"
   adminAdatok = new AdminAdatok()
 
-  constructor(private felhaszkeres: FelhaszKeresService) {
+  constructor(private felhaszkeres: FelhaszKeresService, private images:ImagesService) {
 
   }
 
@@ -64,6 +65,18 @@ loadAdminAdatok(value: string, pageNum: number, category: string){
 
 setCol(col:any){
   this.col=col
+}
+
+updateUser(){
+  this.felhaszkeres.updateUser(this.adminAdatok).subscribe(
+    (res:any)=>{console.log(res)}
+  );
+}
+
+deleteUser(){
+  this.felhaszkeres.deleteUser(this.adminAdatok.id).subscribe(
+    (res:any)=>{console.log("siker")}
+  )
 }
 
 }
