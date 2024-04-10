@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class SzervezesService {
   szervezesadatok:SzervezesAdatok= new SzervezesAdatok();
 
-  url = "http://localhost:4200";
+  url = "resource/event/new/";
 
   constructor(private http:HttpClient){
 
