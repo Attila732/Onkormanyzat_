@@ -28,11 +28,9 @@ import { HibaComponent } from './hiba/hiba.component';
 import { BTCCompComponent } from './btccomp/btccomp.component';
 import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
 import { XsrfInterceptor } from './xsrf.interceptor';
-import { HeaderComponent } from './header/header.component';
 import { FilePickerDirective } from './file-picker.directive';
 import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
 import { authGuard } from './auth.guard';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -53,10 +51,8 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     HibaComponent,
     BTCCompComponent,
     ProfilSzerkesztesComponent,
-    HeaderComponent,
     FilePickerDirective,
     FelhaszkezelesComponent,
-    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule,

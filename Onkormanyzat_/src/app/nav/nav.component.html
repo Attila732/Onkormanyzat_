@@ -79,17 +79,22 @@
                             class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                             ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
                     </li>
-                    <li *ngIf="!user" [ngbNavItem]="8">
+                    <li *ngIf="!roles.get('USER')" [ngbNavItem]="8">
                         <button
                             class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                             ngbNavLink routerLink="/login">Bejelentkezés</button>
                     </li>
-                    <li *ngIf="!user" [ngbNavItem]="8">
+                    <li *ngIf="roles.get('USER')" [ngbNavItem]="8">
+                        <button
+                            class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
+                            ngbNavLink (click)="logout()">Kijelentkezés</button>
+                    </li>
+                    <li *ngIf="!roles.get('USER')" [ngbNavItem]="8">
                         <button
                             class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                             ngbNavLink routerLink="/sign-up">Regisztráció</button>
                     </li>
-                    <li *ngIf="!user" [ngbNavItem]="9">
+                    <li *ngIf="!roles.get('USER')" [ngbNavItem]="9">
                         <button
                             class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                             ngbNavLink routerLink="/profil"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -159,17 +164,23 @@
                     class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                     ngbNavLink routerLink="/tuzszabalyok">Tűzszabályok</button>
             </li>
-            <li *ngIf="!user" [ngbNavItem]="8">
+            <li *ngIf="!roles.get('USER')" [ngbNavItem]="8">
                 <button
                     class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                     ngbNavLink routerLink="/login">Bejelentkezés</button>
             </li>
-            <li *ngIf="!user" [ngbNavItem]="8">
+            <li *ngIf="roles.get('USER')" [ngbNavItem]="8">
+                <button
+                    class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
+                    ngbNavLink (click)="logout()">Kijelentkezés</button>
+            </li>
+            
+            <li *ngIf="!roles.get('USER')" [ngbNavItem]="8">
                 <button
                     class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                     ngbNavLink routerLink="/sign-up">Regisztráció</button>
             </li>
-            <li *ngIf="user" [ngbNavItem]="9">
+            <li *ngIf="roles.get('USER')" [ngbNavItem]="9">
                 <button
                     class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                     ngbNavLink routerLink="/profil"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

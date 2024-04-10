@@ -9,13 +9,11 @@ import { SzervezesService } from '../szervezes.service';
 })
 export class SzervezeskezdemenyComponent {
   szervezesModel = new SzervezesAdatok()
+
+  constructor(private szervezesservice: SzervezesService) {}
+  
   inputModel() {
     this.szervezesservice.postService(this.szervezesModel);
-    }
-
-    constructor(private szervezesservice:SzervezesService){
-
-
-    }
+  }
 
 }

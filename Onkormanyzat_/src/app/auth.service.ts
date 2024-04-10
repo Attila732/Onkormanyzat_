@@ -10,11 +10,12 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private resUrl = "/resource/";
+  private authUrl ="/user/";
   private user = new BehaviorSubject<ProfilAdatok|null>(null);
+  defRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   initialRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   private roles = new BehaviorSubject<Map<String,boolean>>(this.initialRoles)
   private attemptedUrl: string ="";
-  authenticated:BehaviorSubject<boolean>=new BehaviorSubject(false)
   constructor(private http:HttpClient, private router:Router) {
     this.getMyUserInfo()
   }
@@ -32,7 +33,6 @@ export class AuthService {
         this.roles.next(this.initialRoles)
         nextUser.roles=this.initialRoles
         this.user.next((nextUser as ProfilAdatok))
-        this.authenticated.next(true)
         console.log("fetched userDetails")
       },
       error:(err)=>{
@@ -73,4 +73,13 @@ export class AuthService {
     }
   }
   
+
+  logout(){
+    this.http.get(this.authUrl+"connect/logout").subscribe((res:any)=>{
+      console.log(res)
+      this.user.next(new ProfilAdatok())
+      this.roles.next(this.defRoles)
+      this.router.navigate(['/']);
+    })
+  }
 }
