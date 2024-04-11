@@ -44,6 +44,14 @@ public class RouteConfig {
 								.uri("http://localhost:8083"))
 				.route(
 						r -> r
+								.path("/logout/**")
+								.filters(
+										f -> f
+												.tokenRelay()
+												)
+								.uri("http://localhost:8083/connect/logout"))
+				.route(
+						r -> r
 								.path("/user/**")
 								.filters(
 										f -> f 

@@ -15,46 +15,43 @@
     <!-- <span>Make-Admin: {{makeAdmin|json}}</span><br>
       <span>PostHello: {{postHelloRes|json}}</span><br>
     -->
-    <button (click)="setupData()">SetupData</button> 
+    <button (click)="logout()">LOG me Out!!!</button> 
+    <!-- <button (click)="setupData()">SetupData</button>  -->
     <!-- <span>GetHello: {{getHelloRes|json}}</span><br>
     <span>getMyUserInfo: {{getMyUserInfoRes|json}}</span><br>
     <span>getOrgsForUserInfo: {{getOrgsForUserInfoRes|json}}</span><br> -->
       
-      <a href="http://localhost:8081/oauth2/authorization/myClient"> login </a>
+      <!-- <a href="http://localhost:8081/oauth2/authorization/myClient"> login </a> -->
       
 <!-- file küldő gomb -->
-<button (click)="preprePostFile()">postfile</button>
+<!-- <button (click)="preprePostFile()">postfile</button> -->
 <!-- példa appFilePicker gomb -->
 <!-- angular material-t használ -->
-<div class="tab-container" fxLayoutAlign="center center">
+<!-- <div class="tab-container" fxLayoutAlign="center center">
   <button #buttonPicker="appFilePicker" mat-raised-button color="primary" appFilePicker [multiple]="_multiple" (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()">
     Upload
   </button>
-</div>
+</div> -->
 
 
 <!-- angular material-t használ -->
 <!-- példa File részletek kiírás gomb  a [datasource úgy viselkedik mint az *ngFor]-->
-<table mat-table [dataSource]="_selectedFiles" class="selected-files-table">
-    <!-- Name Column -->
+<!-- <table mat-table [dataSource]="_selectedFiles" class="selected-files-table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let file"> {{file.name}} </td>
     </ng-container>
   
-    <!-- Type Column -->
     <ng-container matColumnDef="type">
       <th mat-header-cell *matHeaderCellDef> Type </th>
       <td mat-cell *matCellDef="let file"> {{file.type}} </td>
     </ng-container>
   
-    <!-- Size Column -->
     <ng-container matColumnDef="size">
       <th mat-header-cell *matHeaderCellDef> Size (bytes) </th>
       <td mat-cell *matCellDef="let file"> {{file.size}} </td>
     </ng-container>
   
-    <!-- Last Modified Column -->
     <ng-container matColumnDef="lastModified">
       <th mat-header-cell *matHeaderCellDef> Last Modified </th>
       <td mat-cell *matCellDef="let file"> {{file.lastModified | date }} </td>
@@ -62,4 +59,4 @@
   
     <tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
-  </table>
+  </table> -->

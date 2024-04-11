@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ProfilAdatok } from './models/ProfilAdatok';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,13 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private resUrl = "/resource/";
-  private authUrl ="/user/";
+  private logoutUrl ="/logout/";
   private user = new BehaviorSubject<ProfilAdatok|null>(null);
   defRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   initialRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   private roles = new BehaviorSubject<Map<String,boolean>>(this.initialRoles)
   private attemptedUrl: string ="";
-  constructor(private http:HttpClient, private router:Router) {
+  constructor(private http:HttpClient, private router:Router, private cookie:CookieService) {
     this.getMyUserInfo()
   }
 
@@ -42,7 +43,9 @@ export class AuthService {
       }
     })
   }
-  
+  getAuthGuardUser(){
+    return this.http.get(this.resUrl+"user/myUserInfo")
+  }
   getUser():BehaviorSubject<ProfilAdatok|null>{
     return this.user;
   }
@@ -75,11 +78,13 @@ export class AuthService {
   
 
   logout(){
-    this.http.get(this.authUrl+"connect/logout").subscribe((res:any)=>{
-      console.log(res)
-      this.user.next(new ProfilAdatok())
-      this.roles.next(this.defRoles)
-      this.router.navigate(['/']);
-    })
+    this.http.post("/myCustomLogout",null).subscribe(()=>console.log("logged out"))
+    console.log(this.cookie.getAll())
+    this.cookie.deleteAll()
+    console.log(this.cookie.getAll())
+    this.user.next(null)
+    this.roles.next(this.defRoles)
+    this.router.navigate(['/']);
+  
   }
 }

@@ -1,5 +1,7 @@
 package hu.project.groupproject.gatewayfrontend.config.security;
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +11,8 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.oidc.web.server.logout.OidcClientInitiatedServerLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
+import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
+import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.ServerRedirectStrategy;
 import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
@@ -21,6 +25,7 @@ import org.springframework.security.web.server.savedrequest.WebSessionServerRequ
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 
 import reactor.core.publisher.Mono;
@@ -28,6 +33,7 @@ import reactor.core.publisher.Mono;
 @Configuration
 @EnableWebFluxSecurity
 public class AuthorizationConfig {
+
 
     @Autowired
     private ReactiveClientRegistrationRepository clientRegistrationRepository;
@@ -39,20 +45,56 @@ public class AuthorizationConfig {
             .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
             .csrfTokenRequestHandler(new XorServerCsrfTokenRequestAttributeHandler()::handle)
             );
+            http.logout(logout -> {
+                //TODO: create HeaderWriterLogoutHandler like functionality with a chain of logout handlers
+                logout.logoutSuccessHandler(oidcLogoutSuccessHandler())
+                .logoutUrl("/myCustomLogout");
+                // .logoutSuccessHandler(serverLogoutSuccessHandler());
+            });
             http.authorizeExchange(
                 exchange -> exchange
                 .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico","/assets/R.png").permitAll()
                 // .pathMatchers("/client*").permitAll()
-                .pathMatchers("/client/**").permitAll()
+                // .pathMatchers("/client/login/**").authenticated()
+                // .pathMatchers("/client/elado-termekek/**").authenticated()
+                // .pathMatchers("/client/jelenteskezelo/**").authenticated()
+                // .pathMatchers("/client/szervezeskezd/**").authenticated()
+                // .pathMatchers("/client/profil/**").authenticated()
+                // .pathMatchers("/client/profilszerkesztes/**").authenticated()
+                // .pathMatchers("/client/felhaszkezeles/**").authenticated()
+                // .pathMatchers("/client/elado-termekek").authenticated()
+                // .pathMatchers("/client/jelenteskezelo").authenticated()
+                // .pathMatchers("/client/szervezeskezd").authenticated()
+                // .pathMatchers("/client/profil").authenticated()
+                // .pathMatchers("/client/profilszerkesztes").authenticated()
+                // .pathMatchers("/client/felhaszkezeles").authenticated()
+                // .pathMatchers("/client/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/resource/news/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/resource/items/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/resource/images/**").permitAll()
                 .anyExchange().authenticated()
                 // .anyExchange().permitAll()
             );
-            http.logout(logoutSpec -> {
-                logoutSpec.logoutSuccessHandler(oidcLogoutSuccessHandler());
-            });
+            // {path:"", component:BodyComponent, pathMatch:'full'},
+            // {path:"nav",component:NavComponent},
+            // {path:"barna-test",component:BTCCompComponent},
+            // {path:"login", component:LoginComponent},
+            // {path:"sign-up", component:SignUpComponent},
+            // // {path:"body", component:BodyComponent, canActivate:[authGuard(["ADMIN"])]},
+            // {path:"body", component:BodyComponent},
+            // {path:"elado-termekek",component:EladoTermekComponent},
+            // {path:"orvos-egyeb-ugyek",component:OrvosEgyebUgyekComponent},
+            // {path:"orvos-idopont-foglalas",component:OrvosIdopontfoglalasComponent},
+            // {path:"orvos-nyitvatartas",component:OrvosNyitvatartasComponent},
+            // {path:"jelenteskezelo",component:JelenteskezeloComponent},
+            // {path:"tuzszabalyok",component:TuzszabalyokComponent},
+            // {path:"szervezes",component:SzervezesComponent},
+            // {path:"szervezeskezd",component:SzervezeskezdemenyComponent},
+            // {path:"profil",component:ProfilComponent},
+            // {path:"profilszerkesztes",component:ProfilSzerkesztesComponent},
+            // {path:"btccomp",component:BTCCompComponent},
+            // {path:"felhaszkezeles",component:FelhaszkezelesComponent},
+            // {path:"**",component:HibaComponent}
             // http.oauth2Login(login->login);
             // http.oauth2Login(login->login.authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("/login")));
             http.oauth2Login(Customizer.withDefaults());
@@ -90,11 +132,23 @@ public class AuthorizationConfig {
     private ServerLogoutSuccessHandler oidcLogoutSuccessHandler() {
         OidcClientInitiatedServerLogoutSuccessHandler oidcLogoutSuccessHandler =
             new OidcClientInitiatedServerLogoutSuccessHandler(this.clientRegistrationRepository);
-    
+        
         // Sets the location that the End-User's User Agent will be redirected to
         // after the logout has been performed at the Provider
         oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}");
-    
         return oidcLogoutSuccessHandler;
+    }
+
+    @Bean
+    public ServerLogoutSuccessHandler serverLogoutSuccessHandler() {
+        return (exchange, authentication) -> {
+            ((ServerWebExchange) exchange).getResponse().getCookies().clear();
+            ((ServerWebExchange) exchange).getResponse().getHeaders().setAccessControlAllowOrigin("http://localhost:8083");
+            ((ServerWebExchange) exchange).getResponse().getHeaders().set("Clear-Site-Data", "*");
+
+            // Redirect to login page or any other action upon successful logout
+            return Mono.fromRunnable(() -> ((ServerWebExchange) exchange).getResponse()
+            .getHeaders().setLocation(URI.create("/login")));
+        };
     }
 }

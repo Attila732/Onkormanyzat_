@@ -17,7 +17,6 @@ export class BodyComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = []
   private user: ProfilAdatok | null = null;
   userRoles: any
-  orgAdmin: boolean = false
   international: Hir[] = []
   national: Hir[] = []
   local: Hir[] = []
@@ -75,7 +74,6 @@ export class BodyComponent implements OnInit, OnDestroy {
             this.auth.getUserRoles().subscribe(
               (roles: Map<String, boolean>) => {
                 this.userRoles = roles
-                this.orgAdmin = this.userRoles.get("ORG_ADMIN")
 
                 if (this.user != null && this.userRoles.get("ORG_ADMIN")) {
                   this.subscriptions.push(
@@ -96,7 +94,7 @@ export class BodyComponent implements OnInit, OnDestroy {
 
 
   submitNewArticle() {
-    if (this.orgAdmin && this.user != null) {
+    if ( this.user != null && this.userRoles.get("ORG_ADMIN")) {
       this.newArticle.userId = this.user.userId
       this.newArticle.userName = this.user.name
       this.newArticle.orgName = this.orgs.find((e) => e.id == this.newArticle.orgId)!.name

@@ -61,6 +61,19 @@ export class BTCCompComponent {
   _buttonPicker!: FilePickerDirective;
 
 
+  logout(){
+    this.testS.getlogout()
+    .subscribe({
+      next:(res)=>{
+        console.log(res)
+        return res
+      },
+      error:(err)=>{
+        console.log("Error in post logout ")
+        console.log(err)
+      }
+    })
+  }
 
 
   _onFilesChanged(files: FileList) {
