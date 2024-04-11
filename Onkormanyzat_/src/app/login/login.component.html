@@ -8,17 +8,17 @@
           <form>
             <div class="mb-4">
               <label for="email" class="text-lg font-bold text-cstm-dark_gray self-start px-2">Email/Felhasználónév cím</label>
-              <input type="text" id="email" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+              <input [(ngModel)]="bejelentkezes.userName||bejelentkezes.email" type="text" id="email" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
             </div>
             <div class="mb-4">
               <label for="password" class="text-lg font-bold text-cstm-dark_gray self-start px-2">Jelszó</label>
-              <input type="password" id="password" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+              <input [(ngModel)]="bejelentkezes.password1" type="password" id="password" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
             </div>
             <div class="mb-4">
               <input type="checkbox" id="newsletter" class="form-check-input me-2" checked />
               <label for="newsletter" class="text-cstm-dark_gray">Feliratkozás a hírlevélre</label>
             </div>
-            <button type="submit" class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500">
+            <button (click)="logIn()" type="submit" class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500">
               Bejelentkezés
             </button>
             <p class="mb-3 text-lg">Nincs még fiókod? <a class="text-cstm-purple hover:border-b-2 border-cstm-purple" routerLink="/sign-up">Regisztrálj itt!</a></p>

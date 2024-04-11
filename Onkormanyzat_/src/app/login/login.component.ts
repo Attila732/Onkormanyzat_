@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Bejelentkezes } from '../models/Bejelentkezes';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginComponent {
 userProfile: any;
+bejelentkezes = new Bejelentkezes();
 onFileSelected($event: Event) {
 throw new Error('Method not implemented.');
 }

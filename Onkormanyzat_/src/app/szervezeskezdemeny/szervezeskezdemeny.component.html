@@ -1,7 +1,7 @@
 <div class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
   <div class="card-body py-3 px-2 md:px-5">
     <h2>Szervezés Kezdeményezése</h2>
-    <form (ngSubmit)="inputModel()" #szervezesForm="ngForm">
+    <form (ngSubmit)="inputForm()" #szervezesForm="ngForm">
       <div>
         <label for="rendezesNev">Rendezés neve:</label>
         <input [(ngModel)]="szervezesModel.name" type="text" id="rendezesNev" name="rendezesNev"  class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required>

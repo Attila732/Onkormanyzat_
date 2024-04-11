@@ -31,12 +31,6 @@ export class JelenteskezeloComponent implements OnDestroy{
     
   }
   
-  selectModel() {
-    
-  }
-  
-  
-  
   ngOnDestroy(): void {
     if (this.subscription != null) {
       this.subscription.forEach(element => {
