@@ -19,7 +19,7 @@ public class MainController {
 
     @GetMapping(value = {
         "/index.html", //match index.html redirect/request
-        "/{path: ^(?!resource|user|issuer-uri|login).*\\.(?!css$|js$|ico$|html$|woff2$).*}", //don't match non frontend requests or non html file requests
+        "/{path: ^(?!resource|user|issuer-uri|login|logout).*\\.(?!css$|js$|ico$|html$|woff2$).*}", //don't match non frontend requests or non html file requests
         "/{path:[^\\.]*}" //all other match
     }) 
     public Mono<Void> serveIndexHtml(ServerHttpResponse response) {

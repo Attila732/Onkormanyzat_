@@ -2,7 +2,7 @@ import { CanActivateFn, Router, UrlTree } from '@angular/router';
 import { AuthService } from './auth.service';
 import { inject } from '@angular/core';
 import { ProfilAdatok } from './models/ProfilAdatok';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
 // lets through authenticated users with roles matching any in the allowedRoles[] 
 //IMPORTANT!! Use all capital letters eg: 'USER' 'ADMIN' ORG_ADMIN
@@ -16,18 +16,28 @@ export function authGuard(allowedRoles: string[]): CanActivateFn {
     //   map((roles:any)=>{
     //     const allowed = allowedRoles.some(role=>roles.get(role))
     // }),(s):any=>{})
-    return auth.getUser().pipe(
-      map((res: ProfilAdatok|null) => {
-        console.log("in map")
+    return auth.getAuthGuardUser().pipe(
+      (res:any)=>{
+        console.log("something",res)
+        return res;
+      },
+      map((rawRes: any) => {
+        console.log("in map before cast",rawRes)
+        const res:ProfilAdatok = rawRes
+        console.log("in map after cast",res)
+        var initialRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
         
         if (res != null && res.userId) {
           console.log("res not null")
-          const roles: Map<String, boolean> = (res.roles as Map<String, boolean>);
+          initialRoles.set("USER",rawRes.roles.includes("ROLE_USER"))
+          initialRoles.set("ADMIN",rawRes.roles.includes("ROLE_ADMIN"))
+          initialRoles.set("ORG_ADMIN",rawRes.roles.includes("ROLE_ORG_ADMIN"))
+          const roles: Map<String, boolean> = (initialRoles as Map<String, boolean>);
           
           const allowed = allowedRoles.some(role => roles.get(role));
           if (!allowed) { //the user is authenticated but doesn't have the required roles
             console.log("not allowed before saving url in service and redirecting to /unauthorized")
-            auth.setAttemptedUrl(state.url);
+            // auth.setAttemptedUrl(state.url);
             return router.createUrlTree(['/unauthorized']);
           }
           else{ //the user is authenticated and has the needed role
@@ -35,17 +45,21 @@ export function authGuard(allowedRoles: string[]): CanActivateFn {
             return true
           }
         }else{
-          // User is not authenticated or does not have the required role
-          console.log("not authenticated before setting redirectUrl in localstorage setting to: "+state.url)
-          localStorage.setItem('redirectUrl', state.url);
-          // return router.createUrlTree(['../oauth2/authorization/myClient'],{relativeTo:null});
-          // return router.createUrlTree(['http://localhost:8081/oauth2/authorization/myClient']);
-          // router.navigateByUrl('/oauth2/authorization/myClient');
-          window.location.href='http://localhost:8081/login'
-          // window.location.href='http://localhost:8081/oauth2/authorization/myClient'
-          console.log("after navigating to /oauth2/authorization/myClient before returning false")
+         
+          console.log("window.location about to be set to",state.url)
+          window.location.href="http://localhost:8081/client"+state.url
+
           return false
         }
+      }),
+      catchError((error: any) => {
+        // Handle HTTP error here
+        console.error("HTTP Error:", error);
+        // Redirect to login page
+        // return of(router.createUrlTree(['/login']));
+        console.log("window.location about to be set to",state.url)
+        window.location.href="http://localhost:8081/client"+state.url
+        return of(false)
       })
     );
   }}

@@ -24,7 +24,7 @@ import { authGuard } from './auth.guard';
 const routes: Routes = [
 
   {path:"", component:BodyComponent, pathMatch:'full'},
-  {path:"app-nav",component:NavComponent},
+  {path:"nav",component:NavComponent},
   {path:"barna-test",component:BTCCompComponent},
   {path:"login", component:LoginComponent},
   {path:"sign-up", component:SignUpComponent},

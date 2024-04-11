@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTableModule } from "@angular/material/table";
+import { CookieService } from "ngx-cookie-service";
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -71,8 +72,8 @@ import { authGuard } from './auth.guard';
   ],
   providers: [
     {provide:APP_BASE_HREF, useValue:'/client'},//Adds /client/ to all frontend urls
-    { provide: HTTP_INTERCEPTORS, useClass: XsrfInterceptor, multi: true } //sets csrf protection header on all mutating requests
-
+    { provide: HTTP_INTERCEPTORS, useClass: XsrfInterceptor, multi: true }, //sets csrf protection header on all mutating requests
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

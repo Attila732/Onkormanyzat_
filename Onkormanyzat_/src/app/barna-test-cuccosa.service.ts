@@ -42,6 +42,9 @@ export class BarnaTestCuccosaService {
   getImages(){
     return this.http.get(this.urlRes+"img")
   }
+  getlogout(){
+    return this.http.get(this.urlRes+"user/logout")
+  }
   postData(data:any){
     return this.http.post(this.urlRes+"data",data)
   }

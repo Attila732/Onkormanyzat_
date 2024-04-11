@@ -72,7 +72,6 @@ futtatáshoz:
 Csak angular futtatása lehetséges, de nem fog tudni a backenddel kommunikálni ("belső" mappában ng serve ahogy eddig is.)
 
 
-első két lépés felcserélhető, a második a harmadik előtt kell legyen!!!<br>
 
 
 alapértelmezetten jelenleg minden username/password védett, ezt meg lehet változtatni az AuthorizationConfig-ban a ".pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico").permitAll()" kikommentelésével.
@@ -85,6 +84,12 @@ alapértelmezett felhasználók:
 - username: admin
 - password: pass
 - ROLES: ROLE_USER, ROLE_ADMIN
+- username: orgadmin
+- password: pass
+- ROLES: ROLE_USER, ROLE_ORG_ADMIN
+- username: adminorgadmin
+- password: pass
+- ROLES: ROLE_USER, ROLE_ADMIN, ROLE_ORG_ADMIN
 
 
 FRONTEND PORT: 8081<br>
