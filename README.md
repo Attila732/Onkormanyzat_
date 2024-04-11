@@ -9,7 +9,7 @@
 Fejlesztők: Móra Barna, Szabó Szebasztián, Kovács Attila
 Móra Barna: Backend
 Kovács Attila: Frontend
-Szabó Szebasztián: Telefonos nézet
+Szabó Szebasztián: Frontend TS
 
 
 Projekt célja
