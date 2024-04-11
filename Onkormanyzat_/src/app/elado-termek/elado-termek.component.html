@@ -40,7 +40,7 @@
 
     <div class="tab-container" fxLayoutAlign="center center">
       <button #buttonPicker="appFilePicker" mat-raised-button color="primary" appFilePicker [multiple]="_multiple"
-        (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()" class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl  hover:shadow-cstm-dark-purple transform transition duration-500" >
+        (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()" class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" >
         Kép kiválasztása
       </button>
     </div>
@@ -91,16 +91,6 @@
 </div>
 
 
-<!-- <div class="fokep">
-  <div class="poszt" *ngFor="let post of posts">
-    {{ post.title }}
-    <img [src]="post.image" alt="{{ post.title }}" class="img-fluid" width="100px" height="100px">
-
-
-
-  </div>
-
-</div> -->
 {{termekek|json}}
 {{termekekFree|json}}
 <div class="container mt-5">
