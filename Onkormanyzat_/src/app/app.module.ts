@@ -1,37 +1,36 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule, NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
-import { MatTabsModule } from "@angular/material/tabs";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from "@angular/material/table";
-import { CookieService } from "ngx-cookie-service";
+import { MatTabsModule } from "@angular/material/tabs";
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { NgbDropdownModule, NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
+// import { CookieService } from "ngx-cookie-service";
 
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { BodyComponent } from './body/body.component';
-import { LoginComponent } from './login/login.component';
+import { BTCCompComponent } from './btccomp/btccomp.component';
 import { EladoTermekComponent } from './elado-termek/elado-termek.component';
+import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
+import { FilePickerDirective } from './file-picker.directive';
+import { HibaComponent } from './hiba/hiba.component';
+import { JelenteskezeloComponent } from './jelenteskezelo/jelenteskezelo.component';
+import { LoginComponent } from './login/login.component';
+import { NavComponent } from './nav/nav.component';
 import { OrvosEgyebUgyekComponent } from './orvos-egyeb-ugyek/orvos-egyeb-ugyek.component';
 import { OrvosIdopontfoglalasComponent } from './orvos-idopont-foglalas/orvos-idopont-foglalas.component';
 import { OrvosNyitvatartasComponent } from './orvos-nyitvatartas/orvos-nyitvatartas.component';
-import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
-import { JelenteskezeloComponent } from './jelenteskezelo/jelenteskezelo.component';
+import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
+import { ProfilComponent } from './profil/profil.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { SzervezesComponent } from './szervezes/szervezes.component';
 import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezdemeny.component';
-import { ProfilComponent } from './profil/profil.component';
-import { HibaComponent } from './hiba/hiba.component';
-import { BTCCompComponent } from './btccomp/btccomp.component';
-import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
+import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
 import { XsrfInterceptor } from './xsrf.interceptor';
-import { FilePickerDirective } from './file-picker.directive';
-import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
-import { authGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -73,7 +72,7 @@ import { authGuard } from './auth.guard';
   providers: [
     {provide:APP_BASE_HREF, useValue:'/client'},//Adds /client/ to all frontend urls
     { provide: HTTP_INTERCEPTORS, useClass: XsrfInterceptor, multi: true }, //sets csrf protection header on all mutating requests
-    CookieService
+    //CookieService
   ],
   bootstrap: [AppComponent]
 })

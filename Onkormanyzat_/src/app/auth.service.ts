@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ProfilAdatok } from './models/ProfilAdatok';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+// import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,11 @@ export class AuthService {
   initialRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   private roles = new BehaviorSubject<Map<String,boolean>>(this.initialRoles)
   private attemptedUrl: string ="";
-  constructor(private http:HttpClient, private router:Router, private cookie:CookieService) {
+  constructor(private http:HttpClient, private router:Router, 
+    
+    //private cookie:CookieService
+
+  ) {
     this.getMyUserInfo()
   }
 
@@ -79,9 +83,9 @@ export class AuthService {
 
   logout(){
     this.http.post("/myCustomLogout",null).subscribe(()=>console.log("logged out"))
-    console.log(this.cookie.getAll())
-    this.cookie.deleteAll()
-    console.log(this.cookie.getAll())
+    // console.log(this.cookie.getAll())
+    // this.cookie.deleteAll()
+    // console.log(this.cookie.getAll())
     this.user.next(null)
     this.roles.next(this.defRoles)
     this.router.navigate(['/']);
