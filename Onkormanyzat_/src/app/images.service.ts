@@ -12,18 +12,18 @@ export class ImagesService {  //for use in other services after succesfull data 
   postfile(selectedFiles:File[],uploadDetails:{url:string,multiple:boolean}) {
     console.log(selectedFiles)
     if (selectedFiles!=null && ((!uploadDetails.multiple && selectedFiles.length==1) || (uploadDetails.multiple))) {
-      
+      console.log("imagesService postfile inside if ")
       const formData = new FormData();
       for (let i = 0; i < selectedFiles.length; i++) {
         formData.append('images', selectedFiles[i]);
       }
-      console.log(formData)
+      console.log("formdata: ",formData)
 
       this.http.post(this.url+uploadDetails.url,formData)
       
       .subscribe({
         next: (res) => {
-          console.log(res);
+          console.log("images post res: ",res);
           return res;
         },
         error: (err) => {

@@ -44,12 +44,14 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   }
   setupDataAndSend() {
     if (this.user != null) {
-      console.log(this.eladoTermek);
+      console.log("setupAndSend eladotermekek: ",this.eladoTermek);
+      console.log("setupAndSend user: ",this.user);
       this.eladoTermek.userId = this.user.userId;
       console.log(this.eladoTermek);
       this.termekService.postTermek(this.eladoTermek).subscribe({
         next: (res: any) => {
           if (this._selectedFiles.length != 0) {
+            console.log("this._selectedFiles.length != 0 images post")
             this.ImageS.postfile(this._selectedFiles, res);
           }
         },
@@ -59,14 +61,18 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.getSajatTermekek(0, 0);
+    this.getSajatTermekek();
   }
 
-  getSajatTermekek(pageNum: number, price: number) {
+  getSajatTermekek() {
+    console.log("getSajatTermekek outside if: ",this.user)
     if (this.user != null) { 
+      console.log("getSajatTermekek inside if: ",this.user)
+
       this.subscriptions.push(
         this.termekService.getSajatTermekek(this.user.userId).subscribe({
           next: (res: any) => {
+            console.log("getSajatTermekek res: ",res)
             this.termekek = res;
             // this.addBoolErdekel();
           },

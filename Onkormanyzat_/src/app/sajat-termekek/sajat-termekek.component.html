@@ -5,15 +5,15 @@
     
       <div *ngIf="buttonClicked" class="image-container">
         <label for="productName" class="mb-2 block" >Eladó termék neve</label>
-        <input [(ngModel)]="eladoTermek.name" type="text" id="productName"
+        <input [(ngModel)]="eladoTermek.name" type="text" id="productName" name="name"
           class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     
         <label for="description" class="mb-2 block">Leírás:</label>
-        <input [(ngModel)]="eladoTermek.description" type="text" id="description"
+        <input [(ngModel)]="eladoTermek.description" type="text" id="description" name="description"
           class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     
         <label for="description" class="mb-2 block">Állapot:</label>
-        <select [(ngModel)]="eladoTermek.condition" type="text" id="description"
+        <select [(ngModel)]="eladoTermek.condition" type="text" id="condition" name="condition"
           class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
           <option value="new">Új</option>
           <option value="newish">ÚjSzerű</option>
@@ -21,19 +21,19 @@
         </select>
     
         <label for="location" class="mb-2 block">Helyszín:</label>
-        <input [(ngModel)]="eladoTermek.location" type="text" id="location"
+        <input [(ngModel)]="eladoTermek.location" type="text" id="location" name="location"
           class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
         <label for="email" class="mb-2 block">Publikus Email:</label>
-        <input [(ngModel)]="eladoTermek.email" type="text" id="email"
+        <input [(ngModel)]="eladoTermek.email" type="text" id="email" name="email"
           class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
         <label for="phone" class="mb-2 block">Publikus Telefon:</label>
-        <input [(ngModel)]="eladoTermek.phone" type="text" id="phone"
+        <input [(ngModel)]="eladoTermek.phone" type="text" id="phone" name="phone"
           class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     
     
         <label for="price" class="mb-2 block">Ár:</label>
     
-        <input [(ngModel)]="eladoTermek.price" type="number" id="price"
+        <input [(ngModel)]="eladoTermek.price" type="number" id="price" name="price"
           class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     
     
@@ -88,27 +88,37 @@
     </form>
     </div>
 
+    {{termekek|json}}
+
+
+
     <div *ngFor="let termek of termekek" class="row">
     <div class="col">
-        <input [(ngModel)]="termek.name" type="">
+        <input [(ngModel)]="termek.name" type="text">
     </div>
     <div class="col">
-        <input [(ngModel)]="termek.email" type="">
+        <input [(ngModel)]="termek.email" type="text">
     </div>
     <div class="col">
-        <input [(ngModel)]="termek.description" type="">
+        <input [(ngModel)]="termek.description" type="text">
     </div>
     <div class="col">
-        <input [(ngModel)]="termek.condition" type="">
+        <!-- <input [(ngModel)]="termek.condition" type=""> -->
+        <select [(ngModel)]="termek.condition" [value]="termek.condition" type="text" id="condition" name="condition"
+          class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+          <option value="new">Új</option>
+          <option value="newish">ÚjSzerű</option>
+          <option value="used">Használt</option>
+        </select>
     </div>
     <div class="col">
-        <input [(ngModel)]="termek.location" type="">
+        <input [(ngModel)]="termek.location" type="text">
     </div>
     <div class="col">
-        <input [(ngModel)]="termek.phone" type="">
+        <input [(ngModel)]="termek.phone" type="number">
     </div>
     <div class="col">
-        <input [(ngModel)]="termek.price" type="">
+        <input [(ngModel)]="termek.price" type="number">
     </div>
     <div class="col">
         <button class="btn btn-info ml-auto col" (click)="updateTermek(termek)">Szerkeszt.</button>
