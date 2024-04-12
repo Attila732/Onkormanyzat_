@@ -6,14 +6,16 @@ import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-szervezeskezdemeny',
-  templateUrl: './szervezeskezdemeny.component.html',
-  styleUrls: ['./szervezeskezdemeny.component.css']
+  selector: 'app-sajat-szervezesek',
+  templateUrl: './sajat-szervezesek.component.html',
+  styleUrls: ['./sajat-szervezesek.component.css']
 })
-export class SzervezeskezdemenyComponent {
+export class SajatSzervezesekComponent {
   szervezesModel = new SzervezesAdatok()
   private user: ProfilAdatok | null = null;
-  private subscription:Subscription[]|null=null
+  private subscription:Subscription[]= []
+
+  szervezesek: SzervezesAdatok[] = [];
 
   constructor(private szervezesService:SzervezesService, private auth: AuthService){
 
@@ -38,6 +40,30 @@ export class SzervezeskezdemenyComponent {
         element.unsubscribe();        
       });
     }
-  }
+  }  
+  
+  getSajatJelentes() {
+    if (this.user != null) { 
+      this.subscription.push(
+        this.szervezesService.getSajatSzervezesek(this.user.userId).subscribe({
+          next: (res: any) => {
+            this.szervezesek = res;
+            // this.addBoolErdekel();
+          },
+        })
+      );
+    }
+    }
 
+  updateSajatSzervezes(termek:any){
+    this.szervezesService.updateSzervezes(termek).subscribe(
+      (res:any)=>{console.log(res)}
+    );
+  }
+  
+  deleteSajatSzervezes(termek:any){
+    this.szervezesService.deleteSzervezes(termek.userId).subscribe(
+      (res:any)=>{console.log("siker")}
+    )
+  }
 }

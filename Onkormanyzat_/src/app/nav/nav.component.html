@@ -113,11 +113,19 @@
                             <button
                                 class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
                                 ngbDropdownItem routerLink="/profil">Profil Adatok</button>
-                            <div class=""></div>
                             <button
                                 class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
                                 ngbDropdownItem routerLink="/sajattermek">Saját Termékek</button>
-                        </div>
+                            <button
+                            class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
+                            ngbDropdownItem routerLink="/sajatjelentes">Saját Jelentések</button>
+                            <button
+                            class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
+                            ngbDropdownItem routerLink="/sajatidopont">Saját Időpontok</button>
+                            <button
+                            class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
+                            ngbDropdownItem routerLink="/sajatszervezes">Saját Szervezések</button>
+                            </div>
                     </li>
                     <li *ngIf="roles.get('ADMIN')" [ngbNavItem]="10">
                         <button
@@ -219,10 +227,18 @@
                     <button
                         class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
                         ngbDropdownItem routerLink="/profil">Profil Adatok</button>
-                    <div class=""></div>
                     <button
                         class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
                         ngbDropdownItem routerLink="/sajattermek">Saját Termékek</button>
+                        <button
+                        class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
+                        ngbDropdownItem routerLink="/sajatjelentes">Saját Jelentések</button>
+                        <button
+                        class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
+                        ngbDropdownItem routerLink="/sajatidopont">Saját Időpontok</button>
+                        <button
+                        class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
+                        ngbDropdownItem routerLink="/sajatszervezes">Saját Szervezések</button>
                 </div>
             </li>
             <li *ngIf="roles.get('ADMIN')" [ngbNavItem]="10">

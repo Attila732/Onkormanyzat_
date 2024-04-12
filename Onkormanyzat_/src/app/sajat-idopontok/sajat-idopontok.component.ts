@@ -6,14 +6,17 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-orvosidopontfoglalas',
-  templateUrl: './orvos-idopont-foglalas.component.html',
-  styleUrls: ['./orvos-idopont-foglalas.component.css']
+  selector: 'app-sajat-idopontok',
+  templateUrl: './sajat-idopontok.component.html',
+  styleUrls: ['./sajat-idopontok.component.css']
 })
-export class OrvosIdopontfoglalasComponent {
+export class SajatIdopontokComponent {
+
   idopontModel = new IdopontAdatok()
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[] =[]
+
+  idopontok: IdopontAdatok[] = []
 
   constructor(private idopontservice:IdopontService, private auth: AuthService){
     this.getUserInfo()
@@ -42,4 +45,30 @@ export class OrvosIdopontfoglalasComponent {
       });
     }
   }
+
+  getSajatIdopontok() {
+    if (this.user != null) { 
+      this.subscription.push(
+        this.idopontservice.getSajatIdopontok(this.user.userId).subscribe({
+          next: (res: any) => {
+            this.idopontok = res;
+            // this.addBoolErdekel();
+          },
+        })
+      );
+    }
+    }
+
+  updateSajatIdopont(termek:any){
+    this.idopontservice.updateIdopont(termek).subscribe(
+      (res:any)=>{console.log(res)}
+    );
+  }
+  
+  deleteSajatIdopont(termek:any){
+    this.idopontservice.deleteIdopont(termek.userId).subscribe(
+      (res:any)=>{console.log("siker")}
+    )
+  }
+
 };

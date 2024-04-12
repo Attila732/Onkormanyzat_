@@ -19,6 +19,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
 import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
 import { SajatTermekekComponent } from './sajat-termekek/sajat-termekek.component';
+import { SajatJelentesekComponent } from './sajat-jelentesek/sajat-jelentesek.component';
+import { SajatIdopontokComponent } from './sajat-idopontok/sajat-idopontok.component';
+import { SajatSzervezesekComponent } from './sajat-szervezesek/sajat-szervezesek.component';
 import { authGuard } from './auth.guard';
 
 
@@ -44,6 +47,9 @@ const routes: Routes = [
   {path:"btccomp",component:BTCCompComponent},
   {path:"felhaszkezeles",component:FelhaszkezelesComponent},
   {path:"sajattermek",component:SajatTermekekComponent},
+  {path:"sajatjelentes", component:SajatJelentesekComponent},
+  {path:"sajatidopont", component:SajatIdopontokComponent},
+  {path:"sajatszervezes", component:SajatSzervezesekComponent},
   {path:"**",component:HibaComponent}
 
 

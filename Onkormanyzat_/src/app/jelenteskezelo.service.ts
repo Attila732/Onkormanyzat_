@@ -6,16 +6,28 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class JelenteskezeloService {
-  jelenetesadatok:BejelentesAdatok= new BejelentesAdatok();
+  jelenetesadatok: BejelentesAdatok = new BejelentesAdatok();
 
-  url = "resource/notice/new";
+  url = "resource/notice/";
 
-  constructor(private http:HttpClient){
+  constructor(private http: HttpClient) {
 
   }
 
-  postService(body:BejelentesAdatok){
-    console.log("postService ",body)
-    this.http.post(this.url, body).subscribe((res:any)=>{console.log("notice submitted ",res)});
-}
+  postJelentes(body: BejelentesAdatok) {
+    console.log("postService ", body)
+    this.http.post(this.url+"/new", body).subscribe((res: any) => { console.log("notice submitted ", res) });
+  }
+
+  updateJelentes(body: any) {
+    return this.http.put("*" + body.id, body)
+  }
+
+  deleteJelentes(id: any) {
+    return this.http.delete(this.url + "del/" + id)
+  }
+
+  getSajatJelentesek(id: any) {
+    return this.http.get(this.url + "sajat/" + id)
+  }
 }

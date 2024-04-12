@@ -6,14 +6,17 @@ import { ProfilAdatok } from '../models/ProfilAdatok';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-jelenteskezelo',
-  templateUrl: './jelenteskezelo.component.html',
-  styleUrls: ['./jelenteskezelo.component.css']
+  selector: 'app-sajat-jelentesek',
+  templateUrl: './sajat-jelentesek.component.html',
+  styleUrls: ['./sajat-jelentesek.component.css']
 })
-export class JelenteskezeloComponent implements OnDestroy{
+export class SajatJelentesekComponent implements OnDestroy{
+
   bejelentesModel = new BejelentesAdatok()
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[]=[]
+
+  jelentesek: BejelentesAdatok[] = [];
 
   constructor(private jelenteskezeloservice: JelenteskezeloService, private auth: AuthService) {
     this.getUserInfo()
@@ -40,4 +43,30 @@ export class JelenteskezeloComponent implements OnDestroy{
       });
     }
   }
-};
+
+  getSajatJelentes() {
+    if (this.user != null) { 
+      this.subscription.push(
+        this.jelenteskezeloservice.getSajatJelentesek(this.user.userId).subscribe({
+          next: (res: any) => {
+            this.jelentesek = res;
+            // this.addBoolErdekel();
+          },
+        })
+      );
+    }
+    }
+
+  updateSajatJelentes(termek:any){
+    this.jelenteskezeloservice.updateJelentes(termek).subscribe(
+      (res:any)=>{console.log(res)}
+    );
+  }
+  
+  deleteSajatJelentes(termek:any){
+    this.jelenteskezeloservice.deleteJelentes(termek.userId).subscribe(
+      (res:any)=>{console.log("siker")}
+    )
+  }
+
+}

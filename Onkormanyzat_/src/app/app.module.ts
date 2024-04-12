@@ -32,6 +32,9 @@ import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezde
 import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
 import { XsrfInterceptor } from './xsrf.interceptor';
 import { SajatTermekekComponent } from './sajat-termekek/sajat-termekek.component';
+import { SajatJelentesekComponent } from './sajat-jelentesek/sajat-jelentesek.component';
+import { SajatIdopontokComponent } from './sajat-idopontok/sajat-idopontok.component';
+import { SajatSzervezesekComponent } from './sajat-szervezesek/sajat-szervezesek.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,9 @@ import { SajatTermekekComponent } from './sajat-termekek/sajat-termekek.componen
     FilePickerDirective,
     FelhaszkezelesComponent,
     SajatTermekekComponent,
+    SajatJelentesekComponent,
+    SajatIdopontokComponent,
+    SajatSzervezesekComponent,
   ],
   imports: [
     BrowserModule,
