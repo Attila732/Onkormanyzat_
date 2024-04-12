@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Regisztracio } from '../models/regisztracio';
+import { Regisztracio } from '../models/Regisztracio';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,13 +17,13 @@ export class SignUpComponent {
   }
 
   register(){
-    console.log(this.regisztracio)
+    console.log( "regisztracio", this.regisztracio)
     this.http.post("/resource/user",this.regisztracio).subscribe({
       next:(res:any)=>{
-        console.log(res)
+        console.log("posted", res)
         this.result=res
       },
-      error:(err:any)=>console.log("Error: "+err)
+      error:(err:any)=>console.log("Error: ",err)
     })
   }
 

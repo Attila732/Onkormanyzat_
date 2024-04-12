@@ -105,7 +105,7 @@
                             </svg>
                         </button>
                     </li>
-                    <li *ngIf="roles.get('ORG_ADMIN')" [ngbNavItem]="10">
+                    <li *ngIf="roles.get('ADMIN')" [ngbNavItem]="10">
                         <button
                             class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                             ngbNavLink routerLink="/felhaszkezeles">Felhasználó Kezelés</button>
@@ -186,7 +186,7 @@
                     ngbNavLink routerLink="/sign-up">Regisztráció</button>
             </li>
             <li 
-            *ngIf="roles.get('ORG_ADMIN')"  
+            *ngIf="roles.get('ADMIN')"  
             [ngbNavItem]="9">
                 <button ngbNavLink routerLink="/profil" class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -197,7 +197,7 @@
                     </svg>
                 </button>
             </li>
-            <li *ngIf="roles.get('ORG_ADMIN')" [ngbNavItem]="10">
+            <li *ngIf="roles.get('ADMIN')" [ngbNavItem]="10">
                 <button
                     class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
                     ngbNavLink routerLink="/felhaszkezeles">Felhasználó Kezelés</button>

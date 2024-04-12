@@ -42,6 +42,7 @@ public class AuthorizationConfig {
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) throws Exception {
         http.csrf(
             csrf -> csrf
+            // .disable()
             .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
             .csrfTokenRequestHandler(new XorServerCsrfTokenRequestAttributeHandler()::handle)
             );
@@ -72,6 +73,7 @@ public class AuthorizationConfig {
                 .pathMatchers(HttpMethod.GET, "/resource/news/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/resource/items/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/resource/images/**").permitAll()
+                .pathMatchers(HttpMethod.POST, "/resource/user/**").permitAll()
                 .anyExchange().authenticated()
                 // .anyExchange().permitAll()
             );
@@ -120,6 +122,7 @@ public class AuthorizationConfig {
         config.addAllowedOrigin("http://localhost:8081"); 
         config.addAllowedOrigin("http://localhost:8082"); 
         config.addAllowedOrigin("http://localhost:8083"); 
+        // config.addAllowedOrigin("*"); 
         config.addAllowedMethod("*"); // Allow all HTTP methods
         config.addAllowedHeader("*"); // Allow all headers
         config.setAllowCredentials(true); // Allow credentials (cookies, authorization headers)

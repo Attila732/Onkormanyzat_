@@ -29,6 +29,7 @@ public class RouteConfig {
 								.filters(
 										f -> f
 												.rewritePath("/resource/", "/")
+												// .filter(removeXSRFToken())
 												.tokenRelay())
 								.uri("http://localhost:8082"))
 				.route(
