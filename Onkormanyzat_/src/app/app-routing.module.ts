@@ -18,6 +18,7 @@ import { BTCCompComponent } from './btccomp/btccomp.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfilSzerkesztesComponent } from './profil-szerkesztes/profil-szerkesztes.component';
 import { FelhaszkezelesComponent } from './felhaszkezeles/felhaszkezeles.component';
+import { SajatTermekekComponent } from './sajat-termekek/sajat-termekek.component';
 import { authGuard } from './auth.guard';
 
 
@@ -42,6 +43,7 @@ const routes: Routes = [
   {path:"profilszerkesztes",component:ProfilSzerkesztesComponent},
   {path:"btccomp",component:BTCCompComponent},
   {path:"felhaszkezeles",component:FelhaszkezelesComponent},
+  {path:"sajattermek",component:SajatTermekekComponent},
   {path:"**",component:HibaComponent}
 
 

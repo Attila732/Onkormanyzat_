@@ -38,5 +38,16 @@ postTermek(termek:any){
   return this.http.post(this.resUrl+"items/new",termek)
 }
 
+updateTermek(body:any){
+  return this.http.put("/items/"+ body.id, body)
+}
+
+deleteTermek(id:any){
+  return this.http.delete("/items/del/"+ id)
+}
+
+getSajatTermekek(id:any){
+  return this.http.get(this.resUrl+"items/sajat/"+id)
+}
 
 }

@@ -31,6 +31,7 @@ import { SzervezesComponent } from './szervezes/szervezes.component';
 import { SzervezeskezdemenyComponent } from './szervezeskezdemeny/szervezeskezdemeny.component';
 import { TuzszabalyokComponent } from './tuzszabalyok/tuzszabalyok.component';
 import { XsrfInterceptor } from './xsrf.interceptor';
+import { SajatTermekekComponent } from './sajat-termekek/sajat-termekek.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { XsrfInterceptor } from './xsrf.interceptor';
     ProfilSzerkesztesComponent,
     FilePickerDirective,
     FelhaszkezelesComponent,
+    SajatTermekekComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,12 +9,11 @@ import { TermekKepekkel } from '../models/TermekKepekkel';
 import { TermekkezeloService } from '../termekkezelo.service';
 
 @Component({
-  selector: 'app-your-component',
-  templateUrl: './elado-termek.component.html',
-  styleUrls: ['./elado-termek.component.css'],
-  animations: [],
+  selector: 'app-sajat-termekek',
+  templateUrl: './sajat-termekek.component.html',
+  styleUrls: ['./sajat-termekek.component.css']
 })
-export class EladoTermekComponent implements OnInit, OnDestroy {
+export class SajatTermekekComponent implements OnInit, OnDestroy {
   showSellerInfo: boolean = false;
   eladoTermek: EladoTermekAdatok = new EladoTermekAdatok();
   buttonClicked = false;
@@ -27,7 +26,6 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     { key: 'used', text: 'Használt' },
   ];
   termekek: TermekKepekkel[] = [];
-  termekekFree: TermekKepekkel[] = [];
 
   constructor(
     private auth: AuthService,
@@ -61,38 +59,27 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.getTermekek(0, 0);
-    this.getTermekekFree(0);
+    this.getSajatTermekek(0, 0);
   }
 
-  getTermekek(pageNum: number, price: number) {
-    this.subscriptions.push(
-      this.termekService.getTermekek(pageNum, price).subscribe({
-        next: (res: any) => {
-          this.termekek = res;
-          this.addBoolErdekel();
-        },
-      })
-    );
-  }
-  getTermekekFree(pageNum: number) {
-    this.subscriptions.push(
-      this.termekService.getTermekekFree(pageNum).subscribe({
-        next: (res: any) => {
-          this.termekekFree = res;
-        },
-      })
-    );
-  }
-
-  addBoolErdekel() {
-    this.termekek.forEach((element) => {
-      element['erdekel'] = false;
-    });
-    this.termekekFree.forEach((element) => {
-      element['erdekel'] = false;
-    });
-  }
+  getSajatTermekek(pageNum: number, price: number) {
+    if (this.user != null) { 
+      this.subscriptions.push(
+        this.termekService.getSajatTermekek(this.user.userId).subscribe({
+          next: (res: any) => {
+            this.termekek = res;
+            // this.addBoolErdekel();
+          },
+        })
+      );
+    }
+    }
+    
+  //   addBoolErdekel() {
+  //     this.termekek.forEach((element) => {
+  //     element['erdekel'] = false;
+  //   });
+  // }
 
   onSubmit() {
     this.buttonClicked = true;
@@ -151,14 +138,14 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     this._buttonPicker.reset();
   }
 
-  updateTermek(){
-    this.termekService.updateTermek(this.eladoTermek).subscribe(
+  updateTermek(termek:any){
+    this.termekService.updateTermek(termek).subscribe(
       (res:any)=>{console.log(res)}
     );
   }
   
-  deleteTermek(){
-    this.termekService.deleteTermek(this.eladoTermek.userId).subscribe(
+  deleteTermek(termek:any){
+    this.termekService.deleteTermek(termek.id).subscribe(
       (res:any)=>{console.log("siker")}
     )
   }
