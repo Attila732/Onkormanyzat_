@@ -92,7 +92,7 @@ export class BodyComponent implements OnInit, OnDestroy {
   }
 
   submitNewArticle() {
-    if (this.user != null && this.userRoles.get('ADMIN')) {
+    if (this.user != null && this.userRoles.get('ORG_ADMIN')) {
       this.newArticle.userId = this.user.userId;
       this.newArticle.userName = this.user.name;
       this.newArticle.orgName = this.orgs.find(

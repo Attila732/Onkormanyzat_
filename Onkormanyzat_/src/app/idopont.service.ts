@@ -8,13 +8,13 @@ import { HttpClient } from '@angular/common/http';
 export class IdopontService {
   idopontadatok:IdopontAdatok= new IdopontAdatok();
 
-  url = "resource/user/reservation/new/";
+  url = "resource/user/reservation/new";
 
   constructor(private http:HttpClient){
 
   }
 
   postService(body:IdopontAdatok){
-    this.http.post(this.url, body).subscribe();
+    this.http.post(this.url, body).subscribe((res:any)=>{console.log("successful post",res)});
 }
 }

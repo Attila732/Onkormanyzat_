@@ -8,11 +8,11 @@
           <form>
             <div class="mb-4">
               <label for="email" class="text-lg font-bold text-cstm-dark_gray self-start px-2">Email/Felhasználónév cím</label>
-              <input [(ngModel)]="bejelentkezes.userName||bejelentkezes.email" type="text" id="email" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+              <input [(ngModel)]="bejelentkezes.userName" name="userName" type="text" id="email" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
             </div>
             <div class="mb-4">
               <label for="password" class="text-lg font-bold text-cstm-dark_gray self-start px-2">Jelszó</label>
-              <input [(ngModel)]="bejelentkezes.password1" type="password" id="password" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
+              <input [(ngModel)]="bejelentkezes.password1" name="pw" type="password" id="password" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" />
             </div>
             <div class="mb-4">
               <input type="checkbox" id="newsletter" class="form-check-input me-2" checked />

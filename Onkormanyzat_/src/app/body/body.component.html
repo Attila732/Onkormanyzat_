@@ -11,6 +11,10 @@
       class="flex-1 focus:border-[3px] border-cstm-purple py-2 px-3 rounded-md mb-2 focus:outline-none text-cstm-dark_gray focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg duration-100" />
 
     <div class="relative inline-block text-left flex justify-center items-center mt-3">
+      <select [(ngModel)]="newArticle.orgId" type="text" id="description"
+        class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+        <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+      </select>
       <select [(ngModel)]="newArticle.type" type="text" id="description"
         class="w-[65%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-md focus:border-[3px] border-cstm-purple duration-200">
         <option value="LOCAL">Helyi</option>
@@ -41,7 +45,7 @@
             <p class="font-semibold">{{hir.title}}</p>
             <p>{{hir.content}}</p>
           </li>
-          <!-- <li class="border-bottom">
+          <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
             <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó
               Imre filozófus vezetésével. A március 5-ei eseményen Oliver Sacks: A férfi, aki kalapnak nézte a feleségét
@@ -64,7 +68,7 @@
               Sportiskola
               U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi
               Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
-          </li> -->
+          </li>
         </div>
       </ul>
     </div>
@@ -80,7 +84,7 @@
             <p class="font-semibold">{{hir.title}}</p>
             <p>{{hir.content}}</p>
           </li>
-          <!-- <li class="border-bottom">
+          <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
             <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó
               Imre filozófus vezetésével. A március 5-ei eseményen Oliver Sacks: A férfi, aki kalapnak nézte a feleségét
@@ -103,7 +107,7 @@
               Sportiskola
               U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi
               Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
-          </li> -->
+          </li>
         </div>
       </ul>
     </div>
@@ -144,3 +148,5 @@
     </ul>
   </div>
 </div>
+{{national|json}}
+{{local|json}}

@@ -13,19 +13,21 @@ import { Subscription } from 'rxjs';
 export class JelenteskezeloComponent implements OnDestroy{
   bejelentesModel = new BejelentesAdatok()
   private user: ProfilAdatok | null = null;
-  private subscription:Subscription[]|null=null
+  private subscription:Subscription[]=[]
 
   constructor(private jelenteskezeloservice: JelenteskezeloService, private auth: AuthService) {
     this.getUserInfo()
   }
   getUserInfo(){
-    this.subscription?.push(this.auth.getUser().subscribe(
+    this.subscription.push(this.auth.getUser().subscribe(
       (res: any) => this.user = res
     ));
   }
   inputForm() {
+    console.log("input submit User: ",this.user)
     if (this.user != null) {
       this.bejelentesModel.userId = this.user.userId;
+      console.log(this.bejelentesModel)
       this.jelenteskezeloservice.postService(this.bejelentesModel);
     }
     

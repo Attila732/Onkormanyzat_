@@ -13,19 +13,22 @@ import { AuthService } from '../auth.service';
 export class OrvosIdopontfoglalasComponent {
   idopontModel = new IdopontAdatok()
   private user: ProfilAdatok | null = null;
-  private subscription:Subscription[]|null=null
+  private subscription:Subscription[] =[]
 
   constructor(private idopontservice:IdopontService, private auth: AuthService){
-
+    this.getUserInfo()
   }
 
   getUserInfo(){
-    this.subscription?.push(this.auth.getUser().subscribe(
+    this.subscription.push(this.auth.getUser().subscribe(
       (res: any) => this.user = res
     ));
   }
   inputForm() {
+    console.log("form submit User: ", this.user)
+    console.log("form submit idopont: ", this.idopontModel)
     if (this.user != null) {
+      this.idopontModel['preferredName']=this.idopontModel.name
       this.idopontModel.userId = this.user.userId;
       this.idopontservice.postService(this.idopontModel);
     }

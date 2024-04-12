@@ -8,13 +8,14 @@ import { HttpClient } from '@angular/common/http';
 export class JelenteskezeloService {
   jelenetesadatok:BejelentesAdatok= new BejelentesAdatok();
 
-  url = "resource/notice/new/";
+  url = "resource/notice/new";
 
   constructor(private http:HttpClient){
 
   }
 
   postService(body:BejelentesAdatok){
-    this.http.post(this.url, body).subscribe();
+    console.log("postService ",body)
+    this.http.post(this.url, body).subscribe((res:any)=>{console.log("notice submitted ",res)});
 }
 }
