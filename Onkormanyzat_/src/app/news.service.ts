@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Hir } from './models/Hir';
 
 @Injectable({
@@ -23,5 +22,11 @@ export class NewsService {
 
   postNewNews(body:any){
     return this.http.post(this.url+"news/new",body)
+  }
+  updateNews(body:Hir){
+    return this.http.put(this.url+"news/"+body.id,body)
+  }
+  deleteNews(id:string){
+    return this.http.delete(this.url+"news/del/"+id)
   }
 }

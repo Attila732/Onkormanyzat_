@@ -1,4 +1,4 @@
-<div *ngIf="userRoles.get('ADMIN')"
+<div *ngIf="userRoles.get('ORG_ADMIN')"
   class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
   <label for="textInput" class="block text-3xl font-semibold mb-2">Írjon híreket</label>
 
@@ -44,8 +44,8 @@
           <li class="border-bottom" *ngFor="let hir of local">
             <p class="font-semibold">{{hir.title}}</p>
             <p>{{hir.content}}</p>
-            <button (click)="deleteLocalNews(hir)" class="delete-button">Delete</button>
-            <button (click)="editLocalNews(hir)" class="edit-button">Edit</button>
+            <button (click)="deleteNews(hir)" class="delete-button">Delete</button>
+            <button (click)="editNews(hir)" class="edit-button">Edit</button>
           </li>
           <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
@@ -85,8 +85,8 @@
           <li class="border-bottom" *ngFor="let hir of national">
             <p class="font-semibold">{{hir.title}}</p>
             <p>{{hir.content}}</p>
-            <button (click)="deleteNationalNews(national)" class="delete-button">Delete</button>
-              <button (click)="editNationalNews(national)" class="edit-button">Edit</button>
+            <button (click)="deleteNews(hir)" class="delete-button">Delete</button>
+            <button (click)="editNews(hir)" class="edit-button">Edit</button>
           </li>
           <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
@@ -111,8 +111,7 @@
               Sportiskola
               U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi
               Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
-              <button (click)="deleteNationalNews(local)" class="delete-button">Delete</button>
-              <button (click)="editNationalNews(local)" class="edit-button">Edit</button>
+        
           </li>
         </div>
       </ul>
