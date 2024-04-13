@@ -91,39 +91,38 @@
     {{termekek|json}}
 
 
-
-    <div *ngFor="let termek of termekek" class="row">
-    <div class="col">
-        <input [(ngModel)]="termek.name" type="text">
-    </div>
-    <div class="col">
-        <input [(ngModel)]="termek.email" type="text">
-    </div>
-    <div class="col">
-        <input [(ngModel)]="termek.description" type="text">
-    </div>
-    <div class="col">
-        <!-- <input [(ngModel)]="termek.condition" type=""> -->
+    <div *ngFor="let termek of termekek" class="grid grid-cols-8 gap-4">
+      <div class="col">
+        <input [(ngModel)]="termek.name" type="text" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      </div>
+      <div class="col">
+        <input [(ngModel)]="termek.email" type="text" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      </div>
+      <div class="col">
+        <input [(ngModel)]="termek.description" type="text" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      </div>
+      <div class="col">
         <select [(ngModel)]="termek.condition" [value]="termek.condition" type="text" id="condition" name="condition"
           class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
           <option value="new">Új</option>
           <option value="newish">ÚjSzerű</option>
           <option value="used">Használt</option>
         </select>
+      </div>
+      <div class="col">
+        <input [(ngModel)]="termek.location" type="text" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      </div>
+      <div class="col">
+        <input [(ngModel)]="termek.phone" type="number" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      </div>
+      <div class="col">
+        <input [(ngModel)]="termek.price" type="number" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      </div>
+      <div class="col">
+        <button class="w-full bg-blue-500 hover:bg-blue-700 text-white text-lg py-2 px-3 rounded-[14px] border-[3px] border-cstm-purple" (click)="updateTermek(termek)">Szerkesztés</button>
+      </div>
+      <div class="col">
+        <button class="w-full bg-blue-500 hover:bg-blue-700 text-white text-lg py-2 px-3 rounded-[14px] border-[3px] border-cstm-purple" (click)="deleteTermek(termek)">Törlés</button>
+      </div>
     </div>
-    <div class="col">
-        <input [(ngModel)]="termek.location" type="text">
-    </div>
-    <div class="col">
-        <input [(ngModel)]="termek.phone" type="number">
-    </div>
-    <div class="col">
-        <input [(ngModel)]="termek.price" type="number">
-    </div>
-    <div class="col">
-        <button class="btn btn-info ml-auto col" (click)="updateTermek(termek)">Szerkesztés</button>
-    </div>
-    <div class="col">
-        <button class="btn btn-info ml-auto col" (click)="deleteTermek(termek)">Törlés</button>
-    </div>
-</div>
+    
