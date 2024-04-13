@@ -129,21 +129,19 @@ export class BodyComponent implements OnInit, OnDestroy {
       this.local.splice(index, 1);
     }
   }
-  deleteNationalNews(news: any) {
-    // Implement logic to delete national news from array
-    const index = this.national.indexOf(news);
-    if (index !== -1) {
-      this.national.splice(index, 1);
-    }
+  deleteNews(news: Hir) {
+    this.newsService.deleteNews(news.id).subscribe(
+      (res:any)=>{console.log("siker")}
+    )
   }
   editLocalNews(news: any) {
     // Implement logic to edit local news
     // For example, you can open a modal with a form to edit the news
     console.log("Editing local news:", news);
   }
-  editNationalNews(news: any) {
-    // Implement logic to edit national news
-    // For example, you can open a modal with a form to edit the news
-    console.log("Editing national news:", news);
+  editNews(news: Hir) {
+    this.newsService.updateNews(news).subscribe(
+      (res:any)=>{console.log("siker")}
+    )
   }
 }

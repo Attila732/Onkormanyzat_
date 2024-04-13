@@ -35,6 +35,7 @@ import { SajatTermekekComponent } from './sajat-termekek/sajat-termekek.componen
 import { SajatJelentesekComponent } from './sajat-jelentesek/sajat-jelentesek.component';
 import { SajatIdopontokComponent } from './sajat-idopontok/sajat-idopontok.component';
 import { SajatSzervezesekComponent } from './sajat-szervezesek/sajat-szervezesek.component';
+import { OrgAdminComponent } from './org-admin/org-admin.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SajatSzervezesekComponent } from './sajat-szervezesek/sajat-szervezesek
     SajatJelentesekComponent,
     SajatIdopontokComponent,
     SajatSzervezesekComponent,
+    OrgAdminComponent,
   ],
   imports: [
     BrowserModule,
