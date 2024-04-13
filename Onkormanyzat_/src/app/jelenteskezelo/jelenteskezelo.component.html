@@ -25,11 +25,11 @@
 					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 					id="sulyossag" name="sulyossag" required>
 					<!-- Rang-zárolt jelentések -->
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
+					<option value="1">Nagyon Súlyos</option>
+					<option value="2">Súlyos</option>
+					<option value="3">Zavaró</option>
+					<option value="4">Meh</option>
+					<option value="5">Megjegyzés</option>
 				</select>
 			</div>
 
@@ -57,7 +57,7 @@
 			<label for="startDate">Dátum:</label>
 			<input [(ngModel)]="bejelentesModel.date" type="datetime-local" id="startDate" name="startDate"
 				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
-				required [min]="currentDate">
+				required [min]="currentDateTime">
 
 			<button type="submit"
 				class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
