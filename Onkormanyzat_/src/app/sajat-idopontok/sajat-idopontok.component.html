@@ -8,8 +8,8 @@
         </div>
   
         <label for="type">Válasszon orvost:</label>
-        <select class="form-control" [(ngModel)]="idopontModel.orvosok" id="orvosok" name="orvosok" required>
-          <option value="orvosok">orvosok</option>
+        <select class="form-control" [(ngModel)]="idopontModel.orgId" id="orgId" name="orgId" required>
+          <option value="orgId">orvosok</option>
           <option value="1">Dr. Baka Károly: Kardiológus</option>
           <option value="2">Dr. Osbáth László: Háziorvos</option>
           <option value="3">Dr. Kun Béla: Sebész</option>
@@ -42,8 +42,8 @@
         <input [(ngModel)]="idopont.name" type="text">
     </div>
     <div class="col">
-        <select class="form-control" [(ngModel)]="idopontModel.orvosok" [value]="idopont.orvosok" id="orvosok" name="orvosok" required>
-            <option value="orvosok">orvosok</option>
+        <select class="form-control" [(ngModel)]="idopontModel.orgId" [value]="idopont.orgId" id="orgId" name="orgId" required>
+            <option value="orgId">orvosok</option>
             <option value="1">Dr. Baka Károly: Kardiológus</option>
             <option value="2">Dr. Osbáth László: Háziorvos</option>
             <option value="3">Dr. Kun Béla: Sebész</option>

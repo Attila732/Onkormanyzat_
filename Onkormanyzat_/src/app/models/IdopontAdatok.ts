@@ -2,7 +2,7 @@ export class IdopontAdatok{
 
     [x: string]: any
     "userId":string
-    "orvosok":string
+    "orgId":string
     "name": string
     "email": string
     "phone":number|null
@@ -12,7 +12,7 @@ export class IdopontAdatok{
     
     constructor() {
       this.userId=""//bejelentkezett felhasználó (Profiladatok.userId) ből
-      this.orvosok="" 
+      this.orgId="" 
       this.name= ""
       this.email= ""
       this.phone= null
