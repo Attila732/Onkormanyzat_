@@ -11,13 +11,7 @@ export class NewsService {
 
 
   constructor(private http:HttpClient) { }
-
-  getOrgsForUser(userId:string,pageNum:number){
-    const opt = {params: new HttpParams()
-      .append("pageNum",pageNum)
-      }
-    return this.http.get(this.url+"user/"+userId+"/orgs",opt)
-  }
+  
   getNews(value:string,pageNum:number,category:string){//value:search param, category: where to search (title, content, type...)
     const opt = {params: new HttpParams()
       .append("value",value)

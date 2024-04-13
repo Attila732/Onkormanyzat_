@@ -18,6 +18,10 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   eladoTermek: EladoTermekAdatok = new EladoTermekAdatok();
   buttonClicked = false;
   userRoles: any;
+  admin: boolean = false;
+  orgAdmin: boolean = false;
+  currentOrganization:any;
+  orgs: { id: string; name: string }[] = [];
   private user: ProfilAdatok | null = null;
   private subscriptions: Subscription[] = [];
   conditions = [
@@ -32,20 +36,45 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     private termekService: TermekkezeloService,
     private ImageS: ImagesService
   ) {}
+
+  // getUserInfo() {
+  //   this.subscriptions.push(
+  //     this.auth.getUser().subscribe(
+  //       (res: any) => {
+  //         this.user = res
+  //         this.getSajatTermekek()
+  //       })
+  //   );
+  //   this.subscriptions.push(
+  //     this.auth
+  //       .getUserRoles()
+  //       .subscribe((roles: Map<String, boolean>) => (this.userRoles = roles))
+  //   );
+  // }
+
   getUserInfo() {
     this.subscriptions.push(
-      this.auth.getUser().subscribe(
-        (res: any) => {
-          this.user = res
-          this.getSajatTermekek()
-        })
-    );
-    this.subscriptions.push(
-      this.auth
-        .getUserRoles()
-        .subscribe((roles: Map<String, boolean>) => (this.userRoles = roles))
+      this.auth.getUser().subscribe((res: any) => {
+        this.user = res;
+        this.subscriptions.push(
+          this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
+            this.userRoles = roles;
+
+            if (this.user != null && this.userRoles.get('ORG_ADMIN')) {
+              this.subscriptions.push(
+                this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
+                  next: (res: any) => {
+                    this.orgs = res;
+                  },
+                })
+              );
+            }
+          })
+        );
+      })
     );
   }
+
   setupDataAndSend() {
     if (this.user != null) {
       console.log("setupAndSend eladotermekek: ",this.eladoTermek);
@@ -159,5 +188,17 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     this.termekService.deleteTermek(termek.id).subscribe(
       (res:any)=>{console.log("siker")}
     )
+  }
+
+  orgAdminKeres(){
+    this.orgAdmin = !this.orgAdmin
+  }
+
+  adminKeres(){
+    this.admin = !this.admin
+  }
+
+  orgRequest(){
+    
   }
 }

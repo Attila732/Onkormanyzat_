@@ -125,4 +125,40 @@
         <button class="w-full bg-blue-500 hover:bg-blue-700 text-white text-lg py-2 px-3 rounded-[14px] border-[3px] border-cstm-purple" (click)="deleteTermek(termek)">Törlés</button>
       </div>
     </div>
+<<<<<<< HEAD
     
+=======
+    <div class="col">
+        <input [(ngModel)]="termek.location" type="text">
+    </div>
+    <div class="col">
+        <input [(ngModel)]="termek.phone" type="number">
+    </div>
+    <div class="col">
+        <input [(ngModel)]="termek.price" type="number">
+    </div>
+    <div class="col">
+        <button class="btn btn-info ml-auto col" (click)="updateTermek(termek)">Szerkesztés</button>
+    </div>
+    <div class="col">
+        <button class="btn btn-info ml-auto col" (click)="deleteTermek(termek)">Törlés</button>
+    </div>
+</div>
+
+<div class="row">
+  <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
+    <button class="btn btn-info ml-auto col" (click)="orgAdminKeres()">OrgAdmin</button>
+</div>
+<div *ngIf="userRoles.get('ADMIN')" class="col">
+    <button class="btn btn-info ml-auto col" (click)="adminKeres()">Admin</button>
+</div>
+</div>
+
+<div>
+  <select [(ngModel)]="currentOrganization" type="text" id="description"
+  class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+  <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+</select>
+  <button class="btn btn-info ml-auto col" (click)="orgRequest()">Lekérés</button>
+</div>
+>>>>>>> 785db717b277438c2dd7e944df8e9f3cf06c0101

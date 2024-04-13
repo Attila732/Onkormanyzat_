@@ -74,7 +74,7 @@ export class BodyComponent implements OnInit, OnDestroy {
 
             if (this.user != null && this.userRoles.get('ORG_ADMIN')) {
               this.subscriptions.push(
-                this.newsService.getOrgsForUser(this.user.userId, 0).subscribe({
+                this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
                   next: (res: any) => {
                     this.orgs = res;
                   },
