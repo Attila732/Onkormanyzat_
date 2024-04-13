@@ -18,7 +18,7 @@ export class JelenteskezeloService {
 
   postJelentes(body: BejelentesAdatok) {
     console.log("postService ", body)
-    this.http.post(this.url+"new", body).subscribe((res: any) => { console.log("notice submitted ", res) });
+    return this.http.post(this.url+"new", body)
   }
 
   updateJelentes(body: any) {

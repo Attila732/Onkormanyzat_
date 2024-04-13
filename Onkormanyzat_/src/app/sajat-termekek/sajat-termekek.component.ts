@@ -14,22 +14,27 @@ import { TermekkezeloService } from '../termekkezelo.service';
   styleUrls: ['./sajat-termekek.component.css']
 })
 export class SajatTermekekComponent implements OnInit, OnDestroy {
-  showSellerInfo: boolean = false;
-  eladoTermek: EladoTermekAdatok = new EladoTermekAdatok();
-  buttonClicked = false;
+  private user: ProfilAdatok | null = null;
   userRoles: any;
+  
+  buttonClicked = false;
   admin: boolean = false;
-  orgAdmin: boolean = false;
+  // orgAdmin: boolean = false;
+  
   currentOrganization:any;
   orgs: { id: string; name: string }[] = [];
-  private user: ProfilAdatok | null = null;
+  
+  eladoTermek: EladoTermekAdatok = new EladoTermekAdatok();
+  termekek: EladoTermekAdatok[] = [];
+  
   private subscriptions: Subscription[] = [];
+  
+  
   conditions = [
     { key: 'new', text: 'Új' },
     { key: 'newish', text: 'Újszerű' },
     { key: 'used', text: 'Használt' },
   ];
-  termekek: EladoTermekAdatok[] = [];
 
   constructor(
     private auth: AuthService,
@@ -37,20 +42,7 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     private ImageS: ImagesService
   ) {}
 
-  // getUserInfo() {
-  //   this.subscriptions.push(
-  //     this.auth.getUser().subscribe(
-  //       (res: any) => {
-  //         this.user = res
-  //         this.getSajatTermekek()
-  //       })
-  //   );
-  //   this.subscriptions.push(
-  //     this.auth
-  //       .getUserRoles()
-  //       .subscribe((roles: Map<String, boolean>) => (this.userRoles = roles))
-  //   );
-  // }
+
 
   getUserInfo() {
     this.subscriptions.push(
@@ -107,18 +99,12 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
           next: (res: any) => {
             console.log("getSajatTermekek res: ",res)
             this.termekek = res;
-            // this.addBoolErdekel();
           },
         })
       );
     }
     }
-    
-  //   addBoolErdekel() {
-  //     this.termekek.forEach((element) => {
-  //     element['erdekel'] = false;
-  //   });
-  // }
+
 
   onSubmit() {
     this.buttonClicked = true;
@@ -190,9 +176,9 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     )
   }
 
-  orgAdminKeres(){
-    this.orgAdmin = !this.orgAdmin
-  }
+  // orgAdminKeres(){
+  //   this.orgAdmin = !this.orgAdmin
+  // }
 
   adminKeres(){
     this.admin = !this.admin

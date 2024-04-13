@@ -9,4 +9,6 @@ export class ProfilKezeloServiceService {
   profiladatok:ProfilAdatok= new ProfilAdatok();
 
   constructor() { }
+
+  //TODO:anything?
 }

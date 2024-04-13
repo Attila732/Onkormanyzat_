@@ -38,52 +38,52 @@ import { SajatSzervezesekComponent } from './sajat-szervezesek/sajat-szervezesek
 import { OrgAdminComponent } from './org-admin/org-admin.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BodyComponent,
-    NavComponent,
-    EladoTermekComponent,
-    OrvosEgyebUgyekComponent,
-    OrvosIdopontfoglalasComponent,
-    OrvosNyitvatartasComponent,
-    TuzszabalyokComponent,
-    SzervezesComponent,
-    SzervezeskezdemenyComponent,
-    JelenteskezeloComponent,
-    LoginComponent,
-    SignUpComponent,
-    ProfilComponent,
-    HibaComponent,
-    BTCCompComponent,
-    ProfilSzerkesztesComponent,
-    FilePickerDirective,
-    FelhaszkezelesComponent,
-    SajatTermekekComponent,
-    SajatJelentesekComponent,
-    SajatIdopontokComponent,
-    SajatSzervezesekComponent,
-    OrgAdminComponent,
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    RouterModule.forRoot([]),
-    NgbModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    NgbDropdownModule, 
-    NgbNavModule,
-    HttpClientModule,
-    MatTabsModule,
-    MatTableModule,
-    
-  ],
-  providers: [
-    {provide:APP_BASE_HREF, useValue:'/client'},//Adds /client/ to all frontend urls
-    { provide: HTTP_INTERCEPTORS, useClass: XsrfInterceptor, multi: true }, //sets csrf protection header on all mutating requests
-    //CookieService
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		BodyComponent,
+		NavComponent,
+		EladoTermekComponent,
+		OrvosEgyebUgyekComponent,
+		OrvosIdopontfoglalasComponent,
+		OrvosNyitvatartasComponent,
+		TuzszabalyokComponent,
+		SzervezesComponent,
+		SzervezeskezdemenyComponent,
+		JelenteskezeloComponent,
+		LoginComponent,
+		SignUpComponent,
+		ProfilComponent,
+		HibaComponent,
+		BTCCompComponent,
+		ProfilSzerkesztesComponent,
+		FilePickerDirective,
+		FelhaszkezelesComponent,
+		SajatTermekekComponent,
+		SajatJelentesekComponent,
+		SajatIdopontokComponent,
+		SajatSzervezesekComponent,
+		OrgAdminComponent,
+	],
+	imports: [
+		BrowserModule,
+		ReactiveFormsModule,
+		AppRoutingModule,
+		RouterModule.forRoot([]),
+		NgbModule,
+		FormsModule,
+		BrowserAnimationsModule,
+		NgbDropdownModule,
+		NgbNavModule,
+		HttpClientModule,
+		MatTabsModule,
+		MatTableModule,
+
+	],
+	providers: [
+		{ provide: APP_BASE_HREF, useValue: '/client' },//Adds /client/ to all frontend urls
+		{ provide: HTTP_INTERCEPTORS, useClass: XsrfInterceptor, multi: true }, //sets csrf protection header on all mutating requests
+		//CookieService
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

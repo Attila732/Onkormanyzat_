@@ -7,7 +7,7 @@
 
 			<div class="form-group">
 				<label for="type">Válasszon típust:</label>
-				<select [(ngModel)]="bejelentesModel.type"
+				<select [(ngModel)]="ujBejelentes.type"
 					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 					id="type" name="type" required>
 					<option value="KOZTERULET">Közterületi</option>
@@ -21,42 +21,42 @@
 
 			<div class="form-group">
 				<label for="sulyossag">Súlyosság:</label>
-				<select [(ngModel)]="bejelentesModel.urgency"
+				<select [(ngModel)]="ujBejelentes.urgency"
 					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 					id="sulyossag" name="sulyossag" required>
 					<!-- Rang-zárolt jelentések -->
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
+					<option value="1">Nagyon Súlyos</option>
+					<option value="2">Súlyos</option>
+					<option value="3">Zavaró</option>
+					<option value="4">Meh</option>
+					<option value="5">Megjegyzés</option>
 				</select>
 			</div>
 
 			<div class="form-group">
 				<label for="telefonszam">Telefonszám:</label>
-				<input [(ngModel)]="bejelentesModel.phone" type="tel"
+				<input [(ngModel)]="ujBejelentes.phone" type="tel"
 					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 					id="telefonszam" name="telefonszam" required>
 			</div>
 
 			<div class="form-group">
 				<label for="description">Leírás:</label>
-				<input [(ngModel)]="bejelentesModel.description" type="text"
+				<input [(ngModel)]="ujBejelentes.description" type="text"
 					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 					id="description" name="description" required>
 			</div>
 
 			<div class="form-group">
 				<label for="helyszin">Helyszín:</label>
-				<input [(ngModel)]="bejelentesModel.location" type="text"
+				<input [(ngModel)]="ujBejelentes.location" type="text"
 					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 					id="helyszin" name="helyszin" required>
 			</div>
 
 			<div class="form-group">
 				<label for="idopont">Ekkor:</label>
-				<input [(ngModel)]="bejelentesModel.date" type="datetime-local"
+				<input [(ngModel)]="ujBejelentes.date" type="datetime-local"
 					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 					id="idopont" name="idopont" required>
 			</div>
@@ -69,7 +69,7 @@
 
 	<div *ngFor="let jelentes of jelentesek" class="row">
 		<div class="col">
-			<select [(ngModel)]="bejelentesModel.type" [value]="jelentes.type"
+			<select [(ngModel)]="ujBejelentes.type" [value]="jelentes.type"
 				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 				id="type" name="type" required>
 				<option value="KOZTERULET">Közterületi</option>
@@ -81,15 +81,15 @@
 			</select>
 		</div>
 		<div class="col">
-			<select [(ngModel)]="bejelentesModel.urgency" [value]="jelentes.urgency"
+			<select [(ngModel)]="ujBejelentes.urgency" [value]="jelentes.urgency"
 				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 				id="sulyossag" name="sulyossag" required>
 				<!-- Rang-zárolt jelentések -->
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
+				<option value="1">Nagyon Súlyos</option>
+				<option value="2">Súlyos</option>
+				<option value="3">Zavaró</option>
+				<option value="4">Meh</option>
+				<option value="5">Megjegyzés</option>
 			</select>
 		</div>
 		<div class="col">

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { JelenteskezeloService } from '../jelenteskezelo.service';
 import { BejelentesAdatok } from '../models/BejelentesAdatok';
 import { AuthService } from '../auth.service';
@@ -11,24 +11,32 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './sajat-jelentesek.component.html',
   styleUrls: ['./sajat-jelentesek.component.css']
 })
-export class SajatJelentesekComponent implements OnDestroy{
-
-  bejelentesModel = new BejelentesAdatok()
+export class SajatJelentesekComponent implements OnInit, OnDestroy{
+  
   private user: ProfilAdatok | null = null;
-  private subscription:Subscription[]=[]
-  orgs: { id: string; name: string }[] = [];
-  userRoles: any;
+  private userRoles: any;
+
   admin: boolean = false;
   orgAdmin: boolean = false;
   orgBooleanJelentesek: boolean = false;
+  
+  orgs: { id: string; name: string }[] = [];
   currentOrganization: {id: string, name: string}={id:"", name:""};
-
+  
+  ujBejelentes = new BejelentesAdatok()
+  
   jelentesek: BejelentesAdatok[] = [];
   jelentesekOrg: BejelentesAdatok[] = [];
+  private subscription:Subscription[]=[]
 
-  constructor(private jelenteskezeloservice: JelenteskezeloService, private auth: AuthService) {
+  constructor(private jelenteskezeloservice: JelenteskezeloService, private auth: AuthService) {}
+
+
+  ngOnInit(): void {
     this.getUserInfo()
   }
+
+
   getUserInfo() {
     this.subscription.push(
       this.auth.getUser().subscribe((res: any) => {
@@ -52,24 +60,20 @@ export class SajatJelentesekComponent implements OnDestroy{
     );
   }
 
+
   inputForm() {
     console.log("input submit User: ",this.user)
     if (this.user != null) {
-      this.bejelentesModel.userId = this.user.userId;
-      console.log(this.bejelentesModel)
-      this.jelenteskezeloservice.postJelentes(this.bejelentesModel);
+      this.ujBejelentes.userId = this.user.userId;
+      console.log(this.ujBejelentes)
+      this.jelenteskezeloservice.postJelentes(this.ujBejelentes).subscribe(
+        (res: any) => { 
+          console.log("notice submitted ", res) 
+        });
     }
     
   }
   
-  ngOnDestroy(): void {
-    if (this.subscription != null) {
-      this.subscription.forEach(element => {
-        element.unsubscribe();        
-      });
-    }
-  }
-
   getSajatJelentes() {
     if (this.user != null) { 
       this.subscription.push(
@@ -95,6 +99,7 @@ export class SajatJelentesekComponent implements OnDestroy{
     )
   }
 
+
   orgAdminKeres(){
     this.orgAdmin = !this.orgAdmin
   }
@@ -102,6 +107,7 @@ export class SajatJelentesekComponent implements OnDestroy{
   adminKeres(){
     this.admin = !this.admin
   }
+  
 
   orgRequest(){
     if (this.currentOrganization != null) {
@@ -126,11 +132,11 @@ export class SajatJelentesekComponent implements OnDestroy{
       (res:any)=>{console.log("siker")}
     )
   }
-
+  
   loadOrgsAdatok(pageNum: number, name: string){
     return this.jelenteskezeloservice.searchName( pageNum, name)
   }
-
+  
   searchPeople = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(300),
@@ -139,16 +145,24 @@ export class SajatJelentesekComponent implements OnDestroy{
       switchMap((searchTerm) => this.loadOrgsAdatok(0, searchTerm))
     );
 
-
-  resultFormatter = (result: {id: string, name: string}) => `${result.name}`;
-  inputFormatter = (result: {id: string, name: string}) => `${result.name}`;
-
-
-
+    
+    resultFormatter = (result: {id: string, name: string}) => `${result.name}`;
+    inputFormatter = (result: {id: string, name: string}) => `${result.name}`;
+    
+    
+    
   onSelectItem(event: NgbTypeaheadSelectItemEvent<{id: string, name: string}>) {
     event.preventDefault()
     console.log(event.item.name)
     this.currentOrganization=event.item;
 
+  }
+  
+  ngOnDestroy(): void {
+    if (this.subscription != null) {
+      this.subscription.forEach(element => {
+        element.unsubscribe();        
+      });
+    }
   }
 }

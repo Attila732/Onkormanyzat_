@@ -82,7 +82,7 @@
 	</form>
 </div>
 
-{{termekek|json}}
+<!-- {{termekek|json}} -->
 
 
 <div *ngFor="let termek of termekek" class="grid grid-cols-8 gap-4">
@@ -147,9 +147,9 @@
 </div>
 
 <div class="row">
-	<div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
+	<!-- <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
 		<button class="btn btn-info ml-auto col" (click)="orgAdminKeres()">OrgAdmin</button>
-	</div>
+	</div> -->
 	<div *ngIf="userRoles.get('ADMIN')" class="col">
 		<button class="btn btn-info ml-auto col" (click)="adminKeres()">Admin</button>
 	</div>

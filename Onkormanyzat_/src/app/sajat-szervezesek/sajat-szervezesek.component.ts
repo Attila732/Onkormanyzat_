@@ -12,18 +12,21 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./sajat-szervezesek.component.css']
 })
 export class SajatSzervezesekComponent implements OnInit, OnDestroy{
-  szervezesModel = new SzervezesAdatok()
-  private user: ProfilAdatok | null = null;
-  private subscription:Subscription[]= []
-  szervezesOrg: SzervezesAdatok[] = [];
-  orgs: { id: string; name: string }[] = [];
+  private user: ProfilAdatok | null = null
   userRoles: any;
+  
   admin: boolean = false;
   orgAdmin: boolean = false;
   orgBooleanSzervezesek: boolean = false;
-  currentOrganization: {id: string, name: string}={id:"", name:""};
+  
+  orgs: { id: string; name: string }[] = []
+  currentOrganization: {id: string, name: string}={id:"", name:""}
+  
+  ujSzervezes = new SzervezesAdatok()
+  szervezesek: SzervezesAdatok[] = []
+  szervezesOrg: SzervezesAdatok[] = []
 
-  szervezesek: SzervezesAdatok[] = [];
+  private subscription:Subscription[]= []
 
   constructor(private szervezesService:SzervezesService, private auth: AuthService){
 
@@ -56,8 +59,8 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   }
   inputForm() {
     if (this.user != null) {
-      this.szervezesModel.userId = this.user.userId;
-      this.szervezesService.postSzervezes(this.szervezesModel);
+      this.ujSzervezes.userId = this.user.userId;
+      this.szervezesService.postSzervezes(this.ujSzervezes);
     }
     
   }  

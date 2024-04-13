@@ -1,14 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { ProfilAdatok } from './models/ProfilAdatok';
 // import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnInit, OnDestroy{
 
   private resUrl = "/resource/";
   private logoutUrl ="/logout/";
@@ -17,13 +17,18 @@ export class AuthService {
   initialRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   private roles = new BehaviorSubject<Map<String,boolean>>(this.initialRoles)
   private attemptedUrl: string ="";
+  subscriptions:Subscription[]=[]
 
   constructor(private http:HttpClient, private router:Router) {
     this.getMyUserInfo()
   }
-
+  ngOnInit(): void {
+    this.getMyUserInfo()
+  }
+  
   private getMyUserInfo(){
-    return this.http.get(this.resUrl+"user/myUserInfo").subscribe({
+    this.subscriptions.push(
+     this.http.get(this.resUrl+"user/myUserInfo").subscribe({
       next:(res:any)=>{
         let nextUser:any=res
         // console.log(res)
@@ -42,7 +47,7 @@ export class AuthService {
         this.user.next(null)
         
       }
-    })
+    }))
   }
   getAuthGuardUser(){
     return this.http.get(this.resUrl+"user/myUserInfo")
@@ -98,4 +103,10 @@ export class AuthService {
     this.router.navigate(['/']);
   
   }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(element => {
+      element.unsubscribe()
+    });
+  }
+
 }

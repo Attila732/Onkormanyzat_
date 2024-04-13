@@ -36,7 +36,10 @@ export class JelenteskezeloComponent implements OnDestroy{
     if (this.user != null) {
       this.bejelentesModel.userId = this.user.userId;
       console.log(this.bejelentesModel)
-      this.jelenteskezeloservice.postJelentes(this.bejelentesModel);
+      this.jelenteskezeloservice.postJelentes(this.bejelentesModel).subscribe(
+        (res: any) => { 
+          console.log("notice submitted ", res) 
+        });
     }
     
   }
