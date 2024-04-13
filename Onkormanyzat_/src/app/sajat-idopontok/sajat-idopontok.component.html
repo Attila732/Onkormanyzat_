@@ -140,6 +140,6 @@
 
 <div *ngIf="admin">
 <div class="col">
-  <input [value]="currentOrganization" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control"/>
+  <input [value]="currentOrganization.name" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control"/>
 </div>
 </div>

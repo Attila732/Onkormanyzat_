@@ -44,18 +44,18 @@ getSajatIdopontokOrg(id: any) {
   return this.http.get(this.orgUrl + "sajat/" + id)
 }
 
-searchName(pageNum:any, name:any){
+searchName(pageNum:number, name:string){
   const opt = {
     params: new HttpParams()
       .append("pageNum", pageNum)
       .append("name", name)}
-  return this.http.get<{id:string, name: string}>("/resource/org/search/name/", opt).pipe(
+  return this.http.get("/resource/org/search/name", opt).pipe(
     map((res:any) => {
-      console.log('Successfully got person:', res.content);
-      return res.content;
+      console.log('Successfully got org:', res);
+      return res;
     }),
     catchError((error) => {
-      console.error('Error in getPersonByName:', error);
+      console.error('Error in getorgByName:', error);
       return throwError(() => error);
     })
   )

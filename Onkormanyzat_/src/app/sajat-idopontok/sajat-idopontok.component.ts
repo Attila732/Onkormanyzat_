@@ -25,7 +25,7 @@ export class SajatIdopontokComponent {
   admin: boolean = false;
   orgAdmin: boolean = false;
   orgBooleanIdopontok: boolean = false;
-  currentOrganization: any;
+  currentOrganization: {id: string, name: string}={id:"", name:""};
   
   constructor(private idopontservice:IdopontService, private auth: AuthService){
     this.getUserInfo()
