@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth.service';
 import { JelenteskezeloService } from '../jelenteskezelo.service';
 import { BejelentesAdatok } from '../models/BejelentesAdatok';
-import { AuthService } from '../auth.service';
 import { ProfilAdatok } from '../models/ProfilAdatok';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-jelenteskezelo',
@@ -11,15 +11,21 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./jelenteskezelo.component.css']
 })
 export class JelenteskezeloComponent implements OnDestroy{
-  bejelentesModel = new BejelentesAdatok()
+  bejelentesModel = new BejelentesAdatok( )
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[]=[]
-  currentDate: string;
+  currentDateTime: string = this.getCurrentDateTime();
+
+
   constructor(private jelenteskezeloservice: JelenteskezeloService, private auth: AuthService) {
     this.getUserInfo()
     const now = new Date();
-    this.currentDate = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
   }
+  getCurrentDateTime(): string {
+    const now = new Date();
+    return now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
+  }
+  
   getUserInfo(){
     this.subscription.push(this.auth.getUser().subscribe(
       (res: any) => this.user = res

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfilAdatok } from '../models/ProfilAdatok';
+import { AdminAdatok } from '../models/AdminAdatok';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ProfilComponent implements OnInit {
     nev: 'John Doe',
     telefon: '123-456-7890',
     lakhely: 'Budapest',
-    profileImage: '' // Hozzáadva: profilkép
+
   };
 
   isEditing = false;
@@ -47,7 +48,7 @@ export class ProfilComponent implements OnInit {
   readImage(file: File) {
     const reader = new FileReader();
     reader.onloadend = () => {
-      this.user.profileImage = reader.result as string;
+      AdminAdatok
     };
     reader.readAsDataURL(file);
   }

@@ -122,7 +122,7 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy{
 
   orgRequest(){
     if (this.currentOrganization != null) {
-      this.idopontservice.getSajatIdopontokOrg(this.currentOrganization).subscribe(
+      this.idopontservice.getSajatIdopontokOrg(this.currentOrganization.id).subscribe(
         (res:any)=>{
           console.log(res)
           this.idopontokOrg = res
@@ -132,14 +132,14 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy{
     }
   }
 
-  updateOrgIdopont(termek:any){
-    this.idopontservice.updateIdopontOrg(termek).subscribe(
+  updateOrgIdopont(idopont:any){
+    this.idopontservice.updateIdopontOrg(idopont).subscribe(
       (res:any)=>{console.log(res)}
     );
   }
   
-  deleteOrgIdopont(termek:any){
-    this.idopontservice.deleteIdopontOrg(termek.userId).subscribe(
+  deleteOrgIdopont(idopont:any){
+    this.idopontservice.deleteIdopontOrg(idopont.userId).subscribe(
       (res:any)=>{console.log("siker")}
     )
   }
