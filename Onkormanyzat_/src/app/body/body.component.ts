@@ -123,7 +123,6 @@ export class BodyComponent implements OnInit, OnDestroy {
     }
   }
   deleteLocalNews(news: any) {
-    // Implement logic to delete local news from array
     const index = this.local.indexOf(news);
     if (index !== -1) {
       this.local.splice(index, 1);
