@@ -10,7 +10,6 @@ export class SzervezesService {
   szervezesadatok:SzervezesAdatok= new SzervezesAdatok();
 
   url = "resource/event/";
-  orgUrl = "resource/org/event";
 
   constructor(private http:HttpClient){
 
@@ -33,15 +32,15 @@ export class SzervezesService {
   }
 
   updateSzervezesOrg(body: any) {
-    return this.http.put(this.orgUrl + body.id, body)
+    return this.http.put(this.url + + body.id, body)
   }
   
   deleteSzervezesOrg(id: any) {
-    return this.http.delete(this.orgUrl + "del/" + id)
+    return this.http.delete(this.url + "del/" + id)
   }
   
   getSajatSzervezesekOrg(id: any) {
-    return this.http.get(this.orgUrl + "sajat/" + id)
+    return this.http.get(this.url + "sajat/" + id)
   }
   
   searchName(value:string, pageNum:number, category:string){
@@ -50,7 +49,7 @@ export class SzervezesService {
         .append("value", value)
         .append("pageNum", pageNum)
         .append("category", category)}
-    return this.http.get("/resource/org/search/name", opt).pipe(
+    return this.http.get("/resource/event/search", opt).pipe(
       map((res:any) => {
         console.log('Successfully got org:', res);
         return res;
