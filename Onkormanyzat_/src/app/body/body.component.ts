@@ -122,6 +122,12 @@ export class BodyComponent implements OnInit, OnDestroy {
       });
     }
   }
+  deleteLocalNews(news: any) {
+    const index = this.local.indexOf(news);
+    if (index !== -1) {
+      this.local.splice(index, 1);
+    }
+  }
   deleteNews(news: Hir) {
     this.newsService.deleteNews(news.id).subscribe(
       (res:any)=>{console.log("siker")}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { AuthService } from '../auth.service';
@@ -11,7 +11,7 @@ import { ProfilAdatok } from '../models/ProfilAdatok';
   templateUrl: './sajat-idopontok.component.html',
   styleUrls: ['./sajat-idopontok.component.css']
 })
-export class SajatIdopontokComponent {
+export class SajatIdopontokComponent implements OnInit, OnDestroy{
 
   idopontModel = new IdopontAdatok()
   private user: ProfilAdatok | null = null;
@@ -27,11 +27,15 @@ export class SajatIdopontokComponent {
   currentOrganization: {id: string, name: string}={id:"", name:""};
   
   constructor(private idopontservice:IdopontService, private auth: AuthService){
+
+  }
+  ngOnInit(): void {
     this.getUserInfo()
     this.getOrvosok()
   }
 
   getOrvosok(){
+    this.subscription.push(
     this.idopontservice.getOrvosok(0).subscribe({
       next:(res:any)=>{
         console.log(res)
@@ -39,7 +43,7 @@ export class SajatIdopontokComponent {
 
       },
       error:(err:any)=>console.log(err)
-    })
+    }))
   }
   getUserInfo() {
     this.subscription.push(
