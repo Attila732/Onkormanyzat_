@@ -44,6 +44,8 @@
           <li class="border-bottom" *ngFor="let hir of local">
             <p class="font-semibold">{{hir.title}}</p>
             <p>{{hir.content}}</p>
+            <button (click)="deleteLocalNews(hir)" class="delete-button">Delete</button>
+            <button (click)="editLocalNews(hir)" class="edit-button">Edit</button>
           </li>
           <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
@@ -83,6 +85,8 @@
           <li class="border-bottom" *ngFor="let hir of national">
             <p class="font-semibold">{{hir.title}}</p>
             <p>{{hir.content}}</p>
+            <button (click)="deleteNationalNews(national)" class="delete-button">Delete</button>
+              <button (click)="editNationalNews(national)" class="edit-button">Edit</button>
           </li>
           <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
@@ -107,6 +111,8 @@
               Sportiskola
               U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi
               Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
+              <button (click)="deleteNationalNews(local)" class="delete-button">Delete</button>
+              <button (click)="editNationalNews(local)" class="edit-button">Edit</button>
           </li>
         </div>
       </ul>

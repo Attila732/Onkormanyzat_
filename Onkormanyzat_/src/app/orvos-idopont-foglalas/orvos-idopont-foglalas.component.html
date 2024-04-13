@@ -1,10 +1,13 @@
-<div class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+<div
+  class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
   <div class="card-body py-3 px-2 md:px-5">
     <h2 class="text-2xl md:text-3xl lg:text-4xl">Foglaljon időpontot!</h2>
     <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
       <div class="form-group">
         <label for="nev">Név:</label>
-        <input [(ngModel)]="idopontModel.name" type="text" id="nev" name="nev"  class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required>
+        <input [(ngModel)]="idopontModel.name" type="text" id="nev" name="nev"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          required>
       </div>
 
       <label for="type">Válasszon orvost:</label>
@@ -18,21 +21,32 @@
 
       <div class="form-group">
         <label for="telefonszam">Telefonszám:</label>
-        <input [(ngModel)]="idopontModel.phone" type="tel" id="telefonszam" name="telefonszam"  class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required>
+        <input [(ngModel)]="idopontModel.phone" type="tel" id="telefonszam" name="telefonszam"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          required>
       </div>
       <div class="form-group">
         <label for="telefonszam">Email:</label>
-        <input [(ngModel)]="idopontModel.email" type="text" id="email" name="email"  class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required>
+        <input [(ngModel)]="idopontModel.email" type="text" id="email" name="email"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          required>
       </div>
 
-      <label for="birthdaytime">Időpont:</label>
+      <!-- <label for="birthdaytime">Időpont:</label>
       <input [(ngModel)]="idopontModel.startDate" type="datetime-local" id="datum" name="datum" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required>
       <label for="birthdaytime">Időpont vége:</label>
-      <input [(ngModel)]="idopontModel.endDate" type="datetime-local" id="datumvege" name="datum" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required>
-      <script>
-        
-      </script>
-      <button type="submit" class="w-full md:w-[30%] text-xl md:text-2xl lg:text-3xl text-cstm-dark_gray hover:text-cstm-gray mt-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" [disabled]="!idopontForm.valid">Időpont foglalása</button>
+      <input [(ngModel)]="idopontModel.endDate" type="datetime-local" id="datumvege" name="datum" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required> -->
+      <label for="startDate">Kezdés:</label>
+      <input [(ngModel)]="idopontModel.startDate" type="datetime-local" id="startDate" name="startDate" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+        required [min]="currentDate">
+
+      <label for="endDate">Vége:</label>
+      <input [(ngModel)]="idopontModel.endDate" type="datetime-local" id="endDate" name="endDate" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required
+        [min]="idopontModel.startDate">
+
+      <button type="submit"
+        class="w-full md:w-[30%] text-xl md:text-2xl lg:text-3xl text-cstm-dark_gray hover:text-cstm-gray mt-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+        [disabled]="!idopontForm.valid">Időpont foglalása</button>
     </form>
   </div>
 </div>

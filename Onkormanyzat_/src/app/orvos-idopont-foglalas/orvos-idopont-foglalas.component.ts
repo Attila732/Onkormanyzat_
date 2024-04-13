@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IdopontAdatok } from '../models/IdopontAdatok';
-import { IdopontService } from '../idopont.service';
-import { ProfilAdatok } from '../models/ProfilAdatok';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { IdopontService } from '../idopont.service';
+import { IdopontAdatok } from '../models/IdopontAdatok';
+import { ProfilAdatok } from '../models/ProfilAdatok';
 
 @Component({
   selector: 'app-orvosidopontfoglalas',
@@ -13,10 +13,13 @@ import { AuthService } from '../auth.service';
 export class OrvosIdopontfoglalasComponent {
   idopontModel = new IdopontAdatok()
   private user: ProfilAdatok | null = null;
-  private subscription:Subscription[] =[]
+  private subscription:Subscription[] =[];
+  currentDate: string;
 
   constructor(private idopontservice:IdopontService, private auth: AuthService){
     this.getUserInfo()
+    const now = new Date();
+    this.currentDate = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
   }
 
   getUserInfo(){

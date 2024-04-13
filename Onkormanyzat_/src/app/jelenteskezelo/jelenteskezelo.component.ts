@@ -14,9 +14,11 @@ export class JelenteskezeloComponent implements OnDestroy{
   bejelentesModel = new BejelentesAdatok()
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[]=[]
-
+  currentDate: string;
   constructor(private jelenteskezeloservice: JelenteskezeloService, private auth: AuthService) {
     this.getUserInfo()
+    const now = new Date();
+    this.currentDate = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
   }
   getUserInfo(){
     this.subscription.push(this.auth.getUser().subscribe(
