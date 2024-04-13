@@ -69,11 +69,11 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy{
   }
 
   inputForm() {
-    console.log("form submit User: ", this.user)
-    console.log("form submit idopont: ", this.idopontModel)
     if (this.user != null) {
       this.idopontModel['preferredName']=this.idopontModel.name
       this.idopontModel.userId = this.user.userId;
+      console.log("form submit User: ", this.user)
+      console.log("form submit idopont: ", this.idopontModel)
       this.idopontservice.postIdopont(this.idopontModel);
     }
     
@@ -93,7 +93,7 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy{
         this.idopontservice.getSajatIdopontok(this.user.userId).subscribe({
           next: (res: any) => {
             this.idopontok = res;
-            // this.addBoolErdekel();
+            console.log("getSajatIdopontok, idopontok: ",this.idopontok)
           },
         })
       );
@@ -102,13 +102,13 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy{
 
   updateSajatIdopont(termek:any){
     this.idopontservice.updateIdopont(termek).subscribe(
-      (res:any)=>{console.log(res)}
+      (res:any)=>{console.log("updateSajatIdopont",res)}
     );
   }
   
   deleteSajatIdopont(termek:any){
     this.idopontservice.deleteIdopont(termek.userId).subscribe(
-      (res:any)=>{console.log("siker")}
+      (res:any)=>{console.log("deleteSajatIdopont siker")}
     )
   }
 

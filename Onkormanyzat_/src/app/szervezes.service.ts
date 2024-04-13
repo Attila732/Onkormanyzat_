@@ -16,7 +16,7 @@ export class SzervezesService {
   }
 
   postSzervezes(body:SzervezesAdatok){
-    this.http.post(this.url+"new/", body).subscribe();
+    return this.http.post(this.url+"new/", body)
   };
 
   updateSzervezes(body: any) {

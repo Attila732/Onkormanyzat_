@@ -17,11 +17,8 @@ export class AuthService {
   initialRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   private roles = new BehaviorSubject<Map<String,boolean>>(this.initialRoles)
   private attemptedUrl: string ="";
-  constructor(private http:HttpClient, private router:Router, 
-    
-    //private cookie:CookieService
 
-  ) {
+  constructor(private http:HttpClient, private router:Router) {
     this.getMyUserInfo()
   }
 
@@ -38,7 +35,7 @@ export class AuthService {
         this.roles.next(this.initialRoles)
         nextUser.roles=this.initialRoles
         this.user.next((nextUser as ProfilAdatok))
-        console.log("fetched userDetails")
+        console.log("fetched userDetails",nextUser)
       },
       error:(err)=>{
         console.log("error fetching userDetails"+ err)
@@ -51,6 +48,9 @@ export class AuthService {
     return this.http.get(this.resUrl+"user/myUserInfo")
   }
   getUser():BehaviorSubject<ProfilAdatok|null>{
+    if (this.user.getValue()==null) {
+      this.getMyUserInfo()
+    }
     return this.user;
   }
   getUserRoles(){
