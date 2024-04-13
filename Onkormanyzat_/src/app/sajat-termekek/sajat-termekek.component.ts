@@ -25,7 +25,7 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     { key: 'newish', text: 'Újszerű' },
     { key: 'used', text: 'Használt' },
   ];
-  termekek: TermekKepekkel[] = [];
+  termekek: EladoTermekAdatok[] = [];
 
   constructor(
     private auth: AuthService,
@@ -34,7 +34,11 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   ) {}
   getUserInfo() {
     this.subscriptions.push(
-      this.auth.getUser().subscribe((res: any) => (this.user = res))
+      this.auth.getUser().subscribe(
+        (res: any) => {
+          this.user = res
+          this.getSajatTermekek()
+        })
     );
     this.subscriptions.push(
       this.auth
@@ -61,7 +65,7 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.getSajatTermekek();
+    // this.getSajatTermekek();
   }
 
   getSajatTermekek() {
@@ -144,7 +148,8 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     this._buttonPicker.reset();
   }
 
-  updateTermek(termek:any){
+  updateTermek(termek:EladoTermekAdatok){
+    console.log(termek)
     this.termekService.updateTermek(termek).subscribe(
       (res:any)=>{console.log(res)}
     );
