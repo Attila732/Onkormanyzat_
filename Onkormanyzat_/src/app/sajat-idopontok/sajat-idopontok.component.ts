@@ -16,7 +16,7 @@ export class SajatIdopontokComponent {
   idopontModel = new IdopontAdatok()
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[] =[]
-  
+  orvosok:{id: string, name: string}[]=[]
   idopontok: IdopontAdatok[] = [];
   idopontokOrg: IdopontAdatok[] = [];
   orgs: { id: string; name: string }[] = [];
@@ -28,8 +28,19 @@ export class SajatIdopontokComponent {
   
   constructor(private idopontservice:IdopontService, private auth: AuthService){
     this.getUserInfo()
+    this.getOrvosok()
   }
 
+  getOrvosok(){
+    this.idopontservice.getOrvosok(0).subscribe({
+      next:(res:any)=>{
+        console.log(res)
+        this.orvosok=res
+
+      },
+      error:(err:any)=>console.log(err)
+    })
+  }
   getUserInfo() {
     this.subscription.push(
       this.auth.getUser().subscribe((res: any) => {
@@ -108,7 +119,9 @@ export class SajatIdopontokComponent {
   orgRequest(){
     if (this.currentOrganization != null) {
       this.idopontservice.getSajatIdopontokOrg(this.currentOrganization).subscribe(
-        (res:any)=>{this.idopontokOrg = res
+        (res:any)=>{
+          console.log(res)
+          this.idopontokOrg = res
           this.orgBooleanIdopontok = true;
         }
       )

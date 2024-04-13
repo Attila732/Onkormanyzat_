@@ -19,7 +19,7 @@ export class SzervezesService {
   };
 
   updateSzervezes(body: any) {
-    return this.http.put("*" + body.id, body)
+    return this.http.put(this.url + body.id, body)
   }
 
   deleteSzervezes(id: any) {

@@ -9,46 +9,48 @@ import { catchError, map, throwError } from 'rxjs';
 export class IdopontService {
   idopontadatok:IdopontAdatok= new IdopontAdatok();
 
-  userUrl = "resource/user/reservation/";
-  orgUrl = "resource/org/reservation/";
+  userResUrl = "/resource/user/reservation/";
+  orgResUrl = "/resource/org/reservation/";
+  orgUrl = "/resource/org/search/category/part"
 
   constructor(private http:HttpClient){
 
   }
 
   postIdopont(body:IdopontAdatok){
-    this.http.post(this.userUrl+"new/", body).subscribe((res:any)=>{console.log("successful post",res)});
+    this.http.post(this.userResUrl+"new/", body).subscribe((res:any)=>{console.log("successful post",res)});
 }
 
 updateIdopont(body: any) {
-  return this.http.put(this.userUrl + body.id, body)
+  return this.http.put(this.userResUrl + body.id, body)
 }
 
 deleteIdopont(id: any) {
-  return this.http.delete(this.userUrl + "del/" + id)
+  return this.http.delete(this.userResUrl + "del/" + id)
 }
 
 getSajatIdopontok(id: any) {
-  return this.http.get(this.userUrl + "sajat/" + id)
+  return this.http.get(this.userResUrl + "sajat/" + id)
 }
 
 updateIdopontOrg(body: any) {
-  return this.http.put(this.orgUrl + body.id, body)
+  return this.http.put(this.orgResUrl + body.id, body)
 }
 
 deleteIdopontOrg(id: any) {
-  return this.http.delete(this.orgUrl + "del/" + id)
+  return this.http.delete(this.orgResUrl + "del/" + id)
 }
 
 getSajatIdopontokOrg(id: any) {
-  return this.http.get(this.orgUrl + "sajat/" + id)
+  return this.http.get(this.orgResUrl + "sajat/" + id)
 }
 
 searchName(pageNum:number, name:string){
   const opt = {
     params: new HttpParams()
       .append("pageNum", pageNum)
-      .append("name", name)}
+      .append("name", name)
+    }
   return this.http.get("/resource/org/search/name", opt).pipe(
     map((res:any) => {
       console.log('Successfully got org:', res);
@@ -60,4 +62,25 @@ searchName(pageNum:number, name:string){
     })
   )
 }
+
+  getOrvosok(pageNum:number){
+    const opt = {
+      params: new HttpParams()
+        .append("pageNum", pageNum)
+        .append("category", "DOCTOR")
+      }
+      return this.http.get(this.orgUrl,opt).pipe(
+        map((res:any) => {
+          console.log('Successfully got orvosok:', res);
+          return res;
+        }),
+        catchError((error) => {
+          console.error('Error in getOrvosok:', error);
+          return throwError(() => error);
+        })
+      )
+
+  }
+
+
 }

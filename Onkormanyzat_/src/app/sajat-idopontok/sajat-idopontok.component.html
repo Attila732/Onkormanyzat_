@@ -12,11 +12,12 @@
 
       <label for="type">Válasszon orvost:</label>
       <select class="form-control" [(ngModel)]="idopontModel.orgId" id="orgId" name="orgId" required>
-        <option value="orgId">orvosok</option>
+        <option *ngFor="let orvos of orvosok" [value]="orvos.id">{{orvos.name}}</option>
+        <!-- <option value="orgId">orvosok</option>
         <option value="1">Dr. Baka Károly: Kardiológus</option>
         <option value="2">Dr. Osbáth László: Háziorvos</option>
         <option value="3">Dr. Kun Béla: Sebész</option>
-        <option value="4">Dr. Madár Katalin: Háziorvos</option>
+        <option value="4">Dr. Madár Katalin: Háziorvos</option> -->
       </select>
 
       <div class="form-group">
