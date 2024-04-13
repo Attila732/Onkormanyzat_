@@ -1,96 +1,202 @@
-<div class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
-    <div class="card-body py-3 px-2 md:px-5">
-      <h2>Jelentéskezelő</h2>
-     
-      <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
-  
-        <div class="form-group">
-          <label  for="type">Válasszon típust:</label>
-          <select [(ngModel)]="bejelentesModel.type" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="type" name="type" required>
-            <option value="KOZTERULET">Közterületi</option>
-            <option value="UTHIBA">Úthiba</option>
-            <!-- Rang-zárolt jelentések -->
-            <option value="VIZGAZ">Víz-gáz</option>
-            <option value="LOMTALANITAS">Lomtalanítás</option>
-            <option value="SZEMETSZALLITAS">Szemétszállítás</option>
-          </select>
-        </div>
+<div
+  class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+  <div class="card-body py-3 px-2 md:px-5">
+    <h2>Jelentéskezelő</h2>
 
-        <div class="form-group">
-          <label  for="sulyossag">Súlyosság:</label>
-          <select [(ngModel)]="bejelentesModel.urgency" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="sulyossag" name="sulyossag" required>
-            <!-- Rang-zárolt jelentések -->
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-  
-        <div class="form-group">
-          <label for="telefonszam">Telefonszám:</label>
-          <input [(ngModel)]="bejelentesModel.phone"  type="tel" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="telefonszam" name="telefonszam" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="description">Leírás:</label>
-          <input [(ngModel)]="bejelentesModel.description" type="text" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="description" name="description"  required>
-        </div>
+    <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
 
-        <div class="form-group">
-          <label for="helyszin">Helyszín:</label>
-          <input [(ngModel)]="bejelentesModel.location" type="text" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="helyszin" name="helyszin"  required>
-        </div>
-  
-        <div class="form-group">
-          <label for="idopont">Ekkor:</label>
-          <input [(ngModel)]="bejelentesModel.date" type="datetime-local" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="idopont" name="idopont"  required>
-        </div>
-  
-        <button type="submit" class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" [disabled]="!idopontForm.valid">Bejelentés Küldése</button>
-      </form>
-    </div>
+      <div class="form-group">
+        <label for="type">Válasszon típust:</label>
+        <select [(ngModel)]="bejelentesModel.type"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          id="type" name="type" required>
+          <option value="KOZTERULET">Közterületi</option>
+          <option value="UTHIBA">Úthiba</option>
+          <!-- Rang-zárolt jelentések -->
+          <option value="VIZGAZ">Víz-gáz</option>
+          <option value="LOMTALANITAS">Lomtalanítás</option>
+          <option value="SZEMETSZALLITAS">Szemétszállítás</option>
+        </select>
+      </div>
 
-    
-    <div *ngFor="let jelentes of jelentesek" class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
-        <div class="form-group">
-          <select [(ngModel)]="bejelentesModel.type" [value]="jelentes.type" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="type" name="type" required>
-            <option value="KOZTERULET">Közterületi</option>
-            <option value="UTHIBA">Úthiba</option>
-            <!-- Rang-zárolt jelentések -->
-            <option value="VIZGAZ">Víz-gáz</option>
-            <option value="LOMTALANITAS">Lomtalanítás</option>
-            <option value="SZEMETSZALLITAS">Szemétszállítás</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <select [(ngModel)]="bejelentesModel.urgency" [value]="jelentes.urgency" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="sulyossag" name="sulyossag" required>
-            <!-- Rang-zárolt jelentések -->
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <div class="form-group">
-            <input [(ngModel)]="jelentes.description" type="text">
-        </div>
-        <div class="form-group">
-            <input [(ngModel)]="jelentes.location" type="text">
-        </div>
-        <div class="form-group">
-            <input [(ngModel)]="jelentes.phone" type="number">
-        </div>
-        <div class="form-group">
-            <input [(ngModel)]="jelentes.date" type="number">
-        </div>
-        <div class="form-group">
-            <button  class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="updateSajatJelentes(jelentes)">Szerkeszt.</button>
-        </div>
-        <div class="form-group">
-            <button  class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="deleteSajatJelentes(jelentes)">Törlés</button>
-        </div>
+      <div class="form-group">
+        <label for="sulyossag">Súlyosság:</label>
+        <select [(ngModel)]="bejelentesModel.urgency"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          id="sulyossag" name="sulyossag" required>
+          <!-- Rang-zárolt jelentések -->
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="telefonszam">Telefonszám:</label>
+        <input [(ngModel)]="bejelentesModel.phone" type="tel"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          id="telefonszam" name="telefonszam" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Leírás:</label>
+        <input [(ngModel)]="bejelentesModel.description" type="text"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          id="description" name="description" required>
+      </div>
+
+      <div class="form-group">
+        <label for="helyszin">Helyszín:</label>
+        <input [(ngModel)]="bejelentesModel.location" type="text"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          id="helyszin" name="helyszin" required>
+      </div>
+
+      <div class="form-group">
+        <label for="idopont">Ekkor:</label>
+        <input [(ngModel)]="bejelentesModel.date" type="datetime-local"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          id="idopont" name="idopont" required>
+      </div>
+
+      <button type="submit"
+        class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+        [disabled]="!idopontForm.valid">Bejelentés Küldése</button>
+    </form>
   </div>
-  
+
+  <div
+  class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+  <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
+    <button
+      class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+      (click)="orgAdminKeres()">OrgAdmin</button>
+  </div>
+  <div *ngIf="userRoles.get('ADMIN')" class="col">
+    <button
+      class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+      (click)="adminKeres()">Admin</button>
+  </div>
+  <div class="">
+    <select [(ngModel)]="currentOrganization" type="text" id="description"
+      class=" md:inline-block w-full md:w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+    </select>
+    <button
+      class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+      (click)="orgRequest()">Lekérés</button>
+  </div>
+</div>
+
+  <div *ngIf="!orgBooleanJelentesek">
+    <div *ngFor="let jelentes of jelentesek"
+      class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+      <div class="form-group">
+        <select [(ngModel)]="bejelentesModel.type" [value]="jelentes.type"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          id="type" name="type" required>
+          <option value="KOZTERULET">Közterületi</option>
+          <option value="UTHIBA">Úthiba</option>
+          <!-- Rang-zárolt jelentések -->
+          <option value="VIZGAZ">Víz-gáz</option>
+          <option value="LOMTALANITAS">Lomtalanítás</option>
+          <option value="SZEMETSZALLITAS">Szemétszállítás</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select [(ngModel)]="bejelentesModel.urgency" [value]="jelentes.urgency"
+          class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+          id="sulyossag" name="sulyossag" required>
+          <!-- Rang-zárolt jelentések -->
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="jelentes.description" type="text">
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="jelentes.location" type="text">
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="jelentes.phone" type="number">
+      </div>
+      <div class="form-group">
+        <input [(ngModel)]="jelentes.date" type="number">
+      </div>
+      <div class="form-group">
+        <button
+          class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+          (click)="updateSajatJelentes(jelentes)">Szerkeszt.</button>
+      </div>
+      <div class="form-group">
+        <button
+          class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+          (click)="deleteSajatJelentes(jelentes)">Törlés</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!orgBooleanJelentesek">
+    <div *ngFor="let jelentes of jelentesek"
+    class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+    <div class="form-group">
+      <select [(ngModel)]="bejelentesModel.type" [value]="jelentes.type"
+      class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+      id="type" name="type" required>
+      <option value="KOZTERULET">Közterületi</option>
+      <option value="UTHIBA">Úthiba</option>
+      <!-- Rang-zárolt jelentések -->
+      <option value="VIZGAZ">Víz-gáz</option>
+      <option value="LOMTALANITAS">Lomtalanítás</option>
+      <option value="SZEMETSZALLITAS">Szemétszállítás</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <select [(ngModel)]="bejelentesModel.urgency" [value]="jelentes.urgency"
+    class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+    id="sulyossag" name="sulyossag" required>
+    <!-- Rang-zárolt jelentések -->
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+</div>
+<div class="form-group">
+  <input [(ngModel)]="jelentes.description" type="text">
+</div>
+<div class="form-group">
+  <input [(ngModel)]="jelentes.location" type="text">
+</div>
+<div class="form-group">
+  <input [(ngModel)]="jelentes.phone" type="number">
+</div>
+<div class="form-group">
+  <input [(ngModel)]="jelentes.date" type="number">
+</div>
+<div class="form-group">
+  <button
+  class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+  (click)="updateSajatJelentes(jelentes)">Szerkeszt.</button>
+</div>
+<div class="form-group">
+  <button
+  class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+  (click)="deleteSajatJelentes(jelentes)">Törlés</button>
+</div>
+</div>
+</div>
+
+  <div *ngIf="admin">
+    <div class="col">
+      <input [value]="currentOrganization.name" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)"
+        [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control" />
+    </div>
+  </div>

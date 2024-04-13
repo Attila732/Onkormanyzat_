@@ -100,14 +100,14 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy{
     }
     }
 
-  updateSajatIdopont(termek:any){
-    this.idopontservice.updateIdopont(termek).subscribe(
+  updateSajatIdopont(idopont:any){
+    this.idopontservice.updateIdopont(idopont).subscribe(
       (res:any)=>{console.log(res)}
     );
   }
   
-  deleteSajatIdopont(termek:any){
-    this.idopontservice.deleteIdopont(termek.userId).subscribe(
+  deleteSajatIdopont(idopont:any){
+    this.idopontservice.deleteIdopont(idopont.userId).subscribe(
       (res:any)=>{console.log("siker")}
     )
   }
@@ -132,14 +132,14 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy{
     }
   }
 
-  updateOrgIdopont(termek:any){
-    this.idopontservice.updateIdopontOrg(termek).subscribe(
+  updateOrgIdopont(idopont:any){
+    this.idopontservice.updateIdopontOrg(idopont).subscribe(
       (res:any)=>{console.log(res)}
     );
   }
   
-  deleteOrgIdopont(termek:any){
-    this.idopontservice.deleteIdopontOrg(termek.userId).subscribe(
+  deleteOrgIdopont(idopont:any){
+    this.idopontservice.deleteIdopontOrg(idopont.userId).subscribe(
       (res:any)=>{console.log("siker")}
     )
   }

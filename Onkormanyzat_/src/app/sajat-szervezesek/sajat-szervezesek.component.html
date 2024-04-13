@@ -40,31 +40,31 @@
 
 
 <div *ngIf="!orgBooleanSzervezesek">
-<div *ngFor="let szervezes of szervezesek" class="row">
-  <div class="col">
-    <input [(ngModel)]="szervezes.name" type="text">
+  <div *ngFor="let szervezes of szervezesek" class="row">
+    <div class="col">
+      <input [(ngModel)]="szervezes.name" type="text">
+    </div>
+    <div class="col">
+      <input [(ngModel)]="szervezes.description" type="text">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+      <input [(ngModel)]="szervezes.location" type="text">
+    </div>
+    <div class="col">
+      <input [(ngModel)]="szervezes.startDate" type="number">
+    </div>
+    <div class="col">
+      <input [(ngModel)]="szervezes.phone" type="number">
+    </div>
+    <div class="col">
+      <button class="btn btn-info ml-auto col" (click)="updateSajatSzervezes(szervezes)">Szerkeszt.</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-info ml-auto col" (click)="deleteSajatSzervezes(szervezes)">Törlés</button>
+    </div>
   </div>
-  <div class="col">
-    <input [(ngModel)]="szervezes.description" type="text">
-  </div>
-  <div class="col">
-  </div>
-  <div class="col">
-    <input [(ngModel)]="szervezes.location" type="text">
-  </div>
-  <div class="col">
-    <input [(ngModel)]="szervezes.startDate" type="number">
-  </div>
-  <div class="col">
-    <input [(ngModel)]="szervezes.phone" type="number">
-  </div>
-  <div class="col">
-    <button class="btn btn-info ml-auto col" (click)="updateSajatSzervezes(szervezes)">Szerkeszt.</button>
-  </div>
-  <div class="col">
-    <button class="btn btn-info ml-auto col" (click)="deleteSajatSzervezes(szervezes)">Törlés</button>
-  </div>
-</div>
 </div>
 <div class="row">
   <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
@@ -83,33 +83,36 @@
   <button class="btn btn-info ml-auto col" (click)="orgRequest()">Lekérés</button>
 </div>
 
-<div *ngFor="let szervezes of szervezesek" class="row">
-  <div class="col">
-    <input [(ngModel)]="szervezes.name" type="text">
-  </div>
-  <div class="col">
-    <input [(ngModel)]="szervezes.description" type="text">
-  </div>
-  <div class="col">
-  </div>
-  <div class="col">
-    <input [(ngModel)]="szervezes.location" type="text">
-  </div>
-  <div class="col">
-    <input [(ngModel)]="szervezes.startDate" type="number">
-  </div>
-  <div class="col">
-    <input [(ngModel)]="szervezes.phone" type="number">
-  </div>
-  <div class="col">
-    <button class="btn btn-info ml-auto col" (click)="updateSajatSzervezes(szervezes)">Szerkeszt.</button>
-  </div>
-  <div class="col">
-    <button class="btn btn-info ml-auto col" (click)="deleteSajatSzervezes(szervezes)">Törlés</button>
+<div *ngIf="!orgBooleanSzervezesek">
+  <div *ngFor="let szervezes of szervezesek" class="row">
+    <div class="col">
+      <input [(ngModel)]="szervezes.name" type="text">
+    </div>
+    <div class="col">
+      <input [(ngModel)]="szervezes.description" type="text">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+      <input [(ngModel)]="szervezes.location" type="text">
+    </div>
+    <div class="col">
+      <input [(ngModel)]="szervezes.startDate" type="number">
+    </div>
+    <div class="col">
+      <input [(ngModel)]="szervezes.phone" type="number">
+    </div>
+    <div class="col">
+      <button class="btn btn-info ml-auto col" (click)="updateSajatSzervezes(szervezes)">Szerkeszt.</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-info ml-auto col" (click)="deleteSajatSzervezes(szervezes)">Törlés</button>
+    </div>
   </div>
 
   <div *ngIf="admin">
     <div class="col">
-      <input [value]="currentOrganization.name" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control"/>
+      <input [value]="currentOrganization.name" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)"
+        [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control" />
     </div>
-    </div>
+  </div>

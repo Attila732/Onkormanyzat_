@@ -3,7 +3,8 @@ import { JelenteskezeloService } from '../jelenteskezelo.service';
 import { BejelentesAdatok } from '../models/BejelentesAdatok';
 import { AuthService } from '../auth.service';
 import { ProfilAdatok } from '../models/ProfilAdatok';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
+import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sajat-jelentesek',
@@ -15,17 +16,42 @@ export class SajatJelentesekComponent implements OnDestroy{
   bejelentesModel = new BejelentesAdatok()
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[]=[]
+  orgs: { id: string; name: string }[] = [];
+  userRoles: any;
+  admin: boolean = false;
+  orgAdmin: boolean = false;
+  orgBooleanJelentesek: boolean = false;
+  currentOrganization: {id: string, name: string}={id:"", name:""};
 
   jelentesek: BejelentesAdatok[] = [];
+  jelentesekOrg: BejelentesAdatok[] = [];
 
   constructor(private jelenteskezeloservice: JelenteskezeloService, private auth: AuthService) {
     this.getUserInfo()
   }
-  getUserInfo(){
-    this.subscription.push(this.auth.getUser().subscribe(
-      (res: any) => this.user = res
-    ));
+  getUserInfo() {
+    this.subscription.push(
+      this.auth.getUser().subscribe((res: any) => {
+        this.user = res;
+        this.subscription.push(
+          this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
+            this.userRoles = roles;
+
+            if (this.user != null && this.userRoles.get('ORG_ADMIN')) {
+              this.subscription.push(
+                this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
+                  next: (res: any) => {
+                    this.orgs = res;
+                  },
+                })
+              );
+            }
+          })
+        );
+      })
+    );
   }
+
   inputForm() {
     console.log("input submit User: ",this.user)
     if (this.user != null) {
@@ -57,16 +83,72 @@ export class SajatJelentesekComponent implements OnDestroy{
     }
     }
 
-  updateSajatJelentes(termek:any){
-    this.jelenteskezeloservice.updateJelentes(termek).subscribe(
+  updateSajatJelentes(jelentes:any){
+    this.jelenteskezeloservice.updateJelentes(jelentes).subscribe(
       (res:any)=>{console.log(res)}
     );
   }
   
-  deleteSajatJelentes(termek:any){
-    this.jelenteskezeloservice.deleteJelentes(termek.userId).subscribe(
+  deleteSajatJelentes(jelentes:any){
+    this.jelenteskezeloservice.deleteJelentes(jelentes.userId).subscribe(
       (res:any)=>{console.log("siker")}
     )
   }
 
+  orgAdminKeres(){
+    this.orgAdmin = !this.orgAdmin
+  }
+
+  adminKeres(){
+    this.admin = !this.admin
+  }
+
+  orgRequest(){
+    if (this.currentOrganization != null) {
+      this.jelenteskezeloservice.getSajatJelentesekOrg(this.currentOrganization.id).subscribe(
+        (res:any)=>{
+          console.log(res)
+          this.jelentesekOrg = res
+          this.orgBooleanJelentesek = true;
+        }
+      )
+    }
+  }
+
+  updateOrgIdopont(jelentes:any){
+    this.jelenteskezeloservice.updateJelentesOrg(jelentes).subscribe(
+      (res:any)=>{console.log(res)}
+    );
+  }
+  
+  deleteOrgIdopont(jelentes:any){
+    this.jelenteskezeloservice.deleteJelentesOrg(jelentes.userId).subscribe(
+      (res:any)=>{console.log("siker")}
+    )
+  }
+
+  loadOrgsAdatok(pageNum: number, name: string){
+    return this.jelenteskezeloservice.searchName( pageNum, name)
+  }
+
+  searchPeople = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      filter((searchTerm) => searchTerm.length >= 3),
+      switchMap((searchTerm) => this.loadOrgsAdatok(0, searchTerm))
+    );
+
+
+  resultFormatter = (result: {id: string, name: string}) => `${result.name}`;
+  inputFormatter = (result: {id: string, name: string}) => `${result.name}`;
+
+
+
+  onSelectItem(event: NgbTypeaheadSelectItemEvent<{id: string, name: string}>) {
+    event.preventDefault()
+    console.log(event.item.name)
+    this.currentOrganization=event.item;
+
+  }
 }
