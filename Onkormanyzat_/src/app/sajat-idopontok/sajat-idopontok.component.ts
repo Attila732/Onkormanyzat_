@@ -118,7 +118,7 @@ export class SajatIdopontokComponent {
 
   orgRequest(){
     if (this.currentOrganization != null) {
-      this.idopontservice.getSajatIdopontokOrg(this.currentOrganization).subscribe(
+      this.idopontservice.getSajatIdopontokOrg(this.currentOrganization.id).subscribe(
         (res:any)=>{
           console.log(res)
           this.idopontokOrg = res

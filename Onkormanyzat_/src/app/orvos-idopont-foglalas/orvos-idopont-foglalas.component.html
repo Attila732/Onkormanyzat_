@@ -32,17 +32,14 @@
           required>
       </div>
 
-      <!-- <label for="birthdaytime">Időpont:</label>
-      <input [(ngModel)]="idopontModel.startDate" type="datetime-local" id="datum" name="datum" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required>
-      <label for="birthdaytime">Időpont vége:</label>
-      <input [(ngModel)]="idopontModel.endDate" type="datetime-local" id="datumvege" name="datum" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required> -->
-      <label for="startDate">Kezdés:</label>
+    
+      <label for="startDate">Időpont:</label>
       <input [(ngModel)]="idopontModel.startDate" type="datetime-local" id="startDate" name="startDate" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
         required [min]="currentDate">
 
-      <label for="endDate">Vége:</label>
+      <!-- <label for="endDate">Vége:</label>
       <input [(ngModel)]="idopontModel.endDate" type="datetime-local" id="endDate" name="endDate" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" required
-        [min]="idopontModel.startDate">
+        [min]="idopontModel.startDate"> -->
 
       <button type="submit"
         class="w-full md:w-[30%] text-xl md:text-2xl lg:text-3xl text-cstm-dark_gray hover:text-cstm-gray mt-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"

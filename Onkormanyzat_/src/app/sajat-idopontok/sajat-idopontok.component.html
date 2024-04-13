@@ -1,5 +1,5 @@
 <div
-  class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+  class="w-screen overflow-x-hidden mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
   <div class="card-body py-3 px-2 md:px-5">
     <h2 class="text-2xl md:text-3xl lg:text-4xl">Foglaljon időpontot!</h2>
     <form (ngSubmit)="inputForm()" #idopontForm="ngForm">
@@ -51,12 +51,31 @@
   </div>
 </div>
 
-<div *ngIf="!orgBooleanIdopontok">
-  <div *ngFor="let idopont of idopontok" class="row">
-    <div class="col">
+<!-- lekérdezés listázás -->
+<div class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+  <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
+    <button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="orgAdminKeres()">OrgAdmin</button>
+  </div>
+  <div *ngIf="userRoles.get('ADMIN')" class="col">
+    <button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="adminKeres()">Admin</button>
+  </div>
+  <div class="">
+    <select [(ngModel)]="currentOrganization" type="text" id="description"
+      class=" md:inline-block w-full md:w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+      <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+    </select>
+    <button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="orgRequest()">Lekérés</button>
+  </div>
+</div>
+
+
+
+<div *ngIf="!orgBooleanIdopontok" class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+  <div *ngFor="let idopont of idopontok" class="card-body py-3 px-2 md:px-5">
+    <div class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
       <input [(ngModel)]="idopont.name" type="text">
     </div>
-    <div class="col">
+    <div class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
       <select class="form-control" [(ngModel)]="idopontModel.orgId" [value]="idopont.orgId" id="orgId" name="orgId"
       required>
       <option value="orgId">orvosok</option>
@@ -66,43 +85,33 @@
       <option value="4">Dr. Madár Katalin: Háziorvos</option>
     </select>
   </div>
-  <div class="col">
+
+  <div class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     <input [(ngModel)]="idopont.phone" type="number">
   </div>
-  <div class="col">
+  <div class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     <input [(ngModel)]="idopont.email" type="text">
   </div>
-  <div class="col">
+  <div class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     <input [(ngModel)]="idopont.startDate" type="number">
   </div>
-  <div class="col">
+  <div class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     <input [(ngModel)]="idopont.endDate" type="number">
   </div>
-  <div class="col">
+  <div class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     <button class="btn btn-info ml-auto col" (click)="updateSajatIdopont(idopont)">Szerkeszt.</button>
   </div>
-  <div class="col">
+  <div class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
     <button class="btn btn-info ml-auto col" (click)="deleteSajatIdopont(idopont)">Törlés</button>
   </div>
 </div>
 </div>
 
-<div class="row">
-  <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
-    <button class="btn btn-info ml-auto col" (click)="orgAdminKeres()">OrgAdmin</button>
-  </div>
-  <div *ngIf="userRoles.get('ADMIN')" class="col">
-    <button class="btn btn-info ml-auto col" (click)="adminKeres()">Admin</button>
-  </div>
-</div>
 
-<div>
-  <select [(ngModel)]="currentOrganization" type="text" id="description"
-    class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-    <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
-  </select>
-  <button class="btn btn-info ml-auto col" (click)="orgRequest()">Lekérés</button>
-</div>
+
+
+
+
   <div *ngIf="orgBooleanIdopontok">
   <div *ngFor="let idopont of idopontok" class="row">
     <div class="col">

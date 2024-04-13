@@ -43,7 +43,7 @@
         <div class="px-4">
           <li class="border-bottom" *ngFor="let hir of local">
             <p class="font-semibold">{{hir.title}}</p>
-            <p>{{hir.content}}</p>
+            <p class="flex flex-1">{{hir.content}}</p>
             <button (click)="deleteNews(hir)" class="delete-button">Delete</button>
             <button (click)="editNews(hir)" class="edit-button">Edit</button>
           </li>
@@ -82,12 +82,17 @@
         <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-orszagos">
           Országos hírek</li>
         <div class="px-4">
-          <li class="border-bottom" *ngFor="let hir of national">
-            <p class="font-semibold">{{hir.title}}</p>
-            <p>{{hir.content}}</p>
-            <button (click)="deleteNews(hir)" class="delete-button">Delete</button>
-            <button (click)="editNews(hir)" class="edit-button">Edit</button>
+          <li class="border-b border-gray-200 py-4 flex items-center justify-between" *ngFor="let hir of international">
+            <div>
+              <p class="font-semibold">{{hir.title}}</p>
+              <p>{{hir.content}}</p>
+            </div>
+            <div class="flex space-x-4">
+              <button class="btn btn-info" (click)="deleteNews(hir)">Delete</button>
+              <button class="btn btn-info" (click)="editNews(hir)">Edit</button>
+            </div>
           </li>
+
           <li class="border-bottom">
             <p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
             <p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban dr. Szabó
@@ -111,7 +116,7 @@
               Sportiskola
               U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a Kiskunfélegyházi
               Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
-        
+
           </li>
         </div>
       </ul>
@@ -122,8 +127,13 @@
 
   <div class="w-full md:w-[90%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl mt-8">
     <ul class="">
-      <li
-        class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-programok(teal)">
+      <li class="border-bottom" *ngFor="let hir of national">
+        <p class="font-semibold">{{hir.title}}</p>
+        <p class="font-semibold">{{hir.content}}</p>
+        <button (click)="deleteNews(hir)" class="delete-button">Delete</button>
+        <button (click)="editNews(hir)" class="edit-button">Edit</button>
+      </li>
+      <li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-programok(teal)">
         Programok</li>
       <div class="px-4">
         <li class="border-bottom">
@@ -153,5 +163,3 @@
     </ul>
   </div>
 </div>
-{{national|json}}
-{{local|json}}

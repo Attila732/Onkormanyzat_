@@ -39,7 +39,7 @@
 </div>
 
 
-<div *ngIf="!orgBooleanSzervezesek"></div>
+<div *ngIf="!orgBooleanSzervezesek">
 <div *ngFor="let szervezes of szervezesek" class="row">
   <div class="col">
     <input [(ngModel)]="szervezes.name" type="text">
@@ -65,7 +65,7 @@
     <button class="btn btn-info ml-auto col" (click)="deleteSajatSzervezes(szervezes)">Törlés</button>
   </div>
 </div>
-
+</div>
 <div class="row">
   <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
     <button class="btn btn-info ml-auto col" (click)="orgAdminKeres()">OrgAdmin</button>

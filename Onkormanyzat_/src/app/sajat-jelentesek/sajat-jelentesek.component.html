@@ -52,8 +52,9 @@
       </form>
     </div>
 
-    <div *ngFor="let jelentes of jelentesek" class="row">
-        <div class="col">
+    
+    <div *ngFor="let jelentes of jelentesek" class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
+        <div class="form-group">
           <select [(ngModel)]="bejelentesModel.type" [value]="jelentes.type" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="type" name="type" required>
             <option value="KOZTERULET">Közterületi</option>
             <option value="UTHIBA">Úthiba</option>
@@ -63,7 +64,7 @@
             <option value="SZEMETSZALLITAS">Szemétszállítás</option>
           </select>
         </div>
-        <div class="col">
+        <div class="form-group">
           <select [(ngModel)]="bejelentesModel.urgency" [value]="jelentes.urgency" class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple" id="sulyossag" name="sulyossag" required>
             <!-- Rang-zárolt jelentések -->
             <option value="1">1</option>
@@ -73,23 +74,23 @@
             <option value="5">5</option>
           </select>
         </div>
-        <div class="col">
+        <div class="form-group">
             <input [(ngModel)]="jelentes.description" type="text">
         </div>
-        <div class="col">
+        <div class="form-group">
             <input [(ngModel)]="jelentes.location" type="text">
         </div>
-        <div class="col">
+        <div class="form-group">
             <input [(ngModel)]="jelentes.phone" type="number">
         </div>
-        <div class="col">
+        <div class="form-group">
             <input [(ngModel)]="jelentes.date" type="number">
         </div>
-        <div class="col">
-            <button class="btn btn-info ml-auto col" (click)="updateSajatJelentes(jelentes)">Szerkeszt.</button>
+        <div class="form-group">
+            <button  class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="updateSajatJelentes(jelentes)">Szerkeszt.</button>
         </div>
-        <div class="col">
-            <button class="btn btn-info ml-auto col" (click)="deleteSajatJelentes(jelentes)">Törlés</button>
+        <div class="form-group">
+            <button  class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="deleteSajatJelentes(jelentes)">Törlés</button>
         </div>
   </div>
   
