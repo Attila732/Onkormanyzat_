@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IdopontAdatok } from '../models/IdopontAdatok';
-import { IdopontService } from '../idopont.service';
-import { ProfilAdatok } from '../models/ProfilAdatok';
+import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { AuthService } from '../auth.service';
-import { AdminAdatok } from '../models/AdminAdatok';
-import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
+import { IdopontService } from '../idopont.service';
+import { IdopontAdatok } from '../models/IdopontAdatok';
+import { ProfilAdatok } from '../models/ProfilAdatok';
 
 @Component({
   selector: 'app-sajat-idopontok',
