@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -61,6 +61,13 @@ export class AuthService {
   }
   public setAttemptedUrl(value: string ) {
     this.attemptedUrl = value;
+  }
+
+  getOrgsForUser(userId:string,pageNum:number){
+    const opt = {params: new HttpParams()
+      .append("pageNum",pageNum)
+      }
+    return this.http.get(this.resUrl+"user/"+userId+"/orgs",opt)
   }
   
   public navigateToRequestedUrlIfExists(){
