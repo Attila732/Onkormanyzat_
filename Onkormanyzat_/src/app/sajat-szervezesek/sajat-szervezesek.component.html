@@ -78,7 +78,7 @@
 <div>
   <select [(ngModel)]="currentOrganization" type="text" id="description"
     class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-    <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+    <option *ngFor="let org of orgs" [value]="org">{{org.name}}</option>
   </select>
   <button class="btn btn-info ml-auto col" (click)="orgRequest()">Lekérés</button>
 </div>

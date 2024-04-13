@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SzervezesAdatok } from '../models/SzervezesAdatok';
 import { SzervezesService } from '../szervezes.service';
 import { ProfilAdatok } from '../models/ProfilAdatok';
@@ -11,7 +11,7 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './sajat-szervezesek.component.html',
   styleUrls: ['./sajat-szervezesek.component.css']
 })
-export class SajatSzervezesekComponent {
+export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   szervezesModel = new SzervezesAdatok()
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[]= []
@@ -27,6 +27,9 @@ export class SajatSzervezesekComponent {
 
   constructor(private szervezesService:SzervezesService, private auth: AuthService){
 
+  }
+  ngOnInit(): void {
+    this.getUserInfo()
   }
 
   getUserInfo(){
@@ -65,9 +68,9 @@ export class SajatSzervezesekComponent {
         element.unsubscribe();        
       });
     }
-  }  
+  }
   
-  getSajatJelentes() {
+  getSajatSzervezes() {
     if (this.user != null) { 
       this.subscription.push(
         this.szervezesService.getSajatSzervezesek(this.user.userId).subscribe({
@@ -102,7 +105,7 @@ export class SajatSzervezesekComponent {
 
   orgRequest(){
     if (this.currentOrganization != null) {
-      this.szervezesService.getSajatSzervezesekOrg(this.currentOrganization).subscribe(
+      this.szervezesService.getSajatSzervezesekOrg(this.currentOrganization.id).subscribe(
         (res:any)=>{this.szervezesOrg = res
           this.orgBooleanSzervezesek = true;
         }
@@ -131,7 +134,7 @@ export class SajatSzervezesekComponent {
       debounceTime(300),
       distinctUntilChanged(),
       filter((searchTerm) => searchTerm.length >= 2),
-      switchMap((searchTerm) => this.loadOrgsAdatok("", 0, searchTerm))
+      switchMap((searchTerm) => this.loadOrgsAdatok(searchTerm, 0, "name"))
     );
 
 
