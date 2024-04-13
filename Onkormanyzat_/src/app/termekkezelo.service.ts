@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { EladoTermekAdatok } from './models/EladoTermekAdatok';
 import { ImagesService } from './images.service';
+import { TermekKepekkel } from './models/TermekKepekkel';
 
 @Injectable({
   providedIn: 'root'
@@ -38,12 +39,12 @@ postTermek(termek:any){
   return this.http.post(this.resUrl+"items/new",termek)
 }
 
-updateTermek(body:any){
-  return this.http.put("/items/"+ body.id, body)
+updateTermek(body:TermekKepekkel){
+  return this.http.put(this.resUrl+"/items/"+ body.userId, body)
 }
 
 deleteTermek(id:any){
-  return this.http.delete("/items/del/"+ id)
+  return this.http.delete(this.resUrl+"/items/del/"+ id)
 }
 
 getSajatTermekek(id:any){
