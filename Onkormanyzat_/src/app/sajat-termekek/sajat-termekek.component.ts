@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { FilePickerDirective } from '../file-picker.directive';
 import { ImagesService } from '../images.service';
@@ -7,6 +7,9 @@ import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { TermekKepekkel } from '../models/TermekKepekkel';
 import { TermekkezeloService } from '../termekkezelo.service';
+import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from '../user.service';
+import { ProfiladatokCategory } from '../models/Enums';
 
 @Component({
   selector: 'app-sajat-termekek',
@@ -16,31 +19,44 @@ import { TermekkezeloService } from '../termekkezelo.service';
 export class SajatTermekekComponent implements OnInit, OnDestroy {
   private user: ProfilAdatok | null = null;
   userRoles: any;
-  
+
   buttonClicked = false;
   admin: boolean = false;
   // orgAdmin: boolean = false;
-  
-  currentOrganization:any;
-  orgs: { id: string; name: string }[] = [];
-  
+
+  currentCategory: ProfiladatokCategory = ProfiladatokCategory.USERNAME
+
+  currentPerson: ProfilAdatok = new ProfilAdatok();
+  persons: ProfilAdatok[] = [];
+
   eladoTermek: EladoTermekAdatok = new EladoTermekAdatok();
   termekek: EladoTermekAdatok[] = [];
-  
+
   private subscriptions: Subscription[] = [];
-  
-  
+
+
   conditions = [
     { key: 'new', text: 'Új' },
     { key: 'newish', text: 'Újszerű' },
     { key: 'used', text: 'Használt' },
   ];
 
+  categories = [
+    { key: 'id', text: 'Id', category: ProfiladatokCategory.ID },
+    { key: 'firstName', text: 'Keresztnév', category: ProfiladatokCategory.FIRSTNAME },
+    { key: 'lastName', text: 'Vezetéknév', category: ProfiladatokCategory.LASTNAME },
+    { key: 'userName', text: 'Felhasználónév', category: ProfiladatokCategory.USERNAME },
+    { key: 'email', text: 'Email', category: ProfiladatokCategory.EMAIL },
+    { key: 'phone', text: 'Telefon', category: ProfiladatokCategory.PHONE },
+
+  ];
+
   constructor(
     private auth: AuthService,
     private termekService: TermekkezeloService,
-    private ImageS: ImagesService
-  ) {}
+    private ImageS: ImagesService,
+    private userS: UserService
+  ) { }
 
 
 
@@ -52,14 +68,8 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
           this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
             this.userRoles = roles;
 
-            if (this.user != null && this.userRoles.get('ORG_ADMIN')) {
-              this.subscriptions.push(
-                this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
-                  next: (res: any) => {
-                    this.orgs = res;
-                  },
-                })
-              );
+            if (this.user != null && this.userRoles.get('ADMIN')) {
+              this.getTermekekForChoosenUser(this.user)
             }
           })
         );
@@ -69,8 +79,8 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
 
   setupDataAndSend() {
     if (this.user != null) {
-      console.log("setupAndSend eladotermekek: ",this.eladoTermek);
-      console.log("setupAndSend user: ",this.user);
+      console.log("setupAndSend eladotermekek: ", this.eladoTermek);
+      console.log("setupAndSend user: ", this.user);
       this.eladoTermek.userId = this.user.userId;
       console.log(this.eladoTermek);
       this.termekService.postTermek(this.eladoTermek).subscribe({
@@ -89,21 +99,21 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     // this.getSajatTermekek();
   }
 
-  getSajatTermekek() {
-    console.log("getSajatTermekek outside if: ",this.user)
-    if (this.user != null) { 
-      console.log("getSajatTermekek inside if: ",this.user)
+  getTermekekForChoosenUser(user:any) {
+    console.log("getTermekekForChoosenUser outside if: ", user)
+    if (user != null) {
+      console.log("getTermekekForChoosenUser inside if: ", user)
 
       this.subscriptions.push(
-        this.termekService.getSajatTermekek(this.user.userId).subscribe({
+        this.termekService.getTermekekForUserById(user.userId).subscribe({
           next: (res: any) => {
-            console.log("getSajatTermekek res: ",res)
+            console.log("getTermekekForChoosenUser res: ", res)
             this.termekek = res;
           },
         })
       );
     }
-    }
+  }
 
 
   onSubmit() {
@@ -129,9 +139,9 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     return value;
   }
 
-  toggleSellerInfo(item: any) {
-    item.erdekel = !item.erdekel;
-  }
+  // toggleSellerInfo(item: any) {
+  //   item.erdekel = !item.erdekel;
+  // }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => {
@@ -163,16 +173,16 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     this._buttonPicker.reset();
   }
 
-  updateTermek(termek:EladoTermekAdatok){
+  updateTermek(termek: EladoTermekAdatok) {
     console.log(termek)
     this.termekService.updateTermek(termek).subscribe(
-      (res:any)=>{console.log(res)}
+      (res: any) => { console.log(res) }
     );
   }
-  
-  deleteTermek(termek:any){
+
+  deleteTermek(termek: any) {
     this.termekService.deleteTermek(termek.id).subscribe(
-      (res:any)=>{console.log("siker")}
+      (res: any) => { console.log("siker") }
     )
   }
 
@@ -180,11 +190,68 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   //   this.orgAdmin = !this.orgAdmin
   // }
 
-  adminKeres(){
+  adminKeres() {
     this.admin = !this.admin
   }
 
-  orgRequest(){
-    
+  orgRequest() {
+
   }
+
+  getUsersByPropertyLike(value: string, pageNum: number, category: string) {
+    return this.userS.getUsersByPropertyLike(value, pageNum, category)
+  }
+
+  searchPeople = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      filter((searchTerm) => searchTerm.length >= 2),
+      switchMap((searchTerm) => this.getUsersByPropertyLike(searchTerm, 0, this.currentCategory))
+    );
+
+
+  resultFormatter = (result: ProfilAdatok) => `${result[this.translateCurrentCategory(this.currentCategory)]}`;
+  inputFormatter = (result: ProfilAdatok) => `${result[this.translateCurrentCategory(this.currentCategory)]}`;
+
+
+
+  onSelectItem(event: NgbTypeaheadSelectItemEvent<ProfilAdatok>) {
+    event.preventDefault()
+    console.log(event.item)
+    console.log("event.item: ", event.item)
+    this.currentPerson = event.item;
+    console.log("currentPerson: ", this.currentPerson)
+    this.getTermekekForChoosenUser(this.currentPerson)
+
+  }
+
+  translateCurrentCategory(category: ProfiladatokCategory) {
+    switch (category) {
+      case ProfiladatokCategory.ID:
+        return this.categories.find((o) => o.category == ProfiladatokCategory.ID)!.key
+      case ProfiladatokCategory.FIRSTNAME:
+        return this.categories.find((o) => o.category == ProfiladatokCategory.FIRSTNAME)!.key
+        return "firstName"
+
+      case ProfiladatokCategory.LASTNAME:
+        return this.categories.find((o) => o.category == ProfiladatokCategory.LASTNAME)!.key
+        return "lastName"
+
+      case ProfiladatokCategory.USERNAME:
+        return this.categories.find((o) => o.category == ProfiladatokCategory.USERNAME)!.key
+        return "userName"
+
+      case ProfiladatokCategory.EMAIL:
+        return this.categories.find((o) => o.category == ProfiladatokCategory.EMAIL)!.key
+        return "email"
+
+      case ProfiladatokCategory.PHONE:
+        return this.categories.find((o) => o.category == ProfiladatokCategory.PHONE)!.key
+        return "phone"
+
+    }
+  }
+
+
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { EladoTermekAdatok } from './models/EladoTermekAdatok';
 import { ImagesService } from './images.service';
 import { TermekKepekkel } from './models/TermekKepekkel';
@@ -47,8 +47,8 @@ deleteTermek(id:any){
   return this.http.delete(this.resUrl+"items/del/"+ id)
 }
 
-getSajatTermekek(id:any){
-  return this.http.get(this.resUrl+"items/sajat/"+id)
+getTermekekForUserById(id:any):Observable<TermekKepekkel>{
+  return this.http.get<TermekKepekkel>(this.resUrl+"items/sajat/"+id)
 }
 
 }

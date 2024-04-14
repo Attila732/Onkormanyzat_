@@ -1,102 +1,29 @@
-<!-- <div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm text-center m-auto">
-	<form>
-		<p class="mb-4 text-lg">Kérem töltse fel a meghirdetni kívánt tárgyat</p>
 
-		<div *ngIf="buttonClicked" class="image-container">
-			<label for="productName" class="mb-2 block">Eladó termék neve</label>
-			<input [(ngModel)]="eladoTermek.name" type="text" id="productName" name="name"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-
-			<label for="description" class="mb-2 block">Leírás:</label>
-			<input [(ngModel)]="eladoTermek.description" type="text" id="description" name="description"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-
-			<label for="description" class="mb-2 block">Állapot:</label>
-			<select [(ngModel)]="eladoTermek.condition" type="text" id="condition" name="condition"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-				<option value="new">Új</option>
-				<option value="newish">ÚjSzerű</option>
-				<option value="used">Használt</option>
-			</select>
-
-			<label for="location" class="mb-2 block">Helyszín:</label>
-			<input [(ngModel)]="eladoTermek.location" type="text" id="location" name="location"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-			<label for="email" class="mb-2 block">Publikus Email:</label>
-			<input [(ngModel)]="eladoTermek.email" type="text" id="email" name="email"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-			<label for="phone" class="mb-2 block">Publikus Telefon:</label>
-			<input [(ngModel)]="eladoTermek.phone" type="text" id="phone" name="phone"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-
-
-			<label for="price" class="mb-2 block">Ár:</label>
-
-			<input [(ngModel)]="eladoTermek.price" type="number" id="price" name="price"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-
-
-			<div class="tab-container" fxLayoutAlign="center center">
-				<button #buttonPicker="appFilePicker" mat-raised-button color="primary" appFilePicker
-					[multiple]="_multiple" (filesChanged)="_onFilesChanged($event)" (filesReset)="_onReset()"
-					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500">
-					Kép kiválasztása
-				</button>
-			</div>
-			<table mat-table [dataSource]="_selectedFiles" class="selected-files-table">
-				<ng-container matColumnDef="name">
-					<th mat-header-cell *matHeaderCellDef> File Név </th>
-					<td mat-cell *matCellDef="let file"> {{file.name}} </td>
-				</ng-container>
-
-				<ng-container matColumnDef="type">
-					<th mat-header-cell *matHeaderCellDef> Típus </th>
-					<td mat-cell *matCellDef="let file"> {{file.type}} </td>
-				</ng-container>
-
-				<ng-container matColumnDef="size">
-					<th mat-header-cell *matHeaderCellDef> Méret (bytes) </th>
-					<td mat-cell *matCellDef="let file"> {{file.size}} </td>
-				</ng-container>
-
-				<ng-container matColumnDef="lastModified">
-					<th mat-header-cell *matHeaderCellDef> Legutóbb módosítva </th>
-					<td mat-cell *matCellDef="let file"> {{file.lastModified | date }} </td>
-				</ng-container>
-
-				<tr mat-header-row *matHeaderRowDef="_displayedColumns"></tr>
-				<tr mat-row *matRowDef="let row; columns: _displayedColumns;"></tr>
-			</table>
-
-
-			<button (click)="setupDataAndSend()"
-				class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple  hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl  hover:shadow-cstm-dark-purple transform transition duration-500">Küldés</button>
-			<button type="button"
-				class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl  hover:shadow-cstm-dark-purple transform transition duration-500"
-				(click)="elrejt()">Elrejt</button>
-		</div>
-
-		<button
-			class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
-			*ngIf="!buttonClicked" (click)="toggleForm()">Eladás</button>
-	</form>
-</div> -->
 <!-- <app-termek-eladas></app-termek-eladas> -->
-<!-- {{termekek|json}} -->
+{{termekek|json}}
 
 <div class="row">
-	<!-- <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
-		<button class="btn btn-info ml-auto col" (click)="orgAdminKeres()">OrgAdmin</button>
-	</div> -->
 	<div *ngIf="userRoles.get('ADMIN')" class="col">
 		<button class="btn btn-info ml-auto col" (click)="adminKeres()">Admin</button>
 	</div>
 </div>
-<div class="text-center flex justify-center h-auto max-w-md">
+
+
+<div *ngIf="admin">
+	<select name="category" id="category" [(ngModel)]="currentCategory" [value]="currentCategory">
+	<option *ngFor="let cat of categories" [value]="cat.category">{{cat.text}}</option>
+	</select>
+	<div class="col">
+		<input [value]="currentPerson[translateCurrentCategory(this.currentCategory)]" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)"
+			[resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control" />
+	</div>
+</div>
+
+<!-- <div class="text-center flex justify-center h-auto max-w-md">
 	<div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm" >
 	  <div class="row d-flex justify-content-center">
 		<div class="flex justify-center w-full">
-		  <select [(ngModel)]="currentOrganization" type="text" id="description"
+		  <select [(ngModel)]="currentPerson" type="text" id="description"
 			class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 			<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
 		  </select>
@@ -106,7 +33,7 @@
 		</div>
 	  </div>
 	</div>
-  </div>
+  </div> -->
   
 
 <div *ngFor="let termek of termekek" class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
