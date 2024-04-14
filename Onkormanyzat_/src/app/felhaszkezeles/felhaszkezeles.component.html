@@ -41,20 +41,23 @@
 					[ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)"
 					[resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control"
 					placeholder="{{col.text}}" [type]="col.type"/>
-
-
 			</td>			
+
 			<td>
 				<div class="col">
-				
 				</div>
 			</td>
 			<td>
 				<div class="col">
-					
 				</div>
 			</td>
+
 		</tr>
+
+
+
+
+
 		<tr *ngFor="let user of felhasznalok" >
 			<td *ngFor="let col of columns" >
 			<input [type]="col.type" [(ngModel)]="user[col.key]">
