@@ -17,6 +17,8 @@ export class TermekEladasComponent {
   private user: ProfilAdatok | null = null;
   
   buttonClicked = false;
+  showsikerPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
+  showsikertelenPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
   
   currentOrganization:any;
   orgs: { id: string; name: string }[] = [];
@@ -61,8 +63,11 @@ export class TermekEladasComponent {
           if (this._selectedFiles.length != 0) {
             console.log("this._selectedFiles.length != 0 images post")
             this.ImageS.postfile(this._selectedFiles, res);
+            this.showsikerPopup = true;
+            this.successreset()
           }
         },
+        error:(err:any)=>this.showsikertelenPopup = true
       });
     }
   }
@@ -123,5 +128,14 @@ export class TermekEladasComponent {
       sub.unsubscribe();
     });
   }
+
+  successreset(){
+    this.eladoTermek = new EladoTermekAdatok()
+  }
+
+  showelrejtPopup() {
+    this.showsikertelenPopup = false;
+    this.showsikerPopup=false
+}
 
 }

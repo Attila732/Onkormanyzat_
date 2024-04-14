@@ -79,5 +79,25 @@
 		<button
 			class="w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
 			*ngIf="!buttonClicked" (click)="toggleForm()">Eladás</button>
+			<div *ngIf="showsikerPopup"
+			class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+			<div class="bg-white p-5 rounded-lg">
+				<p class="text-2xl font-bold text-green-500 mb-4">Sikeres termékeladás!</p>
+				<p class="text-lg">Köszönjük, hogy regisztráltál.</p>
+				<button (click)="showelrejtPopup"
+					class="mt-4 px-4 py-2 bg-green-500 text-white rounded-md">Bezárás</button>
+			</div>
+		</div>
+		<div *ngIf="showsikertelenPopup"
+			class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+			<div class="bg-white p-5 rounded-lg">
+				<p class="text-2xl font-bold text-red-500 mb-4">Sikertelen termékeladás!</p>
+				<p class="text-lg">
+					Ellenőrizze adatait
+				</p>
+				<button (click)="showelrejtPopup()"
+					class="mt-4 px-4 py-2 bg-red-500 text-white rounded-md">Bezárás</button>
+			</div>
+		</div>
 	</form>
 </div>
