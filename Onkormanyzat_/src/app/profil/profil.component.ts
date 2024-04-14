@@ -15,7 +15,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
 	profil = new ProfilAdatok();
 	// user = {
 	// };
-  user:any
+	private user: ProfilAdatok | null = null;
 
 	isEditing = false;
 	subscription: Subscription[] = [];
@@ -35,11 +35,14 @@ export class ProfilComponent implements OnInit, OnDestroy {
 	
 	}
   getprofil(){
-    this.subscription.push(
-    this.profilkez.getProfilRequest(this.user.userId).subscribe((res:any)=>{
-      this.profil=res;
-    })
-  )
+	if (this.user != null) {
+		
+		this.subscription.push(
+			this.profilkez.getProfilRequest(this.user.userId).subscribe((res:any)=>{
+				this.profil=res;
+			})
+		)
+	}
   }
 	ngOnInit(): void {
 		this.getUserInfo();
