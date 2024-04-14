@@ -92,20 +92,24 @@
 		<button class="btn btn-info ml-auto col" (click)="adminKeres()">Admin</button>
 	</div>
 </div>
-
 <div class="text-center flex justify-center h-auto max-w-md">
-<div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm " >
-	<div class="row d-flex justify-content-center">
-		<select [(ngModel)]="currentOrganization" type="text" id="description"
+	<div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm" >
+	  <div class="row d-flex justify-content-center">
+		<div class="flex justify-center w-full">
+		  <select [(ngModel)]="currentOrganization" type="text" id="description"
 			class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 			<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
-		</select>
-		<button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="orgRequest()">Lekérés</button>
+		  </select>
+		</div>
+		<div class="flex justify-center w-full">
+		  <button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="orgRequest()">Lekérés</button>
+		</div>
+	  </div>
 	</div>
-</div>
-</div>
+  </div>
+  
 
-<div *ngFor="let termek of termekek" class="grid grid-cols-8 gap-4">
+<div *ngFor="let termek of termekek" class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
 	<div class="col">
 		<input [(ngModel)]="termek.name" type="text" [ngModelOptions]="{standalone: true}"
 			class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">

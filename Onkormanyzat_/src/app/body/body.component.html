@@ -42,7 +42,7 @@
 					class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-lokalhir">
 					Helyi/Lokális Hírek</li>
 				<div class="px-4">
-					<li [ngStyle]="{'border-bottom': isBorderNeeded(hir)}" class="border-bottom" *ngFor="let hir of local">
+					<li  *ngFor="let hir of local">
 						<p class="font-semibold">{{hir.title}}</p>
 						<p>{{hir.content}}</p>
 						 <button (click)="deleteNews(hir)" class="delete-button">Delete</button>

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Regisztracio } from '../models/Regisztracio';
+import { Component } from '@angular/core';
+import { Regisztracio } from '../models/regisztracio';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,6 +8,10 @@ import { Regisztracio } from '../models/Regisztracio';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
+  showsikerPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
+  showsikertelenPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
+ 
+  
 
   result:any
   regisztracio = new Regisztracio();
@@ -21,11 +25,17 @@ export class SignUpComponent {
     this.http.post("/resource/user",this.regisztracio).subscribe({
       next:(res:any)=>{
         console.log("posted", res)
-        this.result=res
+        this.result=res,
+        this.showsikerPopup = true;
       },
-      error:(err:any)=>console.log("Error: ",err)
+      error:(err:any)=>this.showsikertelenPopup = true
     })
+    
   }
+  showelrejtPopup() {
+    this.showsikertelenPopup = false;
+    this.showsikerPopup=false
+}
 
 
 

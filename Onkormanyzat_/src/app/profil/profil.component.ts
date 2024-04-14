@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { AdminAdatok } from '../models/AdminAdatok';
+import { ProfilKezeloServiceService } from '../profil-kezelo-service.service';
 
 
 @Component({
@@ -24,10 +25,13 @@ export class ProfilComponent implements OnInit {
   // Hozz létre egy FileUploader példányt
   //uploader: FileUploader = new FileUploader({});
 
-  constructor() { }
+  constructor(profilkezeloService :ProfilKezeloServiceService) { }
+ngOnInit(): void {
+//     this.profil.getProfil().subscribe((data) => {
+//         this.profil = data;
+//     });
+}
 
-  ngOnInit(): void {
-  }
 
   toggleEditing() {
     this.isEditing = !this.isEditing;
