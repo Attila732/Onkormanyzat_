@@ -64,12 +64,13 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.auth.getUser().subscribe((res: any) => {
         this.user = res;
+        this.currentPerson = res;
         this.subscriptions.push(
           this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
             this.userRoles = roles;
 
             if (this.user != null && this.userRoles.get('ADMIN')) {
-              this.getTermekekForChoosenUser(this.user)
+              this.getTermekekForChoosenUser(this.currentPerson)
             }
           })
         );
@@ -119,12 +120,14 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.buttonClicked = true;
   }
+  
   toggleForm() {
     this.buttonClicked = !this.buttonClicked;
     if (!this.buttonClicked) {
       // this.form.reset();
     }
   }
+
   elrejt() {
     this.buttonClicked = false;
   }
@@ -176,13 +179,17 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   updateTermek(termek: EladoTermekAdatok) {
     console.log(termek)
     this.termekService.updateTermek(termek).subscribe(
-      (res: any) => { console.log(res) }
+      (res: any) => { console.log(res) 
+        this.getTermekekForChoosenUser(this.currentPerson)
+      }
     );
   }
 
   deleteTermek(termek: any) {
     this.termekService.deleteTermek(termek.id).subscribe(
-      (res: any) => { console.log("siker") }
+      (res: any) => { console.log("siker") 
+      this.getTermekekForChoosenUser(this.currentPerson)
+    }
     )
   }
 
