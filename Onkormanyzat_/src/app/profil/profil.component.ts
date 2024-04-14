@@ -1,59 +1,80 @@
-import { Component, OnInit } from '@angular/core';
-import { ProfilAdatok } from '../models/ProfilAdatok';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth.service';
 import { AdminAdatok } from '../models/AdminAdatok';
+import { ProfilAdatok } from '../models/ProfilAdatok';
 import { ProfilKezeloServiceService } from '../profil-kezelo-service.service';
 
-
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css']
+	selector: 'app-profil',
+	templateUrl: './profil.component.html',
+	styleUrls: ['./profil.component.css'],
 })
-export class ProfilComponent implements OnInit {
-  result:any
-  profil = new ProfilAdatok();
-  user = {
-    email: 'example@email.com',
-    nev: 'John Doe',
-    telefon: '123-456-7890',
-    lakhely: 'Budapest',
+export class ProfilComponent implements OnInit, OnDestroy {
+	result: any;
+	profil = new ProfilAdatok();
+	// user = {
+	// };
+  user:any
 
-  };
+	isEditing = false;
+	subscription: Subscription[] = [];
 
-  isEditing = false;
+	// Hozz létre egy FileUploader példányt
+	//uploader: FileUploader = new FileUploader({});
 
-  // Hozz létre egy FileUploader példányt
-  //uploader: FileUploader = new FileUploader({});
-
-  constructor(profilkezeloService :ProfilKezeloServiceService) { }
-ngOnInit(): void {
-//     this.profil.getProfil().subscribe((data) => {
-//         this.profil = data;
-//     });
-}
-
-
-  toggleEditing() {
-    this.isEditing = !this.isEditing;
+	constructor(
+		private profilkez: ProfilKezeloServiceService,
+		private auth: AuthService
+	) {}
+	ngOnDestroy(): void {
+    this.subscription.forEach(element => {
+      element.unsubscribe();
+      
+    });
+	
+	}
+  getprofil(){
+    this.subscription.push(
+    this.profilkez.getProfilRequest(this.user.userId).subscribe((res:any)=>{
+      this.profil=res;
+    })
+  )
   }
+	ngOnInit(): void {
+		this.getUserInfo();
+	}
+	getUserInfo() {
+		this.subscription.push(
+			this.auth.getUser().subscribe((res: any) => {
+				this.user = res;
+        this.getprofil();
+			})
+		); 
 
-  saveChanges() {
-    // Add logic to save changes to the backend or perform any other necessary actions
-    this.isEditing = false;
-  }
+	}
 
-  // Fájl kiválasztás eseménykezelője
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.readImage(file);
-  }
+	toggleEditing() {
+		this.isEditing = !this.isEditing;
+	}
 
-  // Fájl beolvasása és átalakítása base64 kódra
-  readImage(file: File) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      AdminAdatok
-    };
-    reader.readAsDataURL(file);
-  }
+	saveChanges() {
+		// Add logic to save changes to the backend or perform any other necessary actions
+		this.isEditing = false;
+	}
+
+	// Fájl kiválasztás eseménykezelője
+	onFileSelected(event: any) {
+		const file: File = event.target.files[0];
+		this.readImage(file);
+	}
+
+	// Fájl beolvasása és átalakítása base64 kódra
+	readImage(file: File) {
+		const reader = new FileReader();
+		reader.onloadend = () => {
+			AdminAdatok;
+		};
+		reader.readAsDataURL(file);
+	}
 }

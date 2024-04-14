@@ -3,28 +3,19 @@ import { Injectable } from '@angular/core';
 import { ProfilAdatok } from './models/ProfilAdatok';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class ProfilKezeloServiceService {
+	private profiladatok: ProfilAdatok = new ProfilAdatok();
+	url = '/resource/user/';
 
-  private profiladatok: ProfilAdatok = new ProfilAdatok();
-  url="/user/"
-
-
-  constructor(private http:HttpClient) { }
-
-  getProfil(userName:string,firstName:string,lastName:string,email:string,phone:string){
-    const opt = {params: new HttpParams()
-      .append("userName",userName)
-      .append("firstName",firstName)
-      .append("lastName",lastName)
-      .append("email",email)
-      .append("phone",phone)
-    }
-    return this.http.get(this.url+"/search",opt)
+	constructor(private http: HttpClient) {}
+	getProfilRequest(id:string) {
+    return this.http.get(this.url+"id/"+id)
   }
-  public setprofiladatok(value: ProfilAdatok) {
-    this.profiladatok = value;
-  }
-  //TODO:anything?
+	
+	public setprofiladatok(value: ProfilAdatok) {
+		this.profiladatok = value;
+	}
+	//TODO:anything?
 }
