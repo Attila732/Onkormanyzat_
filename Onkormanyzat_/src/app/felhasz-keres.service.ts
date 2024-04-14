@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AdminAdatok } from './models/AdminAdatok';
 import { catchError, map, throwError } from 'rxjs';
+import { AdminAdatok } from './models/AdminAdatok';
+import { ProfilAdatok } from './models/ProfilAdatok';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,27 @@ export class FelhaszKeresService {
       })
     )
   }
+
+  getProfilAdatok(value: string, pageNum: number, category: string) {
+    const opt = {
+      params: new HttpParams()
+        .append("value", value)
+        .append("pageNum", pageNum)
+        .append("category", category)
+    }
+
+    return this.http.get<ProfilAdatok[]>("/resource/user/search", opt).pipe(
+      map((res:any) => {
+        console.log('Successfully got person:', res.content);
+        return res.content;
+      }),
+      catchError((error) => {
+        console.error('Error in getPersonByName:', error);
+        return throwError(() => error);
+      })
+    )
+  }
+
 
   updateUser(body:any){
     return this.http.put("resource/user/"+ body.id, body)
