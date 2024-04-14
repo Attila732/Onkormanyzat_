@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { AdminAdatok } from './models/AdminAdatok';
 import { ProfilAdatok } from './models/ProfilAdatok';
 
@@ -31,7 +31,7 @@ export class FelhaszKeresService {
     )
   }
 
-  getProfilAdatok(value: string, pageNum: number, category: string) {
+  getProfilAdatok(value: string, pageNum: number, category: string):Observable<ProfilAdatok[]>  {
     const opt = {
       params: new HttpParams()
         .append("value", value)
@@ -39,20 +39,21 @@ export class FelhaszKeresService {
         .append("category", category)
     }
 
-    return this.http.get<ProfilAdatok[]>("/resource/user/search", opt).pipe(
+    return this.http.get<ProfilAdatok[]>("/resource/user/admin/search", opt).pipe(
       map((res:any) => {
         console.log('Successfully got person:', res.content);
         return res.content;
       }),
-      catchError((error) => {
-        console.error('Error in getPersonByName:', error);
-        return throwError(() => error);
-      })
+      // catchError((error) => {
+      //   console.error('Error in getPersonByName:', error);
+      //   return throwError(() => error);
+      // })
     )
   }
 
 
   updateUser(body:any){
+    console.log("ez vagyok",body)
     return this.http.put("resource/user/"+ body.id, body)
   }
 
