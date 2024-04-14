@@ -81,21 +81,41 @@
 			*ngIf="!buttonClicked" (click)="toggleForm()">Eladás</button>
 	</form>
 </div> -->
-<app-termek-eladas></app-termek-eladas>
+<!-- <app-termek-eladas></app-termek-eladas> -->
 <!-- {{termekek|json}} -->
 
+<div class="row">
+	<!-- <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
+		<button class="btn btn-info ml-auto col" (click)="orgAdminKeres()">OrgAdmin</button>
+	</div> -->
+	<div *ngIf="userRoles.get('ADMIN')" class="col">
+		<button class="btn btn-info ml-auto col" (click)="adminKeres()">Admin</button>
+	</div>
+</div>
+
+<div class="text-center flex justify-center h-auto max-w-md">
+<div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm " >
+	<div class="row d-flex justify-content-center">
+		<select [(ngModel)]="currentOrganization" type="text" id="description"
+			class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+			<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+		</select>
+		<button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="orgRequest()">Lekérés</button>
+	</div>
+</div>
+</div>
 
 <div *ngFor="let termek of termekek" class="grid grid-cols-8 gap-4">
 	<div class="col">
-		<input [(ngModel)]="termek.name" type="text"
+		<input [(ngModel)]="termek.name" type="text" [ngModelOptions]="{standalone: true}"
 			class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 	</div>
 	<div class="col">
-		<input [(ngModel)]="termek.email" type="text"
+		<input [(ngModel)]="termek.email" type="text" [ngModelOptions]="{standalone: true}"
 			class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 	</div>
 	<div class="col">
-		<input [(ngModel)]="termek.description" type="text"
+		<input [(ngModel)]="termek.description" type="text" [ngModelOptions]="{standalone: true}"
 			class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 	</div>
 	<div class="col">
@@ -107,15 +127,15 @@
 		</select>
 	</div>
 	<div class="col">
-		<input [(ngModel)]="termek.location" type="text"
+		<input [(ngModel)]="termek.location" type="text" [ngModelOptions]="{standalone: true}"
 			class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 	</div>
 	<div class="col">
-		<input [(ngModel)]="termek.phone" type="number"
+		<input [(ngModel)]="termek.phone" type="number" [ngModelOptions]="{standalone: true}"
 			class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 	</div>
 	<div class="col">
-		<input [(ngModel)]="termek.price" type="number"
+		<input [(ngModel)]="termek.price" type="number" [ngModelOptions]="{standalone: true}"
 			class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 	</div>
 	<div class="col">
@@ -125,7 +145,7 @@
 	</div>
 	<div class="col">
 		<button
-			class="w-full bg-blue-500 hover:bg-blue-700 text-white text-lg py-2 px-3 rounded-[14px] border-[3px] border-cstm-purple"
+		class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
 			(click)="deleteTermek(termek)">Törlés</button>
 	</div>
 
@@ -146,19 +166,3 @@
 	</div> -->
 </div>
 
-<div class="row">
-	<!-- <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
-		<button class="btn btn-info ml-auto col" (click)="orgAdminKeres()">OrgAdmin</button>
-	</div> -->
-	<div *ngIf="userRoles.get('ADMIN')" class="col">
-		<button class="btn btn-info ml-auto col" (click)="adminKeres()">Admin</button>
-	</div>
-</div>
-
-<div>
-	<select [(ngModel)]="currentOrganization" type="text" id="description"
-		class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-		<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
-	</select>
-	<button class="btn btn-info ml-auto col" (click)="orgRequest()">Lekérés</button>
-</div>

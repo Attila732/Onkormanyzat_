@@ -21,6 +21,12 @@ export class BodyComponent implements OnInit, OnDestroy {
 	local: Hir[] = [];
 	orgs: { id: string; name: string }[] = [];
 	constructor(private newsService: NewsService, private auth: AuthService) { }
+
+	isBorderNeeded(Hir: any): boolean {
+        // Example condition: add border if title is longer than 10 characters
+        return Hir.title.length > 10;
+    }
+
 	ngOnInit(): void {
 		this.getUserInfo();
 		this.getNews();
