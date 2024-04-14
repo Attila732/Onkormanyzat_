@@ -51,8 +51,8 @@ export class SzervezesService {
         .append("category", category)}
     return this.http.get("/resource/event/search", opt).pipe(
       map((res:any) => {
-        console.log('Successfully got org:', res);
-        return res;
+        console.log('Successfully got org:', res.content);
+        return res.content;
       }),
       catchError((error) => {
         console.error('Error in getorgByName:', error);
