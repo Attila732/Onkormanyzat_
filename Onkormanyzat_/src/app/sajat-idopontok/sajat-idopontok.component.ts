@@ -25,6 +25,7 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy {
 	orgAdmin: boolean = false;
 	orgBooleanIdopontok: boolean = false;
 	currentOrganization: { id: string, name: string } = { id: "", name: "" };
+	currentPerson: ProfilAdatok = new ProfilAdatok();
 
 	constructor(private idopontservice: IdopontService, private auth: AuthService) { }
 
@@ -41,7 +42,6 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy {
 				next: (res: any) => {
 					console.log(res)
 					this.orvosok = res
-
 				},
 				error: (err: any) => console.log(err)
 			}))
@@ -52,13 +52,14 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy {
 		this.subscription.push(
 			this.auth.getUser().subscribe((res: any) => {
 				this.user = res;
+				this.currentPerson = res
 				this.subscription.push(
 					this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
 						this.userRoles = roles;
 
 						if (this.user != null && this.userRoles.get('ORG_ADMIN')) {
 							this.subscription.push(
-								this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
+								this.auth.getOrgsForUser(this.currentPerson.userId, 0).subscribe({
 									next: (res: any) => {
 										this.orgs = res;
 									},
@@ -97,13 +98,27 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy {
 	}
 
 
-	getSajatIdopontok() {
-		if (this.user != null) {
+	getSajatIdopontok(user:any) {
+		console.log("getSajatIdopontok user: ", user)
+		if (user != null) {
 			this.subscription.push(
-				this.idopontservice.getSajatIdopontok(this.user.userId).subscribe({
+				this.idopontservice.getSajatIdopontok(user.userId).subscribe({
 					next: (res: any) => {
 						this.idopontok = res;
 						console.log("getSajatIdopontok, idopontok: ", this.idopontok)
+					},
+				})
+			);
+		}
+	}
+	getOrgIdopontok(orgId:string) {
+		console.log("getOrgIdopontok orgId: ", orgId)
+		if (orgId != null) {
+			this.subscription.push(
+				this.idopontservice.getSajatIdopontokOrg(orgId).subscribe({
+					next: (res: any) => {
+						this.idopontokOrg = res;
+						console.log("getOrgIdopontok, idopontokOrg: ", this.idopontokOrg)
 					},
 				})
 			);
@@ -120,7 +135,7 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy {
 
 	deleteSajatIdopont(termek: any) {
 		this.idopontservice.deleteIdopont(termek.userId).subscribe(
-			(res: any) => { console.log("deleteSajatIdopont siker") }
+			(res: any) => { console.log("deleteSajatIdopont siker", res) }
 		)
 	}
 
@@ -150,7 +165,10 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy {
 
 	updateOrgIdopont(idopont: any) {
 		this.idopontservice.updateIdopontOrg(idopont).subscribe(
-			(res: any) => { console.log(res) }
+			(res: any) => {
+				 console.log(res) 
+				this.getSajatIdopontok(this.currentPerson)
+			}
 		);
 	}
 
@@ -180,9 +198,10 @@ export class SajatIdopontokComponent implements OnInit, OnDestroy {
 
 	onSelectItem(event: NgbTypeaheadSelectItemEvent<{ id: string, name: string }>) {
 		event.preventDefault()
-		console.log(event.item.name)
+		console.log("event.item.name",event.item.name)
+		console.log("event.item",event.item)
 		this.currentOrganization = event.item;
-
+		this.getOrgIdopontok(this.currentOrganization.id)
 	}
 
 };
