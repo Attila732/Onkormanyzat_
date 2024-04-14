@@ -33,11 +33,11 @@ export class FelhaszkezelesComponent {
 	};
 	columns: Array<{ key: string; text: string; type: string; min: number; category:ProfiladatokCategory }> = [
 		{ key: 'id', text: 'Id', type: 'text', min: 1, category:ProfiladatokCategory.ID },
-		{ key: 'email', text: 'Email', type: 'text', min: 3, category:ProfiladatokCategory.EMAIL },
-		{ key: 'userName', text: 'Felhasználónév', type: 'text', min: 3, category:ProfiladatokCategory.USERNAME },
-		{ key: 'firstName', text: 'Keresztnév', type: 'text', min: 3, category:ProfiladatokCategory.FIRSTNAME },
-		{ key: 'lastName', text: 'Vezetéknév', type: 'text', min: 3, category:ProfiladatokCategory.LASTNAME },
-		{ key: 'phone', text: 'Telefon', type: 'number', min: 3, category:ProfiladatokCategory.PHONE },
+		{ key: 'email', text: 'Email', type: 'text', min: 1, category:ProfiladatokCategory.EMAIL },
+		{ key: 'userName', text: 'Felhasználónév', type: 'text', min: 1, category:ProfiladatokCategory.USERNAME },
+		{ key: 'firstName', text: 'Keresztnév', type: 'text', min: 1, category:ProfiladatokCategory.FIRSTNAME },
+		{ key: 'lastName', text: 'Vezetéknév', type: 'text', min: 1, category:ProfiladatokCategory.LASTNAME },
+		{ key: 'phone', text: 'Telefon', type: 'number', min: 1, category:ProfiladatokCategory.PHONE },
 	];
 	category = 'firstName';
 	adminAdatok = new AdminAdatok();
