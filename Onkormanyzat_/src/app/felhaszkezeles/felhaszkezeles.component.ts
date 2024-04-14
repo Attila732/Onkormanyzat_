@@ -26,6 +26,7 @@ export class FelhaszkezelesComponent {
 ]
   category = "firstName"
   adminAdatok = new AdminAdatok()
+  profilAdatok=new ProfilAdatok()
 
   constructor(private felhaszkeres: FelhaszKeresService, private images:ImagesService) {
 
@@ -40,7 +41,8 @@ export class FelhaszkezelesComponent {
       debounceTime(300),
       distinctUntilChanged(),
       filter((searchTerm) => searchTerm.length >= this.col.min),
-      switchMap((searchTerm) => this.loadAdminAdatok(searchTerm, 0, this.col.key))
+      switchMap((searchTerm) => this.loadAdminAdatok(searchTerm, 0, this.col.key)),
+      switchMap((searchTerm) => this.loadProfilAdatok(searchTerm, 0, this.col.key))
     );
 
 
@@ -61,7 +63,9 @@ export class FelhaszkezelesComponent {
 loadAdminAdatok(value: string, pageNum: number, category: string){
   return this.felhaszkeres.getAdminAdatok(value, pageNum, category)
 }
-
+loadProfilAdatok(value: string, pageNum: number, category: string){
+  return this.felhaszkeres.getProfilAdatok(value, pageNum, category)
+}
 
 setCol(col:any){
   this.col=col
@@ -78,5 +82,7 @@ deleteUser(){
     (res:any)=>{console.log("siker")}
   )
 }
+
+
 
 }
