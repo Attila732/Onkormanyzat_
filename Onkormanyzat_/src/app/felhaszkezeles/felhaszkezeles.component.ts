@@ -32,7 +32,7 @@ export class FelhaszkezelesComponent {
 		
 	};
 	columns: Array<{ key: string; text: string; type: string; min: number; category:ProfiladatokCategory }> = [
-		{ key: 'id', text: 'Id', type: 'text', min: 1, category:ProfiladatokCategory.ID },
+		{ key: 'userId', text: 'Id', type: 'text', min: 1, category:ProfiladatokCategory.ID },
 		{ key: 'email', text: 'Email', type: 'text', min: 1, category:ProfiladatokCategory.EMAIL },
 		{ key: 'userName', text: 'Felhasználónév', type: 'text', min: 1, category:ProfiladatokCategory.USERNAME },
 		{ key: 'firstName', text: 'Keresztnév', type: 'text', min: 1, category:ProfiladatokCategory.FIRSTNAME },

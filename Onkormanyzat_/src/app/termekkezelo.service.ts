@@ -39,8 +39,8 @@ postTermek(termek:any){
   return this.http.post(this.resUrl+"items/new",termek)
 }
 
-updateTermek(body:EladoTermekAdatok){
-  return this.http.put(this.resUrl+"items/"+ body.userId, body)
+updateTermek(body:any){
+  return this.http.put(this.resUrl+"items/"+ body.itemId, body)
 }
 
 deleteTermek(id:any){

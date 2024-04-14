@@ -70,7 +70,7 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
             this.userRoles = roles;
 
             if (this.user != null && this.userRoles.get('ADMIN')) {
-              this.getTermekekForChoosenUser(this.currentPerson)
+              this.getTermekekForChoosenUser(this.user)
             }
           })
         );
@@ -102,11 +102,17 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
 
   getTermekekForChoosenUser(user:any) {
     console.log("getTermekekForChoosenUser outside if: ", user)
+    let id =null
     if (user != null) {
       console.log("getTermekekForChoosenUser inside if: ", user)
-
+      if (user.id) {
+        id=user.id
+      }else if (user.userId) {
+        id=user.userId
+      }
+      console.log("getTermekekForChoosenUser id: ",id)
       this.subscriptions.push(
-        this.termekService.getTermekekForUserById(user.userId).subscribe({
+        this.termekService.getTermekekForUserById(id).subscribe({
           next: (res: any) => {
             console.log("getTermekekForChoosenUser res: ", res)
             this.termekek = res;
@@ -179,17 +185,22 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   updateTermek(termek: EladoTermekAdatok) {
     console.log(termek)
     this.termekService.updateTermek(termek).subscribe(
-      (res: any) => { console.log(res) 
+      (res: any) => { 
+        console.log(res) 
+        console.log("currentPerson: ",this.currentPerson) 
         this.getTermekekForChoosenUser(this.currentPerson)
       }
     );
   }
 
   deleteTermek(termek: any) {
-    this.termekService.deleteTermek(termek.id).subscribe(
-      (res: any) => { console.log("siker") 
-      this.getTermekekForChoosenUser(this.currentPerson)
-    }
+    console.log("deleteTermek termek: ",termek)
+    this.termekService.deleteTermek(termek.itemId).subscribe(
+      (res: any) => { 
+        console.log("siker") 
+        console.log("currentPerson: ",this.currentPerson) 
+        this.getTermekekForChoosenUser(this.currentPerson)
+      }
     )
   }
 

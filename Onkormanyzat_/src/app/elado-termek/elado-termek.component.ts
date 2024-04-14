@@ -158,7 +158,7 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   }
   
   deleteTermek(){
-    this.termekService.deleteTermek(this.eladoTermek.userId).subscribe(
+    this.termekService.deleteTermek(this.eladoTermek.id).subscribe(
       (res:any)=>{console.log("siker")}
     )
   }
