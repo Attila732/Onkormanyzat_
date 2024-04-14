@@ -61,6 +61,7 @@ export class FelhaszKeresService {
   }
 
 
+}
   // getPersonByName(name:string): Observable<Array<{id:number;name:string;sex:boolean}>> {
   //   console.log(name)
   //   return this.http.get<{id:number;name:string;sex:boolean}[]>((this.url+"reference/"+name)).pipe(
@@ -74,4 +75,4 @@ export class FelhaszKeresService {
   //     })
   //   );
   // }
-}
+
