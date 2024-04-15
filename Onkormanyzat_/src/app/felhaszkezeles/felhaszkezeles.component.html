@@ -38,7 +38,7 @@
 		<tbody>
 			<tr>
 			<td *ngFor="let col of columns">
-				<input [value]="adminAdatok[col.key]" [value]="profilAdatok[col.key]" (focus)="setCol(col)" 
+				<input [value]="adminAdatok[col.key]" (focus)="setCol(col)" 
 					[ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)"
 					[resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control"
 					placeholder="{{col.text}}" [type]="col.type"/>
@@ -54,7 +54,6 @@
 			</td>
 
 		</tr>
-
 
 
 

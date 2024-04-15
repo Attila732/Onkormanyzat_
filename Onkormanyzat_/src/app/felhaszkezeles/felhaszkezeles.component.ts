@@ -32,12 +32,12 @@ export class FelhaszkezelesComponent {
 		
 	};
 	columns: Array<{ key: string; text: string; type: string; min: number; category:ProfiladatokCategory }> = [
-		{ key: 'userId', text: 'Id', type: 'text', min: 1, category:ProfiladatokCategory.ID },
+		{ key: 'id', text: 'Id', type: 'text', min: 1, category:ProfiladatokCategory.ID },
 		{ key: 'email', text: 'Email', type: 'text', min: 1, category:ProfiladatokCategory.EMAIL },
 		{ key: 'userName', text: 'Felhasználónév', type: 'text', min: 1, category:ProfiladatokCategory.USERNAME },
 		{ key: 'firstName', text: 'Keresztnév', type: 'text', min: 1, category:ProfiladatokCategory.FIRSTNAME },
 		{ key: 'lastName', text: 'Vezetéknév', type: 'text', min: 1, category:ProfiladatokCategory.LASTNAME },
-		{ key: 'phone', text: 'Telefon', type: 'number', min: 1, category:ProfiladatokCategory.PHONE },
+		{ key: 'phone', text: 'Telefon', type: 'text', min: 1, category:ProfiladatokCategory.PHONE },
 	];
 	category = 'firstName';
 	adminAdatok = new AdminAdatok();
@@ -99,8 +99,8 @@ export class FelhaszkezelesComponent {
 	
 
 	  
-	resultFormatter = (result: AdminAdatok) => `${result[this.category]}`;
-	inputFormatter = (result: AdminAdatok) => `${result[this.category]}`;
+	resultFormatter = (result: AdminAdatok) => `${result[this.category]}  ${result[this.col.key]}`;
+	inputFormatter = (result: AdminAdatok) => `${result[this.category]}  ${result[this.col.key]}`;
 
 	onSelectItem(event: NgbTypeaheadSelectItemEvent<AdminAdatok>) {
 		event.preventDefault();
@@ -122,7 +122,7 @@ export class FelhaszkezelesComponent {
 	}
 
 	setCol(col: any) {
-		console.log("ez a col"+col)
+		console.log("ez a col"+col.key)
 		this.col = col;
 		console.log(col)
 	}
