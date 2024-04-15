@@ -9,6 +9,7 @@ import { ProfiladatokCategory } from '../models/Enums';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { TermekkezeloService } from '../termekkezelo.service';
 import { UserService } from '../user.service';
+import { AdminAdatok } from '../models/AdminAdatok';
 
 @Component({
   selector: 'app-sajat-termekek',
@@ -25,7 +26,7 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
 
   currentCategory: ProfiladatokCategory = ProfiladatokCategory.USERNAME
 
-  currentPerson: ProfilAdatok = new ProfilAdatok();
+  currentPerson: AdminAdatok = new AdminAdatok();
   persons: ProfilAdatok[] = [];
 
   eladoTermek: EladoTermekAdatok = new EladoTermekAdatok();
@@ -243,7 +244,7 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
 
 
 
-  onSelectItem(event: NgbTypeaheadSelectItemEvent<ProfilAdatok>) {
+  onSelectItem(event: NgbTypeaheadSelectItemEvent<AdminAdatok>) {
     event.preventDefault()
     console.log(event.item)
     console.log("event.item: ", event.item)
