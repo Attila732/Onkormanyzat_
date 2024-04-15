@@ -43,6 +43,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
 		
 		this.subscription.push(
 			this.profilkez.getProfilRequest(this.user.userId).subscribe((res:any)=>{
+				console.log("getprofil res: ",res)
 				this.profil=res;
 			})
 		)

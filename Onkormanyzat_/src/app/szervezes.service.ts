@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { SzervezesAdatok } from './models/SzervezesAdatok';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError, map, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+import { SzervezesAdatok } from './models/SzervezesAdatok';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class SzervezesService {
   }
 
   postSzervezes(body:SzervezesAdatok){
-    return this.http.post(this.url+"new/", body)
+    return this.http.post(this.url+"new", body)
   };
 
   updateSzervezes(body: any) {
@@ -40,6 +40,7 @@ export class SzervezesService {
   }
   
   getSajatSzervezesekOrg(id: any) {
+    console.log("getSajatSzervezesekOrg id: ", id)
     return this.http.get(this.url + "sajat/" + id)
   }
   
@@ -54,10 +55,10 @@ export class SzervezesService {
         console.log('Successfully got org:', res.content);
         return res.content;
       }),
-      catchError((error) => {
-        console.error('Error in getorgByName:', error);
-        return throwError(() => error);
-      })
+      // catchError((error) => {
+      //   console.error('Error in getorgByName:', error);
+      //   return throwError(() => error);
+      // })
     )
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
+import { AuthService } from '../auth.service';
+import { ProfilAdatok } from '../models/ProfilAdatok';
 import { SzervezesAdatok } from '../models/SzervezesAdatok';
 import { SzervezesService } from '../szervezes.service';
-import { ProfilAdatok } from '../models/ProfilAdatok';
-import { AuthService } from '../auth.service';
-import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
-import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sajat-szervezesek',
@@ -47,7 +47,9 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
               this.subscription.push(
                 this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
                   next: (res: any) => {
+                    console.log("getOrgsForUser res: ",res);
                     this.orgs = res;
+                    this.currentOrganization = res[0];
                   },
                 })
               );
@@ -60,7 +62,10 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   inputForm() {
     if (this.user != null) {
       this.ujSzervezes.userId = this.user.userId;
-      this.szervezesService.postSzervezes(this.ujSzervezes);
+      this.szervezesService.postSzervezes(this.ujSzervezes)
+      .subscribe(
+        (res:any)=>{console.log("siker")}
+      )
     }
     
   }  
@@ -79,7 +84,6 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
         this.szervezesService.getSajatSzervezesek(this.user.userId).subscribe({
           next: (res: any) => {
             this.szervezesek = res;
-            // this.addBoolErdekel();
           },
         })
       );
@@ -108,8 +112,11 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
 
   orgRequest(){
     if (this.currentOrganization != null) {
+      console.log("orgRequest currentOrganization: ",this.currentOrganization)
       this.szervezesService.getSajatSzervezesekOrg(this.currentOrganization.id).subscribe(
-        (res:any)=>{this.szervezesOrg = res
+        (res:any)=>{
+          console.log("orgRequest res: ", res)
+          this.szervezesOrg = res
           this.orgBooleanSzervezesek = true;
         }
       )
@@ -148,7 +155,7 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
 
   onSelectItem(event: NgbTypeaheadSelectItemEvent<{id: string, name: string}>) {
     event.preventDefault()
-    console.log(event.item.name)
+    console.log("onSelectItem event.item.name: ",event.item.name)
     this.currentOrganization=event.item;
 
   }

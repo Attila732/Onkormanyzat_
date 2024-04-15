@@ -1,9 +1,8 @@
-import { NumberValueAccessor } from "@angular/forms"
 
 export class EladoTermekAdatok{
 
     [x: string]: any
-    "id": string
+    "itemId": string
     "userId":string
     "name": string  //termek neve
     "email":string
@@ -16,7 +15,7 @@ export class EladoTermekAdatok{
 
     
     constructor() {
-      this.id=""
+      this.itemId=""
       this.userId=""//bejelentkezett felhasználó (Profiladatok.userId) ből
       this.name= ""
       this.email=""

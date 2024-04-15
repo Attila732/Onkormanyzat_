@@ -9,11 +9,13 @@ export class ProfilKezeloServiceService {
 	private profiladatok: ProfilAdatok = new ProfilAdatok();
 	url = '/resource/user/';
 
-	constructor(private http: HttpClient) {}
-	getProfilRequest(id:string) {
-    return this.http.get(this.url+"id/"+id)
-  }
-	
+	constructor(private http: HttpClient) { }
+
+
+	getProfilRequest(id: string) {
+		return this.http.get(this.url + "id/ex/" + id)
+	}
+
 	public setprofiladatok(value: ProfilAdatok) {
 		this.profiladatok = value;
 	}
