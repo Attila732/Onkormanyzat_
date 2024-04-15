@@ -63,7 +63,7 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.auth.getUser().subscribe((res: any) => {
         this.user = res;
-        this.currentPerson = res;
+        this.getAdminAdatokByIdForCurrentPerson(res.userId);
         this.subscriptions.push(
           this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
             this.userRoles = roles;
@@ -215,6 +215,14 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
 
   orgRequest() {
 
+  }
+  getAdminAdatokByIdForCurrentPerson(id:string){
+    this.userS.getUserById(id).subscribe({
+      next:(res:any)=>{
+        console.log("getAdminAdatokByIdForCurrentPerson res: ", res)
+        this.currentPerson = res;
+      }
+    })
   }
 
   getUsersByPropertyLike(value: string, pageNum: number, category: string) {

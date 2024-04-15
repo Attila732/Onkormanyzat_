@@ -57,4 +57,8 @@ export class UserService {
 	public setprofiladatok(value: ProfilAdatok) {
 		this.profiladatok = value;
 	}
+
+  getUserById(id:string){
+    return this.http.get(this.url+"id/ex/"+id)
+  }
 }
