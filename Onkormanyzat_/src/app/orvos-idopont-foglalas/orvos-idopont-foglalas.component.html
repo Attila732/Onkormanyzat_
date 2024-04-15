@@ -41,10 +41,13 @@
 			<input [(ngModel)]="idopontModel.endDate" type="datetime-local" id="endDate" name="endDate"
 				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 				required [min]="idopontModel.startDate">
-
-			<button type="submit" (click)="getOrvosok()"
-				class="w-full md:w-[30%] text-xl md:text-2xl lg:text-3xl text-cstm-dark_gray hover:text-cstm-gray mt-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+			
+			<div class="w-full flex justify-center items-center">
+				<button type="submit" (click)="getOrvosok()"
+				class="w-fit md:w-[30%] text-xl md:text-2xl lg:text-3xl text-cstm-dark_gray hover:text-cstm-gray mt-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-12 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
 				[disabled]="!idopontForm.valid">Időpont foglalása</button>
+			</div>
+
 				<div *ngIf="showsikerPopup"
 				class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
 				<div class="bg-white p-5 rounded-lg">

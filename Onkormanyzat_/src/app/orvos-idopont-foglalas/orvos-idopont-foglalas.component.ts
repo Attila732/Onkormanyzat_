@@ -20,16 +20,15 @@ export class OrvosIdopontfoglalasComponent {
   orvosok:{id: string, name: string}[]=[]
 
 
+
+
   constructor(private idopontservice:IdopontService, private auth: AuthService){
     this.getUserInfo()
     const now = new Date();
     this.currentDate = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
     this.getOrvosok()
   }
-  showelrejtPopup() {
-    this.showsikertelenPopup = false;
-    this.showsikerPopup=false
-}
+
   getUserInfo(){
     this.subscription.push(this.auth.getUser().subscribe(
       (res: any) => this.user = res
@@ -59,7 +58,7 @@ export class OrvosIdopontfoglalasComponent {
         this.orvosok=res
 
       },
-      error:(err:any)=>console.log("szeva",err)
+      error:(err:any)=>this.showsikertelenPopup = true
     }))
   }
   
@@ -69,5 +68,14 @@ export class OrvosIdopontfoglalasComponent {
         element.unsubscribe();        
       });
     }
+  }
+
+  successreset(){
+		this.idopontModel = new IdopontAdatok()
+	  }
+  
+    showelrejtPopup() {
+      this.showsikertelenPopup = false;
+      this.showsikerPopup=false
   }
 };

@@ -1,6 +1,20 @@
  <app-termek-eladas></app-termek-eladas>
 
+
+
 <div class="container mx-auto mt-5">
+
+	<div class="w-full flex justify-center py-6">
+		<div class="w-1/2 flex flex-row justify-between items-center">
+			<div class="">
+				<button [disabled]="pagenum<1" class="w-full md:w-[30%] text-xl disabled:text-cstm-dark_gray text-cstm-purple hover:text-cstm-gray disabled:border-purple-900 disabled:bg-transparent disabled:hover:shadow-transparent disabled:hover:text-cstm-dark_gray border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="decreasePageNum()">Előző</button>
+			</div>
+			<div class="">
+				<button class="w-full md:w-[30%] text-xl text-cstm-purple hover:text-cstm-gray border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="increasePageNum()">Következő</button>
+			</div>
+		</div>
+	</div>
+
 	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 		<div class="backdrop-blur-2xl bg-white/30 p-4 rounded-lg">
 			<h3 class="text-lg font-bold text-cstm-orszagos">Eladó Termékek</h3>
@@ -15,7 +29,7 @@
 					<div class="flex items-center mt-2">
 						<p class="text-gray-600">{{item.location}}</p>
 						<div class="flex ml-auto">
-							<button class="btn btn-info ml-auto" (click)="toggleSellerInfo(item)">Érdekel</button>
+							<button class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-green-800 bg-green-800 hover:bg-green-600 hover:border-green-600 rounded-xl px-3 py-2 shadow-xl hover:shadow-green-500 transform transition duration-500" (click)="toggleSellerInfo(item)">Érdekel</button>
 							<div class="szavazas ml-2" *ngIf="item['erdekel']">
 								<h3 class="text-lg font-semibold">Eladó adatai</h3>
 								<p class="text-gray-700">Email: {{ eladoTermek.email }}</p>
@@ -46,7 +60,7 @@
 					<div class="flex items-center mt-2">
 						<p class="text-gray-600">{{item.location}}</p>
 						<div class="flex ml-auto">
-							<button class="btn btn-info ml-auto" (click)="toggleSellerInfo(item)">Érdekel</button>
+							<button class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-green-800 bg-green-800 hover:bg-green-600 hover:border-green-600 rounded-xl px-3 py-2 shadow-xl hover:shadow-green-500 transform transition duration-500" (click)="toggleSellerInfo(item)">Érdekel</button>
 							<div class="szavazas ml-2" *ngIf="item['erdekel']">
 								<h3 class="text-lg font-semibold">Eladó adatai</h3>
 								<p class="text-gray-700">Email: {{ eladoTermek.email }}</p>
@@ -64,12 +78,18 @@
 			</ul>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col">
-		<button [disabled]="pagenum<1" class="btn btn-info ml-auto" (click)="decreasePageNum()">Előző</button>
+
+	<div class="w-full flex justify-center py-6">
+		<div class="w-1/2 flex flex-row justify-between items-center">
+			<div class="">
+				<button [disabled]="pagenum<1" class="w-full md:w-[30%] text-xl disabled:text-cstm-dark_gray text-cstm-purple hover:text-cstm-gray disabled:border-purple-900 disabled:bg-transparent disabled:hover:shadow-transparent disabled:hover:text-cstm-dark_gray border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="decreasePageNum()">Előző</button>
+			</div>
+			<div class="">
+				<button class="w-full md:w-[30%] text-xl text-cstm-purple hover:text-cstm-gray border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500" (click)="increasePageNum()">Következő</button>
+			</div>
+		</div>
 	</div>
-	<div class="col">
-		<button class="btn btn-info ml-auto" (click)="increasePageNum()">Következő</button>
-	</div>
+
 </div>
+
+

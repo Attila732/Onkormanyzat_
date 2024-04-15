@@ -155,14 +155,15 @@
 		  <input [(ngModel)]="termek.price" type="number" [ngModelOptions]="{standalone: true}"
 			class="w-full py-2 px-4 border rounded-md">
 		</div>
-		<div class="w-full md:w-1/6 mb-4 md:mb-0">
-		  <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md"
-			(click)="updateTermek(termek)">Szerkesztés</button>
+
+		<div class="w-full flex justify-evenly md:w-1/6 mb-4 md:mb-0">
+		  	<button class="font-semibold bg-blue-500 hover:bg-blue-700 border-2 border-blue-500 hover:border-blue-700 text-white py-2 px-4 rounded-md"
+				(click)="updateTermek(termek)">Szerkesztés</button>
+
+			<button class="font-semibold border-red-700 border-2 hover:bg-red-700 text-red-700 hover:text-white py-2 px-4 rounded-md"
+				(click)="deleteTermek(termek)">Törlés</button>
 		</div>
-		<div class="w-full md:w-1/6 mb-4 md:mb-0">
-		  <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-md"
-			(click)="deleteTermek(termek)">Törlés</button>
-		</div>
+
 	  </div>
 	</div>
   </div>
