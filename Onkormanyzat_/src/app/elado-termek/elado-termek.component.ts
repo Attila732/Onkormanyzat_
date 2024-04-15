@@ -18,6 +18,7 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   showSellerInfo: boolean = false;
   eladoTermek: EladoTermekAdatok = new EladoTermekAdatok();
   buttonClicked = false;
+  pagenum: number = 0
   userRoles: any;
   private user: ProfilAdatok | null = null;
   private subscriptions: Subscription[] = [];
@@ -61,14 +62,15 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.getTermekek(0, 0);
-    this.getTermekekFree(0);
+    this.getTermekek(this.pagenum, 0);
+    this.getTermekekFree(this.pagenum);
   }
 
   getTermekek(pageNum: number, price: number) {
     this.subscriptions.push(
       this.termekService.getTermekek(pageNum, price).subscribe({
         next: (res: any) => {
+          console.log("getTermekek res: ", res)
           this.termekek = res;
           this.addBoolErdekel();
         },
@@ -79,7 +81,9 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.termekService.getTermekekFree(pageNum).subscribe({
         next: (res: any) => {
+          console.log("getTermekekFree res: ", res)
           this.termekekFree = res;
+          this.addBoolErdekel()
         },
       })
     );
@@ -87,10 +91,14 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
 
   addBoolErdekel() {
     this.termekek.forEach((element) => {
-      element['erdekel'] = false;
+      if (!element['erdekel'] == true) {
+        element['erdekel'] = false;
+      }
     });
     this.termekekFree.forEach((element) => {
-      element['erdekel'] = false;
+      if (!element['erdekel'] == true) {
+        element['erdekel'] = false;
+      }
     });
   }
 
@@ -158,8 +166,24 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
   }
   
   deleteTermek(){
-    this.termekService.deleteTermek(this.eladoTermek.id).subscribe(
+    this.termekService.deleteTermek(this.eladoTermek.itemId).subscribe(
       (res:any)=>{console.log("siker")}
     )
+  }
+
+
+
+  decreasePageNum(){
+    if (this.pagenum > 0) {
+      this.pagenum--;
+      this.getTermekek(this.pagenum, 0);
+      this.getTermekekFree(this.pagenum);
+    }
+  }
+
+  increasePageNum(){
+    this.pagenum++;
+    this.getTermekek(this.pagenum, 0);
+    this.getTermekekFree(this.pagenum);
   }
 }
