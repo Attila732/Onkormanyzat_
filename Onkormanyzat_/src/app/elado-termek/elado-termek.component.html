@@ -32,8 +32,8 @@
 							<button class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-green-800 bg-green-800 hover:bg-green-600 hover:border-green-600 rounded-xl px-3 py-2 shadow-xl hover:shadow-green-500 transform transition duration-500" (click)="toggleSellerInfo(item)">Érdekel</button>
 							<div class="szavazas ml-2" *ngIf="item['erdekel']">
 								<h3 class="text-lg font-semibold">Eladó adatai</h3>
-								<p class="text-gray-700">Email: {{ eladoTermek.email }}</p>
-								<p class="text-gray-700">Telefonszám: {{ eladoTermek.phone }}</p>
+								<p class="text-gray-700">Email: {{ item.email }}</p>
+								<p class="text-gray-700">Telefonszám: {{ item.phone }}</p>
 							</div>
 						</div>
 					</div>
@@ -63,8 +63,8 @@
 							<button class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-green-800 bg-green-800 hover:bg-green-600 hover:border-green-600 rounded-xl px-3 py-2 shadow-xl hover:shadow-green-500 transform transition duration-500" (click)="toggleSellerInfo(item)">Érdekel</button>
 							<div class="szavazas ml-2" *ngIf="item['erdekel']">
 								<h3 class="text-lg font-semibold">Eladó adatai</h3>
-								<p class="text-gray-700">Email: {{ eladoTermek.email }}</p>
-								<p class="text-gray-700">Telefonszám: {{ eladoTermek.phone}}</p>
+								<p class="text-gray-700">Email: {{ item.email }}</p>
+								<p class="text-gray-700">Telefonszám: {{ item.phone}}</p>
 							</div>
 						</div>
 					</div>

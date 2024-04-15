@@ -55,21 +55,6 @@ public class AuthorizationConfig {
             http.authorizeExchange(
                 exchange -> exchange
                 .pathMatchers("/index.html", "/", "*.js", "*.css", "*.ico","/assets/R.png").permitAll()
-                // .pathMatchers("/client*").permitAll()
-                // .pathMatchers("/client/login/**").authenticated()
-                // .pathMatchers("/client/elado-termekek/**").authenticated()
-                // .pathMatchers("/client/jelenteskezelo/**").authenticated()
-                // .pathMatchers("/client/szervezeskezd/**").authenticated()
-                // .pathMatchers("/client/profil/**").authenticated()
-                // .pathMatchers("/client/profilszerkesztes/**").authenticated()
-                // .pathMatchers("/client/felhaszkezeles/**").authenticated()
-                // .pathMatchers("/client/elado-termekek").authenticated()
-                // .pathMatchers("/client/jelenteskezelo").authenticated()
-                // .pathMatchers("/client/szervezeskezd").authenticated()
-                // .pathMatchers("/client/profil").authenticated()
-                // .pathMatchers("/client/profilszerkesztes").authenticated()
-                // .pathMatchers("/client/felhaszkezeles").authenticated()
-                // .pathMatchers("/client/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/resource/news/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/resource/items/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/resource/images/**").permitAll()
@@ -77,26 +62,6 @@ public class AuthorizationConfig {
                 .anyExchange().authenticated()
                 // .anyExchange().permitAll()
             );
-            // {path:"", component:BodyComponent, pathMatch:'full'},
-            // {path:"nav",component:NavComponent},
-            // {path:"barna-test",component:BTCCompComponent},
-            // {path:"login", component:LoginComponent},
-            // {path:"sign-up", component:SignUpComponent},
-            // // {path:"body", component:BodyComponent, canActivate:[authGuard(["ADMIN"])]},
-            // {path:"body", component:BodyComponent},
-            // {path:"elado-termekek",component:EladoTermekComponent},
-            // {path:"orvos-egyeb-ugyek",component:OrvosEgyebUgyekComponent},
-            // {path:"orvos-idopont-foglalas",component:OrvosIdopontfoglalasComponent},
-            // {path:"orvos-nyitvatartas",component:OrvosNyitvatartasComponent},
-            // {path:"jelenteskezelo",component:JelenteskezeloComponent},
-            // {path:"tuzszabalyok",component:TuzszabalyokComponent},
-            // {path:"szervezes",component:SzervezesComponent},
-            // {path:"szervezeskezd",component:SzervezeskezdemenyComponent},
-            // {path:"profil",component:ProfilComponent},
-            // {path:"profilszerkesztes",component:ProfilSzerkesztesComponent},
-            // {path:"btccomp",component:BTCCompComponent},
-            // {path:"felhaszkezeles",component:FelhaszkezelesComponent},
-            // {path:"**",component:HibaComponent}
             // http.oauth2Login(login->login);
             // http.oauth2Login(login->login.authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("/login")));
             http.oauth2Login(Customizer.withDefaults());

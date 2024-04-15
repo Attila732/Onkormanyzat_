@@ -19,7 +19,7 @@ export class ProfilAdatok {
       this.email= ""
       this.name= ""
       this.phone= null
-      // this.roles=[]
+      this.roles=new Map<String,boolean>()
       this.orgs=[]
      }
     }

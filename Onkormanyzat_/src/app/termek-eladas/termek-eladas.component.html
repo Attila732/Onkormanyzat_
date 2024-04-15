@@ -43,7 +43,7 @@
 					Kép kiválasztása
 				</button>
 			</div>
-			<table mat-table [dataSource]="_selectedFiles" class="selected-files-table">
+			<table *ngIf="_selectedFiles.length>0" mat-table [dataSource]="_selectedFiles" class="selected-files-table">
 				<ng-container matColumnDef="name">
 					<th mat-header-cell *matHeaderCellDef> File Név </th>
 					<td mat-cell *matCellDef="let file"> {{file.name}} </td>
