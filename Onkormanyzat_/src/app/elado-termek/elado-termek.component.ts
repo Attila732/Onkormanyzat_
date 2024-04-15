@@ -171,6 +171,12 @@ export class EladoTermekComponent implements OnInit, OnDestroy {
     )
   }
 
+  refresh(){
+    console.log("refreshing")
+    this.getTermekek(this.pagenum, 0);
+    this.getTermekekFree(this.pagenum);
+  }
+
 
 
   decreasePageNum(){

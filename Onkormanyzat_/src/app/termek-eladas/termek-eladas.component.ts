@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { FilePickerDirective } from '../file-picker.directive';
@@ -13,6 +13,8 @@ import { TermekkezeloService } from '../termekkezelo.service';
   styleUrls: ['./termek-eladas.component.css']
 })
 export class TermekEladasComponent {
+
+  @Output() refresh = new EventEmitter()
 
   private user: ProfilAdatok | null = null;
   
@@ -64,8 +66,8 @@ export class TermekEladasComponent {
             console.log("this._selectedFiles.length != 0 images post")
             this.ImageS.postfile(this._selectedFiles, res);
             this.showsikerPopup = true;
-            this.successreset()
           }
+          this.successreset()
         },
         error:(err:any)=>this.showsikertelenPopup = true
       });
@@ -131,6 +133,7 @@ export class TermekEladasComponent {
 
   successreset(){
     this.eladoTermek = new EladoTermekAdatok()
+    this.refresh.emit()
   }
 
   showelrejtPopup() {
