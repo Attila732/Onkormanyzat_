@@ -1,8 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
-import { ProfilAdatok } from '../models/ProfilAdatok';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -66,6 +65,9 @@ export class NavComponent {
     this.auth.logout()
   }
 
+  redirectToLogin(){
+    window.location.href = "/client/"
+  }
 
 }
 

@@ -83,7 +83,7 @@
 					<li *ngIf="!roles.get('USER')" [ngbNavItem]="8">
 						<button
 							class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
-							ngbNavLink routerLink="/login">Bejelentkezés</button>
+							ngbNavLink (click)="redirectToLogin()">Bejelentkezés</button>
 					</li>
 					<li *ngIf="roles.get('USER')" [ngbNavItem]="8">
 						<button
@@ -195,7 +195,7 @@
 			<li *ngIf="!roles.get('USER')" [ngbNavItem]="8">
 				<button
 					class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg font-medium hover:scale-125"
-					ngbNavLink routerLink="/login">Bejelentkezés</button>
+					ngbNavLink (click)="redirectToLogin()">Bejelentkezés</button>
 			</li>
 			<li *ngIf="roles.get('USER')" [ngbNavItem]="8">
 				<button

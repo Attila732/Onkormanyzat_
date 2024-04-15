@@ -1,15 +1,14 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { FilePickerDirective } from '../file-picker.directive';
 import { ImagesService } from '../images.service';
 import { EladoTermekAdatok } from '../models/EladoTermekAdatok';
-import { ProfilAdatok } from '../models/ProfilAdatok';
-import { TermekKepekkel } from '../models/TermekKepekkel';
-import { TermekkezeloService } from '../termekkezelo.service';
-import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from '../user.service';
 import { ProfiladatokCategory } from '../models/Enums';
+import { ProfilAdatok } from '../models/ProfilAdatok';
+import { TermekkezeloService } from '../termekkezelo.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-sajat-termekek',
@@ -70,6 +69,8 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
             this.userRoles = roles;
 
             if (this.user != null && this.userRoles.get('ADMIN')) {
+              this.getTermekekForChoosenUser(this.currentPerson)
+            }else{
               this.getTermekekForChoosenUser(this.user)
             }
           })
@@ -78,22 +79,22 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     );
   }
 
-  setupDataAndSend() {
-    if (this.user != null) {
-      console.log("setupAndSend eladotermekek: ", this.eladoTermek);
-      console.log("setupAndSend user: ", this.user);
-      this.eladoTermek.userId = this.user.userId;
-      console.log(this.eladoTermek);
-      this.termekService.postTermek(this.eladoTermek).subscribe({
-        next: (res: any) => {
-          if (this._selectedFiles.length != 0) {
-            console.log("this._selectedFiles.length != 0 images post")
-            this.ImageS.postfile(this._selectedFiles, res);
-          }
-        },
-      });
-    }
-  }
+  // setupDataAndSend() {
+  //   if (this.user != null) {
+  //     console.log("setupAndSend eladotermekek: ", this.eladoTermek);
+  //     console.log("setupAndSend user: ", this.user);
+  //     this.eladoTermek.userId = this.user.userId;
+  //     console.log(this.eladoTermek);
+  //     this.termekService.postTermek(this.eladoTermek).subscribe({
+  //       next: (res: any) => {
+  //         if (this._selectedFiles.length != 0) {
+  //           console.log("this._selectedFiles.length != 0 images post")
+  //           this.ImageS.postfile(this._selectedFiles, res);
+  //         }
+  //       },
+  //     });
+  //   }
+  // }
 
   ngOnInit(): void {
     this.getUserInfo();
