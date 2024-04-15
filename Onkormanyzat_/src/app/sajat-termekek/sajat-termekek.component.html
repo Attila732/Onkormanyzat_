@@ -1,6 +1,6 @@
 
 <!-- <app-termek-eladas></app-termek-eladas> -->
-{{termekek|json}}
+<!-- {{termekek|json}}
 
 <div class="row">
 	<div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
@@ -19,7 +19,7 @@
 	</div>
 </div>
 {{currentCategory|json}}
-{{currentPerson|json}}
+{{currentPerson|json}} -->
 
 <!-- <div class="text-center flex justify-center h-auto max-w-md">
 	<div class="bg-white/30 w-[70%] rounded-[40px] backdrop-blur-sm" >
@@ -36,7 +36,7 @@
 	  </div>
 	</div>
   </div> -->
-  
+<!--   
 
 <div *ngFor="let termek of termekek" class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
 	<div class="col">
@@ -80,7 +80,7 @@
 		<button
 		class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
 			(click)="deleteTermek(termek)">Törlés</button>
-	</div>
+	</div> -->
 
 	<!-- <div class="col">
 		<input [(ngModel)]="termek.location" type="text">
@@ -97,5 +97,73 @@
 	<div class="col">
 		<button class="btn btn-info ml-auto col" (click)="deleteTermek(termek)">Törlés</button>
 	</div> -->
-</div>
+<!-- </div> -->
+<div class="container mx-auto">
 
+	<!-- Admin section -->
+	<div class="row">
+	  <div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
+		<button class="btn btn-info ml-auto row-auto" (click)="adminKeres()">Admin</button>
+	  </div>
+	</div>
+  
+	<!-- Admin functionality -->
+	<div *ngIf="admin" class="mt-8">
+	  <select name="category" id="category" [(ngModel)]="currentCategory" [value]="currentCategory"
+		class="w-full py-2 px-4 border rounded-md">
+		<option *ngFor="let cat of categories" [value]="cat.category">{{cat.text}}</option>
+	  </select>
+	  <div class="flex mt-4">
+		<input [value]="currentPerson[translateCurrentCategory(this.currentCategory)]" [ngbTypeahead]="searchPeople"
+		  (selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter"
+		  class="w-full py-2 px-4 border rounded-md" />
+	  </div>
+	</div>
+  
+	<!-- Termek section -->
+	<div class="mt-8">
+	  <div *ngFor="let termek of termekek" class="flex flex-wrap items-center justify-between bg-white/30 rounded-lg p-4 mb-4">
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <input [(ngModel)]="termek.name" type="text" [ngModelOptions]="{standalone: true}"
+			class="w-full py-2 px-4 border rounded-md">
+		</div>
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <input [(ngModel)]="termek.email" type="text" [ngModelOptions]="{standalone: true}"
+			class="w-full py-2 px-4 border rounded-md">
+		</div>
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <input [(ngModel)]="termek.description" type="text" [ngModelOptions]="{standalone: true}"
+			class="w-full py-2 px-4 border rounded-md">
+		</div>
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <select [(ngModel)]="termek.condition" [value]="termek.condition" type="text" id="condition" name="condition"
+			class="w-full py-2 px-4 border rounded-md">
+			<option value="new">Új</option>
+			<option value="newish">ÚjSzerű</option>
+			<option value="used">Használt</option>
+		  </select>
+		</div>
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <input [(ngModel)]="termek.location" type="text" [ngModelOptions]="{standalone: true}"
+			class="w-full py-2 px-4 border rounded-md">
+		</div>
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <input [(ngModel)]="termek.phone" type="number" [ngModelOptions]="{standalone: true}"
+			class="w-full py-2 px-4 border rounded-md">
+		</div>
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <input [(ngModel)]="termek.price" type="number" [ngModelOptions]="{standalone: true}"
+			class="w-full py-2 px-4 border rounded-md">
+		</div>
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md"
+			(click)="updateTermek(termek)">Szerkesztés</button>
+		</div>
+		<div class="w-full md:w-1/6 mb-4 md:mb-0">
+		  <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded-md"
+			(click)="deleteTermek(termek)">Törlés</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  

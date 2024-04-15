@@ -17,8 +17,9 @@ export class ProfilComponent implements OnInit, OnDestroy {
 	// };
 	private user: ProfilAdatok | null = null;
 
-	isEditing = false;
+	isEditing = true;
 	subscription: Subscription[] = [];
+	isDisabled: boolean=true;
 
 	// Hozz létre egy FileUploader példányt
 	//uploader: FileUploader = new FileUploader({});
@@ -27,6 +28,9 @@ export class ProfilComponent implements OnInit, OnDestroy {
 		private profilkez: ProfilKezeloServiceService,
 		private auth: AuthService
 	) {}
+	enableEdit() {
+		this.isDisabled = false;
+	  }
 	ngOnDestroy(): void {
     this.subscription.forEach(element => {
       element.unsubscribe();

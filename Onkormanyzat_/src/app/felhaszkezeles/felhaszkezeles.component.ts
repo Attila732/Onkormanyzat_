@@ -49,6 +49,11 @@ export class FelhaszkezelesComponent {
 		private felhaszkeres: FelhaszKeresService,
 		private images: ImagesService
 	) {}
+	showAllElements: boolean = false;
+
+	toggleElementsVisibility() {
+	  this.showAllElements = !this.showAllElements;
+	}
 
 	ngOnInit() {}
 
