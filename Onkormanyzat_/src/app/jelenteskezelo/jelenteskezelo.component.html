@@ -59,7 +59,7 @@
 				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 				required [min]="currentDateTime">
 
-			<button type="submit"
+			<button type="submit" (click)="inputForm()"
 				class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
 				[disabled]="!idopontForm.valid">Bejelentés Küldése</button>
 		</form>

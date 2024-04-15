@@ -11,6 +11,8 @@ import { ProfilAdatok } from '../models/ProfilAdatok';
   styleUrls: ['./orvos-idopont-foglalas.component.css']
 })
 export class OrvosIdopontfoglalasComponent {
+  showsikerPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
+  showsikertelenPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
   idopontModel = new IdopontAdatok()
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[] =[];
@@ -24,7 +26,10 @@ export class OrvosIdopontfoglalasComponent {
     this.currentDate = now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
     this.getOrvosok()
   }
-
+  showelrejtPopup() {
+    this.showsikertelenPopup = false;
+    this.showsikerPopup=false
+}
   getUserInfo(){
     this.subscription.push(this.auth.getUser().subscribe(
       (res: any) => this.user = res
@@ -38,12 +43,15 @@ export class OrvosIdopontfoglalasComponent {
       this.idopontModel.userId = this.user.userId;
       this.idopontservice.postIdopont(this.idopontModel).subscribe(
         (res:any)=>{
-          console.log("successful post",res)
+          console.log("successful post",res),
+          this.showsikerPopup = true;
+          
         })
-    }
+    } error:(err:any)=>this.showsikertelenPopup = true
     
   }  
   getOrvosok(){
+    console.log("szeva")
     this.subscription.push(
     this.idopontservice.getOrvosok(0).subscribe({
       next:(res:any)=>{
@@ -51,7 +59,7 @@ export class OrvosIdopontfoglalasComponent {
         this.orvosok=res
 
       },
-      error:(err:any)=>console.log(err)
+      error:(err:any)=>console.log("szeva",err)
     }))
   }
   
