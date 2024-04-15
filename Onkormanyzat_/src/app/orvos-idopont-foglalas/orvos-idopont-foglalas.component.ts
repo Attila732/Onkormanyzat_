@@ -18,6 +18,10 @@ export class OrvosIdopontfoglalasComponent {
   orvosok:{id: string, name: string}[]=[]
 
 
+  showsikerPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
+  showsikertelenPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
+
+
   constructor(private idopontservice:IdopontService, private auth: AuthService){
     this.getUserInfo()
     const now = new Date();
@@ -51,7 +55,7 @@ export class OrvosIdopontfoglalasComponent {
         this.orvosok=res
 
       },
-      error:(err:any)=>console.log(err)
+      error:(err:any)=>this.showsikertelenPopup = true
     }))
   }
   
@@ -61,5 +65,14 @@ export class OrvosIdopontfoglalasComponent {
         element.unsubscribe();        
       });
     }
+  }
+
+  successreset(){
+		this.idopontModel = new IdopontAdatok()
+	  }
+  
+    showelrejtPopup() {
+      this.showsikertelenPopup = false;
+      this.showsikerPopup=false
   }
 };
