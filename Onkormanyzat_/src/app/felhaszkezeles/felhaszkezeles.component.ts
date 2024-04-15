@@ -104,7 +104,7 @@ export class FelhaszkezelesComponent {
 
 	onSelectItem(event: NgbTypeaheadSelectItemEvent<AdminAdatok>) {
 		event.preventDefault();
-		console.log(event.item.email);
+		console.log("event.item",event.item);
 		this.adminAdatok = event.item;
 	}
 

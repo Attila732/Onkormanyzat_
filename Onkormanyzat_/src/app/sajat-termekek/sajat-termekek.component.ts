@@ -60,22 +60,15 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
 
 
 
-  getUserInfo() {
+  async getUserInfo() {
     this.subscriptions.push(
       this.auth.getUser().subscribe((res: any) => {
-        this.user = res;
-        this.getAdminAdatokByIdForCurrentPerson(res.userId);
-        this.subscriptions.push(
-          this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
-            this.userRoles = roles;
-
-            if (this.user != null && this.userRoles.get('ADMIN')) {
-              this.getTermekekForChoosenUser(this.currentPerson)
-            }else{
-              this.getTermekekForChoosenUser(this.user)
-            }
-          })
-        );
+          console.log("this.user = res: ", res)
+          this.user = res;
+          if (this.user) {
+            this.userRoles = this.user.roles;
+          }
+          this.getAdminAdatokByIdForCurrentPerson(res.userId)
       })
     );
   }
@@ -102,17 +95,17 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     // this.getSajatTermekek();
   }
 
-  getTermekekForChoosenUser(user:any) {
+  getTermekekForChoosenUser(user: any) {
     console.log("getTermekekForChoosenUser outside if: ", user)
-    let id =null
+    let id = null
     if (user != null) {
       console.log("getTermekekForChoosenUser inside if: ", user)
       if (user.id) {
-        id=user.id
-      }else if (user.userId) {
-        id=user.userId
+        id = user.id
+      } else if (user.userId) {
+        id = user.userId
       }
-      console.log("getTermekekForChoosenUser id: ",id)
+      console.log("getTermekekForChoosenUser id: ", id)
       this.subscriptions.push(
         this.termekService.getTermekekForUserById(id).subscribe({
           next: (res: any) => {
@@ -128,7 +121,7 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.buttonClicked = true;
   }
-  
+
   toggleForm() {
     this.buttonClicked = !this.buttonClicked;
     if (!this.buttonClicked) {
@@ -187,20 +180,20 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   updateTermek(termek: EladoTermekAdatok) {
     console.log(termek)
     this.termekService.updateTermek(termek).subscribe(
-      (res: any) => { 
-        console.log(res) 
-        console.log("currentPerson: ",this.currentPerson) 
+      (res: any) => {
+        console.log(res)
+        console.log("currentPerson: ", this.currentPerson)
         this.getTermekekForChoosenUser(this.currentPerson)
       }
     );
   }
 
   deleteTermek(termek: any) {
-    console.log("deleteTermek termek: ",termek)
+    console.log("deleteTermek termek: ", termek)
     this.termekService.deleteTermek(termek.itemId).subscribe(
-      (res: any) => { 
-        console.log("siker") 
-        console.log("currentPerson: ",this.currentPerson) 
+      (res: any) => {
+        console.log("siker")
+        console.log("currentPerson: ", this.currentPerson)
         this.getTermekekForChoosenUser(this.currentPerson)
       }
     )
@@ -217,13 +210,15 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
   orgRequest() {
 
   }
-  getAdminAdatokByIdForCurrentPerson(id:string){
+  getAdminAdatokByIdForCurrentPerson(id: string) {
+    this.subscriptions.push(
     this.userS.getUserById(id).subscribe({
-      next:(res:any)=>{
+      next: (res: any) => {
         console.log("getAdminAdatokByIdForCurrentPerson res: ", res)
         this.currentPerson = res;
+        this.getTermekekForChoosenUser(res)
       }
-    })
+    }))
   }
 
   getUsersByPropertyLike(value: string, pageNum: number, category: string) {
@@ -250,7 +245,10 @@ export class SajatTermekekComponent implements OnInit, OnDestroy {
     console.log("event.item: ", event.item)
     this.currentPerson = event.item;
     console.log("currentPerson: ", this.currentPerson)
-    this.getTermekekForChoosenUser(this.currentPerson)
+    if (this.currentPerson != new AdminAdatok()) {
+      console.log("onselectitem ")
+      this.getTermekekForChoosenUser(this.currentPerson)
+    }
 
   }
 
