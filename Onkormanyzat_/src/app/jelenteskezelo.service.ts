@@ -21,10 +21,6 @@ export class JelenteskezeloService {
     return this.http.post(this.url+"new", body)
   }
 
-  updateJelentes(body: any) {
-    return this.http.put(this.url + body.id, body)
-  }
-
   deleteJelentes(id: any) {
     console.log("deleteService:service ", id)
     return this.http.delete(this.url + "del/" + id)
@@ -33,20 +29,13 @@ export class JelenteskezeloService {
   getSajatJelentesek(id: any) {
     return this.http.get(this.url + "sajat/" + id)
   }
-  getAllJelentesek(id: any) {
-    return this.http.get(this.url + "sajat/" + id)
-  }
 
   updateJelentesOrg(body: any) {
     return this.http.put(this.orgResUrl + body.id, body)
   }
   
-  deleteJelentesOrg(id: any) {
-    return this.http.delete(this.orgResUrl + "del/" + id)
-  }
-  
   getSajatJelentesekOrg(id: any) {
-    return this.http.get( + "sajat/" + id)
+    return this.http.get( this.orgResUrl + id)
   }
   
   searchName(pageNum:number, name:string){
