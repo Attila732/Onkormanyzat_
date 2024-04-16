@@ -19,6 +19,9 @@ export class SignUpComponent {
   constructor(private http:HttpClient){
     
   }
+  redirectToLogin(){
+    window.location.href = "/client/"
+  }
 
   register(){
     console.log( "regisztracio", this.regisztracio)

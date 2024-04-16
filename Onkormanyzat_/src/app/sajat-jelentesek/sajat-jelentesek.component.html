@@ -72,12 +72,7 @@
 			<select [(ngModel)]="ujBejelentes.type" [value]="jelentes.type"
 				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
 				id="type" name="type" required>
-				<option value="KOZTERULET">Közterületi</option>
-				<option value="UTHIBA">Úthiba</option>
-				<!-- Rang-zárolt jelentések -->
-				<option value="VIZGAZ">Víz-gáz</option>
-				<option value="LOMTALANITAS">Lomtalanítás</option>
-				<option value="SZEMETSZALLITAS">Szemétszállítás</option>
+				<option *ngFor="let type of NOTICES" [value]="type.category">{{type.text}}</option>
 			</select>
 		</div>
 		<div class="col">
@@ -111,3 +106,46 @@
 			<button class="btn btn-info ml-auto col" (click)="deleteSajatJelentes(jelentes)">Törlés</button>
 		</div>
 	</div>
+
+<div *ngIf="userRoles.get('ADMIN')">
+	<div *ngFor="let jelentes of jelentesek" class="row">
+		<div class="col">
+			<select [(ngModel)]="ujBejelentes.type" [value]="jelentes.type"
+				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+				id="type" name="type" required>
+				<option *ngFor="let type of NOTICES" [value]="type.category">{{type.text}}</option>
+
+			</select>
+		</div>
+		<div class="col">
+			<select [(ngModel)]="ujBejelentes.urgency" [value]="jelentes.urgency"
+				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
+				id="sulyossag" name="sulyossag" required>
+				<!-- Rang-zárolt jelentések -->
+				<option value="1">Nagyon Súlyos</option>
+				<option value="2">Súlyos</option>
+				<option value="3">Zavaró</option>
+				<option value="4">Megjegyzés</option>
+
+			</select>
+		</div>
+		<div class="col">
+			<input [(ngModel)]="jelentes.description" type="text">
+		</div>
+		<div class="col">
+			<input [(ngModel)]="jelentes.location" type="text">
+		</div>
+		<div class="col">
+			<input [(ngModel)]="jelentes.phone" type="number">
+		</div>
+		<div class="col">
+			<input [(ngModel)]="jelentes.date" type="number">
+		</div>
+		<div class="col">
+			<button class="btn btn-info ml-auto col" (click)="updateSajatJelentes(jelentes)">Szerkeszt.</button>
+		</div>
+		<div class="col">
+			<button class="btn btn-info ml-auto col" (click)="deleteSajatJelentes(jelentes)">Törlés</button>
+		</div>
+	</div>
+</div>

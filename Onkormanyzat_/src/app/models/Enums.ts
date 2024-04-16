@@ -6,3 +6,11 @@ export enum ProfiladatokCategory{
     EMAIL="EMAIL",
     PHONE="PHONE"
 }
+export enum NoticeTypes{
+    KOZTERULET="KOZTERULET",
+    UTHIBA="UTHIBA",
+    VIZGAZ="VIZGAZ",
+    LOMTALANITAS="LOMTALANITAS",
+    SZEMETSZALLITAS="SZEMETSZALLITAS",
+   
+}

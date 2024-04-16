@@ -32,6 +32,9 @@ export class JelenteskezeloService {
   getSajatJelentesek(id: any) {
     return this.http.get(this.url + "sajat/" + id)
   }
+  getAllJelentesek(id: any) {
+    return this.http.get(this.url + "sajat/" + id)
+  }
 
   updateJelentesOrg(body: any) {
     return this.http.put(this.orgResUrl + body.id, body)

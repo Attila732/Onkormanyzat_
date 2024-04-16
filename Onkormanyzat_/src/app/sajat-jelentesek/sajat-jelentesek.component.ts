@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NoticeTypes } from '../models/Enums';
 
 @Component({
   selector: 'app-sajat-jelentesek',
@@ -14,7 +15,7 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 export class SajatJelentesekComponent implements OnInit, OnDestroy{
   
   private user: ProfilAdatok | null = null;
-  private userRoles: any;
+  userRoles: any;
 
   admin: boolean = false;
   orgAdmin: boolean = false;
@@ -29,9 +30,18 @@ export class SajatJelentesekComponent implements OnInit, OnDestroy{
   jelentesekOrg: BejelentesAdatok[] = [];
   private subscription:Subscription[]=[]
 
+
   constructor(private jelenteskezeloservice: JelenteskezeloService, private auth: AuthService) {}
 
 
+  NOTICES = [
+    { text: 'Közterület', category: NoticeTypes.KOZTERULET },
+    { text: 'Lomtalanítás', category: NoticeTypes.LOMTALANITAS },
+    { text: 'Szemétszállítás', category: NoticeTypes.SZEMETSZALLITAS },
+    { text: 'Úthiba', category: NoticeTypes.UTHIBA },
+    { text: 'Víz-gáz', category: NoticeTypes.VIZGAZ },
+
+  ];
   ngOnInit(): void {
     this.getUserInfo()
   }
@@ -41,6 +51,7 @@ export class SajatJelentesekComponent implements OnInit, OnDestroy{
     this.subscription.push(
       this.auth.getUser().subscribe((res: any) => {
         this.user = res;
+        this.getSajatJelentes();
         this.subscription.push(
           this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
             this.userRoles = roles;
@@ -86,6 +97,18 @@ export class SajatJelentesekComponent implements OnInit, OnDestroy{
       );
     }
     }
+    getAllJelentes() {
+      if (this.user != null) { 
+        this.subscription.push(
+          this.jelenteskezeloservice.getSajatJelentesek(this.user).subscribe({
+            next: (res: any) => {
+              this.jelentesek = res;
+              // this.addBoolErdekel();
+            },
+          })
+        );
+      }
+      }
 
   updateSajatJelentes(jelentes:any){
     this.jelenteskezeloservice.updateJelentes(jelentes).subscribe(
@@ -98,6 +121,7 @@ export class SajatJelentesekComponent implements OnInit, OnDestroy{
       (res:any)=>{console.log("siker")}
     )
   }
+
 
 
   orgAdminKeres(){
