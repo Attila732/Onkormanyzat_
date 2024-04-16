@@ -20,13 +20,38 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   orgBooleanSzervezesek: boolean = false;
   
   orgs: { id: string; name: string }[] = []
-  currentOrganization: {id: string, name: string}={id:"", name:""}
-  
+  currentOrganization: {    [x: string]: any, id: string, name: string}={id:"", name:""}
+  columns=[
+    { key: 'id', text: 'Id', type: 'text' },
+    { key: 'name', text: 'Név', type: 'text' },
+
+  ]
   ujSzervezes = new SzervezesAdatok()
   szervezesek: SzervezesAdatok[] = []
   szervezesOrg: SzervezesAdatok[] = []
-
+  category = 'firstName';
   private subscription:Subscription[]= []
+
+  // EVENTS = [
+  //   { text: 'Közterület', category: NoticeTypes.KOZTERULET },
+  //   { text: 'Lomtalanítás', category: NoticeTypes.LOMTALANITAS },
+  //   { text: 'Szemétszállítás', category: NoticeTypes.SZEMETSZALLITAS },
+  //   { text: 'Úthiba', category: NoticeTypes.UTHIBA },
+  //   { text: 'Víz-gáz', category: EventsTypes. },
+
+  // ];
+  szervezesekColumns: Array<{ key: string; text: string; type: string; }> = [
+		{ key: 'userId', text: 'FelhasználóID', type: 'text' },
+    { key: 'noticeId', text: 'Id', type: 'text' },
+		{ key: 'type', text: 'típus', type: 'text'},
+		{ key: 'urgency', text: 'Súlyosság', type: 'text' },
+		{ key: 'description', text: 'Leírás', type: 'text'},
+		{ key: 'location', text: 'Helyszín', type: 'text'},
+    { key: 'phone', text: 'Telefonszám', type: 'text'},
+    { key: 'date', text: 'Dátum', type: 'text'},
+	];
+
+
 
   constructor(private szervezesService:SzervezesService, private auth: AuthService){
 
@@ -34,6 +59,12 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.getUserInfo()
   }
+	setCol(col: any) {
+    
+    this.currentOrganization = col;
+    console.log("ez a col"+this.currentOrganization)
+		console.log(col)
+	}
 
   getUserInfo(){
     this.subscription.push(
