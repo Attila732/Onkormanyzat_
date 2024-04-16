@@ -1,7 +1,7 @@
 export class SzervezesAdatok{
 
 [x: string]: any
-
+"eventId":string
 "name": string //rendezvény neve
 "description": string
 "location": string
@@ -14,6 +14,7 @@ export class SzervezesAdatok{
 
 
 constructor() {
+  this.eventId=""
   this.name= ""
   this.description= ""
   this.location= ""

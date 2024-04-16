@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { JelenteskezeloService } from '../jelenteskezelo.service';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { SzervezesAdatok } from '../models/SzervezesAdatok';
 import { SzervezesService } from '../szervezes.service';
@@ -53,7 +54,7 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
 
 
 
-  constructor(private szervezesService:SzervezesService, private auth: AuthService){
+  constructor(private szervezesService:SzervezesService, private auth: AuthService,private jelentesKezeloService:JelenteskezeloService){
 
   }
   ngOnInit(): void {
@@ -61,9 +62,9 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   }
 	setCol(col: any) {
     
-    this.currentOrganization = col;
-    console.log("ez a col"+this.currentOrganization)
-		console.log(col)
+    this.currentOrganization.id = col.key;
+    console.log("ez a col",col.key)
+		console.log(this.currentOrganization)
 	}
 
   getUserInfo(){
@@ -110,28 +111,17 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   }
   
   getSajatSzervezes() {
-    if (this.user != null) { 
+    if (this.currentOrganization != null) { 
       this.subscription.push(
-        this.szervezesService.getSajatSzervezesek(this.user.userId).subscribe({
+        this.szervezesService.getSajatSzervezesekOrg(this.currentOrganization.id).subscribe({
           next: (res: any) => {
             this.szervezesek = res;
           },
         })
       );
     }
-    }
+    } 
 
-  updateSajatSzervezes(termek:any){
-    this.szervezesService.updateSzervezes(termek).subscribe(
-      (res:any)=>{console.log(res)}
-    );
-  }
-  
-  deleteSajatSzervezes(termek:any){
-    this.szervezesService.deleteSzervezes(termek.userId).subscribe(
-      (res:any)=>{console.log("siker")}
-    )
-  }
 
   orgAdminKeres(){
     this.orgAdmin = !this.orgAdmin
@@ -154,20 +144,20 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
     }
   }
 
-  updateOrgIdopont(termek:any){
-    this.szervezesService.updateSzervezesOrg(termek).subscribe(
+  updateSzervezes(szervezes:any){
+    this.szervezesService.updateSzervezes(szervezes).subscribe(
       (res:any)=>{console.log(res)}
     );
   }
   
-  deleteOrgIdopont(termek:any){
-    this.szervezesService.deleteSzervezesOrg(termek.userId).subscribe(
+  deleteSzervezes(szervezes:any){
+    this.szervezesService.deleteSzervezes(szervezes.eventId).subscribe(
       (res:any)=>{console.log("siker")}
     )
   }
 
-  loadOrgsAdatok(value:string, pageNum: number, category: string){
-    return this.szervezesService.searchName( value, pageNum, category)
+  loadOrgsAdatok(name:string, pageNum: number){
+    return this.jelentesKezeloService.searchName( pageNum,name)
   }
 
   searchPeople = (text$: Observable<string>) =>
@@ -175,7 +165,7 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
       debounceTime(300),
       distinctUntilChanged(),
       filter((searchTerm) => searchTerm.length >= 2),
-      switchMap((searchTerm) => this.loadOrgsAdatok(searchTerm, 0, "name"))
+      switchMap((searchTerm) => this.loadOrgsAdatok(searchTerm, 0))
     );
 
 

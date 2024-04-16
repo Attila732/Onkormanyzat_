@@ -94,31 +94,28 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>Email</th>
-				<th>Felhasználónév</th>
-				<th>Keresztnév</th>
-				<th>Vezetéknév</th>
-				<th>Telefon</th>
-				<th>Szerkeszt</th>
-				<th>Töröl</th>
-				<th>Típus választó</th>
+				<th>Szervezet neve:</th>
+				<th>Szervezések lekérése</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td *ngFor="let col of columns">
+				<td >
 					<input
-						[value]="currentOrganization[col.key]"
-						(focus)="setCol(col)"
+						[value]="currentOrganization['name']"
 						[ngbTypeahead]="searchPeople"
 						(selectItem)="onSelectItem($event)"
 						[resultFormatter]="resultFormatter"
 						[inputFormatter]="inputFormatter"
 						class="form-control"
-						placeholder="{{ col.text }}"
-						[type]="col.type"
+						placeholder="Szervezet neve"
+						type="text"
 					/>
+				</td>
+				<td>
+					<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="getSajatSzervezes()" [disabled]="currentOrganization==null">Lekérés</button>
 				</td>
 			</tr>
 
@@ -126,6 +123,19 @@
 				<td *ngFor="let col of szervezesekColumns">
 					<input [type]="col.type" [(ngModel)]="szervezes[col.key]" />
 				</td>
+				<td>
+					<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="updateSzervezes(szervezes)">Mentés</button>
+				</td>
+				<td>
+					<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="deleteSzervezes(szervezes)">Törlés</button>
+				</td>
+				<td>
+
+				</td>
 			</tr>
 
 			<td>
@@ -134,7 +144,6 @@
 			<td>
 				<div class="col"></div>
 			</td>
-	
 			<!-- 
 
 		<tr *ngFor="let user of felhasznalok" >

@@ -20,22 +20,11 @@ export class SzervezesService {
   };
 
   updateSzervezes(body: any) {
-    return this.http.put(this.url + body.id, body)
+    return this.http.put(this.url + body.eventId, body)
   }
 
-  deleteSzervezes(id: any) {
-    return this.http.delete(this.url + "del/" + id)
-  }
-
-  getSajatSzervezesek(id: any) {
-    return this.http.get(this.url + "sajat/" + id)
-  }
-
-  updateSzervezesOrg(body: any) {
-    return this.http.put(this.url + + body.id, body)
-  }
   
-  deleteSzervezesOrg(id: any) {
+  deleteSzervezes(id: any) {
     return this.http.delete(this.url + "del/" + id)
   }
   
