@@ -164,7 +164,7 @@
 						ngbDropdownItem routerLink="/orvos-idopont-foglalas">Időpontfoglalás</button>
 				</div>
 			</li> -->
-			<li [ngbNavItem]="5" ngbDropdown class="flex items-center justify-center" role="presentation">
+			<li *ngIf="roles.get('USER')" [ngbNavItem]="5" ngbDropdown class="flex items-center justify-center" role="presentation">
 				<button type="button"
 					class="w-fit h-fit text-slate-900 hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
 					ngbDropdownToggle>Bejelentések</button>

@@ -26,6 +26,7 @@ export class JelenteskezeloService {
   }
 
   deleteJelentes(id: any) {
+    console.log("deleteService:service ", id)
     return this.http.delete(this.url + "del/" + id)
   }
 
