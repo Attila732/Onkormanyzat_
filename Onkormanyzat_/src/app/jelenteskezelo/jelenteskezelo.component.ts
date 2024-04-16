@@ -14,6 +14,8 @@ export class JelenteskezeloComponent implements OnDestroy{
   bejelentesModel = new BejelentesAdatok( )
   private user: ProfilAdatok | null = null;
   private subscription:Subscription[]=[]
+  showsikerPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
+  showsikertelenPopup: boolean = false; // A felugró ablak megjelenítésére szolgáló állapotváltozó
   currentDateTime: string = this.getCurrentDateTime();
 
 
@@ -21,6 +23,13 @@ export class JelenteskezeloComponent implements OnDestroy{
     this.getUserInfo()
     const now = new Date();
   }
+  redirectToLogin(){
+    window.location.href = "/client/"
+  }
+  showelrejtPopup() {
+    this.showsikertelenPopup = false;
+    this.showsikerPopup=false
+}
   getCurrentDateTime(): string {
     const now = new Date();
     return now.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
@@ -36,10 +45,17 @@ export class JelenteskezeloComponent implements OnDestroy{
     if (this.user != null) {
       this.bejelentesModel.userId = this.user.userId;
       console.log(this.bejelentesModel)
-      this.jelenteskezeloservice.postJelentes(this.bejelentesModel).subscribe(
-        (res: any) => { 
-          console.log("notice submitted ", res) 
-        });
+      this.jelenteskezeloservice.postJelentes(this.bejelentesModel).subscribe({
+        next:(res: any) => { 
+          console.log("notice submitted ", res);
+          this.showsikerPopup = true;
+          
+        },
+        error:(err:any)=>{
+          console.log("nem sikeres küldés")
+          this.showsikertelenPopup = true
+        }
+      })
     }
     
   }
@@ -50,5 +66,6 @@ export class JelenteskezeloComponent implements OnDestroy{
         element.unsubscribe();        
       });
     }
+
   }
 };
