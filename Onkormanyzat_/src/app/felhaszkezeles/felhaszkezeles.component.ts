@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import {
 	Observable,
+	Subscription,
 	debounceTime,
 	distinctUntilChanged,
 	filter,
@@ -12,51 +13,65 @@ import { ImagesService } from '../images.service';
 import { AdminAdatok } from '../models/AdminAdatok';
 import { ProfiladatokCategory } from '../models/Enums';
 import { ProfilAdatok } from '../models/ProfilAdatok';
+import { RoleService } from '../role.service';
+import { ReturnUserRoles } from '../models/ReturnUserRoles';
 
 @Component({
 	selector: 'app-felhaszkezeles',
 	templateUrl: './felhaszkezeles.component.html',
 	styleUrls: ['./felhaszkezeles.component.css'],
 })
-export class FelhaszkezelesComponent {
-	felhasznalok:ProfilAdatok[]=[]
+export class FelhaszkezelesComponent implements OnInit, OnDestroy {
+	subscription: Subscription[] = []
+	felhasznalok: ProfilAdatok[] = []
 	id: number = 0;
 	selectedId: number | null = null;
-	col: { key: string; text: string; type: string; min: number; category:ProfiladatokCategory } = {
+	isRoles:boolean=false
+	col: { key: string; text: string; type: string; min: number; category: ProfiladatokCategory } = {
 		key: 'id',
 		text: 'Id',
 		type: 'text',
 		min: 1,
-		category:ProfiladatokCategory.ID
-		
-		
+		category: ProfiladatokCategory.ID
+
+
 	};
-	columns: Array<{ key: string; text: string; type: string; min: number; category:ProfiladatokCategory }> = [
-		{ key: 'id', text: 'Id', type: 'text', min: 1, category:ProfiladatokCategory.ID },
-		{ key: 'email', text: 'Email', type: 'text', min: 1, category:ProfiladatokCategory.EMAIL },
-		{ key: 'userName', text: 'Felhasználónév', type: 'text', min: 1, category:ProfiladatokCategory.USERNAME },
-		{ key: 'firstName', text: 'Keresztnév', type: 'text', min: 1, category:ProfiladatokCategory.FIRSTNAME },
-		{ key: 'lastName', text: 'Vezetéknév', type: 'text', min: 1, category:ProfiladatokCategory.LASTNAME },
-		{ key: 'phone', text: 'Telefon', type: 'text', min: 1, category:ProfiladatokCategory.PHONE },
+	columns: Array<{ key: string; text: string; type: string; min: number; category: ProfiladatokCategory }> = [
+		{ key: 'id', text: 'Id', type: 'text', min: 1, category: ProfiladatokCategory.ID },
+		{ key: 'email', text: 'Email', type: 'text', min: 1, category: ProfiladatokCategory.EMAIL },
+		{ key: 'userName', text: 'Felhasználónév', type: 'text', min: 1, category: ProfiladatokCategory.USERNAME },
+		{ key: 'firstName', text: 'Keresztnév', type: 'text', min: 1, category: ProfiladatokCategory.FIRSTNAME },
+		{ key: 'lastName', text: 'Vezetéknév', type: 'text', min: 1, category: ProfiladatokCategory.LASTNAME },
+		{ key: 'phone', text: 'Telefon', type: 'text', min: 1, category: ProfiladatokCategory.PHONE },
 	];
+	roles: Map<String, boolean> = new Map<String, boolean>([["ADMIN", false], ["ORG_ADMIN", false]]);
+	rolecolumns: Array<{ key: string; text: string; value: boolean; disabled:boolean }> = [
+		{ key: "ADMIN", text: "Admin", value: false, disabled:this.isRoles },
+		{ key: "ORG_ADMIN", text: "Szervezet Admin", value: false, disabled:this.isRoles }
+	]
+
+	returnUserRoles: ReturnUserRoles[] = []
+
 	category = 'firstName';
 	adminAdatok = new AdminAdatok();
 	profilAdatok = new ProfilAdatok();
-	oldSearchTerm:any
+	oldSearchTerm: any
 	// profiladatok: AdminAdatok[] = [];
 	// adminadatok: ProfilAdatok[] = [];
 
 	constructor(
 		private felhaszkeres: FelhaszKeresService,
-		private images: ImagesService
-	) {}
+		private images: ImagesService,
+		private roleService: RoleService
+	) { }
+
 	showAllElements: boolean = false;
 
 	toggleElementsVisibility() {
-	  this.showAllElements = !this.showAllElements;
+		this.showAllElements = !this.showAllElements;
 	}
 
-	ngOnInit() {}
+	ngOnInit() { }
 
 	searchPeople = (text$: Observable<string>) =>
 		text$.pipe(
@@ -69,43 +84,43 @@ export class FelhaszkezelesComponent {
 			switchMap((searchTerm) =>
 				this.loadProfilAdatok(searchTerm, 0, this.col.category)
 			)
-	);
+		);
 
 	translateCurrentCategory(category: ProfiladatokCategory) {
 		switch (category) {
-		  case ProfiladatokCategory.ID:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.ID)!.key
-		  case ProfiladatokCategory.FIRSTNAME:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.FIRSTNAME)!.key
-			return "firstName"
-	
-		  case ProfiladatokCategory.LASTNAME:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.LASTNAME)!.key
-			return "lastName"
-	
-		  case ProfiladatokCategory.USERNAME:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.USERNAME)!.key
-			return "userName"
-	
-		  case ProfiladatokCategory.EMAIL:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.EMAIL)!.key
-			return "email"
-	
-		  case ProfiladatokCategory.PHONE:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.PHONE)!.key
-			return "phone"
-	
-		}
-	  }
-	
+			case ProfiladatokCategory.ID:
+				return this.columns.find((o) => o.category == ProfiladatokCategory.ID)!.key
+			case ProfiladatokCategory.FIRSTNAME:
+				return this.columns.find((o) => o.category == ProfiladatokCategory.FIRSTNAME)!.key
+				return "firstName"
 
-	  
+			case ProfiladatokCategory.LASTNAME:
+				return this.columns.find((o) => o.category == ProfiladatokCategory.LASTNAME)!.key
+				return "lastName"
+
+			case ProfiladatokCategory.USERNAME:
+				return this.columns.find((o) => o.category == ProfiladatokCategory.USERNAME)!.key
+				return "userName"
+
+			case ProfiladatokCategory.EMAIL:
+				return this.columns.find((o) => o.category == ProfiladatokCategory.EMAIL)!.key
+				return "email"
+
+			case ProfiladatokCategory.PHONE:
+				return this.columns.find((o) => o.category == ProfiladatokCategory.PHONE)!.key
+				return "phone"
+
+		}
+	}
+
+
+
 	resultFormatter = (result: AdminAdatok) => `${result[this.category]}  ${result[this.col.key]}`;
 	inputFormatter = (result: AdminAdatok) => `${result[this.category]}  ${result[this.col.key]}`;
 
 	onSelectItem(event: NgbTypeaheadSelectItemEvent<AdminAdatok>) {
 		event.preventDefault();
-		console.log("event.item",event.item);
+		console.log("event.item", event.item);
 		this.adminAdatok = event.item;
 	}
 
@@ -115,42 +130,80 @@ export class FelhaszkezelesComponent {
 	loadProfilAdatok(value: string, pageNum: number, category: string) {
 		this.oldSearchTerm = value
 		let result = this.felhaszkeres.getProfilAdatok(value, pageNum, category);
-		result.subscribe(
-		(res)=>this.felhasznalok = res
+		this.subscription.push(
+			result.subscribe(
+				(res) => this.felhasznalok = res
+			)
 		)
-		
+
 		return result
 	}
 
 	setCol(col: any) {
-		console.log("ez a col"+col.key)
+		console.log("ez a col" + col.key)
 		this.col = col;
 		console.log(col)
 	}
 
-	updateUser(user:any) {
-		this.felhaszkeres.updateUser(user).subscribe({
-			next:(res: any) => {
-			console.log(res);
-			this.loadProfilAdatok(this.oldSearchTerm,0,this.col.category)
-			
-		},
-		error:(err)=>{
-			console.log("Error in updateUser err: ",err)
-		}
-	});
-}
+	updateUser(user: any) {
+		this.subscription.push(
+			this.felhaszkeres.updateUser(user).subscribe({
+				next: (res: any) => {
+					console.log(res);
+					this.loadProfilAdatok(this.oldSearchTerm, 0, this.col.category)
 
-deleteUser(user:any) {
-	console.log("ez voltam én",user)
-	this.felhaszkeres.deleteUser(user.id)
-	.subscribe({
-		next:(res: any) => {
-		console.log('siker');
-		this.loadProfilAdatok(this.oldSearchTerm,0,this.col.category)
-		},
-		error:(err)=>{
-			console.log("Error in deleteUser err: ",err)
-		}});
+				},
+				error: (err) => {
+					console.log("Error in updateUser err: ", err)
+				}
+			})
+		)
 	}
+
+	deleteUser(user: any) {
+		console.log("ez voltam én", user)
+		this.subscription.push(
+			this.felhaszkeres.deleteUser(user.id)
+				.subscribe({
+					next: (res: any) => {
+						console.log('siker');
+						this.loadProfilAdatok(this.oldSearchTerm, 0, this.col.category)
+					},
+					error: (err) => {
+						console.log("Error in deleteUser err: ", err)
+					}
+				}
+			)
+		)
+	}
+
+
+	getUserRoles(felhasznalok: ProfilAdatok[]) {
+		this.subscription.push(
+			this.roleService.getUserRoles(felhasznalok).subscribe({
+				next: (res: any) => {
+					console.log("getUserRoles res: ", res)
+					this.returnUserRoles = res
+				}
+			})
+		)
+	}
+	updateUserRoles(user: ProfilAdatok, roles: Map<String, boolean>) {
+		this.subscription.push(
+			this.roleService.updateUserRoles(user, roles).subscribe({
+				next: (res: any) => {
+					console.log("getUserRoles res: ", res)
+					this.returnUserRoles = res
+				}
+			})
+		)
+	}
+
+
+	ngOnDestroy(): void {
+		this.subscription.forEach(element => {
+			element.unsubscribe()
+		});
+	}
+	
 }
