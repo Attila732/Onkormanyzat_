@@ -125,12 +125,17 @@ lekeres(){
     }
   
   deleteSajatJelentes(jelentes:any){
-
     console.log("delete:jelentés",jelentes)
-    this.jelenteskezeloService.deleteJelentes(jelentes.noticeId).subscribe(
-      (res:any)=>{console.log("delete:",res)}
+    this.jelenteskezeloService.deleteJelentes(jelentes.noticeId).subscribe({
+      next:(res:any)=>{
+        console.log("delete:",res),
+        this.getJelentesek(this.currentUser)
+      
+      }, error:(error:any)=>{
+        console.log("error in deleteSajatJelentesek", error)
+      }
     
-    )
+    })
   }
 
 
@@ -216,27 +221,17 @@ lekeres(){
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-  orgRequest(){
-    if (this.currentOrganization != null) {
-      this.jelenteskezeloService.getSajatJelentesekOrg(this.currentOrganization.id).subscribe(
-        (res:any)=>{
-          console.log(res)
-          this.jelentesekOrg = res
-          this.orgBooleanJelentesek = true;
-        }
-      )
-    }
-  }
+  // orgRequest(){
+  //   if (this.currentOrganization != null) {
+  //     this.jelenteskezeloService.getSajatJelentesekOrg(this.currentOrganization.id).subscribe(
+  //       (res:any)=>{
+  //         console.log(res)
+  //         this.jelentesekOrg = res
+  //         this.orgBooleanJelentesek = true;
+  //       }
+  //     )
+  //   }
+  // }
 
 
   ngOnDestroy(): void {
