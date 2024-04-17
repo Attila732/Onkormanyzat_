@@ -42,6 +42,7 @@ export class FelhaszkezelesComponent {
 	category = 'firstName';
 	adminAdatok = new AdminAdatok();
 	profilAdatok = new ProfilAdatok();
+	oldSearchTerm:any
 	// profiladatok: AdminAdatok[] = [];
 	// adminadatok: ProfilAdatok[] = [];
 
@@ -112,7 +113,7 @@ export class FelhaszkezelesComponent {
 		return this.felhaszkeres.getAdminAdatok(value, pageNum, category);
 	}
 	loadProfilAdatok(value: string, pageNum: number, category: string) {
-
+		this.oldSearchTerm = value
 		let result = this.felhaszkeres.getProfilAdatok(value, pageNum, category);
 		result.subscribe(
 		(res)=>this.felhasznalok = res
@@ -128,17 +129,28 @@ export class FelhaszkezelesComponent {
 	}
 
 	updateUser(user:any) {
-		this.felhaszkeres.updateUser(user).subscribe((res: any) => {
+		this.felhaszkeres.updateUser(user).subscribe({
+			next:(res: any) => {
 			console.log(res);
-		});
-	}
+			this.loadProfilAdatok(this.oldSearchTerm,0,this.col.category)
+			
+		},
+		error:(err)=>{
+			console.log("Error in updateUser err: ",err)
+		}
+	});
+}
 
-	deleteUser(user:any) {
-		console.log("ez voltam én",user)
-		this.felhaszkeres
-			.deleteUser(user.id)
-			.subscribe((res: any) => {
-				console.log('siker');
-			});
+deleteUser(user:any) {
+	console.log("ez voltam én",user)
+	this.felhaszkeres.deleteUser(user.id)
+	.subscribe({
+		next:(res: any) => {
+		console.log('siker');
+		this.loadProfilAdatok(this.oldSearchTerm,0,this.col.category)
+		},
+		error:(err)=>{
+			console.log("Error in deleteUser err: ",err)
+		}});
 	}
 }
