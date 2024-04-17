@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { AdminAdatok } from '../models/AdminAdatok';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { ProfilKezeloServiceService } from '../profil-kezelo-service.service';
+import { FelhaszKeresService } from '../felhasz-keres.service';
 
 @Component({
 	selector: 'app-profil',
@@ -26,7 +27,8 @@ export class ProfilComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private profilkez: ProfilKezeloServiceService,
-		private auth: AuthService
+		private auth: AuthService,
+		private felhaszkeres: FelhaszKeresService
 	) {}
 	enableEdit() {
 		this.isDisabled = false;
@@ -49,6 +51,11 @@ export class ProfilComponent implements OnInit, OnDestroy {
 		)
 	}
   }
+  updateUser(user:any) {
+	this.felhaszkeres.updateUser(user).subscribe((res: any) => {
+		console.log(res);
+	});
+}
 	ngOnInit(): void {
 		this.getUserInfo();
 	}
