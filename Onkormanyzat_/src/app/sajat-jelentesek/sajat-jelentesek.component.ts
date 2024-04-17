@@ -123,12 +123,6 @@ lekeres(){
       );
     }
     }
-
-  updateSajatJelentes(jelentes:any){
-    this.jelenteskezeloService.updateJelentes(jelentes).subscribe(
-      (res:any)=>{console.log(res)}
-    );
-  }
   
   deleteSajatJelentes(jelentes:any){
 

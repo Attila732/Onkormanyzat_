@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subscription, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { JelenteskezeloService } from '../jelenteskezelo.service';
 import { ProfilAdatok } from '../models/ProfilAdatok';
 import { SzervezesAdatok } from '../models/SzervezesAdatok';
 import { SzervezesService } from '../szervezes.service';
@@ -20,20 +21,51 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   orgBooleanSzervezesek: boolean = false;
   
   orgs: { id: string; name: string }[] = []
-  currentOrganization: {id: string, name: string}={id:"", name:""}
-  
+  currentOrganization: {    [x: string]: any, id: string, name: string}={id:"", name:""}
+  columns=[
+    { key: 'id', text: 'Id', type: 'text' },
+    { key: 'name', text: 'Név', type: 'text' },
+
+  ]
   ujSzervezes = new SzervezesAdatok()
   szervezesek: SzervezesAdatok[] = []
   szervezesOrg: SzervezesAdatok[] = []
-
+  category = 'firstName';
   private subscription:Subscription[]= []
 
-  constructor(private szervezesService:SzervezesService, private auth: AuthService){
+  // EVENTS = [
+  //   { text: 'Közterület', category: NoticeTypes.KOZTERULET },
+  //   { text: 'Lomtalanítás', category: NoticeTypes.LOMTALANITAS },
+  //   { text: 'Szemétszállítás', category: NoticeTypes.SZEMETSZALLITAS },
+  //   { text: 'Úthiba', category: NoticeTypes.UTHIBA },
+  //   { text: 'Víz-gáz', category: EventsTypes. },
+
+  // ];
+  szervezesekColumns: Array<{ key: string; text: string; type: string; }> = [
+		{ key: 'userId', text: 'FelhasználóID', type: 'text' },
+    { key: 'noticeId', text: 'Id', type: 'text' },
+		{ key: 'type', text: 'típus', type: 'text'},
+		{ key: 'urgency', text: 'Súlyosság', type: 'text' },
+		{ key: 'description', text: 'Leírás', type: 'text'},
+		{ key: 'location', text: 'Helyszín', type: 'text'},
+    { key: 'phone', text: 'Telefonszám', type: 'text'},
+    { key: 'date', text: 'Dátum', type: 'text'},
+	];
+
+
+
+  constructor(private szervezesService:SzervezesService, private auth: AuthService,private jelentesKezeloService:JelenteskezeloService){
 
   }
   ngOnInit(): void {
     this.getUserInfo()
   }
+	setCol(col: any) {
+    
+    this.currentOrganization.id = col.key;
+    console.log("ez a col",col.key)
+		console.log(this.currentOrganization)
+	}
 
   getUserInfo(){
     this.subscription.push(
@@ -79,28 +111,17 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
   }
   
   getSajatSzervezes() {
-    if (this.user != null) { 
+    if (this.currentOrganization != null) { 
       this.subscription.push(
-        this.szervezesService.getSajatSzervezesek(this.user.userId).subscribe({
+        this.szervezesService.getSajatSzervezesekOrg(this.currentOrganization.id).subscribe({
           next: (res: any) => {
             this.szervezesek = res;
           },
         })
       );
     }
-    }
+    } 
 
-  updateSajatSzervezes(termek:any){
-    this.szervezesService.updateSzervezes(termek).subscribe(
-      (res:any)=>{console.log(res)}
-    );
-  }
-  
-  deleteSajatSzervezes(termek:any){
-    this.szervezesService.deleteSzervezes(termek.userId).subscribe(
-      (res:any)=>{console.log("siker")}
-    )
-  }
 
   orgAdminKeres(){
     this.orgAdmin = !this.orgAdmin
@@ -123,20 +144,20 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
     }
   }
 
-  updateOrgIdopont(termek:any){
-    this.szervezesService.updateSzervezesOrg(termek).subscribe(
+  updateSzervezes(szervezes:any){
+    this.szervezesService.updateSzervezes(szervezes).subscribe(
       (res:any)=>{console.log(res)}
     );
   }
   
-  deleteOrgIdopont(termek:any){
-    this.szervezesService.deleteSzervezesOrg(termek.userId).subscribe(
+  deleteSzervezes(szervezes:any){
+    this.szervezesService.deleteSzervezes(szervezes.eventId).subscribe(
       (res:any)=>{console.log("siker")}
     )
   }
 
-  loadOrgsAdatok(value:string, pageNum: number, category: string){
-    return this.szervezesService.searchName( value, pageNum, category)
+  loadOrgsAdatok(name:string, pageNum: number){
+    return this.jelentesKezeloService.searchName( pageNum,name)
   }
 
   searchPeople = (text$: Observable<string>) =>
@@ -144,7 +165,7 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
       debounceTime(300),
       distinctUntilChanged(),
       filter((searchTerm) => searchTerm.length >= 2),
-      switchMap((searchTerm) => this.loadOrgsAdatok(searchTerm, 0, "name"))
+      switchMap((searchTerm) => this.loadOrgsAdatok(searchTerm, 0))
     );
 
 

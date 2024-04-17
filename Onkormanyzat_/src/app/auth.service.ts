@@ -11,7 +11,6 @@ import { ProfilAdatok } from './models/ProfilAdatok';
 export class AuthService implements OnInit, OnDestroy{
 
   private resUrl = "/resource/";
-  private logoutUrl ="/logout/";
   private user = new BehaviorSubject<ProfilAdatok|null>(null);
   defRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);
   initialRoles = new Map<String, boolean> ([["USER",false],["ADMIN",false],["ORG_ADMIN", false]]);

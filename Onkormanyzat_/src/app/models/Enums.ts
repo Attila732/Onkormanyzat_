@@ -14,3 +14,9 @@ export enum NoticeTypes{
     SZEMETSZALLITAS="SZEMETSZALLITAS",
    
 }
+export enum EventsTypes{
+    DOCTOR="DOCTOR",
+    UTILITY="UTILITY",
+    GOV="GOV",
+
+}

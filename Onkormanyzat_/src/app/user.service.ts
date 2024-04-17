@@ -12,10 +12,6 @@ export class UserService {
 
 	constructor(private http: HttpClient) {}
 
-	getProfilRequest(id:string) {
-    return this.http.get(this.url+"id/"+id)
-  }
-
   getUsersByPropertyLike(value:string, pageNum:number, category:string){
     const opt = {
       params: new HttpParams()

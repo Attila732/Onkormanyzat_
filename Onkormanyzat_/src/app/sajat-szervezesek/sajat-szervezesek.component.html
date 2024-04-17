@@ -1,44 +1,4 @@
-<!-- <div
-	class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
-	<div class="card-body py-3 px-2 md:px-5">
-		<h2>Szervezés Kezdeményezése</h2>
-		<form (ngSubmit)="inputForm()" #szervezesForm="ngForm">
-			<div>
-				<label for="rendezesNev">Rendezés neve:</label>
-				<input [(ngModel)]="ujSzervezes.name" type="text" id="rendezesNev" name="rendezesNev"
-					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
-					required>
-			</div>
-
-			<div>
-				<label for="rendezesLeiras">Rendezés leírása:</label>
-				<input [(ngModel)]="ujSzervezes.description" type="text" id="rendezesLeiras" name="rendezesLeiras"
-					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
-					required>
-			</div>
-
-			<div>
-				<label for="idopont">Ekkor:</label>
-				<input [(ngModel)]="ujSzervezes.startDate" type="datetime-local" id="idopont" name="idopont"
-					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
-					required>
-			</div>
-
-			<div>
-				<label for="telefonszam">Telefonszám:</label>
-				<input [(ngModel)]="ujSzervezes.phone" type="tel" id="telefonszam" name="telefonszam"
-					class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
-					required>
-			</div>
-
-			<button type="submit"
-				class="w-full md:w-[30%] text-xl md:text-xl lg:text-xl text-cstm-dark_gray hover:text-cstm-gray mt-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
-				[disabled]="!szervezesForm.valid">Szervezés indítványozása</button>
-		</form>
-	</div>
-</div> -->
-
-
+<!-- 
 
 <div *ngIf="!orgBooleanSzervezesek">
 	<div *ngFor="let szervezes of szervezesek" class="row">
@@ -128,4 +88,96 @@
 		</div>
 	</div>
 
-	{{orgs|json}}
+	{{orgs|json}} -->
+
+<div class="container mx-auto mt-5">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Szervezet neve:</th>
+				<th>Szervezések lekérése</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td >
+					<input
+						[value]="currentOrganization['name']"
+						[ngbTypeahead]="searchPeople"
+						(selectItem)="onSelectItem($event)"
+						[resultFormatter]="resultFormatter"
+						[inputFormatter]="inputFormatter"
+						class="form-control"
+						placeholder="Szervezet neve"
+						type="text"
+					/>
+				</td>
+				<td>
+					<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="getSajatSzervezes()" [disabled]="currentOrganization==null">Lekérés</button>
+				</td>
+			</tr>
+
+			<tr *ngFor="let szervezes of szervezesek">
+				<td *ngFor="let col of szervezesekColumns">
+					<input [type]="col.type" [(ngModel)]="szervezes[col.key]" />
+				</td>
+				<td>
+					<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="updateSzervezes(szervezes)">Mentés</button>
+				</td>
+				<td>
+					<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="deleteSzervezes(szervezes)">Törlés</button>
+				</td>
+				<td>
+
+				</td>
+			</tr>
+
+			<td>
+				<div class="col"></div>
+			</td>
+			<td>
+				<div class="col"></div>
+			</td>
+			<!-- 
+
+		<tr *ngFor="let user of felhasznalok" >
+			<td *ngFor="let col of columns" >
+			<input [type]="col.type" [(ngModel)]="user[col.key]">
+
+		</td>
+		<td>
+			<div class="col">
+				<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="update(user)">Mentés</button>
+			</div>
+		</td>
+		<td>
+			<div class="col">
+				<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="deleteUser(user)">Törlés</button>
+			</div>
+		</td>
+		<td>
+			<select
+				type="text"
+				id="condition"
+				name="condition"
+				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+			<option value="termekek">Termékek</option>
+			<option value="idopontok">Időpontok</option>
+			<option value="szervezesek">Szervezések</option>
+			<option value="bejelentesek">Bejelentések</option>
+		</select> 
+		</td>
+		</tr> -->
+		</tbody>
+	</table>
+</div>
