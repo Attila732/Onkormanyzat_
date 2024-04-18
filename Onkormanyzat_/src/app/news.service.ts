@@ -23,10 +23,16 @@ export class NewsService {
   postNewNews(body:any){
     return this.http.post(this.url+"news/new",body)
   }
+
   updateNews(body:Hir){
     return this.http.put(this.url+"news/"+body.id,body)
   }
+
   deleteNews(id:string){
     return this.http.delete(this.url+"news/del/"+id)
   }
+
+  getSajatHirekOrg(id: any) {
+		return this.http.get(this.url + "news/org/" + id)
+	}
 }

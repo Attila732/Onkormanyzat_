@@ -1,108 +1,49 @@
-<div *ngIf="userRoles.get('ORG_ADMIN')"
-	class="mx-auto h-fit bg-white/30 w-[70%] rounded-[40px] flex flex-col items-center justify-evenly desktop:flex-row border-4 p-3 m-3 desktop:justify-center gap-36 mt-60">
-	<label for="textInput" class="block text-3xl font-semibold mb-2">Írjon híreket</label>
-
-	<div class="flex flex-col mb-1">
-		<label for="title">Cím: </label>
-		<input id="title" [(ngModel)]="newArticle.title"
-			class="flex-1 focus:border-[3px] border-cstm-purple py-2 px-3 rounded-md mb-2 focus:outline-none text-cstm-dark_gray focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg duration-100" />
-		<label for="content">Tartalom: </label>
-		<input id="content" [(ngModel)]="newArticle.content"
-			class="flex-1 focus:border-[3px] border-cstm-purple py-2 px-3 rounded-md mb-2 focus:outline-none text-cstm-dark_gray focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg duration-100" />
-
-		<div class="relative inline-block text-left flex justify-center items-center mt-3">
-			<select [(ngModel)]="newArticle.orgId" type="text" id="description"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-				<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
-			</select>
-			<select [(ngModel)]="newArticle.type" type="text" id="description"
-				class="w-[65%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-md focus:border-[3px] border-cstm-purple duration-200">
-				<option value="LOCAL">Helyi</option>
-				<option value="NATIONAL">Országos</option>
-				<option value="INTERNATIONAL">Nemzetközi</option>
-			</select>
-		</div>
-	</div>
-
-	<button type="button" (click)="submitNewArticle()"
-		class="w-[200px] text-xl text-cstm-orszagos hover:text-cstm-gray mb-4 border-3 border-cstm-orszagos hover:bg-cstm-orszagos rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-orszagos transform transition duration-500">
-		Küld
-	</button>
+<div class="">
+	<select [(ngModel)]="currentOrganization.id" type="text" id="description"
+		class=" md:inline-block w-full md:w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+		<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+	</select>
+	<button
+		class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+		(click)="orgRequest()">Lekérés</button>
 </div>
 
 
 <div class="w-full flex justify-center items-center flex-col px-4">
+	<div
+		class="w-full md:w-[90%] flex flex-col justify-center items-center desktop:items-start desktop:flex-row gap-8 mt-20">
 
-
-
-	<div class="w-full md:w-[90%] flex flex-col justify-center items-center desktop:items-start desktop:flex-row gap-8 mt-20">
-		
 		<!-- lokális hirek -->
 		<div class="w-full md:w-[40%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
 			<ul class="">
 				<li
 					class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-lokalhir">
-					Helyi/Lokális Hírek</li>
+					Saját hírek</li>
 				<div class="px-4">
-					<li *ngFor="let hir of local">
-						<p class="font-semibold" name="title">{{hir.title}}</p>
-						<p >{{hir.content}}</p>
-						 <button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500 delete-button" (click)="deleteNews(hir)">Delete</button>
-						<!-- <button (click)="editNews(hir)" class="edit-button">Edit</button>  -->
-					<!-- </li>
-					 <li class="border-bottom">
-						<p class="font-semibold">Ismét összeült a Könyvek klubja olvasókör a könyvtárban</p>
-						<p>Ismét összeült a Könyvek klubja olvasókör a Kiskunfélegyházi Petőfi Sándor Városi Könyvtárban
-							dr. Szabó
-							Imre filozófus vezetésével. A március 5-ei eseményen Oliver Sacks: A férfi, aki kalapnak
-							nézte a feleségét
-							című művét elemezték.</p>
-					</li>
-					<li class="border-bottom">
-						<p class="font-semibold">Szakmai kirándulások a Nemzeti Együttműködési Alap támogatásával</p>
-						<p>Alapítványi támogatással vitte szakmai kirándulásokra 11-12. évfolyamos diákjait a Közgé.</p>
-					</li>
-					<li class="border-bottom">
-						<p class="font-semibold">Zenei élmények a Betűbölcsiben</p>
-						<p>Kis-Fekete Vilmos, a Kiskunfélegyházi Balázs Árpád Alapfokú Művészeti Iskola
-							intézményvezetője tartott
-							előadást március 5-én, kedden a városi könyvtár baba-mama klubjában. A Betűbölcsiben ezúttal
-							a korai
-							hangélményekről és a zenei nevelés fontosságáról hallhattak az érdeklődők.</p>
-					</li>
-					<li class="border-bottom">
-						<p class="font-semibold">Éremeső a XI. Csikós József emléktornán</p>
-						<p>Március első hétvégéjén rendezték meg Kiskunfélegyházán a XI. Csikós József emléktornát. A
-							sok versenyző
-							csapatnak köszönhetően 2 helyszínen zajlottak a teremlabdarúgó-mérkőzések. A Félegyházi
-							Térségi
-							Sportiskola
-							U11 korosztálya 3 csapatot indított a megmérettetésen. Az FTSI „A” és FTSI „B” csapat a
-							Kiskunfélegyházi
-							Városi Sportcsarnokban, a harmadik csapat a Mezgé sportcsarnokában ontotta a gólokat.</p>
-					</li>  -->
-				</div>
-			</ul>
-		</div>
-
-		<!-- orszagos hirek -->
-
-		<div class="w-full md:w-[40%] h-fit flex bg-white/30 backdrop-blur-xl rounded-3xl">
-			<ul class="">
-				<li
-				class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-orszagos">
-					Országos hírek</li>
-				<div class="px-4">
-					<li *ngFor="let hir of national">
-						<p class="font-semibold" name="title">{{hir.title}}</p>
-						<p >{{hir.content}}</p>
-						 <button class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500 delete-button" (click)="deleteNews(hir)">Delete</button>
-						<!-- <button (click)="editNews(hir)" class="edit-button">Edit</button>  -->
+					<li *ngFor="let hir of hirOrg">
+						<div>
+							<div class="w-full md:w-1/6 mb-4 md:mb-0">
+								<input [(ngModel)]="hir.title" type="text" [ngModelOptions]="{standalone: true}"
+									class="w-full py-2 px-4 border rounded-md">
+							</div>
+							<div class="w-full md:w-1/6 mb-4 md:mb-0">
+								<input [(ngModel)]="hir.content" type="text" [ngModelOptions]="{standalone: true}"
+									class="w-full py-2 px-4 border rounded-md">
+							</div>
+							<select [(ngModel)]="hir.type" type="text" id="description"
+								class="w-[65%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-md focus:border-[3px] border-cstm-purple duration-200">
+								<option value="LOCAL">Helyi</option>
+								<option value="NATIONAL">Országos</option>
+								<option value="INTERNATIONAL">Nemzetközi</option>
+							</select>
+						</div>
+						<button
+							class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500 delete-button"
+							(click)="deleteNews(hir)">Delete</button>
+						<button (click)="editNews(hir)" class="edit-button">Edit</button>
 					</li>
 				</div>
 			</ul>
 		</div>
-
 	</div>
-
-    
+</div>

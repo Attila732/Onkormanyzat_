@@ -22,6 +22,7 @@ import { SajatTermekekComponent } from './sajat-termekek/sajat-termekek.componen
 import { SajatJelentesekComponent } from './sajat-jelentesek/sajat-jelentesek.component';
 import { SajatIdopontokComponent } from './sajat-idopontok/sajat-idopontok.component';
 import { SajatSzervezesekComponent } from './sajat-szervezesek/sajat-szervezesek.component';
+import { SajatHirComponent } from './sajat-hir/sajat-hir.component';
 import { authGuard } from './auth.guard';
 
 
@@ -50,6 +51,7 @@ const routes: Routes = [
   {path:"sajatjelentes", component:SajatJelentesekComponent},
   {path:"sajatidopont", component:SajatIdopontokComponent},
   {path:"sajatszervezes", component:SajatSzervezesekComponent},
+  {path:"sajathir", component:SajatHirComponent},
   {path:"**",component:HibaComponent}
 
 

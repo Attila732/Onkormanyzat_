@@ -11,20 +11,18 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sajat-hir.component.css']
 })
 export class SajatHirComponent {
-	news: Hir[] = [];
 	newArticle: Hir = new Hir();
 	subscriptions: Subscription[] = [];
 	private user: ProfilAdatok | null = null;
+	orgBooleanNews: boolean = false;
 	userRoles: any;
-	international: Hir[] = [];
-	national: Hir[] = [];
-	local: Hir[] = [];
+	currentOrganization: { id: string, name: string } = { id: "", name: "" };
+	hirOrg: Hir[] = [];
 	orgs: { id: string; name: string }[] = [];
 	constructor(private newsService: NewsService, private auth: AuthService) { }
 
   ngOnInit(): void {
 		this.getUserInfo();
-		this.getNews();
 	}
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((sub) => {
@@ -45,6 +43,7 @@ export class SajatHirComponent {
 								this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
 									next: (res: any) => {
 										this.orgs = res;
+										this.currentOrganization = this.orgs[0]
 									},
 								})
 							);
@@ -66,20 +65,6 @@ export class SajatHirComponent {
 			this.newsService.postNewNews(this.newArticle).subscribe({
 				next: (res: any) => {
 					console.log('successful post new article ', res);
-					switch (this.newArticle.type) {
-						case 'LOCAL':
-							this.getLocal();
-							break;
-						case 'NATIONAL':
-							this.getNational();
-							break;
-						case 'INTERNATIONAL':
-							this.getInterNational();
-							break;
-
-						default:
-							break;
-					}
 					this.newArticle = new Hir();
 				},
 				error: (err: any) => console.log(err),
@@ -87,60 +72,30 @@ export class SajatHirComponent {
 		}
 	}
 
-  deleteLocalNews(news: any) {
-		const index = this.local.indexOf(news);
-		if (index !== -1) {
-			this.local.splice(index, 1);
-		}
-	}
 	deleteNews(news: Hir) {
 		this.newsService.deleteNews(news.id).subscribe(
-			(res: any) => { console.log("siker") }
+			(res: any) => { console.log("delNews", res) }
 		)
 	}
-	editLocalNews(news: any) {
-		// Implement logic to edit local news
-		// For example, you can open a modal with a form to edit the news
-		console.log("Editing local news:", news);
-	}
+
 	editNews(news: Hir) {
 		this.newsService.updateNews(news).subscribe(
 			(res: any) => { console.log("siker") }
 		)
 	}
 
-  
-	getNews() {
-		this.getLocal();
-		this.getNational();
-		this.getInterNational();
-	}
-	getInterNational() {
-		this.subscriptions.push(
-			this.newsService.getNews('INTERNATIONAL', 0, 'type').subscribe({
-				next: (res: any) => {
-					this.international = res.content;
-				},
-			})
-		);
-	}
-	getNational() {
-		this.subscriptions.push(
-			this.newsService.getNews('NATIONAL', 0, 'type').subscribe({
-				next: (res: any) => {
-					this.national = res.content;
-				},
-			})
-		);
-	}
-	getLocal() {
-		this.subscriptions.push(
-			this.newsService.getNews('LOCAL', 0, 'type').subscribe({
-				next: (res: any) => {
-					this.local = res.content;
-				},
-			})
-		);
+	orgRequest() {
+		console.log(this.currentOrganization, "lol")
+		if (this.currentOrganization != null) {
+			this.newsService.getSajatHirekOrg(this.currentOrganization.id).subscribe(
+				(res: any) => {
+					console.log(res)
+					this.hirOrg = res
+					this.orgBooleanNews = true;
+					console.log("org sajat hirek lekeres")
+				}
+			)
+		}
 	}
 
 }
