@@ -132,7 +132,7 @@
 					ngbDropdownItem routerLink="/sajathir">ADMIN Hírek</button>
 				</div>
 			</li>
-			<li *ngIf="roles.get('USER')" [ngbNavItem]="9" ngbDropdown class="flex items-center justify-center" role="presentation">
+			<li *ngIf="roles.get('USER')&&!roles.get('ADMIN')" [ngbNavItem]="9" ngbDropdown class="flex items-center justify-center" role="presentation">
 				<button type="button"
 					class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
 					ngbDropdownToggle>Profil</button>
@@ -275,7 +275,7 @@
 					ngbDropdownItem routerLink="/sajathir">ADMIN Hírek</button>
 				</div>
 			</li>
-			<li *ngIf="roles.get('USER')" [ngbNavItem]="9" ngbDropdown class="flex items-center justify-center" role="presentation">
+			<li *ngIf="roles.get('USER') && !roles.get('ADMIN')" [ngbNavItem]="9" ngbDropdown class="flex items-center justify-center" role="presentation">
 				<button type="button"
 					class="w-full h-full text-slate-900 rounded-[22px] hover:text-cstm-purple hover:border-b-4 border-transparent text-lg px-3 font-medium hover:scale-125"
 					ngbDropdownToggle>Profil</button>

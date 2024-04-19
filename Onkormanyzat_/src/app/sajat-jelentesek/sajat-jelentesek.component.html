@@ -1,109 +1,75 @@
+<div *ngIf="userRoles.get('ORG_ADMIN')" class="container mx-auto mt-5">
+	<select [(ngModel)]="currentOrganization.id" type="text" id="description"
+		class=" md:inline-block w-full md:w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+		<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+	</select>
+	<button
+		class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+		(click)="getOrgJelentesek()">Lekérés</button>
+</div>
 
-<!-- 
-
-<div *ngIf="userRoles.get('ADMIN')">
-	<div *ngFor="let jelentes of jelentesek" class="row">
-		<div class="col">
-			<select [(ngModel)]="ujBejelentes.type" [value]="jelentes.type"
-				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
-				id="type" name="type" required>
-				<option *ngFor="let type of NOTICES" [value]="type.category">{{type.text}}</option>
-
-			</select>
-		</div>
-		<div class="col">
-			<select [(ngModel)]="ujBejelentes.urgency" [value]="jelentes.urgency"
-				class="w-full h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple"
-				id="sulyossag" name="sulyossag" required>
-				
-				<option value="1">Nagyon Súlyos</option>
-				<option value="2">Súlyos</option>
-				<option value="3">Zavaró</option>
-				<option value="4">Megjegyzés</option>
-
-			</select>
-		</div>
-		<div class="col">
-			<input [(ngModel)]="jelentes.description" type="text">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="jelentes.location" type="text">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="jelentes.phone" type="number">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="jelentes.date" type="number">
-		</div>
-		<div class="col">
-			<button class="btn btn-info ml-auto col" (click)="updateSajatJelentes(jelentes)">Szerkeszt.</button>
-		</div>
-		<div class="col">
-			<button class="btn btn-info ml-auto col" (click)="deleteSajatJelentes(jelentes)">Törlés</button>
-		</div>
-	</div>
-</div> -->
-
-
-<div class="container mx-auto mt-5  ">
+<div *ngIf="userRoles.get('ADMIN')" class="container mx-auto mt-5  ">
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>id</th>
+				<th *ngFor="let col of columns">{{col.text}}</th>
+				<!-- <th>id</th>
 				<th>Email</th>
 				<th>Felhasználónév</th>
 				<th>Keresztnév</th>
 				<th>Vezetéknév</th>
-				<th>Telefon</th>
+				<th>Telefon</th> -->
 				<th>Jelentések lekérése</th>
 			</tr>
 		</thead>
 		<tbody>
+
 			<tr>
-			<td *ngFor="let col of columns">
-				<input [value]="adminAdatok[col.key]" (focus)="setCol(col)" 
-					[ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)"
-					[resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control"
-					placeholder="{{col.text}}" [type]="col.type"/>
-			</td>			
+				<td *ngFor="let col of columns">
+					<input [value]="adminAdatok[col.key]" (focus)="setCol(col)" [ngbTypeahead]="searchPeople"
+						(selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter"
+						[inputFormatter]="inputFormatter" class="form-control" placeholder="{{col.text}}"
+						[type]="col.type" />
+				</td>
 
-			<td>
-				<div class="col">
-					<button class="w-full md:w-[30%] text-xl text-cstm-purple hover:text-cstm-gray border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"  (click)="lekeres()">Lekérés</button>
-				</div>
-			</td>
-			
+				<td>
+					<div class="col">
+						<button
+							class="w-full md:w-[30%] text-xl text-cstm-purple hover:text-cstm-gray border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+							(click)="lekeres()">Lekérés</button>
+					</div>
+				</td>
 
-		</tr>
+
+			</tr>
 		</tbody>
 	</table>
-	</div>
+</div>
 
 
 
-<div  class="container mx-auto mt-5  ">
+<div class="container mx-auto mt-5  ">
 	<table class="table table-striped">
 
-		<thead >
-			<th *ngFor="let col of jelentesekColumns" >
-			{{col.text}}
+		<thead>
+			<th *ngFor="let col of jelentesekColumns">
+				{{col.text}}
 			</th>
-			
-			
 		</thead>
 		<tbody>
-		<tr *ngFor="let jelent of jelentesek">
-			<td *ngFor="let col of jelentesekColumns">
-				<input type="text" [(ngModel)]="jelent[col.key]" class="form-control">
-			</td>
-			<td>
-				<button (click)="deleteSajatJelentes(jelent)" class="font-semibold border-red-700 border-2 hover:bg-red-700 text-red-700 hover:text-white py-2 px-4 rounded-md" >Törlés</button>
-			</td>
+			<tr *ngFor="let jelent of jelentesek">
+				<td *ngFor="let col of jelentesekColumns">
+					<input type="text" [(ngModel)]="jelent[col.key]" class="form-control">
+				</td>
+				<td>
+					<button (click)="deleteSajatJelentes(jelent)"
+						class="font-semibold border-red-700 border-2 hover:bg-red-700 text-red-700 hover:text-white py-2 px-4 rounded-md">Törlés</button>
+				</td>
 
-		</tr>
+			</tr>
 
-	</tbody>
+		</tbody>
 
 
-</table>
+	</table>
 </div>

@@ -177,6 +177,11 @@ export class FelhaszkezelesComponent implements OnInit, OnDestroy {
 		)
 	}
 
+	getRoles(){
+		if (this.felhasznalok.length!=0) {
+			this.getUserRoles(this.felhasznalok)
+		}
+	}
 
 	getUserRoles(felhasznalok: ProfilAdatok[]) {
 		this.subscription.push(

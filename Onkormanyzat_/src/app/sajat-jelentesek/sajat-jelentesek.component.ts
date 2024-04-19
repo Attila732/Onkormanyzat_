@@ -15,29 +15,29 @@ import { getLocaleMonthNames } from '@angular/common';
   templateUrl: './sajat-jelentesek.component.html',
   styleUrls: ['./sajat-jelentesek.component.css']
 })
-export class SajatJelentesekComponent implements OnInit, OnDestroy{
-  
+export class SajatJelentesekComponent implements OnInit, OnDestroy {
+
   private user: ProfilAdatok | null = null;
   userRoles: any;
 
   admin: boolean = false;
   orgAdmin: boolean = false;
   orgBooleanJelentesek: boolean = false;
-  felhasznalok:ProfilAdatok[]=[]
+  felhasznalok: ProfilAdatok[] = []
   orgs: { id: string; name: string }[] = [];
-  currentOrganization: {id: string, name: string}={id:"", name:""};
-  currentUser:AdminAdatok=new AdminAdatok();
+  currentOrganization: { id: string, name: string } = { id: "", name: "" };
+  currentUser: AdminAdatok = new AdminAdatok();
   ujBejelentes = new BejelentesAdatok()
   category = 'firstName';
-	adminAdatok = new AdminAdatok();
-	profilAdatok = new ProfilAdatok();
+  adminAdatok = new AdminAdatok();
+  profilAdatok = new ProfilAdatok();
 
   jelentesek: BejelentesAdatok[] = [];
   jelentesekOrg: BejelentesAdatok[] = [];
-  private subscription:Subscription[]=[]
+  private subscription: Subscription[] = []
 
 
-  constructor(private jelenteskezeloService: JelenteskezeloService, private auth: AuthService ,private felhaszkeres: FelhaszKeresService,) {}
+  constructor(private jelenteskezeloService: JelenteskezeloService, private auth: AuthService, private felhaszkeres: FelhaszKeresService,) { }
 
 
   NOTICES = [
@@ -48,34 +48,27 @@ export class SajatJelentesekComponent implements OnInit, OnDestroy{
     { text: 'Víz-gáz', category: NoticeTypes.VIZGAZ },
 
   ];
-  col: { key: string; text: string; type: string; min: number; category:ProfiladatokCategory } = {
-		key: 'id',
-		text: 'Id',
-		type: 'text',
-		min: 1,
-		category:ProfiladatokCategory.ID
-		
-		
-	};
+  col: { key: string; text: string; type: string; min: number; category: ProfiladatokCategory } = 
+  { key: 'id', text: 'Id', type: 'text', min: 1, category: ProfiladatokCategory.ID };
 
-	columns: Array<{ key: string; text: string; type: string; min: number; category:ProfiladatokCategory }> = [
-		{ key: 'id', text: 'Id', type: 'text', min: 1, category:ProfiladatokCategory.ID },
-		{ key: 'email', text: 'Email', type: 'text', min: 1, category:ProfiladatokCategory.EMAIL },
-		{ key: 'userName', text: 'Felhasználónév', type: 'text', min: 1, category:ProfiladatokCategory.USERNAME },
-		{ key: 'firstName', text: 'Keresztnév', type: 'text', min: 1, category:ProfiladatokCategory.FIRSTNAME },
-		{ key: 'lastName', text: 'Vezetéknév', type: 'text', min: 1, category:ProfiladatokCategory.LASTNAME },
-		{ key: 'phone', text: 'Telefon', type: 'text', min: 1, category:ProfiladatokCategory.PHONE },
-	];
+  columns: Array<{ key: string; text: string; type: string; min: number; category: ProfiladatokCategory }> = [
+    { key: 'id', text: 'Id', type: 'text', min: 1, category: ProfiladatokCategory.ID },
+    { key: 'email', text: 'Email', type: 'text', min: 1, category: ProfiladatokCategory.EMAIL },
+    { key: 'userName', text: 'Felhasználónév', type: 'text', min: 1, category: ProfiladatokCategory.USERNAME },
+    { key: 'firstName', text: 'Keresztnév', type: 'text', min: 1, category: ProfiladatokCategory.FIRSTNAME },
+    { key: 'lastName', text: 'Vezetéknév', type: 'text', min: 1, category: ProfiladatokCategory.LASTNAME },
+    { key: 'phone', text: 'Telefon', type: 'text', min: 1, category: ProfiladatokCategory.PHONE },
+  ];
   jelentesekColumns: Array<{ key: string; text: string; type: string; }> = [
-		{ key: 'userId', text: 'FelhasználóID', type: 'text' },
+    { key: 'userId', text: 'FelhasználóID', type: 'text' },
     { key: 'noticeId', text: 'Id', type: 'text' },
-		{ key: 'type', text: 'típus', type: 'text'},
-		{ key: 'urgency', text: 'Súlyosság', type: 'text' },
-		{ key: 'description', text: 'Leírás', type: 'text'},
-		{ key: 'location', text: 'Helyszín', type: 'text'},
-    { key: 'phone', text: 'Telefonszám', type: 'text'},
-    { key: 'date', text: 'Dátum', type: 'text'},
-	];
+    { key: 'type', text: 'Típus', type: 'text' },
+    { key: 'urgency', text: 'Súlyosság', type: 'text' },
+    { key: 'description', text: 'Leírás', type: 'text' },
+    { key: 'location', text: 'Helyszín', type: 'text' },
+    { key: 'phone', text: 'Telefonszám', type: 'text' },
+    { key: 'date', text: 'Dátum', type: 'text' },
+  ];
 
   ngOnInit(): void {
     this.getUserInfo()
@@ -86,139 +79,169 @@ export class SajatJelentesekComponent implements OnInit, OnDestroy{
     this.subscription.push(
       this.auth.getUser().subscribe((res: any) => {
         this.user = res;
-        this.currentUser=res;
-        this.getJelentesek(this.currentUser);
-        this.subscription.push(
-          this.auth.getUserRoles().subscribe((roles: Map<String, boolean>) => {
-            this.userRoles = roles;
-
-            if (this.user != null && this.userRoles.get('ORG_ADMIN')) {
-              this.subscription.push(
-                this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
-                  next: (res: any) => {
-                    this.orgs = res;
-                  },
-                })
-              );
-            }
-          })
-        );
+        if (this.user != null) {
+          this.userRoles = this.user.roles;
+        }
+        this.currentUser = res;
+        this.resetAdminOrgAdmin()
+        this.getJelentesekDicpatch()
+        if (this.user != null && this.userRoles.get('ORG_ADMIN')) {
+          this.subscription.push(
+            this.auth.getOrgsForUser(this.user.userId, 0).subscribe({
+              next: (res: any) => {
+                this.orgs = res;
+                this.currentOrganization=this.orgs[0]
+              },
+            })
+          );
+        }
       })
     );
   }
 
-lekeres(){
-  this.getJelentesek(this.currentUser)
-}
+  lekeres() {
+    this.admin=true
+    this.orgAdmin=false
+    this.getJelentesek(this.currentUser.id)
+  }
 
-  getJelentesek(user:any) {
-    if (user != null) { 
+  getJelentesek(id: any) {
+    if (id != null) {
       this.subscription.push(
-        this.jelenteskezeloService.getSajatJelentesek(user.id).subscribe({
+        this.jelenteskezeloService.getSajatJelentesek(id).subscribe({
           next: (res: any) => {
+            console.log("getJelentesek res: ",res)
             this.jelentesek = res;
-            // this.addBoolErdekel();
           },
         })
       );
     }
+  }
+  getOrgJelentesek() {
+    this.orgAdmin=true
+    this.admin=false
+    console.log("getOrgJelentesek currentOrganization: ",this.currentOrganization)
+    if (this.currentOrganization != null) {
+      this.subscription.push(
+        this.jelenteskezeloService.getSajatJelentesek(this.currentOrganization.id).subscribe({
+          next: (res: any) => {
+            console.log("getOrgJelentesek res: ",res)
+            this.jelentesek = res;
+          },
+        })
+      );
     }
-  
-  deleteSajatJelentes(jelentes:any){
-    console.log("delete:jelentés",jelentes)
+  }
+
+  deleteSajatJelentes(jelentes: any) {
+    console.log("deleteSajatJelentes jelentes", jelentes)
+    console.log("deleteSajatJelentes jelentes.noticeId", jelentes.noticeId)
     this.jelenteskezeloService.deleteJelentes(jelentes.noticeId).subscribe({
-      next:(res:any)=>{
-        console.log("delete:",res),
-        this.getJelentesek(this.currentUser)
-      
-      }, error:(error:any)=>{
+      next: (res: any) => {
+        console.log("delete:", res),
+        this.getJelentesekDicpatch()
+      }, error: (error: any) => {
         console.log("error in deleteSajatJelentesek", error)
       }
-    
+
     })
   }
 
+  getJelentesekDicpatch(){
+    if (this.admin && !this.orgAdmin) {
+      this.getJelentesek(this.currentUser.id)
+    }else if (!this.admin && this.orgAdmin) {
+      this.getOrgJelentesek()
+    }else{
+      this.getJelentesek(this.user?.userId)
+    }
+
+  }
 
 
-  orgAdminKeres(){
+  orgAdminKeres() {
     this.orgAdmin = !this.orgAdmin
   }
 
-  adminKeres(){
+  adminKeres() {
     this.admin = !this.admin
   }
-  
+  resetAdminOrgAdmin(){
+    this.admin=false
+    this.orgAdmin=false
+  }
+
 
   searchPeople = (text$: Observable<string>) =>
-		text$.pipe(
-			debounceTime(300),
-			distinctUntilChanged(),
-			filter((searchTerm) => searchTerm.length >= this.col.min),
-			// switchMap((searchTerm) =>
-			// 	this.loadAdminAdatok(searchTerm, 0, this.col.category)
-			// ),
-			switchMap((searchTerm) =>
-				this.loadProfilAdatok(searchTerm, 0, this.col.category)
-			)
-	);
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      filter((searchTerm) => searchTerm.length >= this.col.min),
+      // switchMap((searchTerm) =>
+      // 	this.loadAdminAdatok(searchTerm, 0, this.col.category)
+      // ),
+      switchMap((searchTerm) =>
+        this.loadProfilAdatok(searchTerm, 0, this.col.category)
+      )
+    );
 
-	translateCurrentCategory(category: ProfiladatokCategory) {
-		switch (category) {
-		  case ProfiladatokCategory.ID:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.ID)!.key
-		  case ProfiladatokCategory.FIRSTNAME:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.FIRSTNAME)!.key
-			return "firstName"
-	
-		  case ProfiladatokCategory.LASTNAME:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.LASTNAME)!.key
-			return "lastName"
-	
-		  case ProfiladatokCategory.USERNAME:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.USERNAME)!.key
-			return "userName"
-	
-		  case ProfiladatokCategory.EMAIL:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.EMAIL)!.key
-			return "email"
-	
-		  case ProfiladatokCategory.PHONE:
-			return this.columns.find((o) => o.category == ProfiladatokCategory.PHONE)!.key
-			return "phone"
-	
-		}
-	  }
-	
+  translateCurrentCategory(category: ProfiladatokCategory) {
+    switch (category) {
+      case ProfiladatokCategory.ID:
+        return this.columns.find((o) => o.category == ProfiladatokCategory.ID)!.key
+      case ProfiladatokCategory.FIRSTNAME:
+        return this.columns.find((o) => o.category == ProfiladatokCategory.FIRSTNAME)!.key
+        return "firstName"
 
-	  
-	resultFormatter = (result: AdminAdatok) => `${result[this.category]}  ${result[this.col.key]}`;
-	inputFormatter = (result: AdminAdatok) => `${result[this.category]}  ${result[this.col.key]}`;
+      case ProfiladatokCategory.LASTNAME:
+        return this.columns.find((o) => o.category == ProfiladatokCategory.LASTNAME)!.key
+        return "lastName"
 
-	onSelectItem(event: NgbTypeaheadSelectItemEvent<AdminAdatok>) {
-		event.preventDefault();
-		console.log("event.item",event.item);
-		this.currentUser = event.item;
-    this.adminAdatok= event.item;
-	}
+      case ProfiladatokCategory.USERNAME:
+        return this.columns.find((o) => o.category == ProfiladatokCategory.USERNAME)!.key
+        return "userName"
 
-	loadAdminAdatok(value: string, pageNum: number, category: string) {
-		return this.felhaszkeres.getAdminAdatok(value, pageNum, category);
-	}
-	loadProfilAdatok(value: string, pageNum: number, category: string) {
+      case ProfiladatokCategory.EMAIL:
+        return this.columns.find((o) => o.category == ProfiladatokCategory.EMAIL)!.key
+        return "email"
 
-		let result = this.felhaszkeres.getProfilAdatok(value, pageNum, category);
-		result.subscribe(
-		(res)=>this.felhasznalok = res
-		)
-		
-		return result
-	}
+      case ProfiladatokCategory.PHONE:
+        return this.columns.find((o) => o.category == ProfiladatokCategory.PHONE)!.key
+        return "phone"
 
-	setCol(col: any) {
-		console.log("ez a col"+col.key)
-		this.col = col;
-		console.log(col)
-	}
+    }
+  }
+
+
+
+  resultFormatter = (result: AdminAdatok) => `${result[this.category]}  ${result[this.col.key]}`;
+  inputFormatter = (result: AdminAdatok) => `${result[this.category]}  ${result[this.col.key]}`;
+
+  onSelectItem(event: NgbTypeaheadSelectItemEvent<AdminAdatok>) {
+    event.preventDefault();
+    console.log("event.item", event.item);
+    this.currentUser = event.item;
+    this.adminAdatok = event.item;
+  }
+
+  loadAdminAdatok(value: string, pageNum: number, category: string) {
+    return this.felhaszkeres.getAdminAdatok(value, pageNum, category);
+  }
+  loadProfilAdatok(value: string, pageNum: number, category: string) {
+
+    let result = this.felhaszkeres.getProfilAdatok(value, pageNum, category);
+    result.subscribe(
+      (res) => this.felhasznalok = res
+    )
+
+    return result
+  }
+
+  setCol(col: any) {
+    console.log("ez a col" + col.key)
+    this.col = col;
+    console.log(col)
+  }
 
 
   // orgRequest(){
@@ -237,7 +260,7 @@ lekeres(){
   ngOnDestroy(): void {
     if (this.subscription != null) {
       this.subscription.forEach(element => {
-        element.unsubscribe();        
+        element.unsubscribe();
       });
     }
   }

@@ -115,6 +115,7 @@ export class SajatSzervezesekComponent implements OnInit, OnDestroy{
       this.subscription.push(
         this.szervezesService.getSajatSzervezesekOrg(this.currentOrganization.id).subscribe({
           next: (res: any) => {
+            console.log("getSajatSzervezes res",res)
             this.szervezesek = res;
           },
         })
