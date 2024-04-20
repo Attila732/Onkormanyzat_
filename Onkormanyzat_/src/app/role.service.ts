@@ -26,18 +26,18 @@ export class RoleService {
     return this.http.post("/resource/user/admin/userRoles",returnUserRoles)
   }
 
-  updateUserRoles(profilAdatok:ProfilAdatok, roles: Map<String,boolean>){
+  updateUserRoles(profilAdatok:any){
     let ret = new ReturnUserRoles()
     ret.userId = profilAdatok.userId
     ret.userName = profilAdatok.userName
     ret.roles = []
-    if (roles.get("ADMIN")) {
+    if (profilAdatok.roles["ADMIN"]) {
     ret.roles.push("ADMIN")
     }
-    if (roles.get("ORG_ADMIN")) {
+    if (profilAdatok.roles["ORG_ADMIN"]) {
     ret.roles.push("ORG_ADMIN")
     }
-
+    console.log("updateUserRoles ret: ", ret)
     return this.http.put("/resource/user/admin/setRolesTo",ret)
   }
 

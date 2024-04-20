@@ -22,8 +22,10 @@ import { ReturnUserRoles } from '../models/ReturnUserRoles';
 	styleUrls: ['./felhaszkezeles.component.css'],
 })
 export class FelhaszkezelesComponent implements OnInit, OnDestroy {
+	initialRoles = new Map<String, boolean> ([["ADMIN",false],["ORG_ADMIN", false]]);
+
 	subscription: Subscription[] = []
-	felhasznalok: ProfilAdatok[] = []
+	felhasznalok: any = []
 	id: number = 0;
 	selectedId: number | null = null;
 	isRoles:boolean=false
@@ -183,19 +185,70 @@ export class FelhaszkezelesComponent implements OnInit, OnDestroy {
 		}
 	}
 
+	// getUserRoles(felhasznalok: ProfilAdatok[]) {
+	// 	this.subscription.push(
+	// 		this.roleService.getUserRoles(felhasznalok).subscribe({
+	// 			next: (res: any) => {
+	// 				console.log("getUserRoles res: ", res)
+	// 				this.returnUserRoles = res
+	// 				this.felhasznalok.forEach((e1:any)=>{
+	// 					let defroles = this.initialRoles
+	// 					let e2 = this.returnUserRoles.find((o)=>o.userId==e1.id)
+	// 					if (e2) {
+							
+	// 						defroles.set("ADMIN",e2.roles.includes("ROLE_ADMIN"))
+	// 						defroles.set("ORG_ADMIN",e2.roles.includes("ROLE_ORG_ADMIN"))
+	// 						console.log("defRoles: ",defroles)
+	// 						console.log("initialRoles: ",this.initialRoles)
+	// 						console.log("e1: ",e1)
+	// 						console.log("e2: ",e2)
+	// 						e1.roles=defroles
+
+	// 					}
+	// 				})
+	// 			}
+	// 		})
+	// 	)
+	// }
+
 	getUserRoles(felhasznalok: ProfilAdatok[]) {
 		this.subscription.push(
 			this.roleService.getUserRoles(felhasznalok).subscribe({
 				next: (res: any) => {
-					console.log("getUserRoles res: ", res)
-					this.returnUserRoles = res
+					console.log("getUserRoles res: ", res);
+					this.returnUserRoles = res;
+					this.felhasznalok.forEach((e1: any) => {
+						let defroles = new Map<String, boolean>([["ADMIN", false], ["ORG_ADMIN", false]]);
+						let e2 = this.returnUserRoles.find((o) => o.userId == e1.id);
+						if (e2) {
+							defroles.set("ADMIN", e2.roles.includes("ROLE_ADMIN"));
+							defroles.set("ORG_ADMIN", e2.roles.includes("ROLE_ORG_ADMIN"));
+							console.log("defRoles: ", defroles);
+							console.log("initialRoles: ", this.initialRoles);
+							console.log("e1: ", e1);
+							console.log("e2: ", e2);
+							// Convert defroles map to a plain object
+							let rolesObject: { [key: string]: boolean } = {};
+							defroles.forEach((value, key) => {
+								console.log("key: ",key," value: ",value)
+								rolesObject[(key as string)] = value;
+							});
+							e1.roles = rolesObject;
+						}
+					});
 				}
 			})
-		)
+		);
 	}
-	updateUserRoles(user: ProfilAdatok, roles: Map<String, boolean>) {
+	
+
+
+
+	updateUserRoles(user: ProfilAdatok, roles: any) {
+		console.log("updateUserRoles user:",user)
+		console.log("updateUserRoles roles:",roles)
 		this.subscription.push(
-			this.roleService.updateUserRoles(user, roles).subscribe({
+			this.roleService.updateUserRoles(user).subscribe({
 				next: (res: any) => {
 					console.log("getUserRoles res: ", res)
 					this.returnUserRoles = res

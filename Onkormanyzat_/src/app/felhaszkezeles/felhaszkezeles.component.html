@@ -1,14 +1,80 @@
-<!-- <div class="col">
+<!-- <div class="row">
 	<button type="button"
 		class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
 		(click)="getRoles()">Roles lekérése</button>
 </div> -->
 <!-- needs displaying -->
+<!-- {{felhasznalok|json}}
+{{returnUserRoles|json}} -->
+		<!-- <div class="row">
+			<div class="col">Admin</div>
+			<div class="col">OrgAdmin</div>
+			<div *ngFor="let col of columns" class="col">{{col.text}}</div>
+			<div class="col">Szerkeszt</div>
+			<div class="col">Töröl</div>
+			<div class="col">Típus választó</div>
+		</div>
+		<div class="row">
+			<div *ngFor="let col of columns" class="col">
+				<input [value]="adminAdatok[col.key]" (focus)="setCol(col)" [ngbTypeahead]="searchPeople"
+					(selectItem)="onSelectItem($event)" [resultFormatter]="resultFormatter"
+					[inputFormatter]="inputFormatter" class="" placeholder="{{col.text}}"
+					[type]="col.type" />
+			</div>
+
+			<div class="col">
+			</div>
+			<div class="col">
+			</div>
+			<div class="col">
+			</div>
+
+		</div>
+
+
+
+
+		<div *ngFor="let user of felhasznalok"  class="row">
+			<div *ngFor="let col of columns" class="col">
+				<input [type]="col.type" [(ngModel)]="user[col.key]">
+
+			</div>
+			<div *ngIf="user.roles">
+				<div class="col"><label for="adminbox">Admin: </label><input id="adminbox" type="checkbox" [(ngModel)]="user.roles['ADMIN']"></div>
+				<div class="col"><label for="orgadminbox">OrgAdmin: </label><input id="orgadminbox" type="checkbox" [(ngModel)]="user.roles['ORG_ADMIN']"></div>
+				<div class="col"><button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="updateUserRoles(user,user.roles)">Role Mentése</button>
+				</div>
+			</div>
+			<div class="col">
+				<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="updateUser(user)">Mentés</button>
+			</div>
+			<div class="col">
+				<button type="button"
+					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
+					(click)="deleteUser(user)">Törlés</button>
+			</div>
+			<div class="col">
+				<select type="text" id="condition" name="condition"
+					class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
+					<option value="termekek">Termékek</option>
+					<option value="idopontok">Időpontok</option>
+					<option value="szervezesek">Szervezések</option>
+					<option value="bejelentesek">Bejelentések</option>
+				</select>
+			</div>
+		</div> -->
+
+
 
 <div class="container mx-auto mt-5  ">
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				
 				<th *ngFor="let col of columns">{{col.text}}</th>
 				<th>Szerkeszt</th>
 				<th>Töröl</th>
@@ -41,7 +107,7 @@
 
 
 
-
+		
 		<tr *ngFor="let user of felhasznalok" >
 			<td *ngFor="let col of columns" >
 			<input [type]="col.type" [(ngModel)]="user[col.key]">
@@ -80,4 +146,3 @@
 
 	</table>
 </div>
-
