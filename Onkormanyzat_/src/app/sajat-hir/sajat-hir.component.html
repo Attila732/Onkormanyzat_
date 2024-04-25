@@ -3,45 +3,41 @@
 		class=" md:inline-block w-[50%] md:w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
 		<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
 	</select>
-	<button
-		class="w-[50%] md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
-		(click)="orgRequest()">Lekérés</button>
+	<div>
+		<button (click)="orgRequest()"
+			class="w-[50%] md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500">Lekérés</button>
+	</div>
 </div>
 
 
-
-	
-
-		<div class="w-fit md:w-[40%] h-fit flex items-center bg-white/30 backdrop-blur-xl rounded-3xl">
-			<ul class="">
-				<li
-					class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-lokalhir">
-					Saját hírek</li>
-				<div class="px-4">
-					<li *ngFor="let hir of hirOrg">
-						<div>
-							<div class="w-full md:w-1/6 mb-4 md:mb-0">
-								<input [(ngModel)]="hir.title" type="text" [ngModelOptions]="{standalone: true}"
-									class="w-full py-2 px-4 border rounded-md">
-							</div>
-							<div class="w-fit h-fit md:w-1/6 mb-4 md:mb-0">
-								<input [(ngModel)]="hir.content" type="text" [ngModelOptions]="{standalone: true}"
-									class="w-full py-2 px-4 border rounded-md">
-							</div>
-							<select [(ngModel)]="hir.type" type="text" id="description"
-								class="w-[65%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-md focus:border-[3px] border-cstm-purple duration-200">
-								<option value="LOCAL">Helyi</option>
-								<option value="NATIONAL">Országos</option>
-								<option value="INTERNATIONAL">Nemzetközi</option>
-							</select>
-						</div>
-						<button
-							class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500 delete-button"
-							(click)="deleteNews(hir)">Törlés</button>
-						<button (click)="editNews(hir)"
-							class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500">Mentés</button>
-							<div class="border-bottom p-4 m-4"></div>
-					</li>
+<div class="w-fit bg-white/30 backdrop-blur-xl rounded-3xl">
+	<ul class="">
+		<li class="w-full h-fit text-cstm-gray text-xl font-medium text-center py-3 rounded-t-3xl bg-cstm-lokalhir">
+			Hírek</li>
+		<div class="px-4">
+			<li *ngFor="let hir of hirOrg">
+				<div>
+					<div class="w-full h-fit md:w-1/6 mb-4 md:mb-0">
+						<input [(ngModel)]="hir.title" type="text" [ngModelOptions]="{standalone: true}"
+							class="w-full py-2 px-4 border rounded-md">
+					</div>
+					<div class="w-fit h-fit md:w-1/6 mb-4 md:mb-0">
+						<input [(ngModel)]="hir.content" type="text" [ngModelOptions]="{standalone: true}"
+							class="w-full py-2 px-4 border rounded-md">
+					</div>
+					<select [(ngModel)]="hir.type" type="text" id="description"
+						class="w-[65%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-md focus:border-[3px] border-cstm-purple duration-200">
+						<option value="LOCAL">Helyi</option>
+						<option value="NATIONAL">Országos</option>
+						<option value="INTERNATIONAL">Nemzetközi</option>
+					</select>
 				</div>
-			</ul>
+				<button (click)="editNews(hir)"
+					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500">Mentés</button>
+				<button (click)="deleteNews(hir)"
+					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500 delete-button">Törlés</button>
+				<div class="border-bottom p-4 m-4"></div>
+			</li>
 		</div>
+	</ul>
+</div>

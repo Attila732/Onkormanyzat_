@@ -10,7 +10,7 @@ Ez a Frontend repository-ja, a backend: [MrBrown/groupproject](https://github.co
 Fejlesztők: Móra Barna, Szabó Szebasztián, Kovács Attila
 Móra Barna: Backend
 Kovács Attila: Frontend
-Szabó Szebasztián: Frontend TS
+Szabó Szebasztián: Frontend
 
 
 Projekt célja
