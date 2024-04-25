@@ -2,6 +2,7 @@
 2023.11.10
 
 
+Ez a Frontend repository-ja, a backend: [MrBrown/groupproject](https://github.com/MrBrown16/Groupproject-backend) 
 
 
 
