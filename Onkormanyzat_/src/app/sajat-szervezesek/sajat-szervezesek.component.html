@@ -1,183 +1,51 @@
-<!-- 
-
-<div *ngIf="!orgBooleanSzervezesek">
-	<div *ngFor="let szervezes of szervezesek" class="row">
-		<div class="col">
-			<input [(ngModel)]="szervezes.name" type="text">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="szervezes.description" type="text">
-		</div>
-		<div class="col">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="szervezes.location" type="text">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="szervezes.startDate" type="number">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="szervezes.phone" type="number">
-		</div>
-		<div class="col">
-			<button class="btn btn-info ml-auto col" (click)="updateSajatSzervezes(szervezes)">Szerkeszt.</button>
-		</div>
-		<div class="col">
-			<button class="btn btn-info ml-auto col" (click)="deleteSajatSzervezes(szervezes)">Törlés</button>
-		</div>
-	</div>
-</div>
-
-
-
-<div class="row">
-	<div *ngIf="userRoles.get('ORG_ADMIN')" class="col">
-		<button class="btn btn-info ml-auto col" (click)="orgAdminKeres()">OrgAdmin</button>
-	</div>
-	<div *ngIf="userRoles.get('ADMIN')" class="col">
-		<button class="btn btn-info ml-auto col" (click)="adminKeres()">Admin</button>
-	</div>
-</div>
-
-
-<div *ngIf="orgAdmin">
-	<select [(ngModel)]="currentOrganization.id" type="text" id="description"
-		class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-		<option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
-	</select>
-	<button class="btn btn-info ml-auto col" (click)="orgRequest()">Lekérés</button>
-</div>
-
-
-
-
-<div *ngIf="!orgBooleanSzervezesek">
-	<div *ngFor="let szervezes of szervezesek" class="row">
-		<div class="col">
-			<input [(ngModel)]="szervezes.name" type="text">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="szervezes.description" type="text">
-		</div>
-		<div class="col">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="szervezes.location" type="text">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="szervezes.startDate" type="number">
-		</div>
-		<div class="col">
-			<input [(ngModel)]="szervezes.phone" type="number">
-		</div>
-		<div class="col">
-			<button class="btn btn-info ml-auto col" (click)="updateSajatSzervezes(szervezes)">Szerkeszt.</button>
-		</div>
-		<div class="col">
-			<button class="btn btn-info ml-auto col" (click)="deleteSajatSzervezes(szervezes)">Törlés</button>
-		</div>
-	</div>
-
-
-
-
-	<div *ngIf="admin">
-		<div class="col">
-			<input [value]="currentOrganization.name" [ngbTypeahead]="searchPeople" (selectItem)="onSelectItem($event)"
-				[resultFormatter]="resultFormatter" [inputFormatter]="inputFormatter" class="form-control" />
-		</div>
-	</div>
-
-	{{orgs|json}} -->
-
 <div class="container mx-auto mt-5">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Szervezet neve:</th>
-				<th>Szervezések lekérése</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td >
-					<input
-						[value]="currentOrganization['name']"
-						[ngbTypeahead]="searchPeople"
-						(selectItem)="onSelectItem($event)"
-						[resultFormatter]="resultFormatter"
-						[inputFormatter]="inputFormatter"
-						class="form-control"
-						placeholder="Szervezet neve"
-						type="text"
-					/>
-				</td>
-				<td>
-					<button type="button"
-					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
-					(click)="getSajatSzervezes()" [disabled]="currentOrganization==null">Lekérés</button>
-				</td>
-			</tr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Szervezet neve:</th>
+                <th>Szervezések lekérése</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="align-middle">
+                    <input
+                        [value]="currentOrganization['name']"
+                        [ngbTypeahead]="searchPeople"
+                        (selectItem)="onSelectItem($event)"
+                        [resultFormatter]="resultFormatter"
+                        [inputFormatter]="inputFormatter"
+                        class="form-control"
+                        placeholder="Szervezet neve"
+                        type="text"
+                    />
+                </td>
+                <td class="align-middle">
+                    <button type="button"
+                        class="w-[200px] text-xl text-cstm-orszagos hover:text-cstm-gray mb-4 border-3 border-cstm-orszagos hover:bg-cstm-orszagos rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-orszagos transform transition duration-500"
+                        (click)="getSajatSzervezes()"
+                        [disabled]="currentOrganization==null">Lekérés</button>
+                </td>
+            </tr>
 
-			<tr *ngFor="let szervezes of szervezesek">
-				<td *ngFor="let col of szervezesekColumns">
-					<input [type]="col.type" [(ngModel)]="szervezes[col.key]" />
-				</td>
-				<td>
-					<button type="button"
-					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
-					(click)="updateSzervezes(szervezes)">Mentés</button>
-				</td>
-				<td>
-					<button type="button"
-					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
-					(click)="deleteSzervezes(szervezes)">Törlés</button>
-				</td>
-				<td>
-
-				</td>
-			</tr>
-
-			<td>
-				<div class="col"></div>
-			</td>
-			<td>
-				<div class="col"></div>
-			</td>
-			<!-- 
-
-		<tr *ngFor="let user of felhasznalok" >
-			<td *ngFor="let col of columns" >
-			<input [type]="col.type" [(ngModel)]="user[col.key]">
-
-		</td>
-		<td>
-			<div class="col">
-				<button type="button"
-					class="w-full md:w-[30%] text-xl text-cstm-gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple bg-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
-					(click)="update(user)">Mentés</button>
-			</div>
-		</td>
-		<td>
-			<div class="col">
-				<button type="button"
-					class="w-full md:w-[30%] text-xl text-cstm-dark_gray hover:text-cstm-gray mb-4 border-3 border-cstm-purple hover:bg-cstm-purple rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-dark-purple transform transition duration-500"
-					(click)="deleteUser(user)">Törlés</button>
-			</div>
-		</td>
-		<td>
-			<select
-				type="text"
-				id="condition"
-				name="condition"
-				class="w-[50%] h-fit text-cstm-dark_gray focus:scale-105 focus:text-cstm-purple shadow-xl focus:shadow-cstm-dark-purple outline-none caret-cstm-purple text-lg py-2 px-3 rounded-[14px] focus:border-[3px] border-cstm-purple">
-			<option value="termekek">Termékek</option>
-			<option value="idopontok">Időpontok</option>
-			<option value="szervezesek">Szervezések</option>
-			<option value="bejelentesek">Bejelentések</option>
-		</select> 
-		</td>
-		</tr> -->
-		</tbody>
-	</table>
+            <tr *ngFor="let szervezes of szervezesek">
+                <td *ngFor="let col of szervezesekColumns" class="align-middle">
+                    <input [type]="col.type" [(ngModel)]="szervezes[col.key]" class="form-control"/>
+                </td>
+                <td class="align-middle">
+                    <button type="button"
+                        class="w-[200px] text-xl text-cstm-orszagos hover:text-cstm-gray mb-4 border-3 border-cstm-orszagos hover:bg-cstm-orszagos rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-orszagos transform transition duration-500"
+                        (click)="updateSzervezes(szervezes)">Mentés</button>
+                </td>
+                <td class="align-middle">
+                    <button type="button"
+                        class="w-[200px] text-xl text-cstm-orszagos hover:text-cstm-gray mb-4 border-3 border-cstm-orszagos hover:bg-cstm-orszagos rounded-xl px-3 py-2 shadow-xl hover:shadow-cstm-orszagos transform transition duration-500"
+                        (click)="deleteSzervezes(szervezes)">Törlés</button>
+                </td>
+                <td class="align-middle">
+                    <!-- If you want to add content here -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
